@@ -4040,20 +4040,21 @@ export class CommonService {
 
   downloadPdf() {
     if (this.plt.is('cordova')) {
+      console.log('Came for download (android)')
       this.pdfObj.getBuffer((buffer) => {
         var blob = new Blob([buffer], { type: 'application/pdf' });
 
         this.file
-          .writeFile(this.file.dataDirectory, this.selPDFname + '.pdf', blob, {
-            replace: true,
-          })
-          .then((fileEntry) => {
+          .writeFile(this.file.externalDataDirectory, this.selPDFname + '.pdf', blob, {
+            replace: false,
+          });
+          /* .then((fileEntry) => {
             this.PreviewPDF = false;
             this.fileOpener.open(
               this.file.dataDirectory + this.selPDFname + '.pdf',
               'application/pdf'
             );
-          });
+          }); */
       });
     } else {
       this.PreviewPDF = false;

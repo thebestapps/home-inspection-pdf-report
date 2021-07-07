@@ -3765,17 +3765,20 @@ export class CommonSelectionPage implements OnInit {
     let n = this.GetFileDownloadType;
     if (n == 2) {
       if (this.plt.is('cordova')) {
+        console.log('Came for download')
         this.androidPermissions.requestPermissions([
-          this.androidPermissions.PERMISSION.CAMERA,
-          this.androidPermissions.PERMISSION.GET_ACCOUNTS,
-        ]);
+          this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE,
+          this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE,
+        ]).then(res=>{
+          console.log(res);
+        });
 
         this.pdfObj.getBuffer((buffer) => {
           var blob = new Blob([buffer], { type: 'application/pdf' });
 
           this.file
             .writeFile(
-              this.file.dataDirectory,
+              this.file.externalRootDirectory,
               this.selPDFname + '.pdf',
               blob,
               {
@@ -3783,8 +3786,9 @@ export class CommonSelectionPage implements OnInit {
               }
             )
             .then((fileEntry) => {
+              console.log(fileEntry)
               this.PreviewPDF = false;
-              console.log(JSON.stringify(fileEntry.nativeURL));
+             // console.log(fileEntry.nativeURL);
 
               // this.file.download(this.selPDFname + '.pdf');
               // this.fileOpener.open(
@@ -3804,6 +3808,7 @@ export class CommonSelectionPage implements OnInit {
                 )
                 .then(
                   (entry) => {
+                    alert("File saved!");
                     console.log(
                       'Downloaded successfully.' + JSON.stringify(entry)
                     );
