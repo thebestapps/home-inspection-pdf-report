@@ -48,6 +48,41 @@ export class InsulationSelectionPage implements OnInit {
   Comments_UI: boolean = false;
   Limitations_UI: boolean = false;
   itemsToDeleteObs: any;
+  CompSelect1 = true;
+  StructureFoundationComponents_UI = false;
+
+  selectedIndex5: any;
+  selectedIndex6: any;
+  selectedIndex7: any;
+  selectedIndex8: any;
+  selectedIndex9: any;
+  selectedIndex10: any;
+
+  HSView1 = false;
+  HSView2 = false;
+  HSView3 = false;
+  HSView8 = false;
+  HSView9 = false;
+  HSView10 = false;
+
+  added_items5: any = [];
+  added_items6: any = [];
+  added_items7: any = [];
+  added_items8: any = [];
+  added_items9: any = [];
+  added_items10: any = [];
+
+  // D2InsulationAtticStructureContent: any = [];
+  // D2InsulationRoofStructureContent: any = [];
+  // D2InsulationExhastVentStructureContent: any = [];
+
+  // StructureAtticMethodStructureContent: any = [];
+  // StructureFoundationStructureContent: any = [];
+  // StructureFloorStructureContent: any = [];
+
+  InsulationAtticStructureContent: any = [];
+  InsulationRoofStructureContent: any = [];
+  InsulationExhastVentStructureContent: any = [];
 
   constructor(
     public modalController: ModalController,
@@ -57,6 +92,12 @@ export class InsulationSelectionPage implements OnInit {
     private alertController: AlertController
   ) {
     this.inspectionTypes = [
+      {
+        name: 'Foundational Components',
+
+        val: '5',
+      },
+
       {
         name: 'Cooling System Description',
 
@@ -86,6 +127,10 @@ export class InsulationSelectionPage implements OnInit {
     this.insulationObservationRecommendations = this.config.CoolingHVACObservationContent;
     this.StructureCommentsContent = this.config.StructureCommentsContent;
     this.insulationLimitationsContent = this.config.CoolingHVACLimitationsContent;
+
+    this.InsulationAtticStructureContent = this.config.InsulationAtticStructureContent;
+    this.InsulationRoofStructureContent = this.config.InsulationRoofStructureContent;
+    this.InsulationExhastVentStructureContent = this.config.InsulationExhastVentStructureContent;
 
     this.HouseInModes = [
       {
@@ -155,10 +200,10 @@ export class InsulationSelectionPage implements OnInit {
       }
     }
   }
-
   async goToSelection(n) {
     if (n.val == '1') {
       console.log(n);
+      this.StructureFoundationComponents_UI = false;
       this.Description = true;
       this.Observations_UI = false;
       this.Comments_UI = false;
@@ -166,6 +211,7 @@ export class InsulationSelectionPage implements OnInit {
     }
     if (n.val == '2') {
       console.log(n);
+      this.StructureFoundationComponents_UI = false;
       this.Description = false;
       this.Observations_UI = true;
       this.Comments_UI = false;
@@ -173,6 +219,7 @@ export class InsulationSelectionPage implements OnInit {
     }
     if (n.val == '3') {
       console.log(n);
+      this.StructureFoundationComponents_UI = false;
       this.Description = false;
       this.Observations_UI = false;
       this.Comments_UI = true;
@@ -180,10 +227,19 @@ export class InsulationSelectionPage implements OnInit {
     }
     if (n.val == '4') {
       console.log(n);
+      this.StructureFoundationComponents_UI = false;
       this.Description = false;
       this.Observations_UI = false;
       this.Comments_UI = false;
       this.Limitations_UI = true;
+    }
+    if (n.val == '5') {
+      console.log(n);
+      this.Description = false;
+      this.Observations_UI = false;
+      this.Comments_UI = false;
+      this.Limitations_UI = false;
+      this.StructureFoundationComponents_UI = true;
     }
   }
 
@@ -964,6 +1020,810 @@ export class InsulationSelectionPage implements OnInit {
 
     if (an['__zone_symbol__state'] == true) {
       this.PreviewPDF = false;
+    }
+  }
+
+  selectItem5Remove(i, n) {
+    console.log(i);
+    console.log(n);
+    this.selectedIndex5 = i;
+    this.itemsToDelete = n;
+  }
+
+  selectItem6Remove(i, n) {
+    console.log(i);
+    console.log(n);
+    this.selectedIndex6 = i;
+    this.itemsToDelete = n;
+  }
+
+  selectItem7Remove(i, n) {
+    console.log(i);
+    console.log(n);
+    this.selectedIndex7 = i;
+    this.itemsToDelete = n;
+  }
+
+  selectItem8Remove(i, n) {
+    console.log(i);
+    console.log(n);
+    this.selectedIndex8 = i;
+    this.itemsToDelete = n;
+  }
+  selectItem9Remove(i, n) {
+    console.log(i);
+    console.log(n);
+    this.selectedIndex9 = i;
+    this.itemsToDelete = n;
+  }
+  selectItem10Remove(i, n) {
+    console.log(i);
+    console.log(n);
+    this.selectedIndex10 = i;
+    this.itemsToDelete = n;
+  }
+
+  onHSView1() {
+    this.HSView1 = !this.HSView1;
+  }
+  onHSView2() {
+    this.HSView2 = !this.HSView2;
+  }
+  onHSView3() {
+    this.HSView3 = !this.HSView3;
+  }
+  onHSView8() {
+    this.HSView8 = !this.HSView8;
+  }
+  onHSView9() {
+    this.HSView9 = !this.HSView9;
+  }
+  onHSView10() {
+    this.HSView10 = !this.HSView10;
+  }
+
+  removeContent5() {
+    // this.inputChanged = true;
+    let selected_content = this.itemsToDelete.text;
+
+    this.added_items5 = this.added_items5.filter(
+      (h) => h.text !== selected_content
+    );
+    this.obArr.push(this.itemsToDelete);
+
+    var newArray = this.obArr.map((o) => {
+      return {
+        text: o.text,
+      };
+    });
+  }
+
+  removeContent6() {
+    let selected_content = this.itemsToDelete.text;
+
+    this.added_items6 = this.added_items6.filter(
+      (h) => h.text !== selected_content
+    );
+    this.obArr.push(this.itemsToDelete);
+
+    var newArray = this.obArr.map((o) => {
+      return {
+        text: o.text,
+      };
+    });
+  }
+
+  removeContent7() {
+    let selected_content = this.itemsToDelete.text;
+
+    this.added_items7 = this.added_items7.filter(
+      (h) => h.text !== selected_content
+    );
+    this.obArr.push(this.itemsToDelete);
+
+    var newArray = this.obArr.map((o) => {
+      return {
+        text: o.text,
+      };
+    });
+  }
+  removeContent8() {
+    let selected_content = this.itemsToDelete.text;
+
+    this.added_items8 = this.added_items8.filter(
+      (h) => h.text !== selected_content
+    );
+    this.obArr.push(this.itemsToDelete);
+
+    var newArray = this.obArr.map((o) => {
+      return {
+        text: o.text,
+      };
+    });
+  }
+
+  removeContent9() {
+    let selected_content = this.itemsToDelete.text;
+
+    this.added_items9 = this.added_items9.filter(
+      (h) => h.text !== selected_content
+    );
+    this.obArr.push(this.itemsToDelete);
+
+    var newArray = this.obArr.map((o) => {
+      return {
+        text: o.text,
+      };
+    });
+  }
+
+  removeContent10() {
+    let selected_content = this.itemsToDelete.text;
+
+    this.added_items10 = this.added_items10.filter(
+      (h) => h.text !== selected_content
+    );
+    this.obArr.push(this.itemsToDelete);
+
+    var newArray = this.obArr.map((o) => {
+      return {
+        text: o.text,
+      };
+    });
+  }
+
+  selectItem5(_index: number, data) {
+    this.selectedIndex = _index;
+    this.Selected_Item_to_add = data;
+
+    if (this.touchtime == 0) {
+      // set first click
+      this.disable_ = false;
+      this.touchtime = new Date().getTime();
+    } else {
+      // compare first click to this click and see if they occurred within double click threshold
+      if (new Date().getTime() - this.touchtime < 800) {
+        // double click occurred
+
+        this.DB_Click_AddNewItem5();
+        this.touchtime = 0;
+      } else {
+        // not a double click so set as a new first click
+        this.touchtime = new Date().getTime();
+      }
+    }
+  }
+
+  selectItem6(_index: number, data) {
+    this.selectedIndex = _index;
+    this.Selected_Item_to_add = data;
+
+    if (this.touchtime == 0) {
+      // set first click
+      this.disable_ = false;
+      this.touchtime = new Date().getTime();
+    } else {
+      // compare first click to this click and see if they occurred within double click threshold
+      if (new Date().getTime() - this.touchtime < 800) {
+        // double click occurred
+
+        this.DB_Click_AddNewItem6();
+        this.touchtime = 0;
+      } else {
+        // not a double click so set as a new first click
+        this.touchtime = new Date().getTime();
+      }
+    }
+  }
+
+  selectItem7(_index: number, data) {
+    this.selectedIndex = _index;
+    this.Selected_Item_to_add = data;
+
+    if (this.touchtime == 0) {
+      // set first click
+      this.disable_ = false;
+      this.touchtime = new Date().getTime();
+    } else {
+      // compare first click to this click and see if they occurred within double click threshold
+      if (new Date().getTime() - this.touchtime < 800) {
+        // double click occurred
+
+        this.DB_Click_AddNewItem7();
+        this.touchtime = 0;
+      } else {
+        // not a double click so set as a new first click
+        this.touchtime = new Date().getTime();
+      }
+    }
+  }
+  selectItem8(_index: number, data) {
+    this.selectedIndex = _index;
+    this.Selected_Item_to_add = data;
+
+    if (this.touchtime == 0) {
+      // set first click
+      this.disable_ = false;
+      this.touchtime = new Date().getTime();
+    } else {
+      // compare first click to this click and see if they occurred within double click threshold
+      if (new Date().getTime() - this.touchtime < 800) {
+        // double click occurred
+
+        this.DB_Click_AddNewItem8();
+        this.touchtime = 0;
+      } else {
+        // not a double click so set as a new first click
+        this.touchtime = new Date().getTime();
+      }
+    }
+  }
+  selectItem9(_index: number, data) {
+    this.selectedIndex = _index;
+    this.Selected_Item_to_add = data;
+
+    if (this.touchtime == 0) {
+      // set first click
+      this.disable_ = false;
+      this.touchtime = new Date().getTime();
+    } else {
+      // compare first click to this click and see if they occurred within double click threshold
+      if (new Date().getTime() - this.touchtime < 800) {
+        // double click occurred
+
+        this.DB_Click_AddNewItem9();
+        this.touchtime = 0;
+      } else {
+        // not a double click so set as a new first click
+        this.touchtime = new Date().getTime();
+      }
+    }
+  }
+  selectItem10(_index: number, data) {
+    this.selectedIndex = _index;
+    this.Selected_Item_to_add = data;
+
+    if (this.touchtime == 0) {
+      // set first click
+      this.disable_ = false;
+      this.touchtime = new Date().getTime();
+    } else {
+      // compare first click to this click and see if they occurred within double click threshold
+      if (new Date().getTime() - this.touchtime < 800) {
+        // double click occurred
+
+        this.DB_Click_AddNewItem10();
+        this.touchtime = 0;
+      } else {
+        // not a double click so set as a new first click
+        this.touchtime = new Date().getTime();
+      }
+    }
+  }
+
+  DB_Click_AddNewItem5() {
+    let StorageDate = this.config.storageGet('InspectionToEdit')[
+      '__zone_symbol__value'
+    ];
+    console.log(this.added_items);
+    this.added_items5.push(this.Selected_Item_to_add);
+    console.log(this.added_items);
+  }
+
+  DB_Click_AddNewItem6() {
+    let StorageDate = this.config.storageGet('InspectionToEdit')[
+      '__zone_symbol__value'
+    ];
+    console.log(this.added_items);
+    this.added_items6.push(this.Selected_Item_to_add);
+    console.log(this.added_items);
+  }
+
+  DB_Click_AddNewItem7() {
+    let StorageDate = this.config.storageGet('InspectionToEdit')[
+      '__zone_symbol__value'
+    ];
+    console.log(this.added_items);
+    this.added_items7.push(this.Selected_Item_to_add);
+    console.log(this.added_items);
+  }
+
+  DB_Click_AddNewItem8() {
+    let StorageDate = this.config.storageGet('InspectionToEdit')[
+      '__zone_symbol__value'
+    ];
+    console.log(this.added_items);
+    this.added_items8.push(this.Selected_Item_to_add);
+    console.log(this.added_items);
+  }
+  DB_Click_AddNewItem9() {
+    let StorageDate = this.config.storageGet('InspectionToEdit')[
+      '__zone_symbol__value'
+    ];
+    console.log(this.added_items);
+    this.added_items9.push(this.Selected_Item_to_add);
+    console.log(this.added_items);
+  }
+  DB_Click_AddNewItem10() {
+    let StorageDate = this.config.storageGet('InspectionToEdit')[
+      '__zone_symbol__value'
+    ];
+    console.log(this.added_items);
+    this.added_items10.push(this.Selected_Item_to_add);
+    console.log(this.added_items);
+  }
+
+  updateDescription5() {
+    let structureLimitations = this.config.storageGet('InspectionToEdit')[
+      '__zone_symbol__value'
+    ]['D2InsulationAtticStructure'];
+
+    console.log('To finalize structureDescription=====' + structureLimitations);
+
+    if (structureLimitations != undefined) {
+      if (this.added_items5 == '') {
+        this.added_items5 = [];
+
+        var newArray = this.added_items5.map((o) => {
+          return {
+            D2InsulationAtticStructure: [
+              {
+                text: '',
+              },
+            ],
+          };
+        });
+      } else {
+        var newArray = this.added_items5.map((o) => {
+          return {
+            D2InsulationAtticStructure: [
+              {
+                text: o.text,
+              },
+            ],
+          };
+        });
+      }
+
+      console.log('Array To Add++++++++' + newArray);
+
+      let arr3 = [...structureLimitations, ...newArray];
+    }
+
+    if (structureLimitations == null || structureLimitations == undefined) {
+      console.log('undefined------------------------------');
+
+      let structureDescription = this.config.storageGet('InspectionToEdit')[
+        '__zone_symbol__value'
+      ]['D2InsulationAtticStructure'];
+
+      if (this.added_items5 == '') {
+        this.added_items5 = [];
+
+        var newArray = this.added_items5.map((o) => {
+          return {
+            D2InsulationAtticStructure: [
+              {
+                text: '',
+              },
+            ],
+          };
+        });
+      } else {
+        var newArray = this.added_items5.map((o) => {
+          return {
+            text: o.text,
+          };
+        });
+      }
+
+      this.StoredData = JSON.parse(
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+      );
+
+      this.StoredData.D2InsulationAtticStructure = newArray;
+
+      this.config.storageRemoveItem('InspectionToEdit');
+      this.config.storageSave('InspectionToEdit', this.StoredData);
+
+      console.log(this.StoredData);
+
+      this.presentAlertConfirm();
+    }
+  }
+
+  updateDescription6() {
+    let structureLimitations = this.config.storageGet('InspectionToEdit')[
+      '__zone_symbol__value'
+    ]['D2InsulationRoofStructure'];
+
+    console.log('To finalize structureDescription=====' + structureLimitations);
+
+    if (structureLimitations != undefined) {
+      if (this.added_items6 == '') {
+        this.added_items6 = [];
+
+        var newArray = this.added_items6.map((o) => {
+          return {
+            D2InsulationRoofStructure: [
+              {
+                text: '',
+              },
+            ],
+          };
+        });
+      } else {
+        var newArray = this.added_items6.map((o) => {
+          return {
+            D2InsulationRoofStructure: [
+              {
+                text: o.text,
+              },
+            ],
+          };
+        });
+      }
+
+      console.log('Array To Add++++++++' + newArray);
+
+      let arr3 = [...structureLimitations, ...newArray];
+    }
+
+    if (structureLimitations == null || structureLimitations == undefined) {
+      console.log('undefined------------------------------');
+
+      let structureDescription = this.config.storageGet('InspectionToEdit')[
+        '__zone_symbol__value'
+      ]['D2InsulationRoofStructure'];
+
+      if (this.added_items6 == '') {
+        this.added_items6 = [];
+
+        var newArray = this.added_items6.map((o) => {
+          return {
+            D2InsulationRoofStructure: [
+              {
+                text: '',
+              },
+            ],
+          };
+        });
+      } else {
+        var newArray = this.added_items6.map((o) => {
+          return {
+            text: o.text,
+          };
+        });
+      }
+
+      this.StoredData = JSON.parse(
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+      );
+
+      this.StoredData.D2InsulationRoofStructure = newArray;
+
+      this.config.storageRemoveItem('InspectionToEdit');
+      this.config.storageSave('InspectionToEdit', this.StoredData);
+
+      console.log(this.StoredData);
+
+      this.presentAlertConfirm();
+    }
+  }
+
+  updateDescription7() {
+    let structureLimitations = this.config.storageGet('InspectionToEdit')[
+      '__zone_symbol__value'
+    ]['D2InsulationExhastVentStructure'];
+
+    console.log('To finalize structureDescription=====' + structureLimitations);
+
+    if (structureLimitations != undefined) {
+      if (this.added_items7 == '') {
+        this.added_items7 = [];
+
+        var newArray = this.added_items7.map((o) => {
+          return {
+            D2InsulationExhastVentStructure: [
+              {
+                text: '',
+              },
+            ],
+          };
+        });
+      } else {
+        var newArray = this.added_items7.map((o) => {
+          return {
+            D2InsulationExhastVentStructure: [
+              {
+                text: o.text,
+              },
+            ],
+          };
+        });
+      }
+
+      console.log('Array To Add++++++++' + newArray);
+
+      let arr3 = [...structureLimitations, ...newArray];
+    }
+
+    if (structureLimitations == null || structureLimitations == undefined) {
+      console.log('undefined------------------------------');
+
+      let structureDescription = this.config.storageGet('InspectionToEdit')[
+        '__zone_symbol__value'
+      ]['D2InsulationAtticStructure'];
+
+      if (this.added_items7 == '') {
+        this.added_items7 = [];
+
+        var newArray = this.added_items7.map((o) => {
+          return {
+            D2InsulationExhastVentStructure: [
+              {
+                text: '',
+              },
+            ],
+          };
+        });
+      } else {
+        var newArray = this.added_items7.map((o) => {
+          return {
+            text: o.text,
+          };
+        });
+      }
+
+      this.StoredData = JSON.parse(
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+      );
+
+      this.StoredData.D2InsulationExhastVentStructure = newArray;
+
+      this.config.storageRemoveItem('InspectionToEdit');
+      this.config.storageSave('InspectionToEdit', this.StoredData);
+
+      console.log(this.StoredData);
+
+      this.presentAlertConfirm();
+    }
+  }
+
+  updateDescription8() {
+    let structureLimitations = this.config.storageGet('InspectionToEdit')[
+      '__zone_symbol__value'
+    ]['structureEigStructure'];
+
+    console.log('To finalize structureDescription=====' + structureLimitations);
+
+    if (structureLimitations != undefined) {
+      if (this.added_items8 == '') {
+        this.added_items8 = [];
+
+        var newArray = this.added_items8.map((o) => {
+          return {
+            structureEigStructure: [
+              {
+                text: '',
+              },
+            ],
+          };
+        });
+      } else {
+        var newArray = this.added_items8.map((o) => {
+          return {
+            structureEigStructure: [
+              {
+                text: o.text,
+              },
+            ],
+          };
+        });
+      }
+
+      console.log('Array To Add++++++++' + newArray);
+
+      let arr3 = [...structureLimitations, ...newArray];
+    }
+
+    if (structureLimitations == null || structureLimitations == undefined) {
+      console.log('undefined------------------------------');
+
+      let structureDescription = this.config.storageGet('InspectionToEdit')[
+        '__zone_symbol__value'
+      ]['structureEigStructure'];
+
+      if (this.added_items8 == '') {
+        this.added_items8 = [];
+
+        var newArray = this.added_items8.map((o) => {
+          return {
+            structureEigStructure: [
+              {
+                text: '',
+              },
+            ],
+          };
+        });
+      } else {
+        var newArray = this.added_items8.map((o) => {
+          return {
+            text: o.text,
+          };
+        });
+      }
+
+      this.StoredData = JSON.parse(
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+      );
+
+      this.StoredData.structureEigStructure = newArray;
+
+      this.config.storageRemoveItem('InspectionToEdit');
+      this.config.storageSave('InspectionToEdit', this.StoredData);
+
+      console.log(this.StoredData);
+
+      this.presentAlertConfirm();
+    }
+  }
+
+  updateDescription9() {
+    let structureLimitations = this.config.storageGet('InspectionToEdit')[
+      '__zone_symbol__value'
+    ]['structureNineStructure'];
+
+    console.log('To finalize structureDescription=====' + structureLimitations);
+
+    if (structureLimitations != undefined) {
+      if (this.added_items9 == '') {
+        this.added_items9 = [];
+
+        var newArray = this.added_items9.map((o) => {
+          return {
+            structureNineStructure: [
+              {
+                text: '',
+              },
+            ],
+          };
+        });
+      } else {
+        var newArray = this.added_items9.map((o) => {
+          return {
+            structureNineStructure: [
+              {
+                text: o.text,
+              },
+            ],
+          };
+        });
+      }
+
+      console.log('Array To Add++++++++' + newArray);
+
+      let arr3 = [...structureLimitations, ...newArray];
+    }
+
+    if (structureLimitations == null || structureLimitations == undefined) {
+      console.log('undefined------------------------------');
+
+      let structureDescription = this.config.storageGet('InspectionToEdit')[
+        '__zone_symbol__value'
+      ]['structureNineStructure'];
+
+      if (this.added_items9 == '') {
+        this.added_items9 = [];
+
+        var newArray = this.added_items9.map((o) => {
+          return {
+            structureNineStructure: [
+              {
+                text: '',
+              },
+            ],
+          };
+        });
+      } else {
+        var newArray = this.added_items9.map((o) => {
+          return {
+            text: o.text,
+          };
+        });
+      }
+
+      this.StoredData = JSON.parse(
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+      );
+
+      this.StoredData.structureNineStructure = newArray;
+
+      this.config.storageRemoveItem('InspectionToEdit');
+      this.config.storageSave('InspectionToEdit', this.StoredData);
+
+      console.log(this.StoredData);
+
+      this.presentAlertConfirm();
+    }
+  }
+
+  updateDescription10() {
+    let structureLimitations = this.config.storageGet('InspectionToEdit')[
+      '__zone_symbol__value'
+    ]['structureTenStructure'];
+
+    console.log('To finalize structureDescription=====' + structureLimitations);
+
+    if (structureLimitations != undefined) {
+      if (this.added_items10 == '') {
+        this.added_items10 = [];
+
+        var newArray = this.added_items10.map((o) => {
+          return {
+            structureTenStructure: [
+              {
+                text: '',
+              },
+            ],
+          };
+        });
+      } else {
+        var newArray = this.added_items10.map((o) => {
+          return {
+            structureTenStructure: [
+              {
+                text: o.text,
+              },
+            ],
+          };
+        });
+      }
+
+      console.log('Array To Add++++++++' + newArray);
+
+      let arr3 = [...structureLimitations, ...newArray];
+    }
+
+    if (structureLimitations == null || structureLimitations == undefined) {
+      console.log('undefined------------------------------');
+
+      let structureDescription = this.config.storageGet('InspectionToEdit')[
+        '__zone_symbol__value'
+      ]['structureTenStructure'];
+
+      if (this.added_items7 == '') {
+        this.added_items7 = [];
+
+        var newArray = this.added_items10.map((o) => {
+          return {
+            structureTenStructure: [
+              {
+                text: '',
+              },
+            ],
+          };
+        });
+      } else {
+        var newArray = this.added_items10.map((o) => {
+          return {
+            text: o.text,
+          };
+        });
+      }
+
+      this.StoredData = JSON.parse(
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+      );
+
+      this.StoredData.structureTenStructure = newArray;
+
+      this.config.storageRemoveItem('InspectionToEdit');
+      this.config.storageSave('InspectionToEdit', this.StoredData);
+
+      console.log(this.StoredData);
+
+      this.presentAlertConfirm();
     }
   }
 }

@@ -52,6 +52,57 @@ export class CommonService {
   StructureCeilingStructureContent: any = [];
   StructureRoofStructureContent: any = [];
 
+  StructureAtticMethodStructureContent: any = [];
+  StructureFoundationStructureContent: any = [];
+  StructureFloorStructureContent: any = [];
+
+  AppliancesPresentStructureContent: any = [];
+  AppliancesBuiltStructureContent: any = [];
+  AppliancesTestedStructureContent: any = [];
+
+  AppliancesLaundryStructureContent: any = [];
+  AppliancesOtherStructureContent: any = [];
+
+  CoolingHVACEnergyStructureContent: any = [];
+  CoolingHVACTypeStructureContent: any = [];
+  CoolingHVACManufacturerStructureContent: any = [];
+
+  CoolingHVACDescriptionStructureContent: any = [];
+  CoolingHVACTemperatureStructureContent: any = [];
+
+  ElectricalServiceEntryGroundStructureContent: any = [];
+  ElectricalMainDisconnectStructureContent: any = [];
+  ElectricalDistributionPanelStructureContent: any = [];
+
+  ElectricalAuxilliaryStructureContent: any = [];
+  ElectricalWiringStructureContent: any = [];
+  ElectricalGroundFaultStructureContent: any = [];
+
+  ExteriorWallCladdingStructureContent: any = [];
+  ExteriorSoffitFasciaStructureContent: any = [];
+  ExteriorWindowDoorStructureContent: any = [];
+
+  ExteriorDrivewaysStructureContent: any = [];
+  ExteriorOverheadGarageStructureContent: any = [];
+  ExteriorLotGradingStructureContent: any = [];
+
+  InsulationAtticStructureContent: any = [];
+  InsulationRoofStructureContent: any = [];
+  InsulationExhastVentStructureContent: any = [];
+
+  PlumbingWaterSuppyContent: any = [];
+  PlumbingServicePipeContent: any = [];
+  PlumbingSuppyPipingContent: any = [];
+
+  PlumbingWasteSystemStructureContent: any = [];
+  PlumbingDrainStructureContent: any = [];
+  PlumbingWaterHeaterPressureStructureContent: any = [];
+
+  RoofingCoveringStructureContent: any = [];
+  RoofingGuttersDownspoutsStructureContent: any = [];
+  RoofingMethodsStructureContent: any = [];
+  RoofingChimneysStructureContent: any = [];
+
   generalDescriptionContent: any = [];
 
   generalContent: any = [];
@@ -476,6 +527,268 @@ export class CommonService {
       {
         text:
           'Any dispute, controversy, interpretation or claim including claims for, but not limited to, breach of contract, any form of negligence, fraud, or misinterpretation arising out of, from or related to, this contractor arising out of, from or related to the inspection or inspection report shall be submitted first to a Non-Binding Mediation conference and absent a voluntary settlement through Non-Binding Mediation to followed by final and Binding Arbitration, if necessary, as conducted by Construction Dispute Resolution Services, LLC or Resolute Systems Inc. utilizing their respective Rules and Procedures. If the dispute is submitted to Binding Arbitration, the decision of the Arbitrator appointed there under shall be final and binding and the enforcement of the Arbitration Award may be entered in any Court or administrative tribunal having jurisdiction thereof.',
+      },
+    ];
+
+    this.StructureAtticMethodStructureContent = [
+      {
+        text: 'Entered',
+      },
+      {
+        text: 'Inaccessible Areas',
+      },
+    ];
+    this.StructureFoundationStructureContent = [
+      {
+        text: 'Concrete',
+      },
+      {
+        text: 'Slab on Grade',
+      },
+    ];
+    this.StructureFloorStructureContent = [
+      {
+        text: 'Concrete',
+      },
+    ];
+
+    this.AppliancesPresentStructureContent = [
+      {
+        text: 'Refrigerator',
+      },
+    ];
+    this.AppliancesBuiltStructureContent = [
+      {
+        text: 'None',
+      },
+    ];
+    this.AppliancesTestedStructureContent = [
+      {
+        text: 'Electric Range',
+      },
+      {
+        text: 'Microwave Oven',
+      },
+      {
+        text: 'Dishwasher',
+      },
+    ];
+
+    this.AppliancesLaundryStructureContent = [
+      {
+        text: '240 Volt Circuit for Dryer',
+      },
+      {
+        text: 'Dryer Vented to Building Exterior',
+      },
+      {
+        text: '120 Volt Circuit for Washer',
+      },
+      {
+        text: 'Hot and Cold Water Supply for Washer',
+      },
+      {
+        text: 'Waste Standpipe for Washer',
+      },
+    ];
+    this.AppliancesOtherStructureContent = [
+      {
+        text: 'Door Bell',
+      },
+      {
+        text: 'Waste Disposer',
+      },
+    ];
+
+    this.CoolingHVACEnergyStructureContent = [
+      {
+        text: 'Electricity',
+      },
+      {
+        text: '240 Volt Power Supply',
+      },
+    ];
+
+    this.CoolingHVACTypeStructureContent = [
+      {
+        text: 'Air Source Central Heat Pump System',
+      },
+    ];
+    this.CoolingHVACManufacturerStructureContent = [
+      {
+        text: 'Tempstar',
+      },
+    ];
+
+    this.CoolingHVACDescriptionStructureContent = [
+      {
+        text: 'Model #N4H448GKG101',
+      },
+      {
+        text: 'Serial #E175110996􏰀Approximate Age (in years): 4',
+      },
+    ];
+    this.CoolingHVACTemperatureStructureContent = [
+      {
+        text: '13 degrees 􏰀 E Heat 29 Degrees Heat',
+      },
+      {
+        text: '18 Degrees Cooling',
+      },
+    ];
+
+    this.ElectricalServiceEntryGroundStructureContent = [
+      {
+        text: 'Underground',
+      },
+    ];
+    this.ElectricalMainDisconnectStructureContent = [
+      {
+        text: 'Breakers –100 Amp',
+      },
+    ];
+    this.ElectricalDistributionPanelStructureContent = [
+      {
+        text: 'Breakers Milbank',
+      },
+    ];
+
+    this.ElectricalAuxilliaryStructureContent = [
+      {
+        text: 'Breakers Square D',
+      },
+    ];
+    this.ElectricalWiringStructureContent = [
+      {
+        text: 'Copper',
+      },
+    ];
+    this.ElectricalGroundFaultStructureContent = [
+      {
+        text: 'Bathroom(s)',
+      },
+      {
+        text: 'Kitchen',
+      },
+    ];
+
+    this.ExteriorWallCladdingStructureContent = [
+      {
+        text: 'Brick',
+      },
+      {
+        text: 'Vinyl',
+      },
+    ];
+
+    this.ExteriorSoffitFasciaStructureContent = [
+      {
+        text: 'Vinyl',
+      },
+    ];
+    this.ExteriorWindowDoorStructureContent = [
+      {
+        text: 'Wood',
+      },
+      {
+        text: 'Metal',
+      },
+      {
+        text: 'Vinyl',
+      },
+    ];
+
+    this.ExteriorDrivewaysStructureContent = [
+      {
+        text: 'Concrete',
+      },
+    ];
+    this.ExteriorOverheadGarageStructureContent = [
+      {
+        text: 'Metal',
+      },
+    ];
+    this.ExteriorLotGradingStructureContent = [
+      {
+        text: 'Level Grade',
+      },
+    ];
+
+    this.InsulationAtticStructureContent = [
+      {
+        text: '0(Porches and garage)3-14 inches Fiberglass in Lower Attic',
+      },
+    ];
+    this.InsulationRoofStructureContent = [
+      {
+        text: 'Ridge Vents',
+      },
+      {
+        text: 'Soffit Vents',
+      },
+    ];
+    this.InsulationExhastVentStructureContent = [
+      {
+        text: 'Level Grade',
+      },
+    ];
+
+    this.PlumbingWaterSuppyContent = [
+      {
+        text: 'Public Water Supply',
+      },
+    ];
+    this.PlumbingServicePipeContent = [
+      {
+        text: 'Not Visible',
+      },
+    ];
+    this.PlumbingSuppyPipingContent = [
+      {
+        text: 'Copper',
+      },
+      {
+        text: 'Plastic',
+      },
+    ];
+
+    this.PlumbingWasteSystemStructureContent = [
+      {
+        text: 'Unknown (Reported by Seller)',
+      },
+    ];
+    this.PlumbingDrainStructureContent = [
+      {
+        text: 'Plastic',
+      },
+    ];
+    this.PlumbingWaterHeaterPressureStructureContent = [
+      {
+        text: 'Electric',
+      },
+      {
+        text: 'Approximate Capacity (in gallons): 50',
+      },
+    ];
+
+    this.RoofingCoveringStructureContent = [
+      {
+        text: 'Composite 3 Tab Dimensional Shingle',
+      },
+    ];
+    this.RoofingGuttersDownspoutsStructureContent = [
+      {
+        text: 'Metal',
+      },
+    ];
+    this.RoofingMethodsStructureContent = [
+      {
+        text: 'Viewed from Ground',
+      },
+    ];
+    this.RoofingChimneysStructureContent = [
+      {
+        text: 'Metal below siding',
       },
     ];
   }
@@ -4040,20 +4353,25 @@ export class CommonService {
 
   downloadPdf() {
     if (this.plt.is('cordova')) {
+      console.log('Came for download (android)');
       this.pdfObj.getBuffer((buffer) => {
         var blob = new Blob([buffer], { type: 'application/pdf' });
 
-        this.file
-          .writeFile(this.file.dataDirectory, this.selPDFname + '.pdf', blob, {
-            replace: true,
-          })
-          .then((fileEntry) => {
+        this.file.writeFile(
+          this.file.externalDataDirectory,
+          this.selPDFname + '.pdf',
+          blob,
+          {
+            replace: false,
+          }
+        );
+        /* .then((fileEntry) => {
             this.PreviewPDF = false;
             this.fileOpener.open(
               this.file.dataDirectory + this.selPDFname + '.pdf',
               'application/pdf'
             );
-          });
+          }); */
       });
     } else {
       this.PreviewPDF = false;

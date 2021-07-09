@@ -6,18 +6,35 @@
 </ion-header>
 
 <ion-content>
-  <ion-row>
-    <ion-col>
-      <ion-button
-        class="cus-top-selection-btn createins"
-        (click)="CreateInspectionForm()"
-      >
-        <ion-icon class="icn-top" name="add-circle-outline"></ion-icon>
+  <ion-list>
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          <div
+            class="cus-top-selection-btn createins"
+            (click)="CreateInspectionForm()"
+          >
+            <ion-icon class="add-circle-ic" name="create-outline"></ion-icon>
 
-        Create Inspection</ion-button
-      >
-    </ion-col>
-  </ion-row>
+            <p class="menu-txt">Create Inspection</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <!-- <ion-item>
+      <ion-row>
+        <ion-col>
+          <div class="cus-top-selection-btn createins" (click)="SavedPDFSHow()">
+            <ion-icon class="add-circle-ic" name="save-outline"></ion-icon>
+
+            <p class="menu-txt">Saved PDF</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-item> -->
+  </ion-list>
+
   <div class="container-home">
     <ion-row class="row-cls" *ngFor="let m of allDocsCreated">
       <!-- <ion-row>

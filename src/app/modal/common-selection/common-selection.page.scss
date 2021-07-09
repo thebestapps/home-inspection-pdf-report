@@ -15,3 +15,21 @@ ion-title.ios.title-default.hydrated {
 p.selection-name {
   font-size: 14px;
 }
+
+ion-content.md.hydrated {
+  --background: var(--ion-color-c-dark);
+}
+
+ion-content.ios.hydrated {
+  --background: var(--ion-color-c-dark);
+}
+
+.container {
+  background: var(--ion-color-c-dark);
+}
+
+.row-card {
+  background: var(--ion-color-c-dark);
+  color: #ffffffab;
+  /* font-size: 18px; */
+}

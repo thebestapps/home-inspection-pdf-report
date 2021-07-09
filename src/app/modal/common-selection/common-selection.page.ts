@@ -48,6 +48,7 @@ export class CommonSelectionPage implements OnInit {
   pdfObj = null;
   base64File: any;
   PreviewPDF = false;
+  DownloadPDF = false;
   GetFileDownloadType: any;
 
   constructor(
@@ -287,7 +288,54 @@ export class CommonSelectionPage implements OnInit {
 
     await alert.present();
   }
+
+  previewPDF() {
+    this.StoredData = JSON.parse(
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+    );
+    this.GetFileDownloadType = 1;
+    // alert('yesssss' + this.GetFileDownloadType);
+    this.selPDFname = this.StoredData.client_Info[0].clientName;
+
+    this.createPdf();
+  }
+
+  DownloadPdf_() {
+    this.StoredData = JSON.parse(
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+    );
+    this.GetFileDownloadType = 2;
+
+    if (
+      this.selPDFname == '' ||
+      this.selPDFname == undefined ||
+      this.selPDFname == null
+    ) {
+      this.getPDFName();
+
+      return;
+    } else if (this.selPDFname == this.StoredData.client_Info[0].clientName) {
+      this.getPDFName();
+
+      return;
+    } else {
+      this.PreviewPDF = true;
+    }
+
+    this.createPdf();
+  }
+
   async createPdf() {
+    if (this.GetFileDownloadType == 2) {
+      this.DownloadPDF = true;
+      this.PreviewPDF = false;
+    }
+
+    if (this.GetFileDownloadType == 1) {
+      this.PreviewPDF = true;
+      this.DownloadPDF = false;
+    }
+
     this.StoredData = JSON.parse(
       this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
     );
@@ -328,17 +376,6 @@ export class CommonSelectionPage implements OnInit {
 
     let asb = this.StoredData.storedReportOverviewImage;
     console.log(asb);
-
-    if (
-      this.selPDFname == '' ||
-      this.selPDFname == undefined ||
-      this.selPDFname == null
-    ) {
-      this.getPDFName();
-      return;
-    } else {
-      this.PreviewPDF = true;
-    }
 
     /*var areaImpact = [
       {
@@ -3760,22 +3797,38 @@ export class CommonSelectionPage implements OnInit {
   }
 
   downloadPdf() {
-    this.GetFileDownloadType = 2;
+    if (this.GetFileDownloadType == 2) {
+      this.DownloadPDF = false;
+      this.PreviewPDF = false;
+    }
+
+    if (this.GetFileDownloadType == 1) {
+      this.PreviewPDF = false;
+      this.DownloadPDF = false;
+    }
 
     let n = this.GetFileDownloadType;
+
+    console.log('opop---' + this.GetFileDownloadType);
+
     if (n == 2) {
       if (this.plt.is('cordova')) {
-        this.androidPermissions.requestPermissions([
-          this.androidPermissions.PERMISSION.CAMERA,
-          this.androidPermissions.PERMISSION.GET_ACCOUNTS,
-        ]);
+        console.log('Came for download');
+        this.androidPermissions
+          .requestPermissions([
+            this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE,
+            this.androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE,
+          ])
+          .then((res) => {
+            console.log(res);
+          });
 
         this.pdfObj.getBuffer((buffer) => {
           var blob = new Blob([buffer], { type: 'application/pdf' });
 
           this.file
             .writeFile(
-              this.file.dataDirectory,
+              this.file.externalRootDirectory,
               this.selPDFname + '.pdf',
               blob,
               {
@@ -3783,8 +3836,9 @@ export class CommonSelectionPage implements OnInit {
               }
             )
             .then((fileEntry) => {
+              console.log(fileEntry);
               this.PreviewPDF = false;
-              console.log(JSON.stringify(fileEntry.nativeURL));
+              // console.log(fileEntry.nativeURL);
 
               // this.file.download(this.selPDFname + '.pdf');
               // this.fileOpener.open(
@@ -3804,6 +3858,7 @@ export class CommonSelectionPage implements OnInit {
                 )
                 .then(
                   (entry) => {
+                    // alert('File saved!');
                     console.log(
                       'Downloaded successfully.' + JSON.stringify(entry)
                     );
@@ -3815,7 +3870,18 @@ export class CommonSelectionPage implements OnInit {
             });
         });
       } else {
-        this.PreviewPDF = false;
+        // this.PreviewPDF = false;
+
+        if (this.GetFileDownloadType == 2) {
+          this.DownloadPDF = false;
+          this.PreviewPDF = false;
+        }
+
+        if (this.GetFileDownloadType == 1) {
+          this.PreviewPDF = false;
+          this.DownloadPDF = false;
+        }
+
         this.pdfObj.download(this.selPDFname + '.pdf');
       }
     }
@@ -3835,7 +3901,17 @@ export class CommonSelectionPage implements OnInit {
               }
             )
             .then((fileEntry) => {
-              this.PreviewPDF = false;
+              // this.PreviewPDF = false;
+
+              if (this.GetFileDownloadType == 2) {
+                this.DownloadPDF = false;
+                this.PreviewPDF = false;
+              }
+
+              if (this.GetFileDownloadType == 1) {
+                this.PreviewPDF = false;
+                this.DownloadPDF = false;
+              }
 
               // this.file.download(this.selPDFname + '.pdf');
               this.fileOpener.open(
@@ -3845,7 +3921,18 @@ export class CommonSelectionPage implements OnInit {
             });
         });
       } else {
-        this.PreviewPDF = false;
+        // this.PreviewPDF = false;
+
+        if (this.GetFileDownloadType == 2) {
+          this.DownloadPDF = false;
+          this.PreviewPDF = false;
+        }
+
+        if (this.GetFileDownloadType == 1) {
+          this.PreviewPDF = false;
+          this.DownloadPDF = false;
+        }
+
         this.pdfObj.download(this.selPDFname + '.pdf');
       }
     }

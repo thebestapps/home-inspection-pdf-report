@@ -114,14 +114,32 @@ ion-button.remv-btn.ios.button.button-solid.ion-activatable.ion-focusable.hydrat
   --border: none;
   text-transform: capitalize;
 }
+
+ion-icon.prev-icn.md.hydrated {
+  margin-right: 3px;
+  font-size: 23px;
+}
+button.btn-f {
+  display: inline-flex;
+}
+
+p.main-title.vie {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+ion-icon.prev-icn.ios.hydrated {
+  margin-right: 3px;
+  font-size: 23px;
+}
+
 .row-card {
   padding: 1px;
   padding-left: 7px;
   color: var(--ion-color-primary);
   cursor: pointer;
   border: none;
-  border-radius: 11px;
-  --border-radius: 11px;
+
   --border: none;
   text-transform: capitalize;
   font-size: 16px;
@@ -129,14 +147,6 @@ ion-button.remv-btn.ios.button.button-solid.ion-activatable.ion-focusable.hydrat
   box-shadow: 3px 3px #888888;
   margin-top: 6px;
   /* font-size: 18px; */
-}
-
-ion-content.md.hydrated {
-  --background: #ec763d14;
-}
-
-ion-content.ios.hydrated {
-  --background: #ec763d14;
 }
 
 .container {

@@ -19,6 +19,8 @@ import { NavigationExtras } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  SavedPDFshow = false;
+
   _userlogged_in = false;
   InspectionDetail: any;
   allDocsCreated: any = [];
@@ -96,6 +98,9 @@ export class HomePage {
     });
 
     return await modal.present();
+  }
+  SavedPDFSHow() {
+    this.SavedPDFshow = !this.SavedPDFshow;
   }
 
   async openCommonModal(c) {

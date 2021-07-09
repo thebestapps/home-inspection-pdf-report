@@ -42,8 +42,18 @@
     <ion-col style="text-align: center">
       <ion-spinner *ngIf="PreviewPDF" name="circles"></ion-spinner>
 
-      <button *ngIf="!PreviewPDF" class="btn-f" (click)="createPdf()">
-        Preview PDF
+      <button *ngIf="!PreviewPDF" class="btn-f" (click)="previewPDF()">
+        <ion-icon class="prev-icns" name="eye-outline"></ion-icon>
+
+        Preview
+      </button>
+
+      <ion-spinner *ngIf="DownloadPDF" name="circles"></ion-spinner>
+
+      <button *ngIf="!DownloadPDF" class="btn-f" (click)="DownloadPdf_()">
+        <ion-icon class="icn-down" name="download-outline"></ion-icon>
+
+        Download
       </button>
     </ion-col>
     <!-- <ion-col style="text-align: center">
