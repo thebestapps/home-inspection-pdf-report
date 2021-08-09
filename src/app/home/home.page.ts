@@ -102,8 +102,32 @@ export class HomePage {
   SavedPDFSHow() {
     this.SavedPDFshow = !this.SavedPDFshow;
   }
+  async doRefresh() {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+
+      this.api.Get_data('getalldata/dev1@gmail.com/123').subscribe(
+        (res) => {
+          // Loading_.dismiss();
+
+          // console.log(JSON.stringify(res));
+          this.config.commonContent = res;
+          this.config._mergeAPIContentData();
+        },
+        (err) => {
+          // Loading_.dismiss();
+          console.log(JSON.stringify(err));
+        }
+      );
+
+      // event.target.complete();
+    }, 4000);
+  }
 
   async openCommonModal(c) {
+    this.doRefresh();
     this.config.storageRemoveItem('InspectionsCreated');
 
     this.config.storageRemoveItem('InspectionToEdit');
@@ -140,5 +164,21 @@ export class HomePage {
     });
 
     return await modal.present();
+  }
+
+  async GetContent() {
+    await this.api.Get_data('getalldata/dev1@gmail.com/123').subscribe(
+      (res) => {
+        // Loading_.dismiss();
+
+        // console.log(JSON.stringify(res));
+        this.config.commonContent = res;
+        this.config._mergeAPIContentData();
+      },
+      (err) => {
+        // Loading_.dismiss();
+        console.log(JSON.stringify(err));
+      }
+    );
   }
 }

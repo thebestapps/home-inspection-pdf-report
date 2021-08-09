@@ -123,16 +123,6 @@ export class InsulationSelectionPage implements OnInit {
       },
     ];
 
-    this.insulationDescriptionContent = this.config.CoolingHVACDescriptionContent;
-    this.insulationObservationContent = this.config.CoolingHVACObservationContent;
-    this.insulationObservationRecommendations = this.config.CoolingHVACObservationContent;
-    this.StructureCommentsContent = this.config.StructureCommentsContent;
-    this.insulationLimitationsContent = this.config.CoolingHVACLimitationsContent;
-
-    this.InsulationAtticStructureContent = this.config.InsulationAtticStructureContent;
-    this.InsulationRoofStructureContent = this.config.InsulationRoofStructureContent;
-    this.InsulationExhastVentStructureContent = this.config.InsulationExhastVentStructureContent;
-
     this.HouseInModes = [
       {
         name: 'No Comment',
@@ -169,6 +159,16 @@ export class InsulationSelectionPage implements OnInit {
   }
 
   ionViewDidEnter() {
+    this.insulationDescriptionContent = this.config.insulationDescriptionContent;
+    this.insulationObservationContent = this.config.insulationObservationContent;
+    this.insulationObservationRecommendations = this.config.insulationObservationRecommendations;
+    this.StructureCommentsContent = this.config.StructureCommentsContent;
+    this.insulationLimitationsContent = this.config.insulationLimitationsContent;
+
+    this.InsulationAtticStructureContent = this.config.InsulationAtticStructureContent;
+    this.InsulationRoofStructureContent = this.config.InsulationRoofStructureContent;
+    this.InsulationExhastVentStructureContent = this.config.InsulationExhastVentStructureContent;
+
     let StorageDate = this.config.storageGet('InspectionToEdit')[
       '__zone_symbol__value'
     ];

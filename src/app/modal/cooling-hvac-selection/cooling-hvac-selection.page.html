@@ -12,11 +12,11 @@
         name="eye-outline"
       ></ion-icon>
 
-      <ion-icon
+      <!-- <ion-icon
         (click)="closeM()"
         class="icn-close"
         name="close-outline"
-      ></ion-icon>
+      ></ion-icon> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -65,19 +65,18 @@
             </div> -->
 
             <div
-            class="item-rw"
-            *ngFor="let item of coolingDescriptionContent; let i = index;"
-          >
-            <ion-checkbox
-              class="custm-check"
-              item-right
-              [(ngModel)]="item.checked"
-              (ionChange)="selectItem2(i, item,  $event);">
-            </ion-checkbox>
-            <p class="label-inside">{{item.text}}</p>
-
-          </div>
-
+              class="item-rw"
+              *ngFor="let item of coolingDescriptionContent; let i = index;"
+            >
+              <ion-checkbox
+                class="custm-check"
+                item-right
+                [(ngModel)]="item.checked"
+                (ionChange)="selectItem2(i, item,  $event);"
+              >
+              </ion-checkbox>
+              <p class="label-inside">{{item.text}}</p>
+            </div>
           </ion-col>
 
           <!-- <ion-col>
@@ -103,8 +102,6 @@
       </div>
 
       <ion-row>
-   
-
         <ion-col style="text-align: center">
           <ion-button (click)="updateDescription()" class="CreateInspBtn">
             <ion-icon class="icn-c" name="create-outline"></ion-icon>
@@ -120,7 +117,6 @@
             Back
           </ion-button>
         </ion-col>
-
       </ion-row>
     </div>
 
@@ -130,7 +126,7 @@
       <p class="main-title vie">Foundational</p>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p (click)="onHSView1()" class="main-title">Energy Structure</p>
+        <p (click)="onHSView1()" class="main-title">{{config.titleof_7}}</p>
 
         <div class="input-etr" *ngIf="HSView1">
           <ion-row>
@@ -160,19 +156,18 @@
               </div> -->
 
               <div
-              class="item-rw"
-              *ngFor="let item of CoolingHVACEnergyStructureContent; let i = index;"
-            >
-              <ion-checkbox
-                class="custm-check"
-                item-right
-                [(ngModel)]="item.checked"
-                (ionChange)="selectItem5(i, item,  $event);">
-              </ion-checkbox>
-              <p class="label-inside">{{item.text}}</p>
-  
-            </div>
-
+                class="item-rw"
+                *ngFor="let item of CoolingHVACEnergyStructureContent; let i = index;"
+              >
+                <ion-checkbox
+                  class="custm-check"
+                  item-right
+                  [(ngModel)]="item.checked"
+                  (ionChange)="selectItem5(i, item,  $event);"
+                >
+                </ion-checkbox>
+                <p class="label-inside">{{item.text}}</p>
+              </div>
             </ion-col>
 
             <!-- <ion-col>
@@ -198,8 +193,6 @@
         </div>
 
         <ion-row *ngIf="HSView1">
-      
-
           <ion-col style="text-align: center">
             <ion-button (click)="updateDescription5()" class="CreateInspBtn">
               <ion-icon class="icn-c" name="create-outline"></ion-icon>
@@ -218,7 +211,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView2()">Type Structure</p>
+        <p class="main-title" (click)="onHSView2()">{{config.titleof_12}}</p>
         <div class="input-etr" *ngIf="HSView2">
           <ion-row>
             <ion-col>
@@ -246,18 +239,18 @@
                 </ion-row>
               </div> -->
               <div
-              class="item-rw"
-              *ngFor="let item of CoolingHVACTypeStructureContent; let i = index;"
-            >
-              <ion-checkbox
-                class="custm-check"
-                item-right
-                [(ngModel)]="item.checked"
-                (ionChange)="selectItem6(i, item,  $event);">
-              </ion-checkbox>
-              <p class="label-inside">{{item.text}}</p>
-  
-            </div>
+                class="item-rw"
+                *ngFor="let item of CoolingHVACTypeStructureContent; let i = index;"
+              >
+                <ion-checkbox
+                  class="custm-check"
+                  item-right
+                  [(ngModel)]="item.checked"
+                  (ionChange)="selectItem6(i, item,  $event);"
+                >
+                </ion-checkbox>
+                <p class="label-inside">{{item.text}}</p>
+              </div>
             </ion-col>
 
             <!-- <ion-col>
@@ -283,8 +276,6 @@
         </div>
 
         <ion-row *ngIf="HSView2">
-      
-
           <ion-col style="text-align: center">
             <ion-button (click)="updateDescription6()" class="CreateInspBtn">
               <ion-icon class="icn-c" name="create-outline"></ion-icon>
@@ -300,12 +291,11 @@
               Back
             </ion-button>
           </ion-col>
-
         </ion-row>
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView3()">Manufacturer</p>
+        <p class="main-title" (click)="onHSView3()">{{config.titleof_9}}</p>
         <div class="input-etr" *ngIf="HSView3">
           <ion-row>
             <ion-col>
@@ -332,7 +322,7 @@
                   </ion-col>
                 </ion-row> -->
 
-                <div
+              <div
                 class="item-rw"
                 *ngFor="let item of CoolingHVACManufacturerStructureContent; let i = index;"
               >
@@ -340,13 +330,11 @@
                   class="custm-check"
                   item-right
                   [(ngModel)]="item.checked"
-                  (ionChange)="selectItem7(i, item,  $event);">
+                  (ionChange)="selectItem7(i, item,  $event);"
+                >
                 </ion-checkbox>
                 <p class="label-inside">{{item.text}}</p>
-    
               </div>
-
-      
             </ion-col>
 
             <!-- <ion-col>
@@ -372,8 +360,6 @@
         </div>
 
         <ion-row *ngIf="HSView3">
-       
-
           <ion-col style="text-align: center">
             <ion-button (click)="updateDescription7()" class="CreateInspBtn">
               <ion-icon class="icn-c" name="create-outline"></ion-icon>
@@ -388,12 +374,11 @@
               Back
             </ion-button>
           </ion-col>
-
         </ion-row>
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView8()">Description</p>
+        <p class="main-title" (click)="onHSView8()">{{config.titleof_6}}</p>
         <div class="input-etr" *ngIf="HSView8">
           <ion-row>
             <ion-col>
@@ -422,19 +407,18 @@
               </div> -->
 
               <div
-              class="item-rw"
-              *ngFor="let item of CoolingHVACDescriptionStructureContent; let i = index;"
-            >
-              <ion-checkbox
-                class="custm-check"
-                item-right
-                [(ngModel)]="item.checked"
-                (ionChange)="selectItem6(i, item,  $event);">
-              </ion-checkbox>
-              <p class="label-inside">{{item.text}}</p>
-  
-            </div>
-
+                class="item-rw"
+                *ngFor="let item of CoolingHVACDescriptionStructureContent; let i = index;"
+              >
+                <ion-checkbox
+                  class="custm-check"
+                  item-right
+                  [(ngModel)]="item.checked"
+                  (ionChange)="selectItem6(i, item,  $event);"
+                >
+                </ion-checkbox>
+                <p class="label-inside">{{item.text}}</p>
+              </div>
             </ion-col>
 
             <!-- <ion-col>
@@ -460,8 +444,6 @@
         </div>
 
         <ion-row *ngIf="HSView8">
-   
-
           <ion-col style="text-align: center">
             <ion-button (click)="updateDescription8()" class="CreateInspBtn">
               <ion-icon class="icn-c" name="create-outline"></ion-icon>
@@ -476,14 +458,11 @@
               Back
             </ion-button>
           </ion-col>
-
         </ion-row>
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView9()">
-          Temperature Drop Recorded
-        </p>
+        <p class="main-title" (click)="onHSView9()">{{config.titleof_11}}</p>
         <div class="input-etr" *ngIf="HSView9">
           <ion-row>
             <ion-col>
@@ -512,19 +491,18 @@
               </div> -->
 
               <div
-              class="item-rw"
-              *ngFor="let item of CoolingHVACTemperatureStructureContent; let i = index;"
-            >
-              <ion-checkbox
-                class="custm-check"
-                item-right
-                [(ngModel)]="item.checked"
-                (ionChange)="selectItem9(i, item,  $event);">
-              </ion-checkbox>
-              <p class="label-inside">{{item.text}}</p>
-  
-            </div>
-
+                class="item-rw"
+                *ngFor="let item of CoolingHVACTemperatureStructureContent; let i = index;"
+              >
+                <ion-checkbox
+                  class="custm-check"
+                  item-right
+                  [(ngModel)]="item.checked"
+                  (ionChange)="selectItem9(i, item,  $event);"
+                >
+                </ion-checkbox>
+                <p class="label-inside">{{item.text}}</p>
+              </div>
             </ion-col>
 
             <!-- <ion-col>
@@ -550,7 +528,6 @@
         </div>
 
         <ion-row *ngIf="HSView9">
-    
           <ion-col style="text-align: center">
             <ion-button (click)="updateDescription9()" class="CreateInspBtn">
               <ion-icon class="icn-c" name="create-outline"></ion-icon>
@@ -565,8 +542,6 @@
               Back
             </ion-button>
           </ion-col>
-
-
         </ion-row>
       </div>
 
@@ -679,18 +654,18 @@
               </ion-row>
             </div> -->
             <div
-            class="item-rw"
-            *ngFor="let item of coolingObservationContent; let i = index;"
-          >
-            <ion-checkbox
-              class="custm-check"
-              item-right
-              [(ngModel)]="item.checked"
-              (ionChange)="selectItem22(i, item,  $event);">
-            </ion-checkbox>
-            <p class="label-inside">{{item.text}}</p>
-
-          </div>
+              class="item-rw"
+              *ngFor="let item of coolingObservationContent; let i = index;"
+            >
+              <ion-checkbox
+                class="custm-check"
+                item-right
+                [(ngModel)]="item.checked"
+                (ionChange)="selectItem22(i, item,  $event);"
+              >
+              </ion-checkbox>
+              <p class="label-inside">{{item.text}}</p>
+            </div>
           </ion-col>
 
           <!-- <ion-col>
@@ -716,8 +691,6 @@
       </div>
 
       <ion-row class="row-form-ftr">
-     
-
         <ion-col style="text-align: center">
           <ion-button (click)="updateDescription2()" class="CreateInspBtn">
             <ion-icon class="icn-c" name="create-outline"></ion-icon>
@@ -733,7 +706,6 @@
             Back
           </ion-button>
         </ion-col>
-
       </ion-row>
     </div>
 
@@ -763,7 +735,7 @@
                 </ion-col>
               </ion-row> -->
 
-              <div
+            <div
               class="item-rw"
               *ngFor="let item of coolingObservationRecommendations; let i = index;"
             >
@@ -771,15 +743,13 @@
                 class="custm-check"
                 item-right
                 [(ngModel)]="item.checked"
-                (ionChange)="selectItem3(i, item,  $event);">
+                (ionChange)="selectItem3(i, item,  $event);"
+              >
               </ion-checkbox>
               <p class="label-inside">{{item.text}}</p>
-  
-            </div>
-
             </div>
           </ion-col>
-<!-- 
+          <!-- 
           <ion-col>
             <ion-button class="remv-btn" (click)="removeContent3()"
               >Remove</ion-button
@@ -803,8 +773,6 @@
       </div>
 
       <ion-row>
-   
-
         <ion-col style="text-align: center">
           <ion-button (click)="updateDescription3()" class="CreateInspBtn">
             <ion-icon class="icn-c" name="create-outline"></ion-icon>
@@ -819,7 +787,6 @@
             Back
           </ion-button>
         </ion-col>
-
       </ion-row>
     </div>
 
@@ -851,19 +818,18 @@
             </div> -->
 
             <div
-            class="item-rw"
-            *ngFor="let item of coolingLimitationsContent; let i = index;"
-          >
-            <ion-checkbox
-              class="custm-check"
-              item-right
-              [(ngModel)]="item.checked"
-              (ionChange)="selectItem4(i, item,  $event);">
-            </ion-checkbox>
-            <p class="label-inside">{{item.text}}</p>
-
-          </div>
-
+              class="item-rw"
+              *ngFor="let item of coolingLimitationsContent; let i = index;"
+            >
+              <ion-checkbox
+                class="custm-check"
+                item-right
+                [(ngModel)]="item.checked"
+                (ionChange)="selectItem4(i, item,  $event);"
+              >
+              </ion-checkbox>
+              <p class="label-inside">{{item.text}}</p>
+            </div>
           </ion-col>
 
           <!-- <ion-col>
@@ -889,8 +855,6 @@
       </div>
 
       <ion-row>
-
-
         <ion-col style="text-align: center">
           <ion-button (click)="updateDescription4()" class="CreateInspBtn">
             <ion-icon class="icn-c" name="create-outline"></ion-icon>
@@ -906,8 +870,17 @@
             Back
           </ion-button>
         </ion-col>
-
       </ion-row>
     </div>
   </div>
+
+  <ion-row *ngIf="!BackPressed">
+    <ion-col style="text-align: center">
+      <ion-button (click)="closeM()" class="Back-btn">
+        <ion-icon class="icn-c" name="close-outline"></ion-icon>
+
+        Back
+      </ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>

@@ -119,19 +119,6 @@ export class StructureSelectionPage implements OnInit {
       },
     ];
 
-    this.StructureDescriptionContent = this.config.StructureDescriptionContent;
-    this.StructureObservationContent = this.config.StructureObservationContent;
-    this.StructureCommentsContent = this.config.StructureCommentsContent;
-    this.StructureLimitationsContent = this.config.StructureLimitationsContent;
-
-    this.StructureWallStructureContent = this.config.StructureWallStructureContent;
-    this.StructureCeilingStructureContent = this.config.StructureCeilingStructureContent;
-    this.StructureRoofStructureContent = this.config.StructureRoofStructureContent;
-
-    this.StructureAtticMethodStructureContent = this.config.StructureAtticMethodStructureContent;
-    this.StructureFoundationStructureContent = this.config.StructureFoundationStructureContent;
-    this.StructureFloorStructureContent = this.config.StructureFloorStructureContent;
-
     this.HouseInModes = [
       {
         name: 'No Comment',
@@ -164,6 +151,32 @@ export class StructureSelectionPage implements OnInit {
   }
 
   ionViewDidEnter() {
+    // this.StructureDescriptionContent = this.config.StructureDescriptionContent;
+
+    this.StructureDescriptionContent.push(
+      this.config.StructureDescriptionContent
+    );
+
+
+
+    console.log("this.StructureDescriptionContent"+this.StructureDescriptionContent);
+    
+    this.StructureObservationContent.push(
+      this.config.StructureObservationContent
+    );
+
+    // this.StructureObservationContent = this.config.StructureObservationContent;
+    this.StructureCommentsContent = this.config.StructureCommentsContent;
+    this.StructureLimitationsContent = this.config.StructureLimitationsContent;
+
+    this.StructureWallStructureContent = this.config.StructureWallStructureContent;
+    this.StructureCeilingStructureContent = this.config.StructureCeilingStructureContent;
+    this.StructureRoofStructureContent = this.config.StructureRoofStructureContent;
+
+    this.StructureAtticMethodStructureContent = this.config.StructureAtticMethodStructureContent;
+    this.StructureFoundationStructureContent = this.config.StructureFoundationStructureContent;
+    this.StructureFloorStructureContent = this.config.StructureFloorStructureContent;
+
     let StorageDate = this.config.storageGet('InspectionToEdit')[
       '__zone_symbol__value'
     ];
@@ -369,9 +382,6 @@ export class StructureSelectionPage implements OnInit {
     this.added_items2 = this.added_items2.filter(
       (h) => h.text !== selected_content
     );
-
-
-
   }
 
   DB_Click_AddNewItem() {

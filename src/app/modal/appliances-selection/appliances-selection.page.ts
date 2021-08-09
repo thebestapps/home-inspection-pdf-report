@@ -79,6 +79,10 @@ export class AppliancesSelectionPage implements OnInit {
 
   AppliancesLaundryStructureContent: any = [];
   AppliancesOtherStructureContent: any = [];
+  ApplicationDescriptionContent: any = [];
+  ApplicationObservationContent: any = [];
+
+  SelectedTitleToFilter: any;
 
   constructor(
     public modalController: ModalController,
@@ -89,7 +93,7 @@ export class AppliancesSelectionPage implements OnInit {
   ) {
     this.inspectionTypes = [
       {
-        name: 'Foundational Components',
+        name: 'Appliances Description',
 
         val: '5',
       },
@@ -118,31 +122,6 @@ export class AppliancesSelectionPage implements OnInit {
       },
     ];
 
-    this.applianceDescriptionContent = this.config.CoolingHVACDescriptionContent;
-    this.applianceObservationContent = this.config.CoolingHVACObservationContent;
-    this.applianceObservationRecommendations = this.config.CoolingHVACObservationContent;
-    this.StructureCommentsContent = this.config.StructureCommentsContent;
-    this.applianceLimitationsContent = this.config.CoolingHVACLimitationsContent;
-
-    this.AppliancesPresentStructureContent = this.config.AppliancesPresentStructureContent;
-    this.AppliancesBuiltStructureContent = this.config.AppliancesBuiltStructureContent;
-    this.AppliancesTestedStructureContent = this.config.AppliancesTestedStructureContent;
-
-    this.AppliancesLaundryStructureContent = this.config.AppliancesLaundryStructureContent;
-    this.AppliancesOtherStructureContent = this.config.AppliancesOtherStructureContent;
-
-    this.HouseInModes = [
-      {
-        name: 'No Comment',
-
-        formValue: '1',
-      },
-      {
-        name: 'Well Built/ Maintainedt',
-
-        formValue: '2',
-      },
-    ];
     this.createInpForm = this.formBuilder.group({
       houseInModes: ['', [Validators.required]],
       inspectionAddress: ['', [Validators.required]],
@@ -167,6 +146,39 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   ionViewDidEnter() {
+    this.applianceDescriptionContent = this.config.applianceDescriptionContent;
+    this.applianceObservationContent = this.config.applianceObservationContent;
+    this.applianceObservationRecommendations = this.config.applianceObservationRecommendations;
+    this.StructureCommentsContent = this.config.StructureCommentsContent;
+
+    this.applianceLimitationsContent = this.config.CoolingHVACLimitationsContent;
+
+    this.AppliancesPresentStructureContent = this.config.AppliancesPresentStructureContent;
+    this.AppliancesBuiltStructureContent = this.config.AppliancesBuiltStructureContent;
+    this.AppliancesTestedStructureContent = this.config.AppliancesTestedStructureContent;
+
+    this.AppliancesLaundryStructureContent = this.config.AppliancesLaundryStructureContent;
+    this.AppliancesOtherStructureContent = this.config.AppliancesOtherStructureContent;
+
+    this.ApplicationDescriptionContent = this.config.ApplicationDescriptionContent;
+    this.ApplicationObservationContent = this.config.ApplicationObservationContent;
+
+    console.log(this.ApplicationDescriptionContent);
+    console.log(this.ApplicationObservationContent);
+
+    this.HouseInModes = [
+      {
+        name: 'No Comment',
+
+        formValue: '1',
+      },
+      {
+        name: 'Well Built/ Maintainedt',
+
+        formValue: '2',
+      },
+    ];
+
     let StorageDate = this.config.storageGet('InspectionToEdit')[
       '__zone_symbol__value'
     ];
@@ -256,6 +268,7 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   closeDescription2() {
+    this.SelectedTitleToFilter = '';
     this.BackPressed = true;
     this.Description = false;
     this.Observations_UI = false;
@@ -1215,6 +1228,14 @@ export class AppliancesSelectionPage implements OnInit {
     this.selectedIndex = _index;
     this.Selected_Item_to_add = data;
 
+    console.log(data);
+    console.log(this.Selected_Item_to_add);
+    console.log(this.SelectedTitleToFilter);
+
+    this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
+
+    console.log(this.Selected_Item_to_add);
+
     if (ev.detail.checked == true) {
       this.itemsToDelete = data;
       this.removeContent5();
@@ -1311,9 +1332,13 @@ export class AppliancesSelectionPage implements OnInit {
     let StorageDate = this.config.storageGet('InspectionToEdit')[
       '__zone_symbol__value'
     ];
-    console.log(this.added_items);
+    console.log(this.added_items5);
+    console.log(this.Selected_Item_to_add);
+    // this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
+
     this.added_items5.push(this.Selected_Item_to_add);
-    console.log(this.added_items);
+
+    console.log(this.added_items5);
   }
 
   DB_Click_AddNewItem6() {
@@ -1360,9 +1385,12 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   updateDescription5() {
+    // this.SelectedTitleToFilter = n.title;
+    // this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
+
     let structureLimitations = this.config.storageGet('InspectionToEdit')[
       '__zone_symbol__value'
-    ]['D2appliancesPresentStructure'];
+    ]['appliancesDescriptionContent'];
 
     console.log('To finalize structureDescription=====' + structureLimitations);
 
@@ -1372,10 +1400,11 @@ export class AppliancesSelectionPage implements OnInit {
 
         var newArray = this.added_items5.map((o) => {
           return {
-            D2appliancesPresentStructure: [
+            appliancesDescriptionContent: [
               {
                 text: '',
                 checked: '',
+                title: '',
               },
             ],
           };
@@ -1383,10 +1412,11 @@ export class AppliancesSelectionPage implements OnInit {
       } else {
         var newArray = this.added_items5.map((o) => {
           return {
-            D2appliancesPresentStructure: [
+            appliancesDescriptionContent: [
               {
                 text: o.text,
                 checked: o.checked,
+                title: o.title,
               },
             ],
           };
@@ -1403,17 +1433,18 @@ export class AppliancesSelectionPage implements OnInit {
 
       let structureDescription = this.config.storageGet('InspectionToEdit')[
         '__zone_symbol__value'
-      ]['D2appliancesPresentStructure'];
+      ]['appliancesDescriptionContent'];
 
       if (this.added_items5 == '') {
         this.added_items5 = [];
 
         var newArray = this.added_items5.map((o) => {
           return {
-            D2appliancesPresentStructure: [
+            appliancesDescriptionContent: [
               {
                 text: '',
                 checked: '',
+                title: '',
               },
             ],
           };
@@ -1423,6 +1454,7 @@ export class AppliancesSelectionPage implements OnInit {
           return {
             text: o.text,
             checked: o.checked,
+            title: o.title,
           };
         });
       }
@@ -1431,7 +1463,19 @@ export class AppliancesSelectionPage implements OnInit {
         this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
       );
 
-      this.StoredData.D2appliancesPresentStructure = newArray;
+      this.StoredData.appliancesDescriptionContent = newArray;
+
+      let add = this.StoredData.appliancesDescriptionContent.filter((item) => {
+        console.log(item.title);
+
+        return (
+          item.title
+            .toLowerCase()
+            .indexOf(this.SelectedTitleToFilter.toLowerCase()) > -1
+        );
+      });
+
+      console.log('=++++++++=++++=' + JSON.stringify(add));
 
       this.config.storageRemoveItem('InspectionToEdit');
       this.config.storageSave('InspectionToEdit', this.StoredData);
@@ -1847,5 +1891,12 @@ export class AppliancesSelectionPage implements OnInit {
 
       this.presentAlertConfirm();
     }
+  }
+
+  AddTitleInfo(n) {
+    console.log(n);
+    // this.SelectedTitleToFilter = '';
+
+    this.SelectedTitleToFilter = n.title;
   }
 }

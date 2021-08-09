@@ -12,11 +12,11 @@
         name="eye-outline"
       ></ion-icon>
 
-      <ion-icon
+      <!-- <ion-icon
         (click)="closeM()"
         class="icn-close"
         name="close-outline"
-      ></ion-icon>
+      ></ion-icon> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -399,4 +399,14 @@
       </ion-row>
     </div>
   </div>
+
+  <ion-row>
+    <ion-col style="text-align: center">
+      <ion-button (click)="closeM()" class="Back-btn">
+        <ion-icon class="icn-c" name="close-outline"></ion-icon>
+
+        Back
+      </ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>

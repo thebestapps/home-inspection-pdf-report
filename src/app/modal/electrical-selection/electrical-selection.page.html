@@ -12,11 +12,11 @@
         name="eye-outline"
       ></ion-icon>
 
-      <ion-icon
+      <!-- <ion-icon
         (click)="closeM()"
         class="icn-close"
         name="close-outline"
-      ></ion-icon>
+      ></ion-icon> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -112,7 +112,7 @@
       <p class="main-title vie">Select Description</p>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p (click)="onHSView1()" class="main-title">Service Entrance Wires</p>
+        <p (click)="onHSView1()" class="main-title">{{config.titleof_20}}</p>
 
         <div class="input-etr" *ngIf="HSView1">
           <ion-row>
@@ -197,7 +197,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView2()">Main Disconnect</p>
+        <p class="main-title" (click)="onHSView2()">{{config.titleof_18}}</p>
         <div class="input-etr" *ngIf="HSView2">
           <ion-row>
             <ion-col>
@@ -281,7 +281,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView3()">Main Distribution Panel</p>
+        <p class="main-title" (click)="onHSView3()">{{config.titleof_21}}</p>
         <div class="input-etr" *ngIf="HSView3">
           <ion-row>
             <ion-col>
@@ -366,9 +366,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView8()">
-          Branch/Auxiliary Panel(s)
-        </p>
+        <p class="main-title" (click)="onHSView8()">{{config.titleof_13}}</p>
         <div class="input-etr" *ngIf="HSView8">
           <ion-row>
             <ion-col>
@@ -452,7 +450,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView9()">Distribution Wiring</p>
+        <p class="main-title" (click)="onHSView9()">{{config.titleof_15}}</p>
         <div class="input-etr" *ngIf="HSView9">
           <ion-row>
             <ion-col>
@@ -537,9 +535,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView10()">
-          Ground Fault Circuit Interrupters
-        </p>
+        <p class="main-title" (click)="onHSView10()">{{config.titleof_16}}</p>
         <div class="input-etr" *ngIf="HSView10">
           <ion-row>
             <ion-col>
@@ -951,4 +947,14 @@
       </ion-row>
     </div>
   </div>
+
+  <ion-row *ngIf="!BackPressed">
+    <ion-col style="text-align: center">
+      <ion-button (click)="closeM()" class="Back-btn">
+        <ion-icon class="icn-c" name="close-outline"></ion-icon>
+
+        Back
+      </ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>

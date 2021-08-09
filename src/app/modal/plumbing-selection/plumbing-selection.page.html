@@ -12,11 +12,11 @@
         name="eye-outline"
       ></ion-icon>
 
-      <ion-icon
+      <!-- <ion-icon
         (click)="closeM()"
         class="icn-close"
         name="close-outline"
-      ></ion-icon>
+      ></ion-icon> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -112,7 +112,7 @@
       <p class="main-title vie">Foundational</p>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p (click)="onHSView1()" class="main-title">Water Supply Source</p>
+        <p (click)="onHSView1()" class="main-title">{{config.titleof_39}}</p>
 
         <div class="input-etr" *ngIf="HSView1">
           <ion-row>
@@ -198,7 +198,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView2()">Service Pipe to House</p>
+        <p class="main-title" (click)="onHSView2()">{{config.titleof_35}}</p>
         <div class="input-etr" *ngIf="HSView2">
           <ion-row>
             <ion-col>
@@ -282,7 +282,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView3()">Supply Piping</p>
+        <p class="main-title" (click)="onHSView3()">{{config.titleof_36}}</p>
         <div class="input-etr" *ngIf="HSView3">
           <ion-row>
             <ion-col>
@@ -365,7 +365,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView8()">Waste System</p>
+        <p class="main-title" (click)="onHSView8()">{{config.titleof_37}}</p>
         <div class="input-etr" *ngIf="HSView8">
           <ion-row>
             <ion-col>
@@ -450,9 +450,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView9()">
-          Drain / Waste / Vent Piping
-        </p>
+        <p class="main-title" (click)="onHSView9()">{{config.titleof_34}}</p>
         <div class="input-etr" *ngIf="HSView9">
           <ion-row>
             <ion-col>
@@ -535,7 +533,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView10()">Water Heater/Pressure</p>
+        <p class="main-title" (click)="onHSView10()">{{config.titleof_38}}</p>
         <div class="input-etr" *ngIf="HSView10">
           <ion-row>
             <ion-col>
@@ -855,4 +853,14 @@
       </ion-row>
     </div>
   </div>
+
+  <ion-row *ngIf="!BackPressed">
+    <ion-col style="text-align: center">
+      <ion-button (click)="closeM()" class="Back-btn">
+        <ion-icon class="icn-c" name="close-outline"></ion-icon>
+
+        Back
+      </ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>

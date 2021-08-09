@@ -82,7 +82,7 @@ export class RoofingSelectionPage implements OnInit {
   RoofingCoveringStructureContent: any = [];
   RoofingGuttersDownspoutsStructureContent: any = [];
   RoofingMethodsStructureContent: any = [];
-
+  RoofingLimitationsContent: any = [];
   RoofingChimneysStructureContent: any = [];
 
   constructor(
@@ -92,6 +92,20 @@ export class RoofingSelectionPage implements OnInit {
     public config: CommonService,
     private alertController: AlertController
   ) {
+    this.inspectionTypes = [
+      {
+        id: '',
+        title: 'first title',
+        data: [
+          {
+            id: '',
+            text: 'first content',
+            checked: '0',
+          },
+        ],
+      },
+    ];
+
     this.inspectionTypes = [
       {
         name: 'Foundational Components',
@@ -117,17 +131,6 @@ export class RoofingSelectionPage implements OnInit {
         val: '4',
       },
     ];
-
-    this.roofingDescriptionContent = this.config.RoofingDescriptionContent;
-    this.roofingObservationContent = this.config.RoofingObservationContent;
-    // this.StructureCommentsContent = this.config.RoofingCommentsContent;
-    this.StructureLimitationsContent = this.config.RoofingLimitationsContent;
-
-    this.RoofingCoveringStructureContent = this.config.RoofingCoveringStructureContent;
-    this.RoofingGuttersDownspoutsStructureContent = this.config.RoofingGuttersDownspoutsStructureContent;
-    this.RoofingMethodsStructureContent = this.config.RoofingMethodsStructureContent;
-
-    this.RoofingChimneysStructureContent = this.config.RoofingChimneysStructureContent;
 
     this.HouseInModes = [
       {
@@ -161,6 +164,17 @@ export class RoofingSelectionPage implements OnInit {
   }
 
   ionViewDidEnter() {
+    this.roofingDescriptionContent = this.config.RoofingDescriptionContent;
+    this.roofingObservationContent = this.config.RoofingObservationContent;
+    // this.StructureCommentsContent = this.config.RoofingCommentsContent;
+    this.RoofingLimitationsContent = this.config.RoofingLimitationsContent;
+
+    this.RoofingCoveringStructureContent = this.config.RoofingCoveringStructureContent;
+    this.RoofingGuttersDownspoutsStructureContent = this.config.RoofingGuttersDownspoutsStructureContent;
+    this.RoofingMethodsStructureContent = this.config.RoofingMethodsStructureContent;
+
+    this.RoofingChimneysStructureContent = this.config.RoofingChimneysStructureContent;
+
     let StorageDate = this.config.storageGet('InspectionToEdit')[
       '__zone_symbol__value'
     ];
@@ -275,26 +289,37 @@ export class RoofingSelectionPage implements OnInit {
     this.itemsToDelete = n;
   }
 
-  selectItem22(_index: number, data) {
+  selectItem22(_index: number, data, ev) {
     this.selectedIndex = _index;
     this.Selected_Item_to_add2 = data;
 
-    if (this.touchtime == 0) {
-      // set first click
-      this.disable_ = false;
-      this.touchtime = new Date().getTime();
-    } else {
-      // compare first click to this click and see if they occurred within double click threshold
-      if (new Date().getTime() - this.touchtime < 800) {
-        // double click occurred
-
-        this.DB_Click_AddNewItem2();
-        this.touchtime = 0;
-      } else {
-        // not a double click so set as a new first click
-        this.touchtime = new Date().getTime();
-      }
+    if (ev.detail.checked == true) {
+      this.itemsToDelete = data;
+      this.removeContent22();
+      this.DB_Click_AddNewItem2();
     }
+    if (ev.detail.checked == false) {
+      this.selectedIndex10 = _index;
+      this.itemsToDelete = data;
+      this.removeContent22();
+    }
+
+    // if (this.touchtime == 0) {
+    //   // set first click
+    //   this.disable_ = false;
+    //   this.touchtime = new Date().getTime();
+    // } else {
+    //   // compare first click to this click and see if they occurred within double click threshold
+    //   if (new Date().getTime() - this.touchtime < 800) {
+    //     // double click occurred
+
+    //     this.DB_Click_AddNewItem2();
+    //     this.touchtime = 0;
+    //   } else {
+    //     // not a double click so set as a new first click
+    //     this.touchtime = new Date().getTime();
+    //   }
+    // }
   }
 
   selectItem33(i, n) {
@@ -304,26 +329,37 @@ export class RoofingSelectionPage implements OnInit {
     this.itemsToDelete3 = n;
   }
 
-  selectItem4(_index: number, data) {
+  selectItem4(_index: number, data, ev) {
     this.selectedIndex = _index;
     this.Selected_Item_to_add4 = data;
 
-    if (this.touchtime == 0) {
-      // set first click
-      this.disable_ = false;
-      this.touchtime = new Date().getTime();
-    } else {
-      // compare first click to this click and see if they occurred within double click threshold
-      if (new Date().getTime() - this.touchtime < 800) {
-        // double click occurred
-
-        this.DB_Click_AddNewItem4();
-        this.touchtime = 0;
-      } else {
-        // not a double click so set as a new first click
-        this.touchtime = new Date().getTime();
-      }
+    if (ev.detail.checked == true) {
+      this.itemsToDelete = data;
+      this.removeContent4();
+      this.DB_Click_AddNewItem4();
     }
+    if (ev.detail.checked == false) {
+      this.selectedIndex10 = _index;
+      this.itemsToDelete = data;
+      this.removeContent4();
+    }
+
+    // if (this.touchtime == 0) {
+    //   // set first click
+    //   this.disable_ = false;
+    //   this.touchtime = new Date().getTime();
+    // } else {
+    //   // compare first click to this click and see if they occurred within double click threshold
+    //   if (new Date().getTime() - this.touchtime < 800) {
+    //     // double click occurred
+
+    //     this.DB_Click_AddNewItem4();
+    //     this.touchtime = 0;
+    //   } else {
+    //     // not a double click so set as a new first click
+    //     this.touchtime = new Date().getTime();
+    //   }
+    // }
   }
   selectItem44(i, n) {
     console.log(i);
@@ -602,6 +638,7 @@ export class RoofingSelectionPage implements OnInit {
             roofingObservation: [
               {
                 text: '',
+                checked: '',
               },
             ],
           };
@@ -612,6 +649,7 @@ export class RoofingSelectionPage implements OnInit {
             roofingObservation: [
               {
                 text: o.text,
+                checked: o.checked,
               },
             ],
           };
@@ -644,6 +682,7 @@ export class RoofingSelectionPage implements OnInit {
             roofingObservation: [
               {
                 text: '',
+                checked: '',
               },
             ],
           };
@@ -653,6 +692,7 @@ export class RoofingSelectionPage implements OnInit {
         var newArray = this.added_items2.map((o) => {
           return {
             text: o.text,
+            checked: o.checked,
           };
         });
       }

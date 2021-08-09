@@ -43,9 +43,10 @@ export class ApiService {
     // this.configuration_();
     this.options.withCredentials = true;
     this.options.headers = headers;
-    // this.Apiurl = "http://localhost:8080/";
+    this.Apiurl = ' https://homeinsp.thebest4buy.com/api/';
+    //homeinsp.thebest4buy.com/api/getalldata
 
-    this.token = '';
+    http: this.token = '';
     // this.token = JSON.parse(
     //   this.config.storageGet('token')['__zone_symbol__value']
     // );

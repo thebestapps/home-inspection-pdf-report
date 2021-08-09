@@ -2,6 +2,14 @@ import { Injectable } from '@angular/core';
 import { AlertController, NavController, Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { ToastController } from '@ionic/angular';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
+
+import { catchError, tap, map } from 'rxjs/operators';
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -10,11 +18,21 @@ import { Base64 } from '@ionic-native/base64/ngx';
 
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { File } from '@ionic-native/file/ngx';
+import { LoadingController } from '@ionic/angular';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' }),
+};
+
+var headers = new Headers();
+headers.append('Content-Type', 'application/x-www-form-urlencoded');
+headers.append('Access-Control-Allow-Origin', '*');
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommonService {
+  allSettingsContent: any;
   pdfObjBtn = false;
   selPDFname: any;
   clientDetails: any;
@@ -23,17 +41,19 @@ export class CommonService {
   pdfObj = null;
   base64File: any;
   PreviewPDF = false;
+  commonContent: any;
+  getdescdata: any;
 
   options: any = {};
   Apiurl: any;
   CopyRequestServiceData = [];
   OrderReNewIdentifier: any;
   inspectionTypes: any;
-  StructureDescriptionContent: any;
+  StructureDescriptionContent: any = [];
   StructureObservationContent: any = [];
   StructureCommentsContent: any = [];
   StructureLimitationsContent: any = [];
-  RoofingDescriptionContent: any;
+  RoofingDescriptionContent: any = [];
   RoofingObservationContent: any = [];
 
   ExteriorDescriptionContent: any = [];
@@ -89,10 +109,19 @@ export class CommonService {
   InsulationAtticStructureContent: any = [];
   InsulationRoofStructureContent: any = [];
   InsulationExhastVentStructureContent: any = [];
+  insulationDescriptionContent: any = [];
+  insulationObservationContent: any = [];
+  insulationLimitationsContent: any = [];
 
+  insulationObservationRecommendations: any = [];
   PlumbingWaterSuppyContent: any = [];
   PlumbingServicePipeContent: any = [];
   PlumbingSuppyPipingContent: any = [];
+
+  plumbingDescriptionContent: any = [];
+  plumbingObservationContent: any = [];
+  plumbingObservationRecommendations: any = [];
+  plumbingLimitationsContent: any = [];
 
   PlumbingWasteSystemStructureContent: any = [];
   PlumbingDrainStructureContent: any = [];
@@ -103,24 +132,113 @@ export class CommonService {
   RoofingMethodsStructureContent: any = [];
   RoofingChimneysStructureContent: any = [];
 
+  applianceDescriptionContent: any = [];
+  applianceObservationContent: any = [];
+  applianceObservationRecommendations: any = [];
+
   generalDescriptionContent: any = [];
 
   generalContent: any = [];
 
   AllDumyDocs: any = [];
 
+  ApplicationDescriptionContent: any = [];
+  ApplicationObservationContent: any = [];
+
+  InsulationObservationContent: any = [];
+  InsulationDescriptionContent: any = [];
+
+  PlumbingDescriptionContent: any = [];
+
+  PlumbingObservationContent: any = [];
+
   RoofingLimitationsContent: any = [];
+  titleof_0: any;
+  titleof_1: any;
+  titleof_2: any;
+  titleof_3: any;
+  titleof_4: any;
+  titleof_5: any;
+  titleof_6: any;
+  titleof_7: any;
+  titleof_8: any;
+  titleof_9: any;
+  titleof_10: any;
+  titleof_11: any;
+  titleof_12: any;
+  titleof_13: any;
+  titleof_14: any;
+  titleof_15: any;
+  titleof_16: any;
+  titleof_17: any;
+  titleof_18: any;
+  titleof_19: any;
+  titleof_20: any;
+  titleof_21: any;
+  titleof_22: any;
+  titleof_23: any;
+  titleof_24: any;
+  titleof_25: any;
+  titleof_26: any;
+  titleof_27: any;
+  titleof_28: any;
+  titleof_29: any;
+  titleof_30: any;
+  titleof_31: any;
+  titleof_32: any;
+  titleof_33: any;
+  titleof_34: any;
+  titleof_35: any;
+  titleof_36: any;
+  titleof_37: any;
+  titleof_38: any;
+  titleof_39: any;
+  titleof_40: any;
+  titleof_41: any;
+  titleof_42: any;
+  titleof_43: any;
+  titleof_44: any;
+  titleof_45: any;
+  titleof_46: any;
+  titleof_47: any;
+  titleof_48: any;
+  titleof_49: any;
+  titleof_50: any;
+  titleof_51: any;
+  titleof_52: any;
+  titleof_53: any;
+  titleof_54: any;
+  titleof_55: any;
+  titleof_56: any;
+  titleof_57: any;
+  titleof_58: any;
+  titleof_59: any;
+  titleof_60: any;
+  titleof_61: any;
+  titleof_62: any;
+  titleof_63: any;
+  titleof_64: any;
+  titleof_65: any;
+  titleof_66: any;
+  titleof_67: any;
+  titleof_68: any;
+  titleof_69: any;
+
   constructor(
     public alertController: AlertController,
     public navCtrl: NavController,
     private storage: Storage,
-    public toastController: ToastController,
     private file: File,
+    public loadingController: LoadingController,
+    public toastController: ToastController,
+    private http: HttpClient,
     private fileOpener: FileOpener,
     private base64: Base64,
     private plt: Platform
   ) {
     this.storage.create();
+
+    this._mergeAPIContentData();
 
     this.AllDumyDocs = [
       {
@@ -233,731 +351,282 @@ export class CommonService {
       },
     ];
 
-    this.StructureDescriptionContent = [
-      {
-        text: 'WALL STRUCTURE',
-        checked: false,
-      },
-      {
-        text: 'Wood Frame',
-        checked: false,
-      },
-      {
-        text: 'CEILING STRUCTURE',
-        checked: false,
-      },
-      {
-        text: 'Truss',
-        checked: false,
-      },
-      {
-        text: 'Rafters',
-        checked: false,
-      },
-
-      {
-        text: 'FOUDATION',
-        checked: false,
-      },
-      {
-        text: 'Slab on Grade',
-        checked: false,
-      },
-      {
-        text: 'Concrete',
-        checked: false,
-      },
-    ];
-
-    this.StructureObservationContent = [
-      {
-        text: 'Positive Attributes',
-        checked: false,
-      },
-      {
-        text:
-          'The building exhibits no evidence of substantial structural movement.      ',
-        checked: false,
-      },
-      {
-        text: 'General Comments',
-        checked: false,
-      },
-      {
-        text:
-          'Many homes may have circumstances where construction practices or standards have changed since the home was built. Updating/upgrading systems are not a requirement if the home was built to the standards of the day construction was completed. It would be cost prohibitive to bring everything to current standards for every home',
-        checked: false,
-      },
-    ];
-
-    this.StructureCommentsContent = [
-      {
-        text:
-          'Monitor: This home is situated in an area known for wood destroying insect activity (Florida). Wood destroying insects can do a substantial amount of damage to the wood structural components of a home. Since termites are a living and breeding insect, sometimes damage may take months or years to show evidence. Several steps can be taken to reduce the risk of a wood destroying insect problem. Additional treatment may be need in the event of swarms. Any form of wood/soil contact should be avoided. Controlling dampness in the soil around the perimeter of a home, including below porches and in crawl spaces, is recommended. Preventive chemical treatment, performed by a licensed pest control specialist, is also advisable. Termites are beyond the scope of the inspection. A licensed pest control specialist should be consulted for a thorough termite inspection and treatment (if necessary). If there is currently a termite bond the transfer of the bond is advisable.',
-        checked: false,
-      },
-      {
-        text:
-          'Monitor: Common minor cracks were observed in the foundation walls of the house. This implies that some structural movement of the building has occurred, as is typical of most houses. This is usually the result of shrinkage and/or settling of the slab. It takes several years for the new concrete to fully cure. During the curing process it very common for concrete to crack due to thermal differential inside the core of the concrete. Thicker concrete slabs will cure more slowly than thinner slabs. During renovations, expect to find concrete cracks under the flooring. Floor coverings were not removed at the time of inspection. ',
-        checked: false,
-      },
-    ];
-
-    this.StructureLimitationsContent = [
-      {
-        text:
-          'Structural components concealed behind finished surfaces could not be inspected.',
-        checked: false,
-      },
-      {
-        text:
-          'Insulation obstructed the view of some structural components in the attic.',
-        checked: false,
-      },
-      {
-        text: 'There was no access all areas of the roof space/attic.',
-
-        checked: false,
-      },
-      {
-        text:
-          'Insulation obstructed the view of some structural components in the attic.',
-
-        checked: false,
-      },
-    ];
-    this.RoofingDescriptionContent = [
-      {
-        text: 'Composite 3 Tab Dimensional Shingle',
-
-        checked: false,
-      },
-      {
-        text: 'Gutters and Downspouts - Metals',
-
-        checked: false,
-      },
-      {
-        text: 'Viewed from Ground',
-
-        checked: false,
-      },
-      {
-        text: 'Chimneys Metal below siding',
-
-        checked: false,
-      },
-    ];
-    this.RoofingObservationContent = [
-      {
-        text:
-          ' The roof coverings are older as is typical for homes in this area. Enclosed porch coverings are susceptible to leakage at connection points where sections adjoin. Sealing of these areas is a relatively minor task, when needed. The configuration of the roofing system is susceptible to leaf damming. The potential for leaf dams can vary with the severity of the leaf shedding. Severe dams can result in roof leakage, typically near the eaves. Solutions include cleaning of clogged downspouts and gutters.',
-
-        checked: false,
-      },
-      {
-        text:
-          'Improve: The roofing is nearing the later stages of its life cycle. Minor repairs are recommended in the short term to maintain the weather tightness of the roof. Damaged or missing roofing material should be repaired. All roof penetrations should be examined and sealed as necessary. Some insurance companies are limiting coverage on homes with shingle roofs that are 15 years or older.',
-
-        checked: false,
-      },
-    ];
-    this.RoofingLimitationsContent = [
-      {
-        text:
-          'Roofs are designed to shed water like an umbrella and are not “waterproof”. In events of wind driven rains, and periods of intense rain, water can sometimes blow into areas such as ridge vents, roof vents and valleys and present leaking conditions. This occurrence is rare, but can possibly happen in severe storm events. Unless it is raining at the time of inspection, some roof leaks may not be identified during the inspection process..',
-
-        checked: false,
-      },
-      {
-        text:
-          'Insulation obstructed the view of some structural components in the attic.',
-
-        checked: false,
-      },
-      {
-        text:
-          'As prescribed in the inspection authorization and agreement, this is a visual inspection only. Roofing life expectancies can vary depending on several factors. Any estimates of remaining life are approximations only. This assessment of the roof does not preclude the possibility of leakage. Leakage can develop at any time and may depend on rain intensity, wind direction, ice build up, etc.',
-
-        checked: false,
-      },
-      {
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org',
-
-        checked: false,
-      },
-    ];
-
-    this.ExteriorDescriptionContent = [
-      {
-        text: 'Wall Cladding: Brick, Vinyl',
-
-        checked: false,
-      },
-      {
-        text: 'Soffit and Fascia: Vinyl',
-
-        checked: false,
-      },
-
-      {
-        text: 'Window/Door Frames and Trim: Wood, Metal, Vinyl',
-
-        checked: false,
-      },
-      {
-        text: 'Porches, Decks, and Steps: Wood, Concrete',
-
-        checked: false,
-      },
-
-      {
-        text: 'Lot Grading: Level Grade',
-
-        checked: false,
-      },
-    ];
-
-    this.ExteriorObservationContent = [
-      {
-        text:
-          'The exterior siding that has been installed on the house is relatively low maintenance. The aluminum and vinyl soffits and fascia are an excellent feature of the exterior of the home.',
-
-        checked: false,
-      },
-      {
-        text:
-          'The exterior of the home shows signs of normal wear and tear for a home of this age and construction..',
-
-        checked: false,
-      },
-    ];
-    this.ExteriorLimitationsContent = [
-      {
-        text:
-          'The general topography of the area is such that it will be difficult to control storm water entirely. During heavy rains, the accumulation of storm water on the lot may be unavoidable.',
-
-        checked: false,
-      },
-      {
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org',
-
-        checked: false,
-      },
-    ];
-
-    this.ElectricalDescriptionContent = [
-      {
-        text: 'Service Entrance Wires: Main Disconnect: Underground',
-
-        checked: false,
-      },
-
-      {
-        text:
-          'Main Distribution Panel: Branch/Auxiliary Panel(s): Breakers –100 Amp ',
-
-        checked: false,
-      },
-
-      {
-        text:
-          'Ground Fault Circuit Interrupters: Copper 􏰀Ground Connection Not Visibl',
-
-        checked: false,
-      },
-    ];
-
-    this.ElectricalObservationContent = [
-      {
-        text:
-          'Generally speaking, the electrical system is in good order. Dedicated 220-volt circuits have been provided for all 220-volt appliances within the home. All visible wiring within the home is copper. This is a good quality electrical conductor.',
-
-        checked: false,
-      },
-      {
-        text:
-          'A licensed electrician should be consulted to undertake the improvements recommended below.',
-
-        checked: false,
-      },
-    ];
-    this.ElectricalLimitationsContent = [
-      {
-        text:
-          'As prescribed in the inspection authorization and agreement, this is a visual inspection only. The inspection does not include low voltage systems, telephone wiring, intercoms, alarm systems, TV cable, timers or smoke detectors.',
-
-        checked: false,
-      },
-      {
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org',
-
-        checked: false,
-      },
-    ];
-
-    this.CoolingHVACDescriptionContent = [
-      {
-        text: 'Energy Source: Electricity 240 Volt Power Supply',
-
-        checked: false,
-      },
-      {
-        text: 'Air Flow: 300-600 FPM',
-
-        checked: false,
-      },
-      {
-        text: 'There was no access all areas of the roof space/attic.',
-
-        checked: false,
-      },
-      {
-        text:
-          'Insulation obstructed the view of some structural components in the attic.',
-
-        checked: false,
-      },
-    ];
-
-    this.CoolingHVACObservationContent = [
-      {
-        text:
-          'The heat pump serves to air-condition the home and provide heat during cooler weather conditions. Upon testing in the air conditioning mode, a normal temperature drop across the evaporator coil was observed. This suggests that the system is operating properly. The system responded properly to operating controls.',
-
-        checked: false,
-      },
-      {
-        text:
-          'It would be wise to consider a homeowner’s warranty to protect the buyers from unexpected breakdown and failure. The cooling system requires annual maintenance in addition to the monthly change of filters. String trimming equipment should be used carefully around siding and exterior air conditioning equipment.',
-
-        checked: false,
-      },
-    ];
-
-    this.CoolingHVACLimitationsContent = [
-      {
-        text:
-          'As prescribed in the inspection authorization and agreement, this is a visual inspection only. Air conditioning and heat pump systems, like most mechanical components, can fail at any time.',
-
-        checked: false,
-      },
-    ];
-
-    this.StructureWallStructureContent = [
-      {
-        text: 'Wood Frame',
-        checked: false,
-      },
-      {
-        text: 'Panel',
-        checked: false,
-      },
-    ];
-
-    this.StructureCeilingStructureContent = [
-      {
-        text: 'Truss',
-        checked: false,
-      },
-      {
-        text: 'Rafters',
-        checked: false,
-      },
-    ];
-
-    this.StructureRoofStructureContent = [
-      {
-        text: 'Plywood',
-        checked: false,
-      },
-      {
-        text: 'Waferboard',
-        checked: false,
-      },
-      {
-        text: 'Truss',
-        checked: false,
-      },
-      {
-        text: 'Rafters',
-        checked: false,
-      },
-    ];
-
-    this.generalDescriptionContent = [
-      {
-        text: 'generalDescriptionContent',
-
-        checked: false,
-      },
-    ];
-
-    this.generalContent = [
-      {
-        text:
-          'We will perform a visual inspection of the home/building and provide you with a written report identifying the defects that we (1) observed and (2) deemed material. The report is only supplementary to the seller’s disclosure.',
-
-        checked: false,
-      },
-
-      {
-        text:
-          'Unless otherwise noted in this Agreement or not possible, we will perform the inspection in accordance with the current Standards of Practice (SOP) of the International Association of Certified Home Inspectors (“InterNACHI”) posted at www.nachi.org/sop If your jurisdiction has adopted mandatory standards that differ from InterNACHI’s SOP, we will perform the inspection in accordance with your jurisdiction’s standards. You understand that InterNACHI’s SOP contains limitations, exceptions, and exclusions. You understand that InterNACHI is not a party to this Agreement, has no control over us, and does not employ or supervise us.',
-
-        checked: false,
-      },
-
-      {
-        text:
-          'Unless otherwise indicated in writing, we will NOT test for the presence of radon, a harmful gas. Unless otherwise indicated in writing, we will not test for mold. Unless otherwise indicated in writing, we will not test for compliance with applicable building codes or for the presence of or for any potential dangers arising from the presence of asbestos, lead paint, soil contamination, or other environmental hazards or violations. If any structure you want us to inspect is a log structure or includes log construction, you understand that such structures have unique characteristics that may make it impossible for us to inspect and evaluate them. Therefore, the scope of our inspection will not include decay of the interior of logs in log walls, log foundations or roofs, or similar defects.',
-
-        checked: false,
-      },
-
-      {
-        text:
-          'Our inspection and report are for your use only. You give us permission to discuss our observations with real estate agents, owners, repair persons, or other interested parties. You will be the sole owner of the report and all rights to it. We are not responsible for use or misinterpretation by third parties, and third parties who rely on it in any way do so at their own risk and release us (including employees and business entities) from any liability whatsoever. If you or any person acting on your behalf provide the report to a third party who then sues you and/or us, you release us from any liability and agree to pay our costs and legal fees in defending any action naming us. Our inspection and report are in no way a guarantee or warranty, express or implied, regarding the future use, operability, habitability or suitability of the home/building or its components. We disclaim all warranties, express or implied, to the fullest extent allowed by law.',
-
-        checked: false,
-      },
-
-      {
-        text:
-          'We do not perform engineering, architectural, plumbing, or any other job function requiring an occupational license in the jurisdiction where the property is located. If we hold a valid occupational license, we may inform you of this and you may hire us to perform additional functions. Any agreement for such additional services shall be in a separate writing.',
-
-        checked: false,
-      },
-
-      {
-        text:
-          'Any dispute, controversy, interpretation or claim including claims for, but not limited to, breach of contract, any form of negligence, fraud, or misinterpretation arising out of, from or related to, this contractor arising out of, from or related to the inspection or inspection report shall be submitted first to a Non-Binding Mediation conference and absent a voluntary settlement through Non-Binding Mediation to followed by final and Binding Arbitration, if necessary, as conducted by Construction Dispute Resolution Services, LLC or Resolute Systems Inc. utilizing their respective Rules and Procedures. If the dispute is submitted to Binding Arbitration, the decision of the Arbitrator appointed there under shall be final and binding and the enforcement of the Arbitration Award may be entered in any Court or administrative tribunal having jurisdiction thereof.',
-
-        checked: false,
-      },
-    ];
-
-    this.StructureAtticMethodStructureContent = [
-      {
-        text: 'Entered',
-        checked: false,
-      },
-      {
-        text: 'Inaccessible Areas',
-        checked: false,
-      },
-    ];
-    this.StructureFoundationStructureContent = [
-      {
-        text: 'Concrete',
-        checked: false,
-      },
-      {
-        text: 'Slab on Grade',
-        checked: false,
-      },
-    ];
-    this.StructureFloorStructureContent = [
-      {
-        text: 'Concrete',
-        checked: false,
-      },
-    ];
-
-    this.AppliancesPresentStructureContent = [
-      {
-        text: 'Refrigerator',
-        checked: false,
-      },
-    ];
-    this.AppliancesBuiltStructureContent = [
-      {
-        text: 'None',
-        checked: false,
-      },
-    ];
-    this.AppliancesTestedStructureContent = [
-      {
-        text: 'Electric Range',
-        checked: false,
-      },
-      {
-        text: 'Microwave Oven',
-        checked: false,
-      },
-      {
-        text: 'Dishwasher',
-        checked: false,
-      },
-    ];
-
-    this.AppliancesLaundryStructureContent = [
-      {
-        text: '240 Volt Circuit for Dryer',
-        checked: false,
-      },
-      {
-        text: 'Dryer Vented to Building Exterior',
-        checked: false,
-      },
-      {
-        text: '120 Volt Circuit for Washer',
-        checked: false,
-      },
-      {
-        text: 'Hot and Cold Water Supply for Washer',
-        checked: false,
-      },
-      {
-        text: 'Waste Standpipe for Washer',
-        checked: false,
-      },
-    ];
-    this.AppliancesOtherStructureContent = [
-      {
-        text: 'Door Bell',
-        checked: false,
-      },
-      {
-        text: 'Waste Disposer',
-        checked: false,
-      },
-    ];
-
-    this.CoolingHVACEnergyStructureContent = [
-      {
-        text: 'Electricity',
-        checked: false,
-      },
-      {
-        text: '240 Volt Power Supply',
-        checked: false,
-      },
-    ];
-
-    this.CoolingHVACTypeStructureContent = [
-      {
-        text: 'Air Source Central Heat Pump System',
-        checked: false,
-      },
-    ];
-    this.CoolingHVACManufacturerStructureContent = [
-      {
-        text: 'Tempstar',
-        checked: false,
-      },
-    ];
-
-    this.CoolingHVACDescriptionStructureContent = [
-      {
-        text: 'Model #N4H448GKG101',
-        checked: false,
-      },
-      {
-        text: 'Serial #E175110996􏰀Approximate Age (in years): 4',
-        checked: false,
-      },
-    ];
-    this.CoolingHVACTemperatureStructureContent = [
-      {
-        text: '13 degrees 􏰀 E Heat 29 Degrees Heat',
-        checked: false,
-      },
-      {
-        text: '18 Degrees Cooling',
-        checked: false,
-      },
-    ];
-
-    this.ElectricalServiceEntryGroundStructureContent = [
-      {
-        text: 'Underground',
-        checked: false,
-      },
-    ];
-    this.ElectricalMainDisconnectStructureContent = [
-      {
-        text: 'Breakers –100 Amp',
-        checked: false,
-      },
-    ];
-    this.ElectricalDistributionPanelStructureContent = [
-      {
-        text: 'Breakers Milbank',
-        checked: false,
-      },
-    ];
-
-    this.ElectricalAuxilliaryStructureContent = [
-      {
-        text: 'Breakers Square D',
-        checked: false,
-      },
-    ];
-    this.ElectricalWiringStructureContent = [
-      {
-        text: 'Copper',
-        checked: false,
-      },
-    ];
-    this.ElectricalGroundFaultStructureContent = [
-      {
-        text: 'Bathroom(s)',
-        checked: false,
-      },
-      {
-        text: 'Kitchen',
-        checked: false,
-      },
-    ];
-
-    this.ExteriorWallCladdingStructureContent = [
-      {
-        text: 'Brick',
-        checked: false,
-      },
-      {
-        text: 'Vinyl',
-        checked: false,
-      },
-    ];
-
-    this.ExteriorSoffitFasciaStructureContent = [
-      {
-        text: 'Vinyl',
-        checked: false,
-      },
-    ];
-    this.ExteriorWindowDoorStructureContent = [
-      {
-        text: 'Wood',
-        checked: false,
-      },
-      {
-        text: 'Metal',
-        checked: false,
-      },
-      {
-        text: 'Vinyl',
-        checked: false,
-      },
-    ];
-
-    this.ExteriorDrivewaysStructureContent = [
-      {
-        text: 'Concrete',
-        checked: false,
-      },
-    ];
-    this.ExteriorOverheadGarageStructureContent = [
-      {
-        text: 'Metal',
-        checked: false,
-      },
-    ];
-    this.ExteriorLotGradingStructureContent = [
-      {
-        text: 'Level Grade',
-        checked: false,
-      },
-    ];
-
-    this.InsulationAtticStructureContent = [
-      {
-        text: '0(Porches and garage)3-14 inches Fiberglass in Lower Attic',
-        checked: false,
-      },
-    ];
-    this.InsulationRoofStructureContent = [
-      {
-        text: 'Ridge Vents',
-        checked: false,
-      },
-      {
-        text: 'Soffit Vents',
-        checked: false,
-      },
-    ];
-    this.InsulationExhastVentStructureContent = [
-      {
-        text: 'Level Grade',
-        checked: false,
-      },
-    ];
-
-    this.PlumbingWaterSuppyContent = [
-      {
-        text: 'Public Water Supply',
-        checked: false,
-      },
-    ];
-    this.PlumbingServicePipeContent = [
-      {
-        text: 'Not Visible',
-        checked: false,
-      },
-    ];
-    this.PlumbingSuppyPipingContent = [
-      {
-        text: 'Copper',
-        checked: false,
-      },
-      {
-        text: 'Plastic',
-        checked: false,
-      },
-    ];
-
-    this.PlumbingWasteSystemStructureContent = [
-      {
-        text: 'Unknown (Reported by Seller)',
-        checked: false,
-      },
-    ];
-    this.PlumbingDrainStructureContent = [
-      {
-        text: 'Plastic',
-        checked: false,
-      },
-    ];
-    this.PlumbingWaterHeaterPressureStructureContent = [
-      {
-        text: 'Electric',
-        checked: false,
-      },
-      {
-        text: 'Approximate Capacity (in gallons): 50',
-        checked: false,
-      },
-    ];
-
-    this.RoofingCoveringStructureContent = [
-      {
-        text: 'Composite 3 Tab Dimensional Shingle',
-        checked: false,
-      },
-    ];
-    this.RoofingGuttersDownspoutsStructureContent = [
-      {
-        text: 'Metal',
-        checked: false,
-      },
-    ];
-    this.RoofingMethodsStructureContent = [
-      {
-        text: 'Viewed from Ground',
-        checked: false,
-      },
-    ];
-    this.RoofingChimneysStructureContent = [
-      {
-        text: 'Metal below siding',
-        checked: false,
-      },
-    ];
+    this.getContentData();
+    // this.StructureDescriptionContent = [
+    //   {
+    //     text: 'WALL STRUCTURE',
+    //     checked: false,
+    //   },
+    //   {
+    //     text: 'Wood Frame',
+    //     checked: false,
+    //   },
+    //   {
+    //     text: 'CEILING STRUCTURE',
+    //     checked: false,
+    //   },
+    //   {
+    //     text: 'Truss',
+    //     checked: false,
+    //   },
+    //   {
+    //     text: 'Rafters',
+    //     checked: false,
+    //   },
+
+    //   {
+    //     text: 'FOUDATION',
+    //     checked: false,
+    //   },
+    //   {
+    //     text: 'Slab on Grade',
+    //     checked: false,
+    //   },
+    //   {
+    //     text: 'Concrete',
+    //     checked: false,
+    //   },
+    // ];
+  }
+
+  _mergeAPIContentData() {
+    setTimeout(() => {
+      // <<<---using ()=> syntax
+      let rmv = this.commonContent;
+      let rmv2 = this.getdescdata;
+
+      console.log(rmv);
+
+      // console.log(rmv.coolinghvacdescriptioncontent);
+
+      this.ApplicationDescriptionContent = rmv2.AppliancesDescriptionContent;
+      this.ApplicationObservationContent = rmv2.ApplicationObservationContent;
+
+      this.StructureDescriptionContent = rmv2.StructureDescriptionContent;
+      this.StructureObservationContent = rmv2.StructureObservationContent;
+
+      this.CoolingHVACDescriptionContent = rmv2.CoolingHVACDescriptionContent;
+      this.CoolingHVACObservationContent = rmv2.CoolingHVACObservationContent;
+
+      this.RoofingDescriptionContent = rmv2.RoofingDescriptionContent;
+      this.RoofingObservationContent = rmv2.RoofingObservationContent;
+
+      this.ExteriorDescriptionContent = rmv2.ExteriorDescriptionContent;
+      this.ExteriorObservationContent = rmv2.ExteriorObservationContent;
+
+      this.InsulationDescriptionContent = rmv2.InsulationDescriptionContent;
+      this.InsulationObservationContent = rmv2.InsulationObservationContent;
+
+      this.PlumbingDescriptionContent = rmv2.PlumbingDescriptionContent;
+      this.PlumbingObservationContent = rmv2.PlumbingObservationContent;
+
+      this.ElectricalDescriptionContent = rmv2.ElectricalDescriptionContent;
+      this.ElectricalObservationContent = rmv2.ElectricalObservationContent;
+
+      this.titleof_0 = rmv.titleof[0].title;
+      // this.StructureDescriptionContent = rmv.titleof[0].title;
+      // this.StructureDescriptionContent = rmv.titleof[0].title;
+
+      this.titleof_0 = rmv.titleof[0].title;
+      this.titleof_1 = rmv.titleof[1].title;
+      this.titleof_2 = rmv.titleof[2].title;
+      this.titleof_3 = rmv.titleof[3].title;
+      this.titleof_4 = rmv.titleof[4].title;
+      this.titleof_5 = rmv.titleof[5].title;
+      this.titleof_6 = rmv.titleof[6].title;
+      this.titleof_7 = rmv.titleof[7].title;
+      this.titleof_8 = rmv.titleof[8].title;
+      this.titleof_9 = rmv.titleof[9].title;
+      this.titleof_10 = rmv.titleof[10].title;
+      this.titleof_11 = rmv.titleof[11].title;
+      this.titleof_12 = rmv.titleof[12].title;
+      this.titleof_13 = rmv.titleof[13].title;
+      this.titleof_14 = rmv.titleof[14].title;
+      this.titleof_15 = rmv.titleof[15].title;
+      this.titleof_16 = rmv.titleof[16].title;
+      this.titleof_17 = rmv.titleof[17].title;
+      this.titleof_18 = rmv.titleof[18].title;
+      this.titleof_19 = rmv.titleof[19].title;
+      this.titleof_20 = rmv.titleof[20].title;
+      this.titleof_21 = rmv.titleof[21].title;
+      this.titleof_22 = rmv.titleof[22].title;
+      this.titleof_23 = rmv.titleof[23].title;
+      this.titleof_24 = rmv.titleof[24].title;
+      this.titleof_25 = rmv.titleof[25].title;
+      this.titleof_26 = rmv.titleof[26].title;
+      this.titleof_27 = rmv.titleof[27].title;
+      this.titleof_28 = rmv.titleof[28].title;
+      this.titleof_29 = rmv.titleof[29].title;
+      this.titleof_30 = rmv.titleof[30].title;
+      this.titleof_31 = rmv.titleof[31].title;
+      this.titleof_32 = rmv.titleof[32].title;
+      this.titleof_33 = rmv.titleof[33].title;
+      this.titleof_34 = rmv.titleof[34].title;
+      this.titleof_35 = rmv.titleof[35].title;
+      this.titleof_36 = rmv.titleof[36].title;
+      this.titleof_37 = rmv.titleof[37].title;
+      this.titleof_38 = rmv.titleof[38].title;
+      this.titleof_39 = rmv.titleof[39].title;
+      this.titleof_40 = rmv.titleof[40].title;
+      this.titleof_41 = rmv.titleof[41].title;
+      this.titleof_42 = rmv.titleof[42].title;
+      this.titleof_43 = rmv.titleof[43].title;
+      this.titleof_44 = rmv.titleof[44].title;
+      this.titleof_45 = rmv.titleof[45].title;
+      this.titleof_46 = rmv.titleof[46].title;
+      this.titleof_47 = rmv.titleof[47].title;
+      this.titleof_48 = rmv.titleof[48].title;
+      this.titleof_49 = rmv.titleof[49].title;
+      this.titleof_50 = rmv.titleof[50].title;
+      this.titleof_51 = rmv.titleof[51].title;
+      this.titleof_52 = rmv.titleof[52].title;
+      this.titleof_53 = rmv.titleof[53].title;
+      this.titleof_54 = rmv.titleof[54].title;
+      this.titleof_55 = rmv.titleof[55].title;
+      this.titleof_56 = rmv.titleof[56].title;
+      this.titleof_57 = rmv.titleof[57].title;
+      this.titleof_58 = rmv.titleof[58].title;
+      this.titleof_59 = rmv.titleof[59].title;
+      this.titleof_60 = rmv.titleof[60].title;
+      this.titleof_61 = rmv.titleof[61].title;
+      this.titleof_62 = rmv.titleof[62].title;
+      this.titleof_63 = rmv.titleof[63].title;
+      this.titleof_64 = rmv.titleof[64].title;
+      this.titleof_65 = rmv.titleof[65].title;
+      this.titleof_66 = rmv.titleof[66].title;
+      this.titleof_67 = rmv.titleof[67].title;
+      this.titleof_68 = rmv.titleof[68].title;
+      this.titleof_69 = rmv.titleof[69].title;
+
+      // this.StructureDescriptionContent = rmv.structuredescriptioncontent;
+      // this.StructureObservationContent = rmv.structureobservationcontent;
+      this.StructureCommentsContent = rmv.structurecommentscontent;
+      this.StructureLimitationsContent = rmv.structurelimitationscontent;
+
+      this.StructureAtticMethodStructureContent =
+        rmv.structureatticmethodstructurecontent;
+      this.StructureFoundationStructureContent =
+        rmv.structurefoundationstructurecontent;
+      this.StructureFloorStructureContent = rmv.structurefloorstructurecontent;
+
+      this.StructureWallStructureContent = rmv.structurewallstructurecontent;
+      this.StructureCeilingStructureContent =
+        rmv.structureceilingstructurecontent;
+      this.StructureRoofStructureContent = rmv.structureroofstructurecontent;
+
+      // this.ExteriorDescriptionContent = rmv.exteriordescriptioncontent;
+      // this.ExteriorObservationContent = rmv.exteriorobservationcontent;
+      this.ExteriorLimitationsContent = rmv.exteriorlimitationscontent;
+
+      this.ExteriorWallCladdingStructureContent =
+        rmv.exteriorwallcladdingstructurecontent;
+      this.ExteriorSoffitFasciaStructureContent =
+        rmv.exteriorsoffitfasciastructurecontent;
+      this.ExteriorWindowDoorStructureContent =
+        rmv.exteriorwindowdoorstructurecontent;
+
+      this.ExteriorDrivewaysStructureContent =
+        rmv.exteriordrivewaysstructurecontent;
+      this.ExteriorOverheadGarageStructureContent =
+        rmv.exterioroverheadgaragestructurecontent;
+      this.ExteriorLotGradingStructureContent =
+        rmv.exteriorlotgradingstructurecontent;
+
+      // this.ElectricalDescriptionContent = rmv.electricaldescriptioncontent;
+      // this.ElectricalObservationContent = rmv.electricalobservationcontent;
+      this.ElectricalLimitationsContent = rmv.electricallimitationscontent;
+
+      this.ElectricalServiceEntryGroundStructureContent =
+        rmv.electricalserviceentrygroundstructurecontent;
+      this.ElectricalMainDisconnectStructureContent =
+        rmv.electricalmaindisconnectstructurecontent;
+      this.ElectricalDistributionPanelStructureContent =
+        rmv.electricaldistributionpanelstructurecontent;
+
+      this.ElectricalAuxilliaryStructureContent =
+        rmv.electricalauxilliarystructurecontent;
+      this.ElectricalWiringStructureContent =
+        rmv.electricalwiringstructurecontent;
+      this.ElectricalGroundFaultStructureContent =
+        rmv.electricalgroundfaultstructurecontent;
+
+      // this.CoolingHVACDescriptionContent = rmv.coolinghvacdescriptioncontent;
+      // this.CoolingHVACObservationContent = rmv.coolinghvacobservationcontent;
+      this.CoolingHVACLimitationsContent = rmv.coolinghvaclimitationscontent;
+
+      this.CoolingHVACEnergyStructureContent =
+        rmv.coolinghvacenergystructurecontent;
+      this.CoolingHVACTypeStructureContent =
+        rmv.coolinghvactypestructurecontent;
+      this.CoolingHVACManufacturerStructureContent =
+        rmv.coolinghvacmanufacturerstructurecontent;
+
+      this.CoolingHVACDescriptionStructureContent =
+        rmv.coolinghvacdescriptionstructurecontent;
+      this.CoolingHVACTemperatureStructureContent =
+        rmv.coolinghvactemperaturestructurecontent;
+
+      // this.insulationDescriptionContent = rmv.insulationdescriptioncontent;
+      // this.insulationObservationContent = rmv.insulationobservationcontent;
+      this.insulationObservationRecommendations =
+        rmv.insulationobservationrecommendations;
+
+      this.insulationLimitationsContent = rmv.insulationlimitationscontent;
+
+      this.InsulationAtticStructureContent =
+        rmv.insulationatticstructurecontent;
+      this.InsulationRoofStructureContent = rmv.insulationroofstructurecontent;
+      this.InsulationExhastVentStructureContent =
+        rmv.insulationexhastventstructurecontent;
+
+      this.applianceDescriptionContent = rmv.appliancedescriptioncontent;
+      this.applianceObservationContent = rmv.applianceobservationcontent;
+      this.applianceObservationRecommendations =
+        rmv.applianceobservationrecommendations;
+
+      this.AppliancesPresentStructureContent =
+        rmv.appliancespresentstructurecontent;
+      this.AppliancesBuiltStructureContent =
+        rmv.appliancesbuiltstructurecontent;
+      this.AppliancesTestedStructureContent =
+        rmv.appliancestestedstructurecontent;
+
+      this.AppliancesLaundryStructureContent =
+        rmv.applianceslaundrystructurecontent;
+      this.AppliancesOtherStructureContent =
+        rmv.appliancesotherstructurecontent;
+
+      // this.plumbingDescriptionContent = rmv.plumbingdescriptioncontent;
+      // this.plumbingObservationContent = rmv.plumbingobservationcontent;
+      this.plumbingObservationRecommendations =
+        rmv.plumbingobservationrecommendations;
+      this.plumbingLimitationsContent = rmv.plumbinglimitationscontent;
+
+      this.PlumbingWaterSuppyContent = rmv.plumbingwatersuppycontent;
+      this.PlumbingServicePipeContent = rmv.plumbingservicepipecontent;
+      this.PlumbingSuppyPipingContent = rmv.plumbingsuppypipingcontent;
+
+      this.PlumbingWasteSystemStructureContent =
+        rmv.plumbingwastesystemstructurecontent;
+      this.PlumbingDrainStructureContent = rmv.plumbingdrainstructurecontent;
+      this.PlumbingWaterHeaterPressureStructureContent =
+        rmv.plumbingwaterheaterpressurestructurecontent;
+
+      // this.RoofingDescriptionContent = rmv.roofingdescriptioncontent;
+      // this.RoofingObservationContent = rmv.roofingobservationcontent;
+      this.RoofingLimitationsContent = rmv.roofinglimitationscontent;
+      this.RoofingCoveringStructureContent =
+        rmv.roofingcoveringstructurecontent;
+      this.RoofingGuttersDownspoutsStructureContent =
+        rmv.roofingguttersdownspoutsstructurecontent;
+      this.RoofingMethodsStructureContent = rmv.roofingmethodsstructurecontent;
+      this.RoofingChimneysStructureContent =
+        rmv.roofingchimneysstructurecontent;
+
+      this.generalDescriptionContent = rmv.generaldescriptioncontent;
+
+      this.generalContent = rmv.generalcontent;
+    }, 4000);
   }
 
   async alert_(m) {
@@ -4579,5 +4248,64 @@ export class CommonService {
 
       img.src = url;
     });
+  }
+
+  async getContentData() {
+    // let Loading_ = await this.loadingController.create({
+    //   message: 'Please wait...',
+    //   translucent: true,
+    //   cssClass: 'custom-class custom-loading',
+    // });
+    // await Loading_.present();
+    // await this.api.Get_data('getalldata').subscribe(
+    //   (res) => {
+    //     Loading_.dismiss();
+    //     console.log(JSON.stringify(res));
+    //   },
+    //   (err) => {
+    //     Loading_.dismiss();
+    //     console.log(JSON.stringify(err));
+    //   }
+    // );
+
+    // Authorization: 'Bearer ' + this.token,
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Accept: 'application/json ',
+        'Access-Control-Allow-Origin': '*',
+      }),
+    };
+
+    var endPoint = 'getalldata';
+
+    let url = this.Apiurl + 'getalldata';
+    console.log(httpOptions);
+
+    if (this.plt.is('ios') || this.plt.is('android') || this.plt.is('mobile')) {
+      return this.http.get(url, httpOptions).pipe(
+        tap((_) => {}),
+        catchError(this.handleError(endPoint))
+      );
+
+      // console.log("Advance_HTTP_POST");
+      // return from(this.httpAdvanced.get(url, {}, httpOptions)).pipe(
+      //   map((data: any) => JSON.parse(data?.data))
+      // );
+    } else {
+      console.log('DATA --------->>');
+
+      var DataRet = this.http
+        .get(url, httpOptions)
+        .pipe(map((data: any) => JSON.parse(data?.data)));
+
+      console.log(JSON.stringify(DataRet));
+    }
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
 }

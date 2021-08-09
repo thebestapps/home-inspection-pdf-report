@@ -12,11 +12,11 @@
         name="eye-outline"
       ></ion-icon>
 
-      <ion-icon
+      <!-- <ion-icon
         (click)="closeM()"
         class="icn-close"
         name="close-outline"
-      ></ion-icon>
+      ></ion-icon> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -125,7 +125,7 @@
       <p class="main-title vie">Foundational</p>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p (click)="onHSView1()" class="main-title">Wall Cladding</p>
+        <p (click)="onHSView1()" class="main-title">{{config.titleof_29}}</p>
 
         <div class="input-etr" *ngIf="HSView1">
           <ion-row>
@@ -211,7 +211,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView2()">Soffit and Fascia</p>
+        <p class="main-title" (click)="onHSView2()">{{config.titleof_28}}</p>
         <div class="input-etr" *ngIf="HSView2">
           <ion-row>
             <ion-col>
@@ -295,9 +295,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView3()">
-          Window/Door Frames and Trim
-        </p>
+        <p class="main-title" (click)="onHSView3()">{{config.titleof_30}}</p>
         <div class="input-etr" *ngIf="HSView3">
           <ion-row>
             <ion-col>
@@ -382,7 +380,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView8()">Driveways</p>
+        <p class="main-title" (click)="onHSView8()">{{config.titleof_22}}</p>
         <div class="input-etr" *ngIf="HSView8">
           <ion-row>
             <ion-col>
@@ -467,7 +465,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView9()">Overhead Garage Door(s)</p>
+        <p class="main-title" (click)="onHSView9()">{{config.titleof_27}}</p>
         <div class="input-etr" *ngIf="HSView9">
           <ion-row>
             <ion-col>
@@ -552,7 +550,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView10()">Lot Grading</p>
+        <p class="main-title" (click)="onHSView10()">{{config.titleof_25}}</p>
         <div class="input-etr" *ngIf="HSView10">
           <ion-row>
             <ion-col>
@@ -882,4 +880,14 @@
       </ion-row>
     </div>
   </div>
+
+  <ion-row *ngIf="!BackPressed">
+    <ion-col style="text-align: center">
+      <ion-button (click)="closeM()" class="Back-btn">
+        <ion-icon class="icn-c" name="close-outline"></ion-icon>
+
+        Back
+      </ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>

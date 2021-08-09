@@ -124,19 +124,6 @@ export class ElectricalSelectionPage implements OnInit {
       },
     ];
 
-    this.electricalDescriptionContent = this.config.ElectricalDescriptionContent;
-    this.electricalObservationContent = this.config.ElectricalObservationContent;
-    this.electricalObservationRecommendations = this.config.ElectricalObservationContent;
-    this.electricalLimitationsContent = this.config.ElectricalLimitationsContent;
-
-    this.ElectricalServiceEntryGroundStructureContent = this.config.ElectricalServiceEntryGroundStructureContent;
-    this.ElectricalMainDisconnectStructureContent = this.config.ElectricalMainDisconnectStructureContent;
-    this.ElectricalDistributionPanelStructureContent = this.config.ElectricalDistributionPanelStructureContent;
-
-    this.ElectricalAuxilliaryStructureContent = this.config.ElectricalAuxilliaryStructureContent;
-    this.ElectricalWiringStructureContent = this.config.ElectricalWiringStructureContent;
-    this.ElectricalGroundFaultStructureContent = this.config.ElectricalGroundFaultStructureContent;
-
     this.HouseInModes = [
       {
         name: 'No Comment',
@@ -169,6 +156,19 @@ export class ElectricalSelectionPage implements OnInit {
   }
 
   ionViewDidEnter() {
+    this.electricalDescriptionContent = this.config.ElectricalDescriptionContent;
+    this.electricalObservationContent = this.config.ElectricalObservationContent;
+    this.electricalObservationRecommendations = this.config.ElectricalObservationContent;
+    this.electricalLimitationsContent = this.config.ElectricalLimitationsContent;
+
+    this.ElectricalServiceEntryGroundStructureContent = this.config.ElectricalServiceEntryGroundStructureContent;
+    this.ElectricalMainDisconnectStructureContent = this.config.ElectricalMainDisconnectStructureContent;
+    this.ElectricalDistributionPanelStructureContent = this.config.ElectricalDistributionPanelStructureContent;
+
+    this.ElectricalAuxilliaryStructureContent = this.config.ElectricalAuxilliaryStructureContent;
+    this.ElectricalWiringStructureContent = this.config.ElectricalWiringStructureContent;
+    this.ElectricalGroundFaultStructureContent = this.config.ElectricalGroundFaultStructureContent;
+
     let StorageDate = this.config.storageGet('InspectionToEdit')[
       '__zone_symbol__value'
     ];

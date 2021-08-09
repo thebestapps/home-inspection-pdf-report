@@ -15,6 +15,7 @@ import {
   FileTransferObject,
 } from '@ionic-native/file-transfer/ngx';
 import { CreateInspectionPage } from '../../../app/modal/create-inspection/create-inspection.page';
+import { ApiService } from '../../api.service';
 
 import { AppliancesSelectionPage } from '../../../app/modal/appliances-selection/appliances-selection.page';
 import { InsulationSelectionPage } from '../../../app/modal/insulation-selection/insulation-selection.page';
@@ -50,6 +51,7 @@ export class CommonSelectionPage implements OnInit {
   PreviewPDF = false;
   DownloadPDF = false;
   GetFileDownloadType: any;
+  reloadIconShow = false;
 
   constructor(
     public modalController: ModalController,
@@ -61,7 +63,8 @@ export class CommonSelectionPage implements OnInit {
     private base64: Base64,
     private alertCtrl: AlertController,
     private filetransfer: FileTransfer,
-    private androidPermissions: AndroidPermissions
+    private androidPermissions: AndroidPermissions,
+    public api: ApiService
   ) {
     this.clientDetails = this.navParams.get('clientDetails');
     console.log(this.clientDetails);
@@ -370,7 +373,10 @@ export class CommonSelectionPage implements OnInit {
     //   this.config.presentToast('Please upload Inspection Images');
     //   return;
     // }
-    console.log('ARRAY LENGTH', parseInt(this.StoredData.structureWallStructure.length));
+    console.log(
+      'ARRAY LENGTH',
+      parseInt(this.StoredData.structureWallStructure.length)
+    );
     console.log(this.StoredData.storedReportOverviewImage);
     //ionic cordova run android -l
 
@@ -1463,8 +1469,8 @@ export class CommonSelectionPage implements OnInit {
     if (
       this.StoredData.structureDescription != null ||
       this.StoredData.structureDescription != null ||
-      this.StoredData.structureComments!= null ||
-      this.StoredData.structureLimitations!=null ||
+      this.StoredData.structureComments != null ||
+      this.StoredData.structureLimitations != null ||
       this.StoredData.structureWallStructure != null ||
       this.StoredData.structureCeilingStructure != null ||
       this.StoredData.structureRoofStructure != null ||
@@ -1577,7 +1583,7 @@ export class CommonSelectionPage implements OnInit {
       this.StoredData.structureAtticMethodStructure != null ||
       this.StoredData.structureFoundationStructure != null ||
       this.StoredData.structureFloorStructure != null ||
-      this.StoredData.structureRoofStructure !=null ||
+      this.StoredData.structureRoofStructure != null ||
       this.StoredData.structureDescription != null
     ) {
       docDefinition.content.push({
@@ -1619,11 +1625,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.structureWallStructure != null) {
       var wallStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.structureWallStructure.length); i++)
-
-        {
-          wallStructure = wallStructure + ' • ' + this.StoredData.structureWallStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.structureWallStructure.length);
+        i++
+      ) {
+        wallStructure =
+          wallStructure +
+          ' • ' +
+          this.StoredData.structureWallStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -1631,7 +1642,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Wall Structure:\n',
+              text: this.config.titleof_55 + ':\n',
               margin: [30, 7, 0, 0],
               bold: 'true',
             },
@@ -1648,10 +1659,16 @@ export class CommonSelectionPage implements OnInit {
 
     if (this.StoredData.structureCeilingStructure != null) {
       var cellingStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.structureCeilingStructure.length); i++)
-        {
-          cellingStructure = cellingStructure + ' • ' + this.StoredData.structureCeilingStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.structureCeilingStructure.length);
+        i++
+      ) {
+        cellingStructure =
+          cellingStructure +
+          ' • ' +
+          this.StoredData.structureCeilingStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -1659,7 +1676,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Ceiling Structure:\n',
+              text: this.config.titleof_47 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -1676,10 +1693,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.structureRoofStructure != null) {
       var RoofStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.structureRoofStructure.length); i++)
-        {
-          RoofStructure = RoofStructure + ' • ' + this.StoredData.structureRoofStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.structureRoofStructure.length);
+        i++
+      ) {
+        RoofStructure =
+          RoofStructure +
+          ' • ' +
+          this.StoredData.structureRoofStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -1687,7 +1710,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Roof Structure:\n',
+              text: this.config.titleof_54 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -1704,10 +1727,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.structureAtticMethodStructure != null) {
       var AtticMethodStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.structureAtticMethodStructure.length); i++)
-        {
-          AtticMethodStructure = AtticMethodStructure + ' • ' + this.StoredData.structureAtticMethodStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.structureAtticMethodStructure.length);
+        i++
+      ) {
+        AtticMethodStructure =
+          AtticMethodStructure +
+          ' • ' +
+          this.StoredData.structureAtticMethodStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -1715,7 +1744,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Attic Method of Inspection:\n',
+              text: this.config.titleof_46 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -1732,10 +1761,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.structureFoundationStructure != null) {
       var FoundationStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.structureFoundationStructure.length); i++)
-        {
-          FoundationStructure = FoundationStructure + ' • ' + this.StoredData.structureFoundationStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.structureFoundationStructure.length);
+        i++
+      ) {
+        FoundationStructure =
+          FoundationStructure +
+          ' • ' +
+          this.StoredData.structureFoundationStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -1743,7 +1778,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Foundation:\n',
+              text: this.config.titleof_51 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -1759,10 +1794,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.structureFloorStructure != null) {
       var FloorStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.structureFloorStructure.length); i++)
-        {
-          FloorStructure = FloorStructure + ' • ' + this.StoredData.structureFloorStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.structureFloorStructure.length);
+        i++
+      ) {
+        FloorStructure =
+          FloorStructure +
+          ' • ' +
+          this.StoredData.structureFloorStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -1770,7 +1811,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Floor Structure:\n',
+              text: this.config.titleof_50 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -1990,56 +2031,62 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    if (this.StoredData.roofingDescription != null ||
+    if (
+      this.StoredData.roofingDescription != null ||
       this.StoredData.D2RoofingCoveringStructure != null ||
       this.StoredData.D2RoofingGuttersDownspoutsStructure != null ||
       this.StoredData.D2RoofingMethodsStructure != null ||
-      this.StoredData.D2RoofingChimneysStructure != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF ROOFING SYSTEM',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+      this.StoredData.D2RoofingChimneysStructure != null
+    ) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'DESCRIPTION OF ROOFING SYSTEM',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 275;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 275;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
           },
         },
-      );
+      });
     }
     if (this.StoredData.D2RoofingCoveringStructure != null) {
       var RoofingCoveringStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2RoofingCoveringStructure.length); i++)
-        {
-          RoofingCoveringStructure = RoofingCoveringStructure + ' • ' + this.StoredData.D2RoofingCoveringStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2RoofingCoveringStructure.length);
+        i++
+      ) {
+        RoofingCoveringStructure =
+          RoofingCoveringStructure +
+          ' • ' +
+          this.StoredData.D2RoofingCoveringStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2047,7 +2094,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Roof Covering:\n',
+              text: this.config.titleof_41 + ':\n',
               margin: [30, 7, 0, 0],
               bold: 'true',
             },
@@ -2063,10 +2110,17 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2RoofingGuttersDownspoutsStructure != null) {
       var RoofingGuttersDownspoutsStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2RoofingGuttersDownspoutsStructure.length); i++)
-        {
-          RoofingGuttersDownspoutsStructure = RoofingGuttersDownspoutsStructure + ' • ' + this.StoredData.D2RoofingGuttersDownspoutsStructure[i].text
-        }
+      for (
+        let i = 0;
+        i <
+        parseInt(this.StoredData.D2RoofingGuttersDownspoutsStructure.length);
+        i++
+      ) {
+        RoofingGuttersDownspoutsStructure =
+          RoofingGuttersDownspoutsStructure +
+          ' • ' +
+          this.StoredData.D2RoofingGuttersDownspoutsStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2074,7 +2128,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Gutters and Downspouts:\n',
+              text: this.config.titleof_42 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -2089,11 +2143,17 @@ export class CommonSelectionPage implements OnInit {
       });
     }
     if (this.StoredData.D2RoofingMethodsStructure != null) {
-      var RoofingMethodsStructure= ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2RoofingMethodsStructure.length); i++)
-        {
-          RoofingMethodsStructure = RoofingMethodsStructure + ' • ' + this.StoredData.D2RoofingMethodsStructure[i].text
-        }
+      var RoofingMethodsStructure = ' ';
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2RoofingMethodsStructure.length);
+        i++
+      ) {
+        RoofingMethodsStructure =
+          RoofingMethodsStructure +
+          ' • ' +
+          this.StoredData.D2RoofingMethodsStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2101,7 +2161,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Method of Inspection:\n',
+              text: this.config.titleof_44 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -2117,10 +2177,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2RoofingChimneysStructure != null) {
       var RoofingChimneysStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2RoofingChimneysStructure.length); i++)
-        {
-          RoofingChimneysStructure = RoofingChimneysStructure + ' • ' + this.StoredData.D2RoofingChimneysStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2RoofingChimneysStructure.length);
+        i++
+      ) {
+        RoofingChimneysStructure =
+          RoofingChimneysStructure +
+          ' • ' +
+          this.StoredData.D2RoofingChimneysStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2128,7 +2194,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Chimneys:\n',
+              text: this.config.titleof_40 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -2269,7 +2335,7 @@ export class CommonSelectionPage implements OnInit {
           ul: [
             this.StoredData.roofingLimitations[0], //tobe
             this.StoredData.roofingLimitations[1],
-            this.StoredData.roofingLimitations[2]
+            this.StoredData.roofingLimitations[2],
           ],
         },
         {
@@ -2284,12 +2350,13 @@ export class CommonSelectionPage implements OnInit {
       this.StoredData.exteriorDescription != null ||
       this.StoredData.exteriorObservation != null ||
       this.StoredData.exteriorLimitations != null ||
-      this.StoredData.D2ExteriorWallCladdingStructure != null || 
+      this.StoredData.D2ExteriorWallCladdingStructure != null ||
       this.StoredData.D2ExteriorSoffitFasciaStructure != null ||
       this.StoredData.D2ExteriorWindowDoorStructure != null ||
       this.StoredData.D2ExteriorDrivewaysStructureStructure != null ||
       this.StoredData.D2ExteriorOverheadGarageStructureStructure != null ||
-      this.StoredData.D2ExteriorLotGradingStructureStructure != null) {
+      this.StoredData.D2ExteriorLotGradingStructureStructure != null
+    ) {
       docDefinition.content.push(
         {
           pageBreak: 'before',
@@ -2335,13 +2402,15 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    if (this.StoredData.exteriorDescription != null ||
-      this.StoredData.D2ExteriorWallCladdingStructure != null || 
+    if (
+      this.StoredData.exteriorDescription != null ||
+      this.StoredData.D2ExteriorWallCladdingStructure != null ||
       this.StoredData.D2ExteriorSoffitFasciaStructure != null ||
       this.StoredData.D2ExteriorWindowDoorStructure != null ||
       this.StoredData.D2ExteriorDrivewaysStructureStructure != null ||
       this.StoredData.D2ExteriorOverheadGarageStructureStructure != null ||
-      this.StoredData.D2ExteriorLotGradingStructureStructure != null ) {
+      this.StoredData.D2ExteriorLotGradingStructureStructure != null
+    ) {
       docDefinition.content.push(
         {
           color: '#000000',
@@ -2378,7 +2447,7 @@ export class CommonSelectionPage implements OnInit {
               return 1;
             },
           },
-        },
+        }
         /*
         {
           columnGap: 30,
@@ -2392,10 +2461,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2ExteriorWallCladdingStructure != null) {
       var ExteriorWallCladdingStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2ExteriorWallCladdingStructure.length); i++)
-        {
-          ExteriorWallCladdingStructure = ExteriorWallCladdingStructure + ' • ' + this.StoredData.D2ExteriorWallCladdingStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2ExteriorWallCladdingStructure.length);
+        i++
+      ) {
+        ExteriorWallCladdingStructure =
+          ExteriorWallCladdingStructure +
+          ' • ' +
+          this.StoredData.D2ExteriorWallCladdingStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2403,7 +2478,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Wall Cladding:\n',
+              text: this.config.titleof_29 + ':\n',
               margin: [30, 7, 0, 0],
               bold: 'true',
             },
@@ -2419,10 +2494,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2ExteriorSoffitFasciaStructure != null) {
       var ExteriorSoffitFasciaStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2ExteriorSoffitFasciaStructure.length); i++)
-        {
-          ExteriorSoffitFasciaStructure = ExteriorSoffitFasciaStructure + ' • ' + this.StoredData.D2ExteriorSoffitFasciaStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2ExteriorSoffitFasciaStructure.length);
+        i++
+      ) {
+        ExteriorSoffitFasciaStructure =
+          ExteriorSoffitFasciaStructure +
+          ' • ' +
+          this.StoredData.D2ExteriorSoffitFasciaStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2430,7 +2511,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Soffit and Fascia:\n',
+              text: this.config.titleof_28 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -2446,10 +2527,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2ExteriorWindowDoorStructure != null) {
       var ExteriorWindowDoorStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2ExteriorWindowDoorStructure.length); i++)
-        {
-          ExteriorWindowDoorStructure = ExteriorWindowDoorStructure + ' • ' + this.StoredData.D2ExteriorWindowDoorStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2ExteriorWindowDoorStructure.length);
+        i++
+      ) {
+        ExteriorWindowDoorStructure =
+          ExteriorWindowDoorStructure +
+          ' • ' +
+          this.StoredData.D2ExteriorWindowDoorStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2457,7 +2544,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Window/Door Frames and Trim:\n',
+              text: this.config.titleof_30 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -2473,10 +2560,17 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2ExteriorDrivewaysStructureStructure != null) {
       var ExteriorDrivewaysStructureStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2ExteriorDrivewaysStructureStructure.length); i++)
-        {
-          ExteriorDrivewaysStructureStructure = ExteriorDrivewaysStructureStructure + ' • ' + this.StoredData.D2ExteriorDrivewaysStructureStructure[i].text
-        }
+      for (
+        let i = 0;
+        i <
+        parseInt(this.StoredData.D2ExteriorDrivewaysStructureStructure.length);
+        i++
+      ) {
+        ExteriorDrivewaysStructureStructure =
+          ExteriorDrivewaysStructureStructure +
+          ' • ' +
+          this.StoredData.D2ExteriorDrivewaysStructureStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2484,7 +2578,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Driveways:\n',
+              text: this.config.titleof_22 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -2500,10 +2594,19 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2ExteriorOverheadGarageStructureStructure != null) {
       var ExteriorOverheadGarageStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2ExteriorOverheadGarageStructureStructure.length); i++)
-        {
-          ExteriorOverheadGarageStructure = ExteriorOverheadGarageStructure + ' • ' + this.StoredData.D2ExteriorOverheadGarageStructureStructure[i].text
-        }
+      for (
+        let i = 0;
+        i <
+        parseInt(
+          this.StoredData.D2ExteriorOverheadGarageStructureStructure.length
+        );
+        i++
+      ) {
+        ExteriorOverheadGarageStructure =
+          ExteriorOverheadGarageStructure +
+          ' • ' +
+          this.StoredData.D2ExteriorOverheadGarageStructureStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2511,7 +2614,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Overhead Garage Door(s):\n',
+              text: this.config.titleof_27 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -2527,10 +2630,17 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2ExteriorLotGradingStructureStructure != null) {
       var ExteriorLotGradingStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2ExteriorLotGradingStructureStructure.length); i++)
-        {
-          ExteriorLotGradingStructure = ExteriorLotGradingStructure + ' • ' + this.StoredData.D2ExteriorLotGradingStructureStructure[i].text
-        }
+      for (
+        let i = 0;
+        i <
+        parseInt(this.StoredData.D2ExteriorLotGradingStructureStructure.length);
+        i++
+      ) {
+        ExteriorLotGradingStructure =
+          ExteriorLotGradingStructure +
+          ' • ' +
+          this.StoredData.D2ExteriorLotGradingStructureStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2538,7 +2648,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Lot Grading:\n',
+              text: this.config.titleof_25 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -2744,13 +2854,15 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    if (this.StoredData.electricalDescription != null ||
+    if (
+      this.StoredData.electricalDescription != null ||
       this.StoredData.D2electricalServiceEntryGroundStructure != null ||
       this.StoredData.D2electricalMainDisconnectStructure != null ||
       this.StoredData.D2electricalDistributionPanelStructure != null ||
       this.StoredData.D2electricalAuxilliaryStructureStructure != null ||
       this.StoredData.D2electricalWiringStructureStructure != null ||
-      this.StoredData.D2electricalGroundFaultStructureStructure != null) {
+      this.StoredData.D2electricalGroundFaultStructureStructure != null
+    ) {
       docDefinition.content.push(
         {
           color: '#000000',
@@ -2787,7 +2899,7 @@ export class CommonSelectionPage implements OnInit {
               return 1;
             },
           },
-        },
+        }
         /*
         {
           columnGap: 30,
@@ -2801,10 +2913,19 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2electricalServiceEntryGroundStructure != null) {
       var D2electricalServiceEntryGroundStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2electricalServiceEntryGroundStructure.length); i++)
-        {
-          D2electricalServiceEntryGroundStructure = D2electricalServiceEntryGroundStructure + ' • ' + this.StoredData.D2electricalServiceEntryGroundStructure[i].text
-        }
+      for (
+        let i = 0;
+        i <
+        parseInt(
+          this.StoredData.D2electricalServiceEntryGroundStructure.length
+        );
+        i++
+      ) {
+        D2electricalServiceEntryGroundStructure =
+          D2electricalServiceEntryGroundStructure +
+          ' • ' +
+          this.StoredData.D2electricalServiceEntryGroundStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2812,7 +2933,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Service Entrance Wires:\n',
+              text: this.config.titleof_20 + ':\n',
               margin: [30, 7, 0, 0],
               bold: 'true',
             },
@@ -2828,10 +2949,17 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2electricalMainDisconnectStructure != null) {
       var D2electricalMainDisconnectStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2electricalMainDisconnectStructure.length); i++)
-        {
-          D2electricalMainDisconnectStructure = D2electricalMainDisconnectStructure + ' • ' + this.StoredData.D2electricalMainDisconnectStructure[i].text
-        }
+      for (
+        let i = 0;
+        i <
+        parseInt(this.StoredData.D2electricalMainDisconnectStructure.length);
+        i++
+      ) {
+        D2electricalMainDisconnectStructure =
+          D2electricalMainDisconnectStructure +
+          ' • ' +
+          this.StoredData.D2electricalMainDisconnectStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2839,7 +2967,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Main Disconnect:\n',
+              text: this.config.titleof_18 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -2855,10 +2983,17 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2electricalDistributionPanelStructure != null) {
       var D2electricalDistributionPanelStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2electricalDistributionPanelStructure.length); i++)
-        {
-          D2electricalDistributionPanelStructure = D2electricalDistributionPanelStructure + ' • ' + this.StoredData.D2electricalDistributionPanelStructure[i].text
-        }
+      for (
+        let i = 0;
+        i <
+        parseInt(this.StoredData.D2electricalDistributionPanelStructure.length);
+        i++
+      ) {
+        D2electricalDistributionPanelStructure =
+          D2electricalDistributionPanelStructure +
+          ' • ' +
+          this.StoredData.D2electricalDistributionPanelStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2866,7 +3001,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Service Ground:\n',
+              text: this.config.titleof_21 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -2882,10 +3017,19 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2electricalAuxilliaryStructureStructure != null) {
       var D2electricalAuxilliaryStructureStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2electricalAuxilliaryStructureStructure.length); i++)
-        {
-          D2electricalAuxilliaryStructureStructure = D2electricalAuxilliaryStructureStructure + ' • ' + this.StoredData.D2electricalAuxilliaryStructureStructure[i].text
-        }
+      for (
+        let i = 0;
+        i <
+        parseInt(
+          this.StoredData.D2electricalAuxilliaryStructureStructure.length
+        );
+        i++
+      ) {
+        D2electricalAuxilliaryStructureStructure =
+          D2electricalAuxilliaryStructureStructure +
+          ' • ' +
+          this.StoredData.D2electricalAuxilliaryStructureStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2893,7 +3037,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Main Distribution Panel:\n',
+              text: this.config.titleof_13 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -2909,10 +3053,17 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2electricalWiringStructureStructure != null) {
       var D2electricalWiringStructureStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2electricalWiringStructureStructure.length); i++)
-        {
-          D2electricalWiringStructureStructure = D2electricalWiringStructureStructure + ' • ' + this.StoredData.D2electricalWiringStructureStructure[i].text
-        }
+      for (
+        let i = 0;
+        i <
+        parseInt(this.StoredData.D2electricalWiringStructureStructure.length);
+        i++
+      ) {
+        D2electricalWiringStructureStructure =
+          D2electricalWiringStructureStructure +
+          ' • ' +
+          this.StoredData.D2electricalWiringStructureStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2920,7 +3071,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Distribution Wiring:\n',
+              text: this.config.titleof_15 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -2936,10 +3087,19 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2electricalGroundFaultStructureStructure != null) {
       var D2electricalGroundFaultStructureStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2electricalGroundFaultStructureStructure.length); i++)
-        {
-          D2electricalGroundFaultStructureStructure = D2electricalGroundFaultStructureStructure + ' • ' + this.StoredData.D2electricalGroundFaultStructureStructure[i].text
-        }
+      for (
+        let i = 0;
+        i <
+        parseInt(
+          this.StoredData.D2electricalGroundFaultStructureStructure.length
+        );
+        i++
+      ) {
+        D2electricalGroundFaultStructureStructure =
+          D2electricalGroundFaultStructureStructure +
+          ' • ' +
+          this.StoredData.D2electricalGroundFaultStructureStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -2947,7 +3107,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Ground Fault Circuit Interrupters:\n',
+              text: this.config.titleof_16 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -3148,58 +3308,63 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    if (this.StoredData.coolingDescription != null ||
+    if (
+      this.StoredData.coolingDescription != null ||
       this.StoredData.D2coolingHVACEnergyStructure != null ||
       this.StoredData.D2coolingHVACTypeStructure != null ||
       this.StoredData.D2coolingHVACManufacturerStructure != null ||
       this.StoredData.D2coolingHVACDescriptionStructure != null ||
       this.StoredData.D2coolingHVACTemperatureStructure != null
-      ) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF COOLING SYSTEM',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+    ) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'DESCRIPTION OF COOLING SYSTEM',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 278;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 278;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
           },
         },
-      );
+      });
     }
     if (this.StoredData.D2coolingHVACEnergyStructure != null) {
       var D2coolingHVACEnergyStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2coolingHVACEnergyStructure.length); i++)
-        {
-          D2coolingHVACEnergyStructure = D2coolingHVACEnergyStructure + ' • ' + this.StoredData.D2coolingHVACEnergyStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2coolingHVACEnergyStructure.length);
+        i++
+      ) {
+        D2coolingHVACEnergyStructure =
+          D2coolingHVACEnergyStructure +
+          ' • ' +
+          this.StoredData.D2coolingHVACEnergyStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -3207,7 +3372,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Energy Source:\n',
+              text: this.config.titleof_7 + ':\n',
               margin: [30, 7, 0, 0],
               bold: 'true',
             },
@@ -3223,10 +3388,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2coolingHVACTypeStructure != null) {
       var D2coolingHVACTypeStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2coolingHVACTypeStructure.length); i++)
-        {
-          D2coolingHVACTypeStructure = D2coolingHVACTypeStructure + ' • ' + this.StoredData.D2coolingHVACTypeStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2coolingHVACTypeStructure.length);
+        i++
+      ) {
+        D2coolingHVACTypeStructure =
+          D2coolingHVACTypeStructure +
+          ' • ' +
+          this.StoredData.D2coolingHVACTypeStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -3234,7 +3405,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'System Type:\n',
+              text: this.config.titleof_12 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -3250,10 +3421,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2coolingHVACManufacturerStructure != null) {
       var D2coolingHVACManufacturerStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2coolingHVACManufacturerStructure.length); i++)
-        {
-          D2coolingHVACManufacturerStructure = D2coolingHVACManufacturerStructure + ' • ' + this.StoredData.D2coolingHVACManufacturerStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2coolingHVACManufacturerStructure.length);
+        i++
+      ) {
+        D2coolingHVACManufacturerStructure =
+          D2coolingHVACManufacturerStructure +
+          ' • ' +
+          this.StoredData.D2coolingHVACManufacturerStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -3261,7 +3438,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'System Manufacturer:\n',
+              text: this.config.titleof_9 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -3277,10 +3454,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2coolingHVACDescriptionStructure != null) {
       var D2coolingHVACDescriptionStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2coolingHVACDescriptionStructure.length); i++)
-        {
-          D2coolingHVACDescriptionStructure = D2coolingHVACDescriptionStructure + ' • ' + this.StoredData.D2coolingHVACDescriptionStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2coolingHVACDescriptionStructure.length);
+        i++
+      ) {
+        D2coolingHVACDescriptionStructure =
+          D2coolingHVACDescriptionStructure +
+          ' • ' +
+          this.StoredData.D2coolingHVACDescriptionStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -3288,7 +3471,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'System Description:\n',
+              text: this.config.titleof_6 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -3304,10 +3487,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2coolingHVACTemperatureStructure != null) {
       var D2coolingHVACTemperatureStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2coolingHVACTemperatureStructure.length); i++)
-        {
-          D2coolingHVACTemperatureStructure = D2coolingHVACTemperatureStructure + ' • ' + this.StoredData.D2coolingHVACTemperatureStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2coolingHVACTemperatureStructure.length);
+        i++
+      ) {
+        D2coolingHVACTemperatureStructure =
+          D2coolingHVACTemperatureStructure +
+          ' • ' +
+          this.StoredData.D2coolingHVACTemperatureStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -3315,7 +3504,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Temperature Drop Recorded:\n',
+              text: this.config.titleof_11 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -3518,56 +3707,61 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    if (this.StoredData.insulationDescription != null ||
+    if (
+      this.StoredData.insulationDescription != null ||
       this.StoredData.D2InsulationAtticStructure != null ||
       this.StoredData.D2InsulationRoofStructure != null ||
       this.StoredData.D2InsulationExhastVentStructure != null
-      ) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF INSULATION / VENTILATION',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+    ) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'DESCRIPTION OF INSULATION / VENTILATION',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 217;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 217;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
           },
         },
-      );
+      });
     }
     if (this.StoredData.D2InsulationAtticStructure != null) {
       var D2InsulationAtticStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2InsulationAtticStructure.length); i++)
-        {
-          D2InsulationAtticStructure = D2InsulationAtticStructure + ' • ' + this.StoredData.D2InsulationAtticStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2InsulationAtticStructure.length);
+        i++
+      ) {
+        D2InsulationAtticStructure =
+          D2InsulationAtticStructure +
+          ' • ' +
+          this.StoredData.D2InsulationAtticStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -3575,7 +3769,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Attic Insulation:\n',
+              text: this.config.titleof_31 + ':\n',
               margin: [30, 7, 0, 0],
               bold: 'true',
             },
@@ -3591,10 +3785,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2InsulationRoofStructure != null) {
       var D2InsulationRoofStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2InsulationRoofStructure.length); i++)
-        {
-          D2InsulationRoofStructure = D2InsulationRoofStructure + ' • ' + this.StoredData.D2InsulationRoofStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2InsulationRoofStructure.length);
+        i++
+      ) {
+        D2InsulationRoofStructure =
+          D2InsulationRoofStructure +
+          ' • ' +
+          this.StoredData.D2InsulationRoofStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -3602,7 +3802,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Roof Ventilation:\n',
+              text: this.config.titleof_33 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -3618,10 +3818,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2InsulationExhastVentStructure != null) {
       var D2InsulationExhastVentStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2InsulationExhastVentStructure.length); i++)
-        {
-          D2InsulationExhastVentStructure = D2InsulationExhastVentStructure + ' • ' + this.StoredData.D2InsulationExhastVentStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2InsulationExhastVentStructure.length);
+        i++
+      ) {
+        D2InsulationExhastVentStructure =
+          D2InsulationExhastVentStructure +
+          ' • ' +
+          this.StoredData.D2InsulationExhastVentStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -3629,7 +3835,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Exhaust Fan/vent Locations:\n',
+              text: this.config.titleof_32 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -3835,58 +4041,64 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    if (this.StoredData.plumbingDescription != null ||
+    if (
+      this.StoredData.plumbingDescription != null ||
       this.StoredData.D2PlumbingWaterSuppStructure != null ||
       this.StoredData.D2PlumbingServicePipeStructure != null ||
       this.StoredData.D2PlumbingSuppyPipingStructure != null ||
       this.StoredData.D2PlumbingWasteSystemStructure != null ||
       this.StoredData.D2PlumbingDrainStructureStructure != null ||
-      this.StoredData.D2PlumbingWaterHeaterPressureStructure != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF PLUMBING SYSTEM',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+      this.StoredData.D2PlumbingWaterHeaterPressureStructure != null
+    ) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'DESCRIPTION OF PLUMBING SYSTEM',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 267;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
           },
-        }
-      );
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 267;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
     }
     if (this.StoredData.D2PlumbingWaterSuppStructure != null) {
       var D2PlumbingWaterSuppStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2PlumbingWaterSuppStructure.length); i++)
-        {
-          D2PlumbingWaterSuppStructure = D2PlumbingWaterSuppStructure + ' • ' + this.StoredData.D2PlumbingWaterSuppStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2PlumbingWaterSuppStructure.length);
+        i++
+      ) {
+        D2PlumbingWaterSuppStructure =
+          D2PlumbingWaterSuppStructure +
+          ' • ' +
+          this.StoredData.D2PlumbingWaterSuppStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -3894,7 +4106,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Water Supply Source:\n',
+              text: this.config.titleof_39 + ':\n',
               margin: [30, 7, 0, 0],
               bold: 'true',
             },
@@ -3910,10 +4122,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2PlumbingServicePipeStructure != null) {
       var D2PlumbingServicePipeStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2PlumbingServicePipeStructure.length); i++)
-        {
-          D2PlumbingServicePipeStructure = D2PlumbingServicePipeStructure + ' • ' + this.StoredData.D2PlumbingServicePipeStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2PlumbingServicePipeStructure.length);
+        i++
+      ) {
+        D2PlumbingServicePipeStructure =
+          D2PlumbingServicePipeStructure +
+          ' • ' +
+          this.StoredData.D2PlumbingServicePipeStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -3921,7 +4139,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Service Pipe to House:\n',
+              text: this.config.titleof_35 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -3937,10 +4155,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2PlumbingSuppyPipingStructure != null) {
       var D2PlumbingSuppyPipingStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2PlumbingSuppyPipingStructure.length); i++)
-        {
-          D2PlumbingSuppyPipingStructure = D2PlumbingSuppyPipingStructure + ' • ' + this.StoredData.D2PlumbingSuppyPipingStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2PlumbingSuppyPipingStructure.length);
+        i++
+      ) {
+        D2PlumbingSuppyPipingStructure =
+          D2PlumbingSuppyPipingStructure +
+          ' • ' +
+          this.StoredData.D2PlumbingSuppyPipingStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -3948,7 +4172,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Supply Piping:\n',
+              text: this.config.titleof_36 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -3964,10 +4188,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2PlumbingWasteSystemStructure != null) {
       var D2PlumbingWasteSystemStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2PlumbingWasteSystemStructure.length); i++)
-        {
-          D2PlumbingWasteSystemStructure = D2PlumbingWasteSystemStructure + ' • ' + this.StoredData.D2PlumbingWasteSystemStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2PlumbingWasteSystemStructure.length);
+        i++
+      ) {
+        D2PlumbingWasteSystemStructure =
+          D2PlumbingWasteSystemStructure +
+          ' • ' +
+          this.StoredData.D2PlumbingWasteSystemStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -3975,7 +4205,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Waste System:\n',
+              text: this.config.titleof_37 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -3991,10 +4221,16 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2PlumbingDrainStructureStructure != null) {
       var D2PlumbingDrainStructureStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2PlumbingDrainStructureStructure.length); i++)
-        {
-          D2PlumbingDrainStructureStructure = D2PlumbingDrainStructureStructure + ' • ' + this.StoredData.D2PlumbingDrainStructureStructure[i].text
-        }
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.D2PlumbingDrainStructureStructure.length);
+        i++
+      ) {
+        D2PlumbingDrainStructureStructure =
+          D2PlumbingDrainStructureStructure +
+          ' • ' +
+          this.StoredData.D2PlumbingDrainStructureStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -4002,7 +4238,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Drain / Waste / Vent Piping:\n',
+              text: this.config.titleof_34 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -4018,10 +4254,17 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.D2PlumbingWaterHeaterPressureStructure != null) {
       var D2PlumbingWaterHeaterPressureStructure = ' ';
-      for(let i=0; i<parseInt(this.StoredData.D2PlumbingWaterHeaterPressureStructure.length); i++)
-        {
-          D2PlumbingWaterHeaterPressureStructure = D2PlumbingWaterHeaterPressureStructure + ' • ' + this.StoredData.D2PlumbingWaterHeaterPressureStructure[i].text
-        }
+      for (
+        let i = 0;
+        i <
+        parseInt(this.StoredData.D2PlumbingWaterHeaterPressureStructure.length);
+        i++
+      ) {
+        D2PlumbingWaterHeaterPressureStructure =
+          D2PlumbingWaterHeaterPressureStructure +
+          ' • ' +
+          this.StoredData.D2PlumbingWaterHeaterPressureStructure[i].text;
+      }
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -4029,7 +4272,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: 'Water Heater:\n',
+              text: this.config.titleof_38 + ':\n',
               margin: [30, 3, 0, 0],
               bold: 'true',
             },
@@ -4913,5 +5156,31 @@ export class CommonSelectionPage implements OnInit {
 
       img.src = url;
     });
+  }
+
+  async doRefresh() {
+    console.log('Begin async operation');
+
+    this.reloadIconShow = true;
+    setTimeout(() => {
+      console.log('Async operation has ended');
+
+      this.api.Get_data('getalldata/dev1@gmail.com/123').subscribe(
+        (res) => {
+          // Loading_.dismiss();
+          this.reloadIconShow = false;
+          // console.log(JSON.stringify(res));
+          this.config.commonContent = res;
+          this.config._mergeAPIContentData();
+        },
+        (err) => {
+          this.reloadIconShow = false;
+          // Loading_.dismiss();
+          console.log(JSON.stringify(err));
+        }
+      );
+
+      // event.target.complete();
+    }, 4000);
   }
 }

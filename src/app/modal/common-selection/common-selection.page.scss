@@ -1,9 +1,11 @@
 ion-title.md.title-default.hydrated {
-  font-size: 17px;
+  font-size: 19px;
+  font-weight: bold;
 }
 
 ion-title.ios.title-default.hydrated {
-  font-size: 17px;
+  font-size: 19px;
+  font-weight: bold;
 }
 
 .contain-crds {
@@ -13,7 +15,15 @@ ion-title.ios.title-default.hydrated {
 }
 
 p.selection-name {
-  font-size: 14px;
+  font-size: 17px;
+}
+
+ion-refresher-content.md.hydrated {
+  display: block;
+}
+
+ion-refresher-content.ios.hydrated {
+  display: block;
 }
 
 ion-content.md.hydrated {
@@ -29,7 +39,14 @@ ion-content.ios.hydrated {
 }
 
 .row-card {
-  background: var(--ion-color-c-dark);
-  color: #ffffffab;
+  background: white;
+  color: black;
+  font-weight: bold;
   /* font-size: 18px; */
+}
+
+refresher-component {
+  display: block;
+  position: relative;
+  height: 60px;
 }

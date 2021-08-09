@@ -5,6 +5,15 @@
     >
 
     <ion-buttons slot="end">
+      <!-- <ion-spinner *ngIf="reloadIconShow" name="circles"></ion-spinner>
+
+      <ion-icon
+        *ngIf="!reloadIconShow"
+        (click)="doRefresh()"
+        class="re-load-icn"
+        name="reload-outline"
+      ></ion-icon> -->
+
       <ion-icon
         (click)="closeM()"
         class="icn-close"
@@ -15,6 +24,10 @@
 </ion-header>
 
 <ion-content>
+  <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content refreshingSpinner="dots"> </ion-refresher-content>
+  </ion-refresher> -->
+
   <div class="container">
     <ion-row>
       <ion-col (click)="goToReportOverview()">

@@ -128,19 +128,6 @@ export class CoolingHvacSelectionPage implements OnInit {
       },
     ];
 
-    this.coolingDescriptionContent = this.config.CoolingHVACDescriptionContent;
-    this.coolingObservationContent = this.config.CoolingHVACObservationContent;
-    this.coolingObservationRecommendations = this.config.CoolingHVACObservationContent;
-    this.StructureCommentsContent = this.config.StructureCommentsContent;
-    this.coolingLimitationsContent = this.config.CoolingHVACLimitationsContent;
-
-    this.CoolingHVACEnergyStructureContent = this.config.CoolingHVACEnergyStructureContent;
-    this.CoolingHVACTypeStructureContent = this.config.CoolingHVACTypeStructureContent;
-    this.CoolingHVACManufacturerStructureContent = this.config.CoolingHVACManufacturerStructureContent;
-
-    this.CoolingHVACDescriptionStructureContent = this.config.CoolingHVACDescriptionStructureContent;
-    this.CoolingHVACTemperatureStructureContent = this.config.CoolingHVACTemperatureStructureContent;
-
     this.HouseInModes = [
       {
         name: 'No Comment',
@@ -177,6 +164,19 @@ export class CoolingHvacSelectionPage implements OnInit {
   }
 
   ionViewDidEnter() {
+    this.coolingDescriptionContent = this.config.CoolingHVACDescriptionContent;
+    this.coolingObservationContent = this.config.CoolingHVACObservationContent;
+    this.coolingObservationRecommendations = this.config.CoolingHVACObservationContent;
+    this.StructureCommentsContent = this.config.StructureCommentsContent;
+    this.coolingLimitationsContent = this.config.CoolingHVACLimitationsContent;
+
+    this.CoolingHVACEnergyStructureContent = this.config.CoolingHVACEnergyStructureContent;
+    this.CoolingHVACTypeStructureContent = this.config.CoolingHVACTypeStructureContent;
+    this.CoolingHVACManufacturerStructureContent = this.config.CoolingHVACManufacturerStructureContent;
+
+    this.CoolingHVACDescriptionStructureContent = this.config.CoolingHVACDescriptionStructureContent;
+    this.CoolingHVACTemperatureStructureContent = this.config.CoolingHVACTemperatureStructureContent;
+
     let StorageDate = this.config.storageGet('InspectionToEdit')[
       '__zone_symbol__value'
     ];

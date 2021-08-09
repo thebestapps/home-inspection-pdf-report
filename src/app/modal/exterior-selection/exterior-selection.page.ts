@@ -116,19 +116,6 @@ export class ExteriorSelectionPage implements OnInit {
       },
     ];
 
-    this.ExteriorDescriptionContent = this.config.ExteriorDescriptionContent;
-    this.ExteriorObservationContent = this.config.ExteriorObservationContent;
-    // this.StructureCommentsContent = this.config.StructureCommentsContent;
-    this.ExteriorLimitationsContent = this.config.ExteriorLimitationsContent;
-
-    this.ExteriorWallCladdingStructureContent = this.config.ExteriorWallCladdingStructureContent;
-    this.ExteriorSoffitFasciaStructureContent = this.config.ExteriorSoffitFasciaStructureContent;
-    this.ExteriorWindowDoorStructureContent = this.config.ExteriorWindowDoorStructureContent;
-
-    this.ExteriorDrivewaysStructureContent = this.config.ExteriorDrivewaysStructureContent;
-    this.ExteriorOverheadGarageStructureContent = this.config.ExteriorOverheadGarageStructureContent;
-    this.ExteriorLotGradingStructureContent = this.config.ExteriorLotGradingStructureContent;
-
     this.HouseInModes = [
       {
         name: 'No Comment',
@@ -161,6 +148,19 @@ export class ExteriorSelectionPage implements OnInit {
   }
 
   ionViewDidEnter() {
+    this.ExteriorDescriptionContent = this.config.ExteriorDescriptionContent;
+    this.ExteriorObservationContent = this.config.ExteriorObservationContent;
+    // this.StructureCommentsContent = this.config.StructureCommentsContent;
+    this.ExteriorLimitationsContent = this.config.ExteriorLimitationsContent;
+
+    this.ExteriorWallCladdingStructureContent = this.config.ExteriorWallCladdingStructureContent;
+    this.ExteriorSoffitFasciaStructureContent = this.config.ExteriorSoffitFasciaStructureContent;
+    this.ExteriorWindowDoorStructureContent = this.config.ExteriorWindowDoorStructureContent;
+
+    this.ExteriorDrivewaysStructureContent = this.config.ExteriorDrivewaysStructureContent;
+    this.ExteriorOverheadGarageStructureContent = this.config.ExteriorOverheadGarageStructureContent;
+    this.ExteriorLotGradingStructureContent = this.config.ExteriorLotGradingStructureContent;
+
     let StorageDate = this.config.storageGet('InspectionToEdit')[
       '__zone_symbol__value'
     ];

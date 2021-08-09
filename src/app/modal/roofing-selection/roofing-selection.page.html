@@ -12,11 +12,11 @@
         name="eye-outline"
       ></ion-icon>
 
-      <ion-icon
+      <!-- <ion-icon
         (click)="closeM()"
         class="icn-close"
         name="close-outline"
-      ></ion-icon>
+      ></ion-icon> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -112,7 +112,7 @@
       <p class="main-title vie">Foundational</p>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p (click)="onHSView1()" class="main-title">Roof Covering</p>
+        <p (click)="onHSView1()" class="main-title">{{config.titleof_41}}</p>
 
         <div class="input-etr" *ngIf="HSView1">
           <ion-row>
@@ -198,7 +198,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView2()">Gutters and Downspouts</p>
+        <p class="main-title" (click)="onHSView2()">{{config.titleof_42}}</p>
         <div class="input-etr" *ngIf="HSView2">
           <ion-row>
             <ion-col>
@@ -281,7 +281,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView3()">Method of Inspection</p>
+        <p class="main-title" (click)="onHSView3()">{{config.titleof_44}}</p>
         <div class="input-etr" *ngIf="HSView3">
           <ion-row>
             <ion-col>
@@ -365,7 +365,7 @@
       </div>
 
       <div class="con-inpu" *ngIf="CompSelect1">
-        <p class="main-title" (click)="onHSView8()">Chimneys</p>
+        <p class="main-title" (click)="onHSView8()">{{config.titleof_40}}</p>
         <div class="input-etr" *ngIf="HSView8">
           <ion-row>
             <ion-col>
@@ -619,7 +619,21 @@
     <div class="cont-input" *ngIf="Observations_UI">
       <p class="main-title">Roofing Observation</p>
       <div class="input-etr">
-        <ion-row>
+        <div
+          class="item-rw"
+          *ngFor="let item of roofingObservationContent; let i = index;"
+        >
+          <ion-checkbox
+            class="custm-check"
+            item-right
+            [(ngModel)]="item.checked"
+            (ionChange)="selectItem22(i, item,  $event);"
+          >
+          </ion-checkbox>
+          <p class="label-inside">{{item.text}}</p>
+        </div>
+
+        <!-- <ion-row>
           <ion-col>
             <ion-button (click)="DB_Click_AddNewItem2()" class="CreateInspBtn">
               <ion-icon class="icn-c" name="create-outline"></ion-icon>
@@ -662,7 +676,7 @@
               </ion-item>
             </ion-reorder-group>
           </ion-col>
-        </ion-row>
+        </ion-row> -->
       </div>
 
       <ion-row class="row-form-ftr">
@@ -759,15 +773,15 @@
       <div class="input-etr">
         <ion-row>
           <ion-col>
-            <ion-button (click)="DB_Click_AddNewItem4()" class="CreateInspBtn">
+            <!-- <ion-button (click)="DB_Click_AddNewItem4()" class="CreateInspBtn">
               <ion-icon class="icn-c" name="create-outline"></ion-icon>
 
               Insert
-            </ion-button>
+            </ion-button> -->
 
-            <div
+            <!-- <div
               class="data-ui"
-              *ngFor="let d of StructureLimitationsContent; let i = index;"
+              *ngFor="let d of RoofingLimitationsContent; let i = index;"
               (click)="selectItem4(i, d)"
               [ngClass]="{'highlight': selectedIndex === i}"
             >
@@ -778,10 +792,23 @@
                   </ion-item>
                 </ion-col>
               </ion-row>
+            </div> -->
+            <div
+              class="item-rw"
+              *ngFor="let item of RoofingLimitationsContent; let i = index;"
+            >
+              <ion-checkbox
+                class="custm-check"
+                item-right
+                [(ngModel)]="item.checked"
+                (ionChange)="selectItem4(i, item,  $event);"
+              >
+              </ion-checkbox>
+              <p class="label-inside">{{item.text}}</p>
             </div>
           </ion-col>
 
-          <ion-col>
+          <!-- <ion-col>
             <ion-button class="remv-btn" (click)="removeContent4()"
               >Remove</ion-button
             >
@@ -799,7 +826,7 @@
                 <ion-reorder slot="end"></ion-reorder>
               </ion-item>
             </ion-reorder-group>
-          </ion-col>
+          </ion-col> -->
         </ion-row>
       </div>
 
@@ -822,4 +849,14 @@
       </ion-row>
     </div>
   </div>
+
+  <ion-row *ngIf="!BackPressed">
+    <ion-col style="text-align: center">
+      <ion-button (click)="closeM()" class="Back-btn">
+        <ion-icon class="icn-c" name="close-outline"></ion-icon>
+
+        Back
+      </ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>

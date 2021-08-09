@@ -113,12 +113,6 @@ export class InteriorSelectionPage implements OnInit {
       },
     ];
 
-    this.interiorDescriptionContent = this.config.CoolingHVACDescriptionContent;
-    this.interiorObservationContent = this.config.CoolingHVACObservationContent;
-    this.interiorObservationRecommendations = this.config.CoolingHVACObservationContent;
-    this.InteriorCommentsContent = this.config.CoolingHVACObservationContent;
-    this.interiorLimitationsContent = this.config.CoolingHVACLimitationsContent;
-
     this.HouseInModes = [
       {
         name: 'No Comment',
@@ -155,6 +149,12 @@ export class InteriorSelectionPage implements OnInit {
   }
 
   ionViewDidEnter() {
+    this.interiorDescriptionContent = this.config.CoolingHVACDescriptionContent;
+    this.interiorObservationContent = this.config.CoolingHVACObservationContent;
+    this.interiorObservationRecommendations = this.config.CoolingHVACObservationContent;
+    this.InteriorCommentsContent = this.config.CoolingHVACObservationContent;
+    this.interiorLimitationsContent = this.config.CoolingHVACLimitationsContent;
+
     let StorageDate = this.config.storageGet('InspectionToEdit')[
       '__zone_symbol__value'
     ];

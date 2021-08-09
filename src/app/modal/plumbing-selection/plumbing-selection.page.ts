@@ -95,11 +95,11 @@ export class PlumbingSelectionPage implements OnInit {
         val: '5',
       },
 
-      {
-        name: 'Plumbing Description',
+      // {
+      //   name: 'Plumbing Description',
 
-        val: '1',
-      },
+      //   val: '1',
+      // },
       {
         name: 'Plumbing Observation',
 
@@ -118,20 +118,6 @@ export class PlumbingSelectionPage implements OnInit {
         val: '4',
       },
     ];
-
-    this.plumbingDescriptionContent = this.config.CoolingHVACDescriptionContent;
-    this.plumbingObservationContent = this.config.CoolingHVACObservationContent;
-    this.plumbingObservationRecommendations = this.config.CoolingHVACObservationContent;
-    this.PlumbingCommentsContent = this.config.CoolingHVACObservationContent;
-    this.plumbingLimitationsContent = this.config.CoolingHVACLimitationsContent;
-
-    this.PlumbingWaterSuppyContent = this.config.PlumbingWaterSuppyContent;
-    this.PlumbingServicePipeContent = this.config.PlumbingServicePipeContent;
-    this.PlumbingSuppyPipingContent = this.config.PlumbingSuppyPipingContent;
-
-    this.PlumbingWasteSystemStructureContent = this.config.PlumbingWasteSystemStructureContent;
-    this.PlumbingDrainStructureContent = this.config.PlumbingDrainStructureContent;
-    this.PlumbingWaterHeaterPressureStructureContent = this.config.PlumbingWaterHeaterPressureStructureContent;
 
     this.HouseInModes = [
       {
@@ -169,6 +155,20 @@ export class PlumbingSelectionPage implements OnInit {
   }
 
   ionViewDidEnter() {
+    this.plumbingDescriptionContent = this.config.plumbingDescriptionContent;
+    this.plumbingObservationContent = this.config.plumbingObservationContent;
+    this.plumbingObservationRecommendations = this.config.plumbingObservationRecommendations;
+    this.PlumbingCommentsContent = this.config.CoolingHVACObservationContent;
+    this.plumbingLimitationsContent = this.config.plumbingLimitationsContent;
+
+    this.PlumbingWaterSuppyContent = this.config.PlumbingWaterSuppyContent;
+    this.PlumbingServicePipeContent = this.config.PlumbingServicePipeContent;
+    this.PlumbingSuppyPipingContent = this.config.PlumbingSuppyPipingContent;
+
+    this.PlumbingWasteSystemStructureContent = this.config.PlumbingWasteSystemStructureContent;
+    this.PlumbingDrainStructureContent = this.config.PlumbingDrainStructureContent;
+    this.PlumbingWaterHeaterPressureStructureContent = this.config.PlumbingWaterHeaterPressureStructureContent;
+
     let StorageDate = this.config.storageGet('InspectionToEdit')[
       '__zone_symbol__value'
     ];

@@ -79,7 +79,7 @@ ion-icon.edit-icn.ios.hydrated {
 }
 
 ion-row.row-cls.md.hydrated {
-  background: var(--ion-color-c-dark);
+  background: white;
   padding-left: 12px;
   width: 100%;
   margin-top: 20px;
@@ -87,7 +87,7 @@ ion-row.row-cls.md.hydrated {
   box-shadow: 10px 10px 5px 0px #d7d8da;
   -webkit-box-shadow: 10px 10px 5px 0px #989aa2;
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  color: #ffffffab;
+  color: black;
   margin-left: 14px;
 }
 
@@ -96,7 +96,7 @@ ion-row.row-cls.md.hydrated {
 }
 
 ion-row.row-cls.ios.hydrated {
-  background: var(--ion-color-c-dark);
+  background: white;
   padding-left: 12px;
   width: 100%;
   margin-top: 20px;
@@ -104,13 +104,21 @@ ion-row.row-cls.ios.hydrated {
   box-shadow: 10px 10px 5px 0px #d7d8da;
   -webkit-box-shadow: 10px 10px 5px 0px #989aa2;
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  color: #ffffffab;
+  color: black;
   margin-left: 14px;
 }
 
 ion-icon.add-circle-ic.md.hydrated {
   margin-top: 17px;
   margin-right: 6px;
+}
+
+ion-content.md.hydrated {
+  --background: #f2f2f2;
+}
+
+ion-content.ios.hydrated {
+  --background: #f2f2f2;
 }
 
 ion-icon.add-circle-ic.ios.hydrated {
