@@ -148,20 +148,29 @@ export class AppliancesSelectionPage implements OnInit {
   ionViewDidEnter() {
     this.applianceDescriptionContent = this.config.applianceDescriptionContent;
     this.applianceObservationContent = this.config.applianceObservationContent;
-    this.applianceObservationRecommendations = this.config.applianceObservationRecommendations;
+    this.applianceObservationRecommendations =
+      this.config.applianceObservationRecommendations;
     this.StructureCommentsContent = this.config.StructureCommentsContent;
 
-    this.applianceLimitationsContent = this.config.CoolingHVACLimitationsContent;
+    this.applianceLimitationsContent =
+      this.config.CoolingHVACLimitationsContent;
 
-    this.AppliancesPresentStructureContent = this.config.AppliancesPresentStructureContent;
-    this.AppliancesBuiltStructureContent = this.config.AppliancesBuiltStructureContent;
-    this.AppliancesTestedStructureContent = this.config.AppliancesTestedStructureContent;
+    this.AppliancesPresentStructureContent =
+      this.config.AppliancesPresentStructureContent;
+    this.AppliancesBuiltStructureContent =
+      this.config.AppliancesBuiltStructureContent;
+    this.AppliancesTestedStructureContent =
+      this.config.AppliancesTestedStructureContent;
 
-    this.AppliancesLaundryStructureContent = this.config.AppliancesLaundryStructureContent;
-    this.AppliancesOtherStructureContent = this.config.AppliancesOtherStructureContent;
+    this.AppliancesLaundryStructureContent =
+      this.config.AppliancesLaundryStructureContent;
+    this.AppliancesOtherStructureContent =
+      this.config.AppliancesOtherStructureContent;
 
-    this.ApplicationDescriptionContent = this.config.ApplicationDescriptionContent;
-    this.ApplicationObservationContent = this.config.ApplicationObservationContent;
+    this.ApplicationDescriptionContent =
+      this.config.ApplicationDescriptionContent;
+    this.ApplicationObservationContent =
+      this.config.ApplicationObservationContent;
 
     console.log(this.ApplicationDescriptionContent);
     console.log(this.ApplicationObservationContent);
@@ -179,9 +188,8 @@ export class AppliancesSelectionPage implements OnInit {
       },
     ];
 
-    let StorageDate = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ];
+    let StorageDate =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'];
     if (StorageDate != undefined) {
       this.StoredData = JSON.parse(StorageDate);
       console.log(this.StoredData);
@@ -203,9 +211,8 @@ export class AppliancesSelectionPage implements OnInit {
       }
 
       if (this.StoredData['applianceObservationRecommendations'] != undefined) {
-        this.added_items3 = this.StoredData[
-          'applianceObservationRecommendations'
-        ];
+        this.added_items3 =
+          this.StoredData['applianceObservationRecommendations'];
       }
     }
   }
@@ -405,36 +412,32 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   DB_Click_AddNewItem() {
-    let StorageDate = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ];
+    let StorageDate =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'];
     console.log(this.added_items);
     this.added_items.push(this.Selected_Item_to_add);
     console.log(this.added_items);
   }
 
   DB_Click_AddNewItem2() {
-    let StorageDate = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ];
+    let StorageDate =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'];
     console.log(this.added_items2);
     this.added_items2.push(this.Selected_Item_to_add2);
     console.log(this.added_items2);
   }
 
   DB_Click_AddNewItem3() {
-    let StorageDate = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ];
+    let StorageDate =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'];
     console.log(this.added_items3);
     this.added_items3.push(this.Selected_Item_to_add3);
     console.log(this.added_items3);
   }
 
   DB_Click_AddNewItem4() {
-    let StorageDate = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ];
+    let StorageDate =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'];
     console.log(this.added_items4);
     this.added_items4.push(this.Selected_Item_to_add4);
     console.log(this.added_items4);
@@ -542,9 +545,10 @@ export class AppliancesSelectionPage implements OnInit {
   // }
 
   updateDescription() {
-    let applianceDescription = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['applianceDescription'];
+    let applianceDescription =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+        'applianceDescription'
+      ];
 
     console.log('To finalize applianceDescription=====' + applianceDescription);
 
@@ -585,9 +589,10 @@ export class AppliancesSelectionPage implements OnInit {
     if (applianceDescription == null || applianceDescription == undefined) {
       console.log('undefined------------------------------');
 
-      let applianceDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['applianceDescription'];
+      let applianceDescription =
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+          'applianceDescription'
+        ];
 
       if (this.added_items == '') {
         console.log(this.added_items);
@@ -632,9 +637,10 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   updateDescription2() {
-    let applianceObservation = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['applianceObservation'];
+    let applianceObservation =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+        'applianceObservation'
+      ];
 
     console.log('To finalize applianceDescription=====' + applianceObservation);
 
@@ -675,9 +681,10 @@ export class AppliancesSelectionPage implements OnInit {
     if (applianceObservation == null || applianceObservation == undefined) {
       console.log('undefined------------------------------');
 
-      let applianceObservation = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['applianceObservation'];
+      let applianceObservation =
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+          'applianceObservation'
+        ];
 
       if (this.added_items2 == '') {
         console.log(this.added_items2);
@@ -722,9 +729,10 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   updateDescription3() {
-    let structureComments = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['applianceObservationRecommendations'];
+    let structureComments =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+        'applianceObservationRecommendations'
+      ];
 
     console.log('To finalize applianceDescription=====' + structureComments);
 
@@ -767,9 +775,10 @@ export class AppliancesSelectionPage implements OnInit {
     if (structureComments == null || structureComments == undefined) {
       console.log('undefined------------------------------');
 
-      let structureComments = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['applianceDescription'];
+      let structureComments =
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+          'applianceDescription'
+        ];
 
       if (this.added_items3 == '') {
         console.log(this.added_items3);
@@ -816,9 +825,10 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   updateDescription4() {
-    let applianceLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['applianceLimitations'];
+    let applianceLimitations =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+        'applianceLimitations'
+      ];
 
     console.log('To finalize applianceDescription=====' + applianceLimitations);
 
@@ -857,9 +867,10 @@ export class AppliancesSelectionPage implements OnInit {
     if (applianceLimitations == null || applianceLimitations == undefined) {
       console.log('undefined------------------------------');
 
-      let applianceDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['applianceDescription'];
+      let applianceDescription =
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+          'applianceDescription'
+        ];
 
       if (this.added_items4 == '') {
         this.added_items4 = [];
@@ -946,12 +957,12 @@ export class AppliancesSelectionPage implements OnInit {
         {
           houseInModes: this.createInpForm.value.houseInModes,
           ApproximateAgeofHouse: this.createInpForm.value.ApproximateAgeofHouse,
-          MainEnteranceConsidered: this.createInpForm.value
-            .MainEnteranceConsidered,
+          MainEnteranceConsidered:
+            this.createInpForm.value.MainEnteranceConsidered,
           AdditionalComment: this.createInpForm.value.AdditionalComment,
           WeatherConditions: this.createInpForm.value.WeatherConditions,
-          RecentWeatherConditions: this.createInpForm.value
-            .RecentWeatherConditions,
+          RecentWeatherConditions:
+            this.createInpForm.value.RecentWeatherConditions,
         },
       ],
     };
@@ -1329,9 +1340,8 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   DB_Click_AddNewItem5() {
-    let StorageDate = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ];
+    let StorageDate =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'];
     console.log(this.added_items5);
     console.log(this.Selected_Item_to_add);
     // this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
@@ -1342,43 +1352,38 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   DB_Click_AddNewItem6() {
-    let StorageDate = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ];
+    let StorageDate =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'];
     console.log(this.added_items);
     this.added_items6.push(this.Selected_Item_to_add);
     console.log(this.added_items);
   }
 
   DB_Click_AddNewItem7() {
-    let StorageDate = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ];
+    let StorageDate =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'];
     console.log(this.added_items);
     this.added_items7.push(this.Selected_Item_to_add);
     console.log(this.added_items);
   }
 
   DB_Click_AddNewItem8() {
-    let StorageDate = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ];
+    let StorageDate =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'];
     console.log(this.added_items);
     this.added_items8.push(this.Selected_Item_to_add);
     console.log(this.added_items);
   }
   DB_Click_AddNewItem9() {
-    let StorageDate = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ];
+    let StorageDate =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'];
     console.log(this.added_items);
     this.added_items9.push(this.Selected_Item_to_add);
     console.log(this.added_items);
   }
   DB_Click_AddNewItem10() {
-    let StorageDate = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ];
+    let StorageDate =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'];
     console.log(this.added_items);
     this.added_items10.push(this.Selected_Item_to_add);
     console.log(this.added_items);
@@ -1388,9 +1393,10 @@ export class AppliancesSelectionPage implements OnInit {
     // this.SelectedTitleToFilter = n.title;
     // this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
 
-    let structureLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['appliancesDescriptionContent'];
+    let structureLimitations =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+        'appliancesDescriptionContent'
+      ];
 
     console.log('To finalize structureDescription=====' + structureLimitations);
 
@@ -1431,9 +1437,10 @@ export class AppliancesSelectionPage implements OnInit {
     if (structureLimitations == null || structureLimitations == undefined) {
       console.log('undefined------------------------------');
 
-      let structureDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['appliancesDescriptionContent'];
+      let structureDescription =
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+          'appliancesDescriptionContent'
+        ];
 
       if (this.added_items5 == '') {
         this.added_items5 = [];
@@ -1465,17 +1472,50 @@ export class AppliancesSelectionPage implements OnInit {
 
       this.StoredData.appliancesDescriptionContent = newArray;
 
-      let add = this.StoredData.appliancesDescriptionContent.filter((item) => {
-        console.log(item.title);
+      let add: any[] = ([] =
+        this.StoredData.appliancesDescriptionContent.filter((item) => {
+          console.log(item.title);
 
-        return (
-          item.title
-            .toLowerCase()
-            .indexOf(this.SelectedTitleToFilter.toLowerCase()) > -1
+          return (
+            item.title
+              .toLowerCase()
+              .indexOf(this.SelectedTitleToFilter.toLowerCase()) > -1
+          );
+        }));
+
+
+      console.log("%c Gautam's code ==>", 'color:green;font-size:18px');
+
+      console.log(this.added_items5);
+      let output = [];
+
+      for (let i = 0; i < this.added_items5.length; i++) {
+        let objIndex = output.findIndex(
+          (obj) => obj.title == this.added_items5[i].title
         );
-      });
+        if (objIndex == -1) {
+          output.push({
+            title: this.added_items5[i].title,
+            content: [],
+          });
+        }
+      }
 
-      console.log('=++++++++=++++=' + JSON.stringify(add));
+      for (let i = 0; i < this.added_items5.length; i++) {
+        const element = this.added_items5[i];
+
+        console.log(output.includes(element.title));
+
+        let objIndex = output.findIndex((obj) => obj.title == element.title);
+        output[objIndex].content.push({
+          content: element.text,
+        });
+      }
+      console.log('%c Final output ==>', 'color:red;font-size:18px');
+
+      console.log(output);
+
+      // console.log('=++++++++=++++=' + JSON.stringify(add));
 
       this.config.storageRemoveItem('InspectionToEdit');
       this.config.storageSave('InspectionToEdit', this.StoredData);
@@ -1487,9 +1527,10 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   updateDescription6() {
-    let structureLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['D2appliancesBuiltStructure'];
+    let structureLimitations =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+        'D2appliancesBuiltStructure'
+      ];
 
     console.log('To finalize structureDescription=====' + structureLimitations);
 
@@ -1528,9 +1569,10 @@ export class AppliancesSelectionPage implements OnInit {
     if (structureLimitations == null || structureLimitations == undefined) {
       console.log('undefined------------------------------');
 
-      let structureDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['D2appliancesBuiltStructure'];
+      let structureDescription =
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+          'D2appliancesBuiltStructure'
+        ];
 
       if (this.added_items6 == '') {
         this.added_items6 = [];
@@ -1570,9 +1612,10 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   updateDescription7() {
-    let structureLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['D2appliancesTestedStructure'];
+    let structureLimitations =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+        'D2appliancesTestedStructure'
+      ];
 
     console.log('To finalize structureDescription=====' + structureLimitations);
 
@@ -1649,9 +1692,10 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   updateDescription8() {
-    let structureLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['D2appliancesLaundryStructure'];
+    let structureLimitations =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+        'D2appliancesLaundryStructure'
+      ];
 
     console.log('To finalize structureDescription=====' + structureLimitations);
 
@@ -1690,9 +1734,10 @@ export class AppliancesSelectionPage implements OnInit {
     if (structureLimitations == null || structureLimitations == undefined) {
       console.log('undefined------------------------------');
 
-      let structureDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['D2appliancesLaundryStructure'];
+      let structureDescription =
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+          'D2appliancesLaundryStructure'
+        ];
 
       if (this.added_items8 == '') {
         this.added_items8 = [];
@@ -1732,9 +1777,10 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   updateDescription9() {
-    let structureLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['D2appliancesOtherStructure'];
+    let structureLimitations =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+        'D2appliancesOtherStructure'
+      ];
 
     console.log('To finalize structureDescription=====' + structureLimitations);
 
@@ -1773,9 +1819,10 @@ export class AppliancesSelectionPage implements OnInit {
     if (structureLimitations == null || structureLimitations == undefined) {
       console.log('undefined------------------------------');
 
-      let structureDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['D2appliancesOtherStructure'];
+      let structureDescription =
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+          'D2appliancesOtherStructure'
+        ];
 
       if (this.added_items9 == '') {
         this.added_items9 = [];
@@ -1815,9 +1862,10 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   updateDescription10() {
-    let structureLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['structureTenStructure'];
+    let structureLimitations =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+        'structureTenStructure'
+      ];
 
     console.log('To finalize structureDescription=====' + structureLimitations);
 
@@ -1854,9 +1902,10 @@ export class AppliancesSelectionPage implements OnInit {
     if (structureLimitations == null || structureLimitations == undefined) {
       console.log('undefined------------------------------');
 
-      let structureDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['structureTenStructure'];
+      let structureDescription =
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value'][
+          'structureTenStructure'
+        ];
 
       if (this.added_items7 == '') {
         this.added_items7 = [];
