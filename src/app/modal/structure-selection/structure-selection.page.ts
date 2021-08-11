@@ -73,6 +73,9 @@ export class StructureSelectionPage implements OnInit {
   StructureCommentsContent: any = [];
   StructureLimitationsContent: any = [];
 
+  SelectedTitleToFilter: any;
+  SelectedTitleToFilter2: any;
+
   StructureWallStructureContent: any = [];
   StructureCeilingStructureContent: any = [];
   StructureRoofStructureContent: any = [];
@@ -153,17 +156,9 @@ export class StructureSelectionPage implements OnInit {
   ionViewDidEnter() {
     // this.StructureDescriptionContent = this.config.StructureDescriptionContent;
 
-    this.StructureDescriptionContent.push(
-      this.config.StructureDescriptionContent
-    );
+    this.StructureDescriptionContent = this.config.StructureDescriptionContent;
 
-
-
-    console.log("this.StructureDescriptionContent"+this.StructureDescriptionContent);
-    
-    this.StructureObservationContent.push(
-      this.config.StructureObservationContent
-    );
+    this.StructureObservationContent = this.config.StructureObservationContent;
 
     // this.StructureObservationContent = this.config.StructureObservationContent;
     this.StructureCommentsContent = this.config.StructureCommentsContent;
@@ -252,6 +247,7 @@ export class StructureSelectionPage implements OnInit {
   }
 
   closeDescription() {
+    this.SelectedTitleToFilter2 = '';
     this.BackPressed = false;
     this.Description = false;
     this.Observations_UI = false;
@@ -262,6 +258,8 @@ export class StructureSelectionPage implements OnInit {
   }
 
   closeDescription2() {
+    this.SelectedTitleToFilter = '';
+
     this.BackPressed = true;
     this.Description = false;
     this.Observations_UI = false;
@@ -326,19 +324,16 @@ export class StructureSelectionPage implements OnInit {
   selectItem22(_index: number, data, ev) {
     this.selectedIndex = _index;
     this.Selected_Item_to_add2 = data;
+    this.Selected_Item_to_add2.title = this.SelectedTitleToFilter2;
 
     if (ev.detail.checked == true) {
-      this.itemsToDelete = data;
-
+      this.itemsToDelete2 = data;
       this.removeContent22();
-
       this.DB_Click_AddNewItem2();
     }
-
     if (ev.detail.checked == false) {
-      this.selectedIndex = _index;
-      this.itemsToDelete = data;
-
+      this.selectedIndex10 = _index;
+      this.itemsToDelete2 = data;
       this.removeContent22();
     }
   }
@@ -377,7 +372,7 @@ export class StructureSelectionPage implements OnInit {
   }
 
   removeContent22() {
-    let selected_content = this.itemsToDelete.text;
+    let selected_content = this.itemsToDelete2.text;
 
     this.added_items2 = this.added_items2.filter(
       (h) => h.text !== selected_content
@@ -620,7 +615,7 @@ export class StructureSelectionPage implements OnInit {
       '__zone_symbol__value'
     ]['structureObservation'];
 
-    console.log('To finalize structureDescription=====' + structureObservation);
+    console.log('To finalize coolingDescription=====' + structureObservation);
 
     if (structureObservation != undefined) {
       if (this.added_items2 == '') {
@@ -631,6 +626,7 @@ export class StructureSelectionPage implements OnInit {
             structureObservation: [
               {
                 text: '',
+                checked: '',
               },
             ],
           };
@@ -641,6 +637,7 @@ export class StructureSelectionPage implements OnInit {
             structureObservation: [
               {
                 text: o.text,
+                checked: o.checked,
               },
             ],
           };
@@ -652,7 +649,7 @@ export class StructureSelectionPage implements OnInit {
       let arr3 = [...structureObservation, ...newArray];
 
       console.log(
-        'Updating Again - Fix (2)...structureDescription, ...newArray' + arr3
+        'Updating Again - Fix (2)...coolingDescription, ...newArray' + arr3
       );
     }
 
@@ -673,6 +670,7 @@ export class StructureSelectionPage implements OnInit {
             structureObservation: [
               {
                 text: '',
+                checked: '',
               },
             ],
           };
@@ -682,6 +680,7 @@ export class StructureSelectionPage implements OnInit {
         var newArray = this.added_items2.map((o) => {
           return {
             text: o.text,
+            checked: o.checked,
           };
         });
       }
@@ -694,7 +693,38 @@ export class StructureSelectionPage implements OnInit {
         this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
       );
 
-      this.StoredData.structureObservation = newArray;
+      console.log('%c G-code ==>', 'color:green;font-size:18px');
+
+      console.log(this.added_items2);
+      let output = [];
+
+      for (let i = 0; i < this.added_items2.length; i++) {
+        let objIndex = output.findIndex(
+          (obj) => obj.title == this.added_items2[i].title
+        );
+        if (objIndex == -1) {
+          output.push({
+            title: this.added_items2[i].title,
+            content: [],
+          });
+        }
+      }
+
+      for (let i = 0; i < this.added_items2.length; i++) {
+        const element = this.added_items2[i];
+
+        console.log(output.includes(element.title));
+
+        let objIndex = output.findIndex((obj) => obj.title == element.title);
+        output[objIndex].content.push({
+          content: element.text,
+        });
+      }
+      console.log('%c Final output ==>', 'color:red;font-size:18px');
+
+      console.log(output);
+
+      this.StoredData.structureObservation = output;
 
       this.config.storageRemoveItem('InspectionToEdit');
       this.config.storageSave('InspectionToEdit', this.StoredData);
@@ -880,11 +910,12 @@ export class StructureSelectionPage implements OnInit {
   }
 
   updateDescription5() {
-    console.log(this.StructureWallStructureContent);
+    // this.SelectedTitleToFilter = n.title;
+    // this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
 
     let structureLimitations = this.config.storageGet('InspectionToEdit')[
       '__zone_symbol__value'
-    ]['structureWallStructure'];
+    ]['structureDescriptionContent'];
 
     console.log('To finalize structureDescription=====' + structureLimitations);
 
@@ -894,10 +925,11 @@ export class StructureSelectionPage implements OnInit {
 
         var newArray = this.added_items5.map((o) => {
           return {
-            structureWallStructure: [
+            structureDescriptionContent: [
               {
                 text: '',
                 checked: '',
+                title: '',
               },
             ],
           };
@@ -905,10 +937,11 @@ export class StructureSelectionPage implements OnInit {
       } else {
         var newArray = this.added_items5.map((o) => {
           return {
-            structureWallStructure: [
+            structureDescriptionContent: [
               {
                 text: o.text,
                 checked: o.checked,
+                title: o.title,
               },
             ],
           };
@@ -925,17 +958,18 @@ export class StructureSelectionPage implements OnInit {
 
       let structureDescription = this.config.storageGet('InspectionToEdit')[
         '__zone_symbol__value'
-      ]['structureWallStructure'];
+      ]['structureDescriptionContent'];
 
       if (this.added_items5 == '') {
         this.added_items5 = [];
 
         var newArray = this.added_items5.map((o) => {
           return {
-            structureWallStructure: [
+            structureDescriptionContent: [
               {
                 text: '',
                 checked: '',
+                title: '',
               },
             ],
           };
@@ -945,6 +979,7 @@ export class StructureSelectionPage implements OnInit {
           return {
             text: o.text,
             checked: o.checked,
+            title: o.title,
           };
         });
       }
@@ -953,12 +988,42 @@ export class StructureSelectionPage implements OnInit {
         this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
       );
 
-      this.StoredData.structureWallStructure = newArray;
+      console.log('%c G-code ==>', 'color:green;font-size:18px');
+
+      console.log(this.added_items5);
+      let output = [];
+
+      for (let i = 0; i < this.added_items5.length; i++) {
+        let objIndex = output.findIndex(
+          (obj) => obj.title == this.added_items5[i].title
+        );
+        if (objIndex == -1) {
+          output.push({
+            title: this.added_items5[i].title,
+            content: [],
+          });
+        }
+      }
+
+      for (let i = 0; i < this.added_items5.length; i++) {
+        const element = this.added_items5[i];
+
+        console.log(output.includes(element.title));
+
+        let objIndex = output.findIndex((obj) => obj.title == element.title);
+        output[objIndex].content.push({
+          content: element.text,
+        });
+      }
+      console.log('%c Final output ==>', 'color:red;font-size:18px');
+
+      console.log(output);
+
+      console.log(this.StoredData);
+      this.StoredData.structureDescriptionContent = output;
 
       this.config.storageRemoveItem('InspectionToEdit');
       this.config.storageSave('InspectionToEdit', this.StoredData);
-
-      console.log(this.StoredData);
 
       this.presentAlertConfirm();
     }
@@ -1576,26 +1641,17 @@ export class StructureSelectionPage implements OnInit {
   }
 
   selectItem5(_index: number, data, ev) {
-    console.log(ev);
-
-    console.log(data);
-
     this.selectedIndex = _index;
     this.Selected_Item_to_add = data;
-
+    this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
     if (ev.detail.checked == true) {
-      console.log('True');
       this.itemsToDelete = data;
-
       this.removeContent5();
-
       this.DB_Click_AddNewItem5();
     }
-
     if (ev.detail.checked == false) {
-      this.selectedIndex5 = _index;
+      this.selectedIndex10 = _index;
       this.itemsToDelete = data;
-
       this.removeContent5();
     }
   }
@@ -1867,5 +1923,18 @@ export class StructureSelectionPage implements OnInit {
     console.log(this.added_items);
     this.added_items10.push(this.Selected_Item_to_add);
     console.log(this.added_items);
+  }
+
+  AddTitleInfo(n) {
+    console.log(n);
+    // this.SelectedTitleToFilter = '';
+
+    this.SelectedTitleToFilter = n.title;
+  }
+  AddTitleInfo2(n) {
+    console.log(n);
+    // this.SelectedTitleToFilter = '';
+
+    this.SelectedTitleToFilter2 = n.title;
   }
 }

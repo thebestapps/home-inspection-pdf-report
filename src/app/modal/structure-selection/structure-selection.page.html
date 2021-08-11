@@ -111,52 +111,55 @@
     <!-- FOUNDATIONAL COMPONENTS -->
 
     <div class="cont-input" *ngIf="StructureFoundationComponents_UI">
-      <p class="main-title vie">Structure Description</p>
+      <p class="main-title vie">Description Content</p>
 
       <div
         class="con-inpu"
         *ngFor="let item of StructureDescriptionContent; let i = index;"
       >
-        <p class="main-title">{{item.title}}</p>
+        <p (click)="AddTitleInfo(item)" class="main-title">{{item.title}}</p>
 
-        <div class="input-etr">
-          <ion-row>
-            <ion-col>
-              <div
-                class="item-rw"
-                *ngFor="let item of item.data; let i = index;"
-              >
-                <ion-checkbox
-                  class="custm-check"
-                  item-right
-                  [(ngModel)]="item.checked"
-                  (ionChange)="selectItem5(i, item, $event);"
+        <div *ngIf="item.title == SelectedTitleToFilter">
+          <div class="input-etr">
+            <ion-row>
+              <ion-col>
+                <div
+                  class="item-rw"
+                  *ngFor="let item of item.data; let i = index;"
                 >
-                </ion-checkbox>
+                  <ion-checkbox
+                    class="custm-check"
+                    item-right
+                    [(ngModel)]="item.checked"
+                    (ionChange)="selectItem5(i, item,  $event);"
+                  >
+                  </ion-checkbox>
+                  <p class="label-inside">{{item.text}}</p>
+                </div>
+              </ion-col>
+            </ion-row>
+          </div>
 
-                <p class="label-inside">{{item.text}}</p>
-              </div>
+          <ion-row>
+            <ion-col style="text-align: center">
+              <ion-button
+                (click)="updateDescription5(item)"
+                class="CreateInspBtn"
+              >
+                <ion-icon class="icn-c" name="create-outline"></ion-icon>
+
+                OK
+              </ion-button>
+            </ion-col>
+            <ion-col style="text-align: center">
+              <ion-button (click)="closeDescription2()" class="Back-btn">
+                <ion-icon class="icn-c" name="close-outline"></ion-icon>
+
+                Cancel
+              </ion-button>
             </ion-col>
           </ion-row>
         </div>
-
-        <ion-row *ngIf="HSView1">
-          <ion-col style="text-align: center">
-            <ion-button (click)="updateDescription5()" class="CreateInspBtn">
-              <ion-icon class="icn-c" name="create-outline"></ion-icon>
-
-              OK
-            </ion-button>
-          </ion-col>
-
-          <ion-col style="text-align: center">
-            <ion-button (click)="closeDescription2()" class="Back-btn">
-              <ion-icon class="icn-c" name="close-outline"></ion-icon>
-
-              Back
-            </ion-button>
-          </ion-col>
-        </ion-row>
       </div>
 
       <ion-row>
@@ -172,87 +175,65 @@
 
     <!-- OBSERVATION -->
     <div class="cont-input" *ngIf="Observations_UI">
-      <p class="main-title-TITLE">Structure Observation</p>
+      <p class="main-title vie">Observation Content</p>
 
-      <div *ngFor="let item of StructureObservationContent; let i = index;">
-        <p class="main-title">{{item.title}}</p>
-        <div class="input-etr">
-          <ion-row>
-            <div class="item-rw" *ngFor="let item of item.data; let i = index;">
-              <ion-checkbox
-                class="custm-check"
-                item-right
-                [(ngModel)]="item.checked"
-                (ionChange)="selectItem22(i, item, $event);"
+      <div
+        class="con-inpu"
+        *ngFor="let item of StructureObservationContent; let i = index;"
+      >
+        <p (click)="AddTitleInfo2(item)" class="main-title">{{item.title}}</p>
+        <div *ngIf="item.title == SelectedTitleToFilter2">
+          <div class="input-etr">
+            <ion-row>
+              <ion-col>
+                <div
+                  class="item-rw"
+                  *ngFor="let item of item.data; let i = index;"
+                >
+                  <ion-checkbox
+                    class="custm-check"
+                    item-right
+                    [(ngModel)]="item.checked"
+                    (ionChange)="selectItem22(i, item,  $event);"
+                  >
+                  </ion-checkbox>
+                  <p class="label-inside">{{item.text}}</p>
+                </div>
+              </ion-col>
+            </ion-row>
+          </div>
+
+          <ion-row class="row-form-ftr">
+            <ion-col style="text-align: center">
+              <ion-button
+                (click)="updateDescription2(item)"
+                class="CreateInspBtn"
               >
-              </ion-checkbox>
+                <ion-icon class="icn-c" name="create-outline"></ion-icon>
 
-              <p class="label-inside">{{item.text}}</p>
-            </div>
+                OK
+              </ion-button>
+            </ion-col>
+            <ion-col style="text-align: center">
+              <ion-button (click)="closeDescription()" class="Back-btn">
+                <ion-icon class="icn-c" name="close-outline"></ion-icon>
 
-            <!-- <ion-col>
-            <ion-button (click)="DB_Click_AddNewItem2()" class="CreateInspBtn">
-              <ion-icon class="icn-c" name="create-outline"></ion-icon>
-
-              Insert
-            </ion-button>
-
-            <div
-              class="data-ui"
-              *ngFor="let d of StructureObservationContent; let i = index;"
-              (click)="selectItem22(i, d)"
-              [ngClass]="{'highlight': selectedIndex === i}"
-            >
-              <ion-row>
-                <ion-col class="tbl_col">
-                  <ion-item class="txt-box">
-                    <p class="txt_ Inside">{{d.text}}</p>
-                  </ion-item>
-                </ion-col>
-              </ion-row>
-            </div>
-          </ion-col>
-
-          <ion-col>
-            <ion-button class="remv-btn" (click)="removeContent22()"
-              >Remove</ion-button
-            >
-            <ion-reorder-group
-              disabled="false"
-              (ionItemReorder)="onRenderItems2($event)"
-            >
-              <ion-item
-                class="data-ui"
-                *ngFor="let d of added_items2; let i = index;"
-                (click)="selectItem2Rem(i, d)"
-                [ngClass]="{'highlight2': selectedIndex2 === i}"
-              >
-                <ion-label> {{d.text}} </ion-label>
-                <ion-reorder slot="end"></ion-reorder>
-              </ion-item>
-            </ion-reorder-group>
-          </ion-col> -->
+                Cancel
+              </ion-button>
+            </ion-col>
           </ion-row>
         </div>
-
-        <ion-row class="row-form-ftr">
-          <ion-col style="text-align: center">
-            <ion-button (click)="updateDescription2()" class="CreateInspBtn">
-              <ion-icon class="icn-c" name="create-outline"></ion-icon>
-
-              OK
-            </ion-button>
-          </ion-col>
-
-          <ion-col style="text-align: center">
-            <ion-button (click)="closeDescription()" class="Back-btn">
-              <ion-icon class="icn-c" name="close-outline"></ion-icon>
-
-              Back
-            </ion-button>
-          </ion-col>
-        </ion-row>
       </div>
+
+      <ion-row>
+        <ion-col style="text-align: center">
+          <ion-button (click)="closeDescription()" class="Back-btn">
+            <ion-icon class="icn-c" name="close-outline"></ion-icon>
+
+            Back
+          </ion-button>
+        </ion-col>
+      </ion-row>
     </div>
 
     <!-- COMMENTS -->

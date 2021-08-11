@@ -81,6 +81,9 @@ export class PlumbingSelectionPage implements OnInit {
   PlumbingDrainStructureContent: any = [];
   PlumbingWaterHeaterPressureStructureContent: any = [];
 
+  SelectedTitleToFilter: any;
+  SelectedTitleToFilter2: any;
+
   constructor(
     public modalController: ModalController,
     private formBuilder: FormBuilder,
@@ -89,17 +92,17 @@ export class PlumbingSelectionPage implements OnInit {
     private alertController: AlertController
   ) {
     this.inspectionTypes = [
-      {
-        name: 'Foundational Components',
-
-        val: '5',
-      },
-
       // {
-      //   name: 'Plumbing Description',
+      //   name: 'Foundational Components',
 
-      //   val: '1',
+      //   val: '5',
       // },
+
+      {
+        name: 'Plumbing Description',
+
+        val: '1',
+      },
       {
         name: 'Plumbing Observation',
 
@@ -249,6 +252,7 @@ export class PlumbingSelectionPage implements OnInit {
   }
 
   closeDescription() {
+    this.SelectedTitleToFilter2 = '';
     this.BackPressed = false;
     this.Description = false;
     this.Observations_UI = false;
@@ -258,6 +262,7 @@ export class PlumbingSelectionPage implements OnInit {
   }
 
   closeDescription2() {
+    this.SelectedTitleToFilter = '';
     this.BackPressed = true;
     this.Description = false;
     this.Observations_UI = false;
@@ -333,11 +338,12 @@ export class PlumbingSelectionPage implements OnInit {
   selectItem22(_index: number, data, ev) {
     this.selectedIndex = _index;
     this.Selected_Item_to_add2 = data;
+    this.Selected_Item_to_add2.title = this.SelectedTitleToFilter2;
 
     if (ev.detail.checked == true) {
       this.itemsToDelete2 = data;
-      this.removeContent7();
       this.removeContent22();
+      this.DB_Click_AddNewItem2();
     }
     if (ev.detail.checked == false) {
       this.selectedIndex10 = _index;
@@ -635,6 +641,7 @@ export class PlumbingSelectionPage implements OnInit {
               {
                 text: '',
                 checked: '',
+                title: '',
               },
             ],
           };
@@ -646,6 +653,7 @@ export class PlumbingSelectionPage implements OnInit {
               {
                 text: o.text,
                 checked: o.checked,
+                title: o.title,
               },
             ],
           };
@@ -679,6 +687,7 @@ export class PlumbingSelectionPage implements OnInit {
               {
                 text: '',
                 checked: '',
+                title: '',
               },
             ],
           };
@@ -689,6 +698,7 @@ export class PlumbingSelectionPage implements OnInit {
           return {
             text: o.text,
             checked: o.checked,
+            title: o.title,
           };
         });
       }
@@ -701,7 +711,38 @@ export class PlumbingSelectionPage implements OnInit {
         this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
       );
 
-      this.StoredData.plumbingObservation = newArray;
+      console.log('%c G-code ==>', 'color:green;font-size:18px');
+
+      console.log(this.added_items2);
+      let output = [];
+
+      for (let i = 0; i < this.added_items2.length; i++) {
+        let objIndex = output.findIndex(
+          (obj) => obj.title == this.added_items2[i].title
+        );
+        if (objIndex == -1) {
+          output.push({
+            title: this.added_items2[i].title,
+            content: [],
+          });
+        }
+      }
+
+      for (let i = 0; i < this.added_items2.length; i++) {
+        const element = this.added_items2[i];
+
+        console.log(output.includes(element.title));
+
+        let objIndex = output.findIndex((obj) => obj.title == element.title);
+        output[objIndex].content.push({
+          content: element.text,
+        });
+      }
+      console.log('%c Final output ==>', 'color:red;font-size:18px');
+
+      console.log(output);
+
+      this.StoredData.plumbingObservation = output;
 
       this.config.storageRemoveItem('InspectionToEdit');
       this.config.storageSave('InspectionToEdit', this.StoredData);
@@ -1219,7 +1260,7 @@ export class PlumbingSelectionPage implements OnInit {
   selectItem5(_index: number, data, ev) {
     this.selectedIndex = _index;
     this.Selected_Item_to_add = data;
-
+    this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
     if (ev.detail.checked == true) {
       this.itemsToDelete = data;
       this.removeContent5();
@@ -1230,24 +1271,24 @@ export class PlumbingSelectionPage implements OnInit {
       this.itemsToDelete = data;
       this.removeContent5();
     }
-
-    // if (this.touchtime == 0) {
-    //   // set first click
-    //   this.disable_ = false;
-    //   this.touchtime = new Date().getTime();
-    // } else {
-    //   // compare first click to this click and see if they occurred within double click threshold
-    //   if (new Date().getTime() - this.touchtime < 800) {
-    //     // double click occurred
-
-    //     this.DB_Click_AddNewItem5();
-    //     this.touchtime = 0;
-    //   } else {
-    //     // not a double click so set as a new first click
-    //     this.touchtime = new Date().getTime();
-    //   }
-    // }
   }
+
+  // if (this.touchtime == 0) {
+  //   // set first click
+  //   this.disable_ = false;
+  //   this.touchtime = new Date().getTime();
+  // } else {
+  //   // compare first click to this click and see if they occurred within double click threshold
+  //   if (new Date().getTime() - this.touchtime < 800) {
+  //     // double click occurred
+
+  //     this.DB_Click_AddNewItem5();
+  //     this.touchtime = 0;
+  //   } else {
+  //     // not a double click so set as a new first click
+  //     this.touchtime = new Date().getTime();
+  //   }
+  // }
 
   selectItem6(_index: number, data, ev) {
     this.selectedIndex = _index;
@@ -1379,7 +1420,7 @@ export class PlumbingSelectionPage implements OnInit {
   updateDescription5() {
     let structureLimitations = this.config.storageGet('InspectionToEdit')[
       '__zone_symbol__value'
-    ]['D2PlumbingWaterSuppStructure'];
+    ]['plumbingDescriptionContent'];
 
     console.log('To finalize structureDescription=====' + structureLimitations);
 
@@ -1389,10 +1430,11 @@ export class PlumbingSelectionPage implements OnInit {
 
         var newArray = this.added_items5.map((o) => {
           return {
-            D2PlumbingWaterSuppStructure: [
+            plumbingDescriptionContent: [
               {
                 text: '',
                 checked: '',
+                title: '',
               },
             ],
           };
@@ -1400,10 +1442,11 @@ export class PlumbingSelectionPage implements OnInit {
       } else {
         var newArray = this.added_items5.map((o) => {
           return {
-            D2PlumbingWaterSuppStructure: [
+            plumbingDescriptionContent: [
               {
                 text: o.text,
                 checked: o.checked,
+                title: o.title,
               },
             ],
           };
@@ -1420,17 +1463,18 @@ export class PlumbingSelectionPage implements OnInit {
 
       let structureDescription = this.config.storageGet('InspectionToEdit')[
         '__zone_symbol__value'
-      ]['D2PlumbingWaterSuppStructure'];
+      ]['plumbingDescriptionContent'];
 
       if (this.added_items5 == '') {
         this.added_items5 = [];
 
         var newArray = this.added_items5.map((o) => {
           return {
-            D2PlumbingWaterSuppStructure: [
+            plumbingDescriptionContent: [
               {
                 text: '',
                 checked: '',
+                title: '',
               },
             ],
           };
@@ -1440,6 +1484,7 @@ export class PlumbingSelectionPage implements OnInit {
           return {
             text: o.text,
             checked: o.checked,
+            title: o.title,
           };
         });
       }
@@ -1448,7 +1493,41 @@ export class PlumbingSelectionPage implements OnInit {
         this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
       );
 
-      this.StoredData.D2PlumbingWaterSuppStructure = newArray;
+      console.log(
+        '%c G-code =================================>',
+        'color:green;font-size:18px'
+      );
+
+      console.log(this.added_items5);
+      let output = [];
+
+      for (let i = 0; i < this.added_items5.length; i++) {
+        let objIndex = output.findIndex(
+          (obj) => obj.title == this.added_items5[i].title
+        );
+        if (objIndex == -1) {
+          output.push({
+            title: this.added_items5[i].title,
+            content: [],
+          });
+        }
+      }
+
+      for (let i = 0; i < this.added_items5.length; i++) {
+        const element = this.added_items5[i];
+
+        console.log(output.includes(element.title));
+
+        let objIndex = output.findIndex((obj) => obj.title == element.title);
+        output[objIndex].content.push({
+          content: element.text,
+        });
+      }
+      console.log('%c Final output ==>', 'color:red;font-size:18px');
+
+      console.log(output);
+
+      this.StoredData.plumbingDescriptionContent = output;
 
       this.config.storageRemoveItem('InspectionToEdit');
       this.config.storageSave('InspectionToEdit', this.StoredData);
@@ -1586,7 +1665,7 @@ export class PlumbingSelectionPage implements OnInit {
 
       let structureDescription = this.config.storageGet('InspectionToEdit')[
         '__zone_symbol__value'
-      ]['D2PlumbingWaterSuppStructure'];
+      ]['plumbingDescriptionContent'];
 
       if (this.added_items7 == '') {
         this.added_items7 = [];
@@ -1868,5 +1947,18 @@ export class PlumbingSelectionPage implements OnInit {
 
       this.presentAlertConfirm();
     }
+  }
+
+  AddTitleInfo(n) {
+    console.log(n);
+    // this.SelectedTitleToFilter = '';
+
+    this.SelectedTitleToFilter = n.title;
+  }
+  AddTitleInfo2(n) {
+    console.log(n);
+    // this.SelectedTitleToFilter = '';
+
+    this.SelectedTitleToFilter2 = n.title;
   }
 }

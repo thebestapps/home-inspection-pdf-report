@@ -83,6 +83,7 @@ export class AppliancesSelectionPage implements OnInit {
   ApplicationObservationContent: any = [];
 
   SelectedTitleToFilter: any;
+  SelectedTitleToFilter2: any;
 
   constructor(
     public modalController: ModalController,
@@ -146,8 +147,8 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   ionViewDidEnter() {
-    this.applianceDescriptionContent = this.config.applianceDescriptionContent;
-    this.applianceObservationContent = this.config.applianceObservationContent;
+    this.applianceDescriptionContent = this.config.ApplicationDescriptionContent;
+    this.applianceObservationContent = this.config.ApplicationObservationContent;
     this.applianceObservationRecommendations = this.config.applianceObservationRecommendations;
     this.StructureCommentsContent = this.config.StructureCommentsContent;
 
@@ -259,6 +260,7 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   closeDescription() {
+    this.SelectedTitleToFilter2 = '';
     this.BackPressed = false;
     this.Description = false;
     this.Observations_UI = false;
@@ -345,6 +347,7 @@ export class AppliancesSelectionPage implements OnInit {
   selectItem22(_index: number, data, ev) {
     this.selectedIndex = _index;
     this.Selected_Item_to_add2 = data;
+    this.Selected_Item_to_add2.title = this.SelectedTitleToFilter2;
 
     if (ev.detail.checked == true) {
       this.itemsToDelete2 = data;
@@ -414,12 +417,7 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   DB_Click_AddNewItem2() {
-    let StorageDate = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ];
-    console.log(this.added_items2);
     this.added_items2.push(this.Selected_Item_to_add2);
-    console.log(this.added_items2);
   }
 
   DB_Click_AddNewItem3() {
@@ -647,6 +645,7 @@ export class AppliancesSelectionPage implements OnInit {
             applianceObservation: [
               {
                 text: '',
+                title: '',
               },
             ],
           };
@@ -657,6 +656,7 @@ export class AppliancesSelectionPage implements OnInit {
             applianceObservation: [
               {
                 text: o.text,
+                title: o.title,
               },
             ],
           };
@@ -689,6 +689,7 @@ export class AppliancesSelectionPage implements OnInit {
             applianceObservation: [
               {
                 text: '',
+                title: '',
               },
             ],
           };
@@ -698,6 +699,7 @@ export class AppliancesSelectionPage implements OnInit {
         var newArray = this.added_items2.map((o) => {
           return {
             text: o.text,
+            title: o.title,
           };
         });
       }
@@ -710,8 +712,38 @@ export class AppliancesSelectionPage implements OnInit {
         this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
       );
 
-      this.StoredData.applianceObservation = newArray;
+      console.log('%c G-code ==>', 'color:green;font-size:18px');
 
+      console.log(this.added_items2);
+      let output = [];
+
+      for (let i = 0; i < this.added_items2.length; i++) {
+        let objIndex = output.findIndex(
+          (obj) => obj.title == this.added_items2[i].title
+        );
+        if (objIndex == -1) {
+          output.push({
+            title: this.added_items2[i].title,
+            content: [],
+          });
+        }
+      }
+
+      for (let i = 0; i < this.added_items2.length; i++) {
+        const element = this.added_items2[i];
+
+        console.log(output.includes(element.title));
+
+        let objIndex = output.findIndex((obj) => obj.title == element.title);
+        output[objIndex].content.push({
+          content: element.text,
+        });
+      }
+      console.log('%c Final output ==>', 'color:red;font-size:18px');
+
+      console.log(output);
+
+      this.StoredData.applianceObservation = output;
       this.config.storageRemoveItem('InspectionToEdit');
       this.config.storageSave('InspectionToEdit', this.StoredData);
 
@@ -1227,15 +1259,7 @@ export class AppliancesSelectionPage implements OnInit {
   selectItem5(_index: number, data, ev) {
     this.selectedIndex = _index;
     this.Selected_Item_to_add = data;
-
-    console.log(data);
-    console.log(this.Selected_Item_to_add);
-    console.log(this.SelectedTitleToFilter);
-
     this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
-
-    console.log(this.Selected_Item_to_add);
-
     if (ev.detail.checked == true) {
       this.itemsToDelete = data;
       this.removeContent5();
@@ -1329,16 +1353,7 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   DB_Click_AddNewItem5() {
-    let StorageDate = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ];
-    console.log(this.added_items5);
-    console.log(this.Selected_Item_to_add);
-    // this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
-
     this.added_items5.push(this.Selected_Item_to_add);
-
-    console.log(this.added_items5);
   }
 
   DB_Click_AddNewItem6() {
@@ -1463,19 +1478,38 @@ export class AppliancesSelectionPage implements OnInit {
         this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
       );
 
-      this.StoredData.appliancesDescriptionContent = newArray;
+      console.log('%c G-code ==>', 'color:green;font-size:18px');
 
-      let add = this.StoredData.appliancesDescriptionContent.filter((item) => {
-        console.log(item.title);
+      console.log(this.added_items5);
+      let output = [];
 
-        return (
-          item.title
-            .toLowerCase()
-            .indexOf(this.SelectedTitleToFilter.toLowerCase()) > -1
+      for (let i = 0; i < this.added_items5.length; i++) {
+        let objIndex = output.findIndex(
+          (obj) => obj.title == this.added_items5[i].title
         );
-      });
+        if (objIndex == -1) {
+          output.push({
+            title: this.added_items5[i].title,
+            content: [],
+          });
+        }
+      }
 
-      console.log('=++++++++=++++=' + JSON.stringify(add));
+      for (let i = 0; i < this.added_items5.length; i++) {
+        const element = this.added_items5[i];
+
+        console.log(output.includes(element.title));
+
+        let objIndex = output.findIndex((obj) => obj.title == element.title);
+        output[objIndex].content.push({
+          content: element.text,
+        });
+      }
+      console.log('%c Final output ==>', 'color:red;font-size:18px');
+
+      console.log(output);
+
+      this.StoredData.appliancesDescriptionContent = output;
 
       this.config.storageRemoveItem('InspectionToEdit');
       this.config.storageSave('InspectionToEdit', this.StoredData);
@@ -1898,5 +1932,11 @@ export class AppliancesSelectionPage implements OnInit {
     // this.SelectedTitleToFilter = '';
 
     this.SelectedTitleToFilter = n.title;
+  }
+  AddTitleInfo2(n) {
+    console.log(n);
+    // this.SelectedTitleToFilter = '';
+
+    this.SelectedTitleToFilter2 = n.title;
   }
 }

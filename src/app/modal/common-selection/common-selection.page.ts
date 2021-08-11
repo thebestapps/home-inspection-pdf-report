@@ -373,10 +373,10 @@ export class CommonSelectionPage implements OnInit {
     //   this.config.presentToast('Please upload Inspection Images');
     //   return;
     // }
-    console.log(
-      'ARRAY LENGTH',
-      parseInt(this.StoredData.structureWallStructure.length)
-    );
+    // console.log(
+    //   'ARRAY LENGTH',
+    //   parseInt(this.StoredData.structureWallStructure.length)
+    // );
     console.log(this.StoredData.storedReportOverviewImage);
     //ionic cordova run android -l
 
@@ -1468,7 +1468,7 @@ export class CommonSelectionPage implements OnInit {
     }
     if (
       this.StoredData.structureDescription != null ||
-      this.StoredData.structureDescription != null ||
+      this.StoredData.structureDescriptionContent != null ||
       this.StoredData.structureComments != null ||
       this.StoredData.structureLimitations != null ||
       this.StoredData.structureWallStructure != null ||
@@ -1584,7 +1584,7 @@ export class CommonSelectionPage implements OnInit {
       this.StoredData.structureFoundationStructure != null ||
       this.StoredData.structureFloorStructure != null ||
       this.StoredData.structureRoofStructure != null ||
-      this.StoredData.structureDescription != null
+      this.StoredData.structureDescriptionContent != null
     ) {
       docDefinition.content.push({
         color: '#000000',
@@ -1623,18 +1623,11 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.structureWallStructure != null) {
+    if (this.StoredData.structureDescriptionContent != null) {
       var wallStructure = ' ';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.structureWallStructure.length);
-        i++
-      ) {
-        wallStructure =
-          wallStructure +
-          ' • ' +
-          this.StoredData.structureWallStructure[i].text;
-      }
+
+      var title = ' ';
+
       docDefinition.content.push({
         fontSize: 10,
         columnGap: 5,
@@ -1642,7 +1635,7 @@ export class CommonSelectionPage implements OnInit {
         columns: [
           [
             {
-              text: this.config.titleof_55 + ':\n',
+              text: title + ':\n',
               margin: [30, 7, 0, 0],
               bold: 'true',
             },
@@ -1829,6 +1822,28 @@ export class CommonSelectionPage implements OnInit {
       this.StoredData.structureObservation != null ||
       this.StoredData.structureComments != null
     ) {
+      var wallStructure = ' ';
+      // for (
+      //   let i = 0;
+      //   i < parseInt(this.StoredData.structureDescriptionContent.length);
+      //   i++
+      // ) {
+      //   wallStructure =
+      //     wallStructure +
+      //     ' • ' +
+      //     this.StoredData.structureDescriptionContent[i].content;
+      // }
+
+      var title = ' ';
+      // for (
+      //   let i = 0;
+      //   i < parseInt(this.StoredData.structureDescriptionContent.length);
+      //   i++
+      // ) {
+      //   title =
+      //     title + ' • ' + this.StoredData.structureDescriptionContent[i].title;
+      // }
+
       docDefinition.content.push(
         {
           color: '#000000',
@@ -1872,11 +1887,11 @@ export class CommonSelectionPage implements OnInit {
           color: '#ed3833',
           text: [
             {
-              text: 'Positive Attributes\n',
+              text: title + '\n',
               bold: 'true',
             },
             {
-              text: this.StoredData.structureObservation,
+              text: wallStructure,
             },
             {
               text: '\nGeneral Comments\n',
@@ -1884,26 +1899,6 @@ export class CommonSelectionPage implements OnInit {
             },
             {
               text: this.StoredData.structureComments,
-            },
-            {
-              text: '\n\nRECOMMENDATIONS / OBSERVATIONS \n',
-              bold: 'true',
-            },
-            {
-              text: 'Wood Boring Insects \n',
-              bold: 'true',
-            },
-            {
-              text:
-                'Monitor:  This home is situated in an area known for wood destroying insect activity (Florida).  Wood destroying insects can do a substantial amount of damage to the wood structural components of a home. Since termites are a living and breeding insect, sometimes damage may take months or years to show evidence.  Several steps can be taken to reduce the risk of a wood destroying insect problem. Additional treatment may be need in the event of swarms. Any form of wood/soil contact should be avoided.  Controlling dampness in the soil around the perimeter of a home, including below porches and in crawl spaces, is recommended.  Preventive chemical treatment, performed by a licensed pest control specialist, is also advisable. Termites are beyond the scope of the inspection. A licensed pest control specialist should be consulted for a thorough termite inspection and treatment (if necessary). If there is currently a termite bond the transfer of the bond is advisable.\n\n',
-            },
-            {
-              text: 'Foundation \n',
-              bold: 'true',
-            },
-            {
-              text:
-                'Monitor:  Common minor cracks were observed in the foundation walls of the house.  This implies that some structural movement of the building has occurred, as is typical of most houses. This is usually the result of shrinkage and/or settling of the slab. It takes several years for the new concrete to fully cure. During the curing process it very common for concrete to crack due to thermal differential inside the core of the concrete. Thicker concrete slabs will cure more slowly than thinner slabs. During renovations, expect to find concrete cracks under the flooring. Floor coverings were not removed at the time of inspection.\n',
             },
           ],
         }

@@ -173,85 +173,65 @@
 
     <!-- OBSERVATION -->
     <div class="cont-input" *ngIf="Observations_UI">
-      <div *ngFor="let item of ApplicationObservationContent; let i = index;">
-        <p class="main-title">XD {{item.title}}</p>
-        <div class="input-etr">
-          <ion-row>
-            <ion-col>
-              <!-- <ion-button (click)="DB_Click_AddNewItem2()" class="CreateInspBtn">
-              <ion-icon class="icn-c" name="create-outline"></ion-icon>
+      <p class="main-title vie">Observation Content</p>
 
-              Insert
-            </ion-button> -->
-
-              <!-- <div
-              class="data-ui"
-              *ngFor="let d of applianceObservationContent; let i = index;"
-              (click)="selectItem22(i, d)"
-              [ngClass]="{'highlight': selectedIndex === i}"
-            >
-              <ion-row>
-                <ion-col class="tbl_col">
-                  <ion-item class="txt-box">
-                    <p class="txt_ Inside">{{d.text}}</p>
-                  </ion-item>
-                </ion-col>
-              </ion-row>
-            </div> -->
-              <div
-                class="item-rw"
-                *ngFor="let item of item.data; let i = index;"
-              >
-                <ion-checkbox
-                  class="custm-check"
-                  item-right
-                  [(ngModel)]="item.checked"
-                  (ionChange)="selectItem22(i, item,  $event);"
+      <div
+        class="con-inpu"
+        *ngFor="let item of ApplicationObservationContent; let i = index;"
+      >
+        <p (click)="AddTitleInfo2(item)" class="main-title">{{item.title}}</p>
+        <div *ngIf="item.title == SelectedTitleToFilter2">
+          <div class="input-etr">
+            <ion-row>
+              <ion-col>
+                <div
+                  class="item-rw"
+                  *ngFor="let item of item.data; let i = index;"
                 >
-                </ion-checkbox>
-                <p class="label-inside">{{item.text}}</p>
-              </div>
-            </ion-col>
+                  <ion-checkbox
+                    class="custm-check"
+                    item-right
+                    [(ngModel)]="item.checked"
+                    (ionChange)="selectItem22(i, item,  $event);"
+                  >
+                  </ion-checkbox>
+                  <p class="label-inside">{{item.text}}</p>
+                </div>
+              </ion-col>
+            </ion-row>
+          </div>
 
-            <!-- <ion-col>
-            <ion-button class="remv-btn" (click)="removeContent22()"
-              >Remove</ion-button
-            >
-            <ion-reorder-group
-              disabled="false"
-              (ionItemReorder)="onRenderItems2($event)"
-            >
-              <ion-item
-                class="data-ui"
-                *ngFor="let d of added_items2; let i = index;"
-                (click)="selectItem2Rem(i, d)"
-                [ngClass]="{'highlight2': selectedIndex2 === i}"
+          <ion-row class="row-form-ftr">
+            <ion-col style="text-align: center">
+              <ion-button
+                (click)="updateDescription2(item)"
+                class="CreateInspBtn"
               >
-                <ion-label> {{d.text}} </ion-label>
-                <ion-reorder slot="end"></ion-reorder>
-              </ion-item>
-            </ion-reorder-group>
-          </ion-col> -->
+                <ion-icon class="icn-c" name="create-outline"></ion-icon>
+
+                OK
+              </ion-button>
+            </ion-col>
+            <ion-col style="text-align: center">
+              <ion-button (click)="closeDescription()" class="Back-btn">
+                <ion-icon class="icn-c" name="close-outline"></ion-icon>
+
+                Cancel
+              </ion-button>
+            </ion-col>
           </ion-row>
         </div>
-
-        <ion-row class="row-form-ftr">
-          <ion-col style="text-align: center">
-            <ion-button (click)="updateDescription2()" class="CreateInspBtn">
-              <ion-icon class="icn-c" name="create-outline"></ion-icon>
-
-              OK
-            </ion-button>
-          </ion-col>
-          <ion-col style="text-align: center">
-            <ion-button (click)="closeDescription()" class="Back-btn">
-              <ion-icon class="icn-c" name="close-outline"></ion-icon>
-
-              Back
-            </ion-button>
-          </ion-col>
-        </ion-row>
       </div>
+
+      <ion-row>
+        <ion-col style="text-align: center">
+          <ion-button (click)="closeDescription()" class="Back-btn">
+            <ion-icon class="icn-c" name="close-outline"></ion-icon>
+
+            Back
+          </ion-button>
+        </ion-col>
+      </ion-row>
     </div>
 
     <!-- COMMENTS -->

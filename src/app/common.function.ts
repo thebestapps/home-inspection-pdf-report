@@ -417,8 +417,8 @@ export class CommonService {
       this.InsulationDescriptionContent = rmv2.InsulationDescriptionContent;
       this.InsulationObservationContent = rmv2.InsulationObservationContent;
 
-      this.PlumbingDescriptionContent = rmv2.PlumbingDescriptionContent;
-      this.PlumbingObservationContent = rmv2.PlumbingObservationContent;
+      this.plumbingDescriptionContent = rmv2.PlumbingDescriptionContent;
+      this.plumbingObservationContent = rmv2.PlumbingObservationContent;
 
       this.ElectricalDescriptionContent = rmv2.ElectricalDescriptionContent;
       this.ElectricalObservationContent = rmv2.ElectricalObservationContent;
@@ -579,8 +579,8 @@ export class CommonService {
       this.InsulationExhastVentStructureContent =
         rmv.insulationexhastventstructurecontent;
 
-      this.applianceDescriptionContent = rmv.appliancedescriptioncontent;
-      this.applianceObservationContent = rmv.applianceobservationcontent;
+      // this.applianceDescriptionContent = rmv.appliancedescriptioncontent;
+      // this.applianceObservationContent = rmv.applianceobservationcontent;
       this.applianceObservationRecommendations =
         rmv.applianceobservationrecommendations;
 
