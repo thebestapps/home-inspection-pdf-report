@@ -1,0 +1,52 @@
+ion-title.md.title-default.hydrated {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+ion-title.ios.title-default.hydrated {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.contain-crds {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 22px;
+}
+
+p.selection-name {
+  font-size: 17px;
+}
+
+ion-refresher-content.md.hydrated {
+  display: block;
+}
+
+ion-refresher-content.ios.hydrated {
+  display: block;
+}
+
+ion-content.md.hydrated {
+  --background: var(--ion-color-c-dark);
+}
+
+ion-content.ios.hydrated {
+  --background: var(--ion-color-c-dark);
+}
+
+.container {
+  background: var(--ion-color-c-dark);
+}
+
+.row-card {
+  background: white;
+  color: black;
+  font-weight: bold;
+  /* font-size: 18px; */
+}
+
+refresher-component {
+  display: block;
+  position: relative;
+  height: 60px;
+}
