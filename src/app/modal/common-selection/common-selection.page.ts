@@ -366,8 +366,7 @@ export class CommonSelectionPage implements OnInit {
         .length;
       console.log('LENGHT--' + imagesLength);
     }
-    //console.log(this.StoredData.coolingHvacObservation.length);
-
+    //console.log('COOLING OBSERVATION ======>', this.StoredData.coolingHvacObservation.length);
     // if (imagesLength === '') {
     //   this.config.presentToast('Please upload Inspection Images');
     //   return;
@@ -2637,13 +2636,13 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.coolingHvacDescriptionContent != null) {
-      var data = '';
+    if(this.StoredData.coolingHvacDescriptionContent != null){
+      var observationData = '';
       for(let i=0; i<parseInt(this.StoredData.coolingHvacDescriptionContent.length); i++)
       {
         for(let j=0; j<parseInt(this.StoredData.coolingHvacDescriptionContent[i].content.length); j++)
         {
-          data = data +  ' • '+this.StoredData.coolingHvacDescriptionContent[i].content[j].content
+          observationData = observationData +  ' • '+this.StoredData.coolingHvacDescriptionContent[i].content[j].content
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -2659,14 +2658,14 @@ export class CommonSelectionPage implements OnInit {
             ],
             [
               {
-                text: data,
+                text: observationData,
                 margin: [-50, 2, 0, 0],
                 fontSize: 9,
               },
             ],
           ],
         });
-        data = '';
+        observationData = '';
       }
     }
     if (this.StoredData.coolingObservation != null) {
