@@ -366,6 +366,7 @@ export class CommonSelectionPage implements OnInit {
         .length;
       console.log('LENGHT--' + imagesLength);
     }
+    //console.log(this.StoredData.coolingHvacObservation.length);
 
     // if (imagesLength === '') {
     //   this.config.presentToast('Please upload Inspection Images');
