@@ -400,7 +400,7 @@ export class CommonService {
       // console.log(rmv.coolinghvacdescriptioncontent);
 
       this.ApplicationDescriptionContent = rmv2.AppliancesDescriptionContent;
-      this.ApplicationObservationContent = rmv2.ApplicationObservationContent;
+      this.ApplicationObservationContent = rmv2.AppliancesObservationContent;
 
       this.StructureDescriptionContent = rmv2.StructureDescriptionContent;
       this.StructureObservationContent = rmv2.StructureObservationContent;

@@ -361,8 +361,6 @@ export class CommonSelectionPage implements OnInit {
     let img_7 = '../../../assets/img_7.jpg';
     let img_8 = '../../../assets/img_8.jpg';
 
-    // let imagesLength = this.StoredData.storedReportOverviewImage;
-
     if (this.StoredData.storedReportOverviewImage != null) {
       var imagesLength = Object.keys(this.StoredData.storedReportOverviewImage)
         .length;
@@ -1271,6 +1269,7 @@ export class CommonSelectionPage implements OnInit {
             },
             {
               text: '',
+              
             },
             {
               text: '',
@@ -1308,6 +1307,36 @@ export class CommonSelectionPage implements OnInit {
               },
             ],
             [{ text: '', margin: [0, 3, 0, 0] }],
+          ],
+        },
+        {
+          fontSize: 1,
+          columnGap: 4,
+          color: '#000000',
+          columns: [
+            [
+              {
+                text: '',
+                margin: [0, 3, 0, 0],
+                bold: 'true',
+              },
+            ],
+            [{ text: '', margin: [0, 3, 0, 0], fontSize: 0 }],
+          ],
+        },
+        {
+          fontSize: 1,
+          margin: [0, 0, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text: '',
+              bold: 'true',
+            },
+            {
+              text: '',
+              fontSize: 8,
+            },
           ],
         },
         {
@@ -1560,7 +1589,7 @@ export class CommonSelectionPage implements OnInit {
       {
         for(let j=0; j<parseInt(this.StoredData.structureDescriptionContent[i].content.length); j++)
         {
-          data = data +  ' • '+this.StoredData.structureDescriptionContent[i].content[j].content
+          data = data +  ' •'+this.StoredData.structureDescriptionContent[i].content[j].content
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -1578,6 +1607,7 @@ export class CommonSelectionPage implements OnInit {
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
+                fontSize: 9
               },
             ],
           ],
@@ -1636,7 +1666,7 @@ export class CommonSelectionPage implements OnInit {
       {
         for(let j=0; j<parseInt(this.StoredData.structureObservation[i].content.length); j++)
         {
-          data = data + this.StoredData.structureObservation[i].content[j].content + '\n\n'
+          data = data + this.StoredData.structureObservation[i].content[j].content + '\n'
         }
         docDefinition.content.push(
           {
@@ -1645,11 +1675,12 @@ export class CommonSelectionPage implements OnInit {
             color: '#ff0f06',
             text: [
               {
-                text: this.StoredData.structureObservation[i].title + '\n',
+                text: '\n' + this.StoredData.structureObservation[i].title + '\n',
                 bold: 'true',
               },
               {
                 text: data,
+                fontSize: 8.9,
               },
             ],
           }
@@ -1842,6 +1873,7 @@ export class CommonSelectionPage implements OnInit {
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
+                fontSize: 9,
               },
             ],
           ],
@@ -1896,7 +1928,7 @@ export class CommonSelectionPage implements OnInit {
       {
         for(let j=0; j<parseInt(this.StoredData.roofingObservation[i].content.length); j++)
         {
-          data = data + this.StoredData.roofingObservation[i].content[j].content + '\n\n'
+          data = data + this.StoredData.roofingObservation[i].content[j].content + '\n'
         }
         docDefinition.content.push(
           {
@@ -1905,11 +1937,12 @@ export class CommonSelectionPage implements OnInit {
             color: '#ff0f06',
             text: [
               {
-                text: this.StoredData.roofingObservation[i].title + '\n',
+                text: '\n' + this.StoredData.roofingObservation[i].title + '\n',
                 bold: 'true',
               },
               {
                 text: data,
+                fontSize: 8.9,
               },
             ],
           }
@@ -2108,6 +2141,7 @@ export class CommonSelectionPage implements OnInit {
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
+                fontSize: 9,
               },
             ],
           ],
@@ -2162,7 +2196,7 @@ export class CommonSelectionPage implements OnInit {
       {
         for(let j=0; j<parseInt(this.StoredData.exteriorObservation[i].content.length); j++)
         {
-          data = data + this.StoredData.exteriorObservation[i].content[j].content + '\n\n'
+          data = data + this.StoredData.exteriorObservation[i].content[j].content + '\n'
         }
         docDefinition.content.push(
           {
@@ -2171,11 +2205,12 @@ export class CommonSelectionPage implements OnInit {
             color: '#ff0f06',
             text: [
               {
-                text: this.StoredData.exteriorObservation[i].title + '\n',
+                text: '\n' + this.StoredData.exteriorObservation[i].title + '\n',
                 bold: 'true',
               },
               {
                 text: data,
+                fontSize: 8.9,
               },
             ],
           }
@@ -2368,6 +2403,7 @@ export class CommonSelectionPage implements OnInit {
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
+                fontSize: 9,
               },
             ],
           ],
@@ -2422,7 +2458,7 @@ export class CommonSelectionPage implements OnInit {
       {
         for(let j=0; j<parseInt(this.StoredData.electricalObservation[i].content.length); j++)
         {
-          data = data + this.StoredData.electricalObservation[i].content[j].content + '\n\n'
+          data = data + this.StoredData.electricalObservation[i].content[j].content + '\n'
         }
         docDefinition.content.push(
           {
@@ -2431,11 +2467,12 @@ export class CommonSelectionPage implements OnInit {
             color: '#ff0f06',
             text: [
               {
-                text: this.StoredData.electricalObservation[i].title + '\n',
+                text: '\n' + this.StoredData.electricalObservation[i].title + '\n',
                 bold: 'true',
               },
               {
                 text: data,
+                fontSize: 8.9,
               },
             ],
           }
@@ -2510,8 +2547,9 @@ export class CommonSelectionPage implements OnInit {
       this.StoredData.coolingDescription != null ||
       this.StoredData.coolingObservation != null ||
       this.StoredData.coolingLimitations != null ||
-      this.StoredData.coolingHvacDescriptionContent != null
-    ) {
+      this.StoredData.coolingHvacDescriptionContent != null 
+    )
+    {
       docDefinition.content.push(
         {
           pageBreak: 'before',
@@ -2622,6 +2660,7 @@ export class CommonSelectionPage implements OnInit {
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
+                fontSize: 9,
               },
             ],
           ],
@@ -2676,7 +2715,7 @@ export class CommonSelectionPage implements OnInit {
       {
         for(let j=0; j<parseInt(this.StoredData.coolingObservation[i].content.length); j++)
         {
-          data = data + this.StoredData.coolingObservation[i].content[j].content + '\n\n'
+          data = data + this.StoredData.coolingObservation[i].content[j].content + '\n'
         }
         docDefinition.content.push(
           {
@@ -2685,11 +2724,12 @@ export class CommonSelectionPage implements OnInit {
             color: '#ff0f06',
             text: [
               {
-                text: this.StoredData.coolingObservation[i].title + '\n',
+                text: '\n' + this.StoredData.coolingObservation[i].title + '\n',
                 bold: 'true',
               },
               {
                 text: data,
+                fontSize: 8.9,
               },
             ],
           }
@@ -3211,6 +3251,7 @@ export class CommonSelectionPage implements OnInit {
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
+                fontSize: 9,
               },
             ],
           ],
@@ -3265,7 +3306,7 @@ export class CommonSelectionPage implements OnInit {
       {
         for(let j=0; j<parseInt(this.StoredData.plumbingObservation[i].content.length); j++)
         {
-          data = data + this.StoredData.plumbingObservation[i].content[j].content + '\n\n'
+          data = data + this.StoredData.plumbingObservation[i].content[j].content + '\n'
         }
         docDefinition.content.push(
           {
@@ -3274,11 +3315,12 @@ export class CommonSelectionPage implements OnInit {
             color: '#ff0f06',
             text: [
               {
-                text: this.StoredData.plumbingObservation[i].title + '\n',
+                text: '\n' + this.StoredData.plumbingObservation[i].title + '\n',
                 bold: 'true',
               },
               {
                 text: data,
+                fontSize: 8.9,
               },
             ],
           }
@@ -3709,6 +3751,7 @@ export class CommonSelectionPage implements OnInit {
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
+                fontSize: 9,
               },
             ],
           ],
@@ -3763,20 +3806,21 @@ export class CommonSelectionPage implements OnInit {
       {
         for(let j=0; j<parseInt(this.StoredData.applianceObservation[i].content.length); j++)
         {
-          data = data + this.StoredData.applianceObservation[i].content[j].content + '\n\n'
+          data = data + this.StoredData.applianceObservation[i].content[j].content + '\n'
         }
         docDefinition.content.push(
           {
             fontSize: 9.5,
-            margin: [30, 10, 6, 0],
+            margin: [30, 0, 6, 0],
             color: '#ff0f06',
             text: [
               {
-                text: this.StoredData.applianceObservation[i].title + '\n',
+                text: '\n' + this.StoredData.applianceObservation[i].title + '\n',
                 bold: 'true',
               },
               {
                 text: data,
+                fontSize: 8.9,
               },
             ],
           }
