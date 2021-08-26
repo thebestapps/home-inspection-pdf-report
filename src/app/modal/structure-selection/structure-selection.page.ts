@@ -109,11 +109,11 @@ export class StructureSelectionPage implements OnInit {
         val: '2',
       },
 
-      {
-        name: 'General Comments',
+      // {
+      //   name: 'General Comments',
 
-        val: '3',
-      },
+      //   val: '3',
+      // },
 
       {
         name: 'Inspection Limitations',

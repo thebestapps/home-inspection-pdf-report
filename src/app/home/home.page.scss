@@ -33,23 +33,19 @@ ion-icon.icn-top.md.hydrated {
 }
 
 ion-button.cus-top-selection-btn.createins.ios.button.button-solid.ion-activatable.ion-focusable.hydrated {
-  --background: none;
-  color: var(--ion-color-primary);
-  border-radius: 11px;
-  margin-left: 16px;
-  margin-top: 10px;
   --border-radius: 11px;
   text-transform: capitalize;
 }
 
 ion-button.cus-top-selection-btn.createins.md.button.button-solid.ion-activatable.ion-focusable.hydrated {
-  --background: none;
-  color: var(--ion-color-primary);
-  border-radius: 11px;
-  margin-left: 16px;
-  margin-top: 10px;
   --border-radius: 11px;
   text-transform: capitalize;
+}
+
+span.ot {
+  border-right: 1px solid;
+
+  margin-right: 6px;
 }
 
 button.edit-btn {
@@ -109,8 +105,9 @@ ion-row.row-cls.ios.hydrated {
 }
 
 ion-icon.add-circle-ic.md.hydrated {
-  margin-top: 17px;
-  margin-right: 6px;
+  margin-top: 2px;
+  margin-right: 4px;
+  font-size: 16px;
 }
 
 ion-content.md.hydrated {
@@ -122,10 +119,127 @@ ion-content.ios.hydrated {
 }
 
 ion-icon.add-circle-ic.ios.hydrated {
-  margin-top: 17px;
-  margin-right: 6px;
+  margin-top: 2px;
+  margin-right: 4px;
+  font-size: 16px;
 }
 
 .date-only {
   margin-top: -25px;
+}
+
+.content-box {
+  background-repeat: no-repeat, repeat;
+  background-position: right top;
+  background-image: url(../../assets/Res/background-rect.png);
+  background-attachment: fixed;
+}
+
+.slide-box {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 19px;
+  margin-bottom: 25px;
+  background: white;
+  border-radius: 30px;
+}
+
+@media only screen and (min-width: 900px) {
+  .slide-box {
+    width: 75% !important;
+  }
+  .slide-box.singleorder {
+    width: 93% !important;
+    margin-left: 27px;
+  }
+  button.edit-btn {
+    position: fixed;
+    top: 10;
+    top: 110px !important;
+    right: 0px;
+    margin-right: 31px;
+  }
+}
+
+button.edit-btn {
+  position: revert;
+  top: 10;
+  top: auto;
+  right: auto;
+  margin-right: auto;
+}
+
+.content-one {
+  padding-left: 22px;
+}
+
+p.c-title {
+  color: #193f6a;
+  background: #f5f5f5;
+  text-align: center;
+  height: 27px;
+  padding-top: 4px;
+  font-size: 16px;
+  border-radius: 60px;
+
+  margin-top: 12px;
+  margin-bottom: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 126px;
+  overflow: hidden;
+  height: 24px;
+  padding-bottom: 19px;
+}
+
+p.subtitle-content {
+  font-size: 11px;
+  margin-bottom: -19px;
+
+  font-family: "Poppins";
+  color: #193f6aab;
+  font-family: "Poppins";
+}
+
+p.text-info {
+  line-height: 18px;
+}
+
+p.text-info {
+  color: #193f6a;
+  font-family: "Poppins";
+  font-size: 15px;
+  margin-bottom: 17px;
+  margin-top: 18px;
+}
+
+.content-two {
+  margin-top: 62px;
+}
+
+@media only screen and (max-width: 720px) {
+  .slide-box {
+    background-repeat: no-repeat, repeat;
+    background-position: bottom center;
+    background-image: url(../../assets/Res/group-circles.png) !important;
+  }
+
+  .on-mid {
+    margin-top: 0px !important;
+    padding-left: 22px !important;
+  }
+
+  .content-two {
+    margin-top: 0px !important;
+    padding-left: 22px !important;
+  }
+
+  .content-three {
+    padding-left: 4px !important;
+    padding-bottom: 13px;
+  }
+}
+
+p.title-btn {
+  float: right;
 }

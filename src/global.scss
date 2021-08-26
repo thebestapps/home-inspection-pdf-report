@@ -37,7 +37,7 @@ button.btn-f {
 }
 
 ion-button.Back-btn.ios.button.button-solid.ion-activatable.ion-focusable.hydrated {
-  --background: none;
+  --background: white;
   color: var(--ion-color-primary);
   text-transform: capitalize;
   border-radius: 11px;
@@ -46,7 +46,7 @@ ion-button.Back-btn.ios.button.button-solid.ion-activatable.ion-focusable.hydrat
 }
 
 ion-button.Back-btn.md.button.button-solid.ion-activatable.ion-focusable.hydrated {
-  --background: none;
+  --background: white;
   color: var(--ion-color-primary);
   text-transform: capitalize;
   border-radius: 11px;
@@ -134,19 +134,50 @@ ion-icon.prev-icn.ios.hydrated {
 }
 
 .row-card {
-  padding: 1px;
+  /* padding: 1px; */
   padding-left: 7px;
-  color: var(--ion-color-primary);
+  /* color: var(--ion-color-primary); */
   cursor: pointer;
-  border: none;
-
-  --border: none;
+  /* border: none; */
+  /* --border: none; */
   text-transform: capitalize;
   font-size: 16px;
   /* background: black; */
-  box-shadow: 3px 3px #888888;
+  /* box-shadow: 3px 3px #888888; */
   margin-top: 6px;
   /* font-size: 18px; */
+  border: 2px solid var(--ion-color-primary);
+  border-radius: 5px;
+  color: var(--ion-color-primary) !important;
+  background: white !important;
+}
+
+ion-content.md {
+  --background: #f5f6f9;
+}
+
+ion-content.ios {
+  --background: #f5f6f9;
+}
+
+.con-inpu {
+  background: var(--ion-color-primary);
+
+  padding-left: 7px;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  min-height: 34px;
+  box-shadow: 4px 4px #dee1e5;
+}
+
+button.btn-f {
+  background: var(--ion-color-primary);
+  color: white;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-radius: 4px;
+  min-width: 106px;
 }
 
 .container {

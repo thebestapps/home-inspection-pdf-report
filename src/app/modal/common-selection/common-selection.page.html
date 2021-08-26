@@ -1,10 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title slot="start"
-      >Inspection System for {{clientDetails.clientName}}</ion-title
-    >
-
-    <ion-buttons slot="end">
+    <ion-buttons slot="start">
       <!-- <ion-spinner *ngIf="reloadIconShow" name="circles"></ion-spinner>
 
       <ion-icon
@@ -16,10 +12,12 @@
 
       <ion-icon
         (click)="closeM()"
-        class="icn-close"
+        class="arrow-back-outline"
         name="close-outline"
       ></ion-icon>
     </ion-buttons>
+
+    <ion-title>Inspection for {{clientDetails.clientName}}</ion-title>
   </ion-toolbar>
 </ion-header>
 

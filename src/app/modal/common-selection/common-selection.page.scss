@@ -27,20 +27,20 @@ ion-refresher-content.ios.hydrated {
 }
 
 ion-content.md.hydrated {
-  --background: var(--ion-color-c-dark);
+  --background: #f5f6f9;
 }
 
 ion-content.ios.hydrated {
-  --background: var(--ion-color-c-dark);
+  --background: #f5f6f9;
 }
 
 .container {
-  background: var(--ion-color-c-dark);
+  background: #f5f6f9;
 }
 
 .row-card {
   background: white;
-  color: black;
+  color: var(--ion-color-primary);
   font-weight: bold;
   /* font-size: 18px; */
 }

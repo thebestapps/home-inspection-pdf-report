@@ -1548,12 +1548,12 @@ export class CoolingHvacSelectionPage implements OnInit {
       console.log('%c Final output ==>', 'color:red;font-size:18px');
 
       console.log(output);
+      this.StoredData.coolingHvacDescriptionContent = output;
 
       this.config.storageRemoveItem('InspectionToEdit');
       this.config.storageSave('InspectionToEdit', this.StoredData);
 
       console.log(this.StoredData);
-      this.StoredData.coolingHvacDescriptionContent = output;
 
       this.presentAlertConfirm();
     }

@@ -177,7 +177,7 @@
 
       <div
         class="con-inpu"
-        *ngFor="let item of ApplicationObservationContent; let i = index;"
+        *ngFor="let item of applianceObservationContent; let i = index;"
       >
         <p (click)="AddTitleInfo2(item)" class="main-title">{{item.title}}</p>
         <div *ngIf="item.title == SelectedTitleToFilter2">

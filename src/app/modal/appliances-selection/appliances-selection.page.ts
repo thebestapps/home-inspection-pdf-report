@@ -110,11 +110,11 @@ export class AppliancesSelectionPage implements OnInit {
         val: '2',
       },
 
-      {
-        name: 'Recommendations',
+      // {
+      //   name: 'Recommendations',
 
-        val: '3',
-      },
+      //   val: '3',
+      // },
 
       {
         name: 'Limitations',

@@ -361,14 +361,12 @@ export class CommonSelectionPage implements OnInit {
     let img_7 = '../../../assets/img_7.jpg';
     let img_8 = '../../../assets/img_8.jpg';
 
-    // let imagesLength = this.StoredData.storedReportOverviewImage;
-
     if (this.StoredData.storedReportOverviewImage != null) {
       var imagesLength = Object.keys(this.StoredData.storedReportOverviewImage)
         .length;
       console.log('LENGHT--' + imagesLength);
     }
-
+    //console.log('COOLING OBSERVATION ======>', this.StoredData.coolingHvacObservation.length);
     // if (imagesLength === '') {
     //   this.config.presentToast('Please upload Inspection Images');
     //   return;
@@ -1311,6 +1309,36 @@ export class CommonSelectionPage implements OnInit {
           ],
         },
         {
+          fontSize: 1,
+          columnGap: 4,
+          color: '#000000',
+          columns: [
+            [
+              {
+                text: '',
+                margin: [0, 3, 0, 0],
+                bold: 'true',
+              },
+            ],
+            [{ text: '', margin: [0, 3, 0, 0], fontSize: 0 }],
+          ],
+        },
+        {
+          fontSize: 1,
+          margin: [0, 0, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text: '',
+              bold: 'true',
+            },
+            {
+              text: '',
+              fontSize: 8,
+            },
+          ],
+        },
+        {
           style: 'watermark',
           ol: [''],
         },
@@ -1556,11 +1584,23 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.structureDescriptionContent != null) {
       var data = '';
-      for(let i=0; i<parseInt(this.StoredData.structureDescriptionContent.length); i++)
-      {
-        for(let j=0; j<parseInt(this.StoredData.structureDescriptionContent[i].content.length); j++)
-        {
-          data = data +  ' • '+this.StoredData.structureDescriptionContent[i].content[j].content
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.structureDescriptionContent.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j <
+          parseInt(
+            this.StoredData.structureDescriptionContent[i].content.length
+          );
+          j++
+        ) {
+          data =
+            data +
+            ' •' +
+            this.StoredData.structureDescriptionContent[i].content[j].content;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -1569,7 +1609,8 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text: this.StoredData.structureDescriptionContent[i].title + ':\t',
+                text:
+                  this.StoredData.structureDescriptionContent[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
               },
@@ -1578,6 +1619,7 @@ export class CommonSelectionPage implements OnInit {
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
+                fontSize: 9,
               },
             ],
           ],
@@ -1585,75 +1627,79 @@ export class CommonSelectionPage implements OnInit {
         data = '';
       }
     }
-    if(
-        this.StoredData.structureObservation != null ||
-        this.StoredData.structureComments != null
-      )
-      {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'STRUCTURAL / FOUNDATION COMPONENT OBSERVATIONS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+    if (
+      this.StoredData.structureObservation != null ||
+      this.StoredData.structureComments != null
+    ) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'STRUCTURAL / FOUNDATION COMPONENT OBSERVATIONS',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 139;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 139;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
           },
         },
-      );
+      });
     }
-    if(this.StoredData.structureObservation != null)
-    {
+    if (this.StoredData.structureObservation != null) {
       var data = '';
-      for(let i=0; i<parseInt(this.StoredData.structureObservation.length); i++)
-      {
-        for(let j=0; j<parseInt(this.StoredData.structureObservation[i].content.length); j++)
-        {
-          data = data + this.StoredData.structureObservation[i].content[j].content + '\n\n'
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.structureObservation.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.structureObservation[i].content.length);
+          j++
+        ) {
+          data =
+            data +
+            this.StoredData.structureObservation[i].content[j].content +
+            '\n';
         }
-        docDefinition.content.push(
-          {
-            fontSize: 9.5,
-            margin: [30, 10, 6, 0],
-            color: '#ff0f06',
-            text: [
-              {
-                text: this.StoredData.structureObservation[i].title + '\n',
-                bold: 'true',
-              },
-              {
-                text: data,
-              },
-            ],
-          }
-        );
+        docDefinition.content.push({
+          fontSize: 9.5,
+          margin: [30, 10, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text: '\n' + this.StoredData.structureObservation[i].title + '\n',
+              bold: 'true',
+            },
+            {
+              text: data,
+              fontSize: 8.9,
+            },
+          ],
+        });
         data = '';
       }
     }
@@ -1820,11 +1866,21 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.roofingDescriptionContent != null) {
       var data = '';
-      for(let i=0; i<parseInt(this.StoredData.roofingDescriptionContent.length); i++)
-      {
-        for(let j=0; j<parseInt(this.StoredData.roofingDescriptionContent[i].content.length); j++)
-        {
-          data = data +  ' • '+this.StoredData.roofingDescriptionContent[i].content[j].content
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.roofingDescriptionContent.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j <
+          parseInt(this.StoredData.roofingDescriptionContent[i].content.length);
+          j++
+        ) {
+          data =
+            data +
+            ' • ' +
+            this.StoredData.roofingDescriptionContent[i].content[j].content;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -1833,7 +1889,8 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text: this.StoredData.roofingDescriptionContent[i].title + ':\t',
+                text:
+                  this.StoredData.roofingDescriptionContent[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
               },
@@ -1842,6 +1899,7 @@ export class CommonSelectionPage implements OnInit {
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
+                fontSize: 9,
               },
             ],
           ],
@@ -1850,70 +1908,75 @@ export class CommonSelectionPage implements OnInit {
       }
     }
     if (this.StoredData.roofingObservation != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'ROOFING OBSERVATIONS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'ROOFING OBSERVATIONS',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 336;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
           },
-        }
-      );
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 336;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
     }
-    if(this.StoredData.roofingObservation != null)
-    {
+    if (this.StoredData.roofingObservation != null) {
       var data = '';
-      for(let i=0; i<parseInt(this.StoredData.roofingObservation.length); i++)
-      {
-        for(let j=0; j<parseInt(this.StoredData.roofingObservation[i].content.length); j++)
-        {
-          data = data + this.StoredData.roofingObservation[i].content[j].content + '\n\n'
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.roofingObservation.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.roofingObservation[i].content.length);
+          j++
+        ) {
+          data =
+            data +
+            this.StoredData.roofingObservation[i].content[j].content +
+            '\n';
         }
-        docDefinition.content.push(
-          {
-            fontSize: 9.5,
-            margin: [30, 10, 6, 0],
-            color: '#ff0f06',
-            text: [
-              {
-                text: this.StoredData.roofingObservation[i].title + '\n',
-                bold: 'true',
-              },
-              {
-                text: data,
-              },
-            ],
-          }
-        );
+        docDefinition.content.push({
+          fontSize: 9.5,
+          margin: [30, 10, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text: '\n' + this.StoredData.roofingObservation[i].title + '\n',
+              bold: 'true',
+            },
+            {
+              text: data,
+              fontSize: 8.9,
+            },
+          ],
+        });
         data = '';
       }
     }
@@ -2045,52 +2108,62 @@ export class CommonSelectionPage implements OnInit {
       this.StoredData.exteriorDescription != null ||
       this.StoredData.exteriorDescriptionContent != null
     ) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 6],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF EXTERIOR',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 6],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'DESCRIPTION OF EXTERIOR',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 324;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
           },
-        }
-      );
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 324;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
     }
     if (this.StoredData.exteriorDescriptionContent != null) {
       var data = '';
-      for(let i=0; i<parseInt(this.StoredData.exteriorDescriptionContent.length); i++)
-      {
-        for(let j=0; j<parseInt(this.StoredData.exteriorDescriptionContent[i].content.length); j++)
-        {
-          data = data +  ' • '+this.StoredData.exteriorDescriptionContent[i].content[j].content
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.exteriorDescriptionContent.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j <
+          parseInt(
+            this.StoredData.exteriorDescriptionContent[i].content.length
+          );
+          j++
+        ) {
+          data =
+            data +
+            ' • ' +
+            this.StoredData.exteriorDescriptionContent[i].content[j].content;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -2099,7 +2172,8 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text: this.StoredData.exteriorDescriptionContent[i].title + ':\t',
+                text:
+                  this.StoredData.exteriorDescriptionContent[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
               },
@@ -2108,6 +2182,7 @@ export class CommonSelectionPage implements OnInit {
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
+                fontSize: 9,
               },
             ],
           ],
@@ -2116,70 +2191,75 @@ export class CommonSelectionPage implements OnInit {
       }
     }
     if (this.StoredData.exteriorObservation != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'EXTERIOR OBSERVATIONS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'EXTERIOR OBSERVATIONS',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 332;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
-          }
-        }
-      );
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 332;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
     }
-    if(this.StoredData.exteriorObservation != null)
-    {
+    if (this.StoredData.exteriorObservation != null) {
       var data = '';
-      for(let i=0; i<parseInt(this.StoredData.exteriorObservation.length); i++)
-      {
-        for(let j=0; j<parseInt(this.StoredData.exteriorObservation[i].content.length); j++)
-        {
-          data = data + this.StoredData.exteriorObservation[i].content[j].content + '\n\n'
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.exteriorObservation.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.exteriorObservation[i].content.length);
+          j++
+        ) {
+          data =
+            data +
+            this.StoredData.exteriorObservation[i].content[j].content +
+            '\n';
         }
-        docDefinition.content.push(
-          {
-            fontSize: 9.5,
-            margin: [30, 10, 6, 0],
-            color: '#ff0f06',
-            text: [
-              {
-                text: this.StoredData.exteriorObservation[i].title + '\n',
-                bold: 'true',
-              },
-              {
-                text: data,
-              },
-            ],
-          }
-        );
+        docDefinition.content.push({
+          fontSize: 9.5,
+          margin: [30, 10, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text: '\n' + this.StoredData.exteriorObservation[i].title + '\n',
+              bold: 'true',
+            },
+            {
+              text: data,
+              fontSize: 8.9,
+            },
+          ],
+        });
         data = '';
       }
     }
@@ -2305,52 +2385,62 @@ export class CommonSelectionPage implements OnInit {
       this.StoredData.electricalDescription != null ||
       this.StoredData.electricalDescriptionContent != null
     ) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 6],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF ELECTRICAL SYSTEM',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 6],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'DESCRIPTION OF ELECTRICAL SYSTEM',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 262;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
           },
-        }
-      );
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 262;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
     }
     if (this.StoredData.electricalDescriptionContent != null) {
       var data = '';
-      for(let i=0; i<parseInt(this.StoredData.electricalDescriptionContent.length); i++)
-      {
-        for(let j=0; j<parseInt(this.StoredData.electricalDescriptionContent[i].content.length); j++)
-        {
-          data = data +  ' • '+this.StoredData.electricalDescriptionContent[i].content[j].content
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.electricalDescriptionContent.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j <
+          parseInt(
+            this.StoredData.electricalDescriptionContent[i].content.length
+          );
+          j++
+        ) {
+          data =
+            data +
+            ' • ' +
+            this.StoredData.electricalDescriptionContent[i].content[j].content;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -2359,7 +2449,8 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text: this.StoredData.electricalDescriptionContent[i].title + ':\t',
+                text:
+                  this.StoredData.electricalDescriptionContent[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
               },
@@ -2368,6 +2459,7 @@ export class CommonSelectionPage implements OnInit {
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
+                fontSize: 9,
               },
             ],
           ],
@@ -2376,70 +2468,76 @@ export class CommonSelectionPage implements OnInit {
       }
     }
     if (this.StoredData.electricalObservation != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'ELECTRICAL OBSERVATIONS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'ELECTRICAL OBSERVATIONS',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 319;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 319;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
           },
         },
-      );
+      });
     }
-    if(this.StoredData.electricalObservation != null)
-    {
+    if (this.StoredData.electricalObservation != null) {
       var data = '';
-      for(let i=0; i<parseInt(this.StoredData.electricalObservation.length); i++)
-      {
-        for(let j=0; j<parseInt(this.StoredData.electricalObservation[i].content.length); j++)
-        {
-          data = data + this.StoredData.electricalObservation[i].content[j].content + '\n\n'
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.electricalObservation.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.electricalObservation[i].content.length);
+          j++
+        ) {
+          data =
+            data +
+            this.StoredData.electricalObservation[i].content[j].content +
+            '\n';
         }
-        docDefinition.content.push(
-          {
-            fontSize: 9.5,
-            margin: [30, 10, 6, 0],
-            color: '#ff0f06',
-            text: [
-              {
-                text: this.StoredData.electricalObservation[i].title + '\n',
-                bold: 'true',
-              },
-              {
-                text: data,
-              },
-            ],
-          }
-        );
+        docDefinition.content.push({
+          fontSize: 9.5,
+          margin: [30, 10, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text:
+                '\n' + this.StoredData.electricalObservation[i].title + '\n',
+              bold: 'true',
+            },
+            {
+              text: data,
+              fontSize: 8.9,
+            },
+          ],
+        });
         data = '';
       }
     }
@@ -2505,7 +2603,7 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    //<==========================================> COOLING <==========================================> 
+    //<==========================================> COOLING <==========================================>
     if (
       this.StoredData.coolingDescription != null ||
       this.StoredData.coolingObservation != null ||
@@ -2599,12 +2697,24 @@ export class CommonSelectionPage implements OnInit {
       });
     }
     if (this.StoredData.coolingHvacDescriptionContent != null) {
-      var data = '';
-      for(let i=0; i<parseInt(this.StoredData.coolingHvacDescriptionContent.length); i++)
-      {
-        for(let j=0; j<parseInt(this.StoredData.coolingHvacDescriptionContent[i].content.length); j++)
-        {
-          data = data +  ' • '+this.StoredData.coolingHvacDescriptionContent[i].content[j].content
+      var observationData = '';
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.coolingHvacDescriptionContent.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j <
+          parseInt(
+            this.StoredData.coolingHvacDescriptionContent[i].content.length
+          );
+          j++
+        ) {
+          observationData =
+            observationData +
+            ' • ' +
+            this.StoredData.coolingHvacDescriptionContent[i].content[j].content;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -2613,87 +2723,95 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text: this.StoredData.coolingHvacDescriptionContent[i].title + ':\t',
+                text:
+                  this.StoredData.coolingHvacDescriptionContent[i].title +
+                  ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
               },
             ],
             [
               {
-                text: data,
+                text: observationData,
                 margin: [-50, 2, 0, 0],
+                fontSize: 9,
               },
             ],
           ],
         });
-        data = '';
+        observationData = '';
       }
     }
     if (this.StoredData.coolingObservation != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'SYSTEM OBSERVATIONS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'SYSTEM OBSERVATIONS',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 340;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 340;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
           },
         },
-      );
+      });
     }
-    if(this.StoredData.coolingObservation != null)
-    {
+    if (this.StoredData.coolingObservation != null) {
       var data = '';
-      for(let i=0; i<parseInt(this.StoredData.coolingObservation.length); i++)
-      {
-        for(let j=0; j<parseInt(this.StoredData.coolingObservation[i].content.length); j++)
-        {
-          data = data + this.StoredData.coolingObservation[i].content[j].content + '\n\n'
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.coolingObservation.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.coolingObservation[i].content.length);
+          j++
+        ) {
+          data =
+            data +
+            this.StoredData.coolingObservation[i].content[j].content +
+            '\n';
         }
-        docDefinition.content.push(
-          {
-            fontSize: 9.5,
-            margin: [30, 10, 6, 0],
-            color: '#ff0f06',
-            text: [
-              {
-                text: this.StoredData.coolingObservation[i].title + '\n',
-                bold: 'true',
-              },
-              {
-                text: data,
-              },
-            ],
-          }
-        );
+        docDefinition.content.push({
+          fontSize: 9.5,
+          margin: [30, 10, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text: '\n' + this.StoredData.coolingObservation[i].title + '\n',
+              bold: 'true',
+            },
+            {
+              text: data,
+              fontSize: 8.9,
+            },
+          ],
+        });
         data = '';
       }
     }
@@ -3094,7 +3212,7 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    //<==========================================> PLUMBING <==========================================> 
+    //<==========================================> PLUMBING <==========================================>
     if (
       this.StoredData.plumbingDescription != null ||
       this.StoredData.plumbingObservation != null ||
@@ -3189,11 +3307,23 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.plumbingDescriptionContent != null) {
       var data = '';
-      for(let i=0; i<parseInt(this.StoredData.plumbingDescriptionContent.length); i++)
-      {
-        for(let j=0; j<parseInt(this.StoredData.plumbingDescriptionContent[i].content.length); j++)
-        {
-          data = data +  ' • '+this.StoredData.plumbingDescriptionContent[i].content[j].content
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.plumbingDescriptionContent.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j <
+          parseInt(
+            this.StoredData.plumbingDescriptionContent[i].content.length
+          );
+          j++
+        ) {
+          data =
+            data +
+            ' • ' +
+            this.StoredData.plumbingDescriptionContent[i].content[j].content;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -3202,7 +3332,8 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text: this.StoredData.plumbingDescriptionContent[i].title + ':\t',
+                text:
+                  this.StoredData.plumbingDescriptionContent[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
               },
@@ -3211,6 +3342,7 @@ export class CommonSelectionPage implements OnInit {
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
+                fontSize: 9,
               },
             ],
           ],
@@ -3219,70 +3351,75 @@ export class CommonSelectionPage implements OnInit {
       }
     }
     if (this.StoredData.plumbingObservation != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'PLUMBING OBSERVATIONS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'PLUMBING OBSERVATIONS',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 328;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 328;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
           },
         },
-      );
+      });
     }
-    if(this.StoredData.plumbingObservation != null)
-    {
+    if (this.StoredData.plumbingObservation != null) {
       var data = '';
-      for(let i=0; i<parseInt(this.StoredData.plumbingObservation.length); i++)
-      {
-        for(let j=0; j<parseInt(this.StoredData.plumbingObservation[i].content.length); j++)
-        {
-          data = data + this.StoredData.plumbingObservation[i].content[j].content + '\n\n'
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.plumbingObservation.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.plumbingObservation[i].content.length);
+          j++
+        ) {
+          data =
+            data +
+            this.StoredData.plumbingObservation[i].content[j].content +
+            '\n';
         }
-        docDefinition.content.push(
-          {
-            fontSize: 9.5,
-            margin: [30, 10, 6, 0],
-            color: '#ff0f06',
-            text: [
-              {
-                text: this.StoredData.plumbingObservation[i].title + '\n',
-                bold: 'true',
-              },
-              {
-                text: data,
-              },
-            ],
-          }
-        );
+        docDefinition.content.push({
+          fontSize: 9.5,
+          margin: [30, 10, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text: '\n' + this.StoredData.plumbingObservation[i].title + '\n',
+              bold: 'true',
+            },
+            {
+              text: data,
+              fontSize: 8.9,
+            },
+          ],
+        });
         data = '';
       }
     }
@@ -3590,7 +3727,7 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    //<==========================================> APPLIANCES <==========================================> 
+    //<==========================================> APPLIANCES <==========================================>
     if (
       this.StoredData.applianceDescription != null ||
       this.StoredData.applianceObservation != null ||
@@ -3645,53 +3782,63 @@ export class CommonSelectionPage implements OnInit {
     if (
       this.StoredData.applianceDescription != null ||
       this.StoredData.appliancesDescriptionContent != null
-      ) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 6],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF APPLIANCES',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+    ) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 6],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'DESCRIPTION OF APPLIANCES',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 310;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 310;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
           },
         },
-      );
+      });
     }
     if (this.StoredData.appliancesDescriptionContent != null) {
       var data = '';
-      for(let i=0; i<parseInt(this.StoredData.appliancesDescriptionContent.length); i++)
-      {
-        for(let j=0; j<parseInt(this.StoredData.appliancesDescriptionContent[i].content.length); j++)
-        {
-          data = data +  ' • '+this.StoredData.appliancesDescriptionContent[i].content[j].content
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.appliancesDescriptionContent.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j <
+          parseInt(
+            this.StoredData.appliancesDescriptionContent[i].content.length
+          );
+          j++
+        ) {
+          data =
+            data +
+            ' • ' +
+            this.StoredData.appliancesDescriptionContent[i].content[j].content;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -3700,7 +3847,8 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text: this.StoredData.appliancesDescriptionContent[i].title + ':\t',
+                text:
+                  this.StoredData.appliancesDescriptionContent[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
               },
@@ -3709,6 +3857,7 @@ export class CommonSelectionPage implements OnInit {
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
+                fontSize: 9,
               },
             ],
           ],
@@ -3717,70 +3866,75 @@ export class CommonSelectionPage implements OnInit {
       }
     }
     if (this.StoredData.applianceObservation != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'APPLIANCE OBSERVATIONS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'APPLIANCE OBSERVATIONS',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 328;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 328;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
           },
         },
-      );
+      });
     }
-    if(this.StoredData.applianceObservation != null)
-    {
+    if (this.StoredData.applianceObservation != null) {
       var data = '';
-      for(let i=0; i<parseInt(this.StoredData.applianceObservation.length); i++)
-      {
-        for(let j=0; j<parseInt(this.StoredData.applianceObservation[i].content.length); j++)
-        {
-          data = data + this.StoredData.applianceObservation[i].content[j].content + '\n\n'
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.applianceObservation.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.applianceObservation[i].content.length);
+          j++
+        ) {
+          data =
+            data +
+            this.StoredData.applianceObservation[i].content[j].content +
+            '\n';
         }
-        docDefinition.content.push(
-          {
-            fontSize: 9.5,
-            margin: [30, 10, 6, 0],
-            color: '#ff0f06',
-            text: [
-              {
-                text: this.StoredData.applianceObservation[i].title + '\n',
-                bold: 'true',
-              },
-              {
-                text: data,
-              },
-            ],
-          }
-        );
+        docDefinition.content.push({
+          fontSize: 9.5,
+          margin: [30, 0, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text: '\n' + this.StoredData.applianceObservation[i].title + '\n',
+              bold: 'true',
+            },
+            {
+              text: data,
+              fontSize: 8.9,
+            },
+          ],
+        });
         data = '';
       }
     }

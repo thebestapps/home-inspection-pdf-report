@@ -8,16 +8,17 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-row>
-        <ion-col>
-          <div
+      <ion-row style="text-align: center">
+        <ion-col style="text-align: center">
+          <ion-button
             class="cus-top-selection-btn createins"
             (click)="CreateInspectionForm()"
           >
-            <ion-icon class="add-circle-ic" name="create-outline"></ion-icon>
-
-            <p class="menu-txt">Create Inspection</p>
-          </div>
+            <span class="ot">
+              <ion-icon class="add-circle-ic" name="create-outline"></ion-icon>
+            </span>
+            Create Inspection
+          </ion-button>
         </ion-col>
       </ion-row>
     </ion-item>
@@ -35,15 +36,58 @@
     </ion-item> -->
   </ion-list>
 
-  <div class="container-home">
+  <div class="content-box">
+    <div class="slide-box" *ngFor="let m of allDocsCreated">
+      <ion-row *ngFor="let c of m.client_Info">
+        <ion-col size="6" size-sm="6">
+          <div class="content-one">
+            <p class="subtitle-content">Client Name</p>
+            <p class="text-info">{{c.clientName}}</p>
+            <p class="subtitle-content">Address</p>
+            <p class="text-info">
+              <ion-icon
+                class="add-icn"
+                name="navigate-circle-outline"
+              ></ion-icon>
+              {{c.inspectionAddress}}
+            </p>
+            <p class="subtitle-content">Inspector</p>
+            <p class="text-info">{{c.inspector}}</p>
+          </div>
+        </ion-col>
+        <ion-col size="6" size-sm="6">
+          <div class="content-two">
+            <p class="subtitle-content">Report Number</p>
+            <p class="text-info">{{c.reportNumber}}</p>
+
+            <p class="subtitle-content">Inspection Date</p>
+            <p class="text-info">
+              {{c.inspectionDate | date: 'dd/MM/yyyy H:mm'}}
+            </p>
+          </div>
+
+          <div class="on-mid">
+            <p class="title-btn">
+              <button class="edit-btn" (click)="openCommonModal(m)">
+                Edit
+              </button>
+            </p>
+          </div>
+        </ion-col>
+        <!-- <ion-col size="12" size-sm="6" size-md="4">
+          <div class="content-three">
+            <div class="content-right">
+          
+            </div>
+          </div>
+        </ion-col> -->
+      </ion-row>
+    </div>
+  </div>
+
+  <!-- <div class="container-home">
     <ion-row class="row-cls" *ngFor="let m of allDocsCreated">
-      <!-- <ion-row>
-        <ion-col> -->
-      <button class="edit-button" (click)="openCommonModal(m)">
-        <ion-icon class="edit-icn" name="create-outline"></ion-icon>
-      </button>
-      <!-- </ion-col>
-      </ion-row> -->
+  
 
       <div class="card-cus" *ngFor="let c of m.client_Info">
         <ion-row>
@@ -77,6 +121,10 @@
           <p class="date-field">{{c.inspectionDate}}</p>
         </div>
       </div>
+
+      <button class="edit-button2" (click)="openCommonModal(m)">
+        <ion-icon class="edit-icn2" name="create-outline"></ion-icon>
+      </button>
     </ion-row>
-  </div>
+  </div> -->
 </ion-content>
