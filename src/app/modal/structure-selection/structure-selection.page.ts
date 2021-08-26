@@ -1937,4 +1937,47 @@ export class StructureSelectionPage implements OnInit {
 
     this.SelectedTitleToFilter2 = n.title;
   }
+
+  // method to edit ttle info.
+  editText(obj) {
+    console.log(obj);
+    this.alertController.create({
+      header: 'Update Text',
+      subHeader: '',
+      message: '',
+      inputs: [
+        {
+          name: 'name',
+          placeholder: '',
+          value: obj.text || ''
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: (data: any) => {
+            console.log('Canceled', data);
+          }
+        },
+        {
+          text: 'Update',
+          handler: (data: any) => {
+            console.log('Saved Information', data);
+            this.updateValue(obj,data)
+          }
+        }
+      ]
+    }).then(res => {
+      res.present();
+    });
+  }
+
+  updateValue(item, val) {
+    console.log('-item ', item);
+    console.log('-val ', val);
+    if (val.name.length) {
+      item.text = val.name;
+    }
+  }
+
 }

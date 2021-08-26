@@ -77,3 +77,10 @@ ion-item {
   --inner-padding-end: 0px;
   // here other custom CSS from documentation
 }
+
+.btn-edit {
+  position: absolute;
+  right: 12px;
+  text-transform: none;
+  transform: translateY(-8px);
+}

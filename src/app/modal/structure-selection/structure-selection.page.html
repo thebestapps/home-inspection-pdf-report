@@ -123,10 +123,7 @@
           <div class="input-etr">
             <ion-row>
               <ion-col>
-                <div
-                  class="item-rw"
-                  *ngFor="let item of item.data; let i = index;"
-                >
+                <div class="item-rw" *ngFor="let item of item.data; let i = index;">
                   <ion-checkbox
                     class="custm-check"
                     item-right
@@ -134,7 +131,8 @@
                     (ionChange)="selectItem5(i, item,  $event);"
                   >
                   </ion-checkbox>
-                  <p class="label-inside">{{item.text}}</p>
+                  <p class="label-inside text-primary">{{item.text}}</p>
+                  <ion-button class="btn-edit" slot="start" size="small" shape="round" (click)="editText(item)">Edit</ion-button>
                 </div>
               </ion-col>
             </ion-row>
@@ -198,6 +196,7 @@
                   >
                   </ion-checkbox>
                   <p class="label-inside">{{item.text}}</p>
+                  <ion-button class="btn-edit" slot="start" size="small" shape="round" (click)="editText(item)">Edit</ion-button>
                 </div>
               </ion-col>
             </ion-row>
@@ -299,6 +298,7 @@
         </ion-checkbox>
 
         <p class="label-inside">{{item.text}}</p>
+        <ion-button class="btn-edit" slot="start" size="small" shape="round" (click)="editText(item)">Edit</ion-button>
       </div>
 
       <ion-row>
