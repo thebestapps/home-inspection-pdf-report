@@ -84,3 +84,12 @@ ion-item {
   text-transform: none;
   transform: translateY(-8px);
 }
+
+::ng-deep .custom-modal-txt-area {
+  .alert-wrapper {
+    min-height: 330px !important;
+    textarea {
+      min-height: 160px !important;
+    }
+  }
+}

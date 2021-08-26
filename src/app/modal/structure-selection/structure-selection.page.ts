@@ -1948,6 +1948,7 @@ export class StructureSelectionPage implements OnInit {
       message: '',
       inputs: [
         {
+          type: 'textarea',
           name: 'name',
           placeholder: '',
           value: obj.text || ''
@@ -1967,7 +1968,8 @@ export class StructureSelectionPage implements OnInit {
             this.updateValue(obj,data)
           }
         }
-      ]
+      ],
+      cssClass: 'custom-modal-txt-area'
     }).then(res => {
       res.present();
     });
