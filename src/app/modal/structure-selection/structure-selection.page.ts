@@ -157,6 +157,7 @@ export class StructureSelectionPage implements OnInit {
     // this.StructureDescriptionContent = this.config.StructureDescriptionContent;
 
     this.StructureDescriptionContent = this.config.StructureDescriptionContent;
+    console.log('---StructureDescriptionContent ', this.StructureDescriptionContent);
 
     this.StructureObservationContent = this.config.StructureObservationContent;
 
@@ -1975,7 +1976,8 @@ export class StructureSelectionPage implements OnInit {
   updateValue(item, val) {
     console.log('-item ', item);
     console.log('-val ', val);
-    if (val.name.length) {
+    const title = val.name || '';
+    if (title.trim().length) {
       item.text = val.name;
     }
   }
