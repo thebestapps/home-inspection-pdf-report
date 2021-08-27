@@ -402,7 +402,13 @@ export class CommonService {
       this.ApplicationDescriptionContent = rmv2.AppliancesDescriptionContent;
       this.ApplicationObservationContent = rmv2.AppliancesObservationContent;
 
-      this.StructureDescriptionContent = rmv2.StructureDescriptionContent;
+      const StructureDescriptionContent = localStorage.getItem('StructureDescriptionContent') || '';
+      if (StructureDescriptionContent) {
+        this.StructureDescriptionContent = JSON.parse(StructureDescriptionContent);
+      } else {
+        this.StructureDescriptionContent = rmv2.StructureDescriptionContent;
+      }
+
       this.StructureObservationContent = rmv2.StructureObservationContent;
 
       this.CoolingHVACDescriptionContent = rmv2.CoolingHVACDescriptionContent;

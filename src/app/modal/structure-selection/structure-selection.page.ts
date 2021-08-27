@@ -1981,7 +1981,13 @@ export class StructureSelectionPage implements OnInit {
     const title = val.name || '';
     if (title.trim().length) {
       item.text = val.name;
+      this.updateStorage();
     }
+  }
+
+  updateStorage() {
+    const data = JSON.stringify(this.StructureDescriptionContent);
+    localStorage.setItem('StructureDescriptionContent', data);
   }
 
 }
