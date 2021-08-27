@@ -1641,20 +1641,23 @@ export class StructureSelectionPage implements OnInit {
     });
   }
 
-  selectItem5(_index: number, data, ev) {
-    this.selectedIndex = _index;
-    this.Selected_Item_to_add = data;
-    this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
-    if (ev.detail.checked == true) {
-      this.itemsToDelete = data;
-      this.removeContent5();
-      this.DB_Click_AddNewItem5();
-    }
-    if (ev.detail.checked == false) {
-      this.selectedIndex10 = _index;
-      this.itemsToDelete = data;
-      this.removeContent5();
-    }
+  selectItem5(_index: number, data, e) {
+    console.log(e);
+    console.log(data);
+    // this.selectedIndex = _index;
+    // this.Selected_Item_to_add = data;
+    // this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
+    // if (ev.detail.checked == true) {
+    //   this.itemsToDelete = data;
+    //   this.removeContent5();
+    //   this.DB_Click_AddNewItem5();
+    // }
+    // if (ev.detail.checked == false) {
+    //   this.selectedIndex10 = _index;
+    //   this.itemsToDelete = data;
+    //   this.removeContent5();
+    // }
+    this.updateStorage();
   }
 
   selectItem6(_index: number, data, ev) {
@@ -1937,6 +1940,60 @@ export class StructureSelectionPage implements OnInit {
     // this.SelectedTitleToFilter = '';
 
     this.SelectedTitleToFilter2 = n.title;
+  }
+
+  // method to add new Description
+  addDescription(index, data) {
+    const selectedItem = this.StructureDescriptionContent[index];
+    // console.log(item, data);
+    // console.log(this.StructureDescriptionContent);
+    let obj = {
+      checked: 0,
+      id: selectedItem.data.length + 1,
+      main: "Structure Description Content",
+      text: data.description,
+      title: selectedItem.title
+    }
+    selectedItem.data.push(obj);
+    this.updateStorage();
+  }
+
+  openAddModal(index) {
+    // const obj = this.StructureDescriptionContent[index];
+    this.alertController.create({
+      header: 'Add Description',
+      subHeader: '',
+      message: '',
+      inputs: [
+        {
+          type: 'textarea',
+          name: 'description',
+          placeholder: '',
+          // value: obj.text || ''
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: (data: any) => {
+            console.log('Canceled', data);
+          }
+        },
+        {
+          text: 'Add',
+          handler: (res: any) => {
+            console.log('Saved Information', res);
+            // const data = {...item, ...res};
+            if (res.description.length) {              
+              this.addDescription(index,res)
+            }
+          }
+        }
+      ],
+      cssClass: 'custom-modal-txt-area'
+    }).then(res => {
+      res.present();
+    });
   }
 
   // method to edit ttle info.

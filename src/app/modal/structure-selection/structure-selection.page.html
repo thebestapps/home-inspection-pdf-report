@@ -115,9 +115,11 @@
 
       <div
         class="con-inpu"
-        *ngFor="let item of StructureDescriptionContent; let i = index;"
-      >
+        *ngFor="let item of StructureDescriptionContent; let ind = index;">
         <p (click)="AddTitleInfo(item)" class="main-title">{{item.title}}</p>
+        <ion-button class="btn-add" slot="end" size="small" shape="round" (click)="openAddModal(ind)">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
 
         <div *ngIf="item.title == SelectedTitleToFilter">
           <div class="input-etr">

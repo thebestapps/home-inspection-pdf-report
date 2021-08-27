@@ -93,3 +93,12 @@ ion-item {
     }
   }
 }
+
+.con-inpu {
+  position: relative;
+  .btn-add {
+    position: absolute;
+    right: 8px;
+    top: -1px;
+  }
+}
