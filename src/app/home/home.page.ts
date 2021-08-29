@@ -130,8 +130,8 @@ export class HomePage {
     this.doRefresh();
     this.config.storageRemoveItem('InspectionsCreated');
 
-    this.config.storageRemoveItem('InspectionToEdit');
-    this.config.storageSave('InspectionToEdit', c);
+    // this.config.storageRemoveItem('InspectionToEdit');
+    // this.config.storageSave('InspectionToEdit', c);
 
     const modal = await this.modalController.create({
       cssClass: 'update-popup-modal',

@@ -992,7 +992,8 @@ export class StructureSelectionPage implements OnInit {
       console.log('%c G-code ==>', 'color:green;font-size:18px');
 
       console.log(this.added_items5);
-      let output = [];
+      const storageData = JSON.parse(localStorage.getItem('InspectionToEdit'));
+      let output = storageData.structureDescriptionContent || [];
 
       for (let i = 0; i < this.added_items5.length; i++) {
         let objIndex = output.findIndex(
@@ -1028,6 +1029,7 @@ export class StructureSelectionPage implements OnInit {
 
       this.presentAlertConfirm();
     }
+    this.updateStorage();
   }
 
   updateDescription6() {
@@ -1644,20 +1646,20 @@ export class StructureSelectionPage implements OnInit {
   selectItem5(_index: number, data, e) {
     console.log(e);
     console.log(data);
-    // this.selectedIndex = _index;
-    // this.Selected_Item_to_add = data;
-    // this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
-    // if (ev.detail.checked == true) {
-    //   this.itemsToDelete = data;
-    //   this.removeContent5();
-    //   this.DB_Click_AddNewItem5();
-    // }
-    // if (ev.detail.checked == false) {
-    //   this.selectedIndex10 = _index;
-    //   this.itemsToDelete = data;
-    //   this.removeContent5();
-    // }
-    this.updateStorage();
+    this.selectedIndex = _index;
+    this.Selected_Item_to_add = data;
+    this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
+    if (e.detail.checked == true) {
+      this.itemsToDelete = data;
+      this.removeContent5();
+      this.DB_Click_AddNewItem5();
+    }
+    if (e.detail.checked == false) {
+      this.selectedIndex10 = _index;
+      this.itemsToDelete = data;
+      this.removeContent5();
+    }
+    // this.updateStorage();
   }
 
   selectItem6(_index: number, data, ev) {
