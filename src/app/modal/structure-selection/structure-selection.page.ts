@@ -2120,7 +2120,9 @@ export class StructureSelectionPage implements OnInit {
     modal.onDidDismiss().then((modelData) => {
       console.log('Modal Data : ', modelData.data);
       const data = modelData.data;
-      this.setThemeVaribles(index, data);
+      if (data) {
+        this.setThemeVaribles(index, data);
+      }
     });
 
     return await modal.present();
