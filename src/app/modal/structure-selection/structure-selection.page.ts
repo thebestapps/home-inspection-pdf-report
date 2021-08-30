@@ -85,6 +85,7 @@ export class StructureSelectionPage implements OnInit {
   StructureFloorStructureContent: any = [];
 
   backdrop = false;
+  descOutput = [];
 
   constructor(
     public modalController: ModalController,
@@ -917,124 +918,171 @@ export class StructureSelectionPage implements OnInit {
     // this.SelectedTitleToFilter = n.title;
     // this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
 
-    let structureLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['structureDescriptionContent'];
-
-    console.log('To finalize structureDescription=====' + structureLimitations);
-
-    if (structureLimitations != undefined) {
-      if (this.added_items5 == '') {
-        this.added_items5 = [];
-
-        var newArray = this.added_items5.map((o) => {
-          return {
-            structureDescriptionContent: [
-              {
-                text: '',
-                checked: '',
-                title: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items5.map((o) => {
-          return {
-            structureDescriptionContent: [
-              {
-                text: o.text,
-                checked: o.checked,
-                title: o.title,
-              },
-            ],
-          };
-        });
-      }
-
-      console.log('Array To Add++++++++' + newArray);
-
-      let arr3 = [...structureLimitations, ...newArray];
-    }
-
-    if (structureLimitations == null || structureLimitations == undefined) {
-      console.log('undefined------------------------------');
-
-      let structureDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['structureDescriptionContent'];
-
-      if (this.added_items5 == '') {
-        this.added_items5 = [];
-
-        var newArray = this.added_items5.map((o) => {
-          return {
-            structureDescriptionContent: [
-              {
-                text: '',
-                checked: '',
-                title: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items5.map((o) => {
-          return {
-            text: o.text,
-            checked: o.checked,
-            title: o.title,
-          };
-        });
-      }
-
-      this.StoredData = JSON.parse(
-        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
-      );
-
-      console.log('%c G-code ==>', 'color:green;font-size:18px');
-
-      console.log(this.added_items5);
-      const storageData = JSON.parse(localStorage.getItem('InspectionToEdit'));
-      let output = storageData.structureDescriptionContent || [];
-
-      for (let i = 0; i < this.added_items5.length; i++) {
-        let objIndex = output.findIndex(
-          (obj) => obj.title == this.added_items5[i].title
-        );
-        if (objIndex == -1) {
-          output.push({
-            title: this.added_items5[i].title,
-            font_color: this.added_items5[i].font_color || '',
-            font_size: this.added_items5[i].font_size || '',
-            content: [],
-          });
-        }
-      }
-
-      for (let i = 0; i < this.added_items5.length; i++) {
-        const element = this.added_items5[i];
-
-        console.log(output.includes(element.title));
-
-        let objIndex = output.findIndex((obj) => obj.title == element.title);
-        output[objIndex].content.push({
-          content: element.text,
-        });
-      }
-      console.log('%c Final output ==>', 'color:red;font-size:18px');
-
-      console.log(output);
-
+    let data = this.StructureDescriptionContent;    
+    this.descOutput = [];
+    data.map((obj, index) => {
+        obj.data.map((item) => {
+          if (item.checked) {
+            this.collectData(index, item);
+          }
+        })
+    })
+    console.log('desc output ', this.descOutput);
+      this.StoredData.structureDescriptionContent = this.descOutput;
       console.log(this.StoredData);
-      this.StoredData.structureDescriptionContent = output;
-
       this.config.storageRemoveItem('InspectionToEdit');
       this.config.storageSave('InspectionToEdit', this.StoredData);
 
-      this.presentAlertConfirm();
-    }
+    // let structureLimitations = this.config.storageGet('InspectionToEdit')[
+    //   '__zone_symbol__value'
+    // ]['structureDescriptionContent'];
+
+    // console.log('To finalize structureDescription=====' + structureLimitations);
+
+    // if (structureLimitations != undefined) {
+    //   if (this.added_items5 == '') {
+    //     this.added_items5 = [];
+
+    //     var newArray = this.added_items5.map((o) => {
+    //       return {
+    //         structureDescriptionContent: [
+    //           {
+    //             text: '',
+    //             checked: '',
+    //             title: '',
+    //           },
+    //         ],
+    //       };
+    //     });
+    //   } else {
+    //     var newArray = this.added_items5.map((o) => {
+    //       return {
+    //         structureDescriptionContent: [
+    //           {
+    //             text: o.text,
+    //             checked: o.checked,
+    //             title: o.title,
+    //           },
+    //         ],
+    //       };
+    //     });
+    //   }
+
+    //   console.log('Array To Add++++++++' + newArray);
+
+    //   let arr3 = [...structureLimitations, ...newArray];
+    // }
+
+    // if (structureLimitations == null || structureLimitations == undefined) {
+    //   console.log('undefined------------------------------');
+
+    //   let structureDescription = this.config.storageGet('InspectionToEdit')[
+    //     '__zone_symbol__value'
+    //   ]['structureDescriptionContent'];
+
+    //   if (this.added_items5 == '') {
+    //     this.added_items5 = [];
+
+    //     var newArray = this.added_items5.map((o) => {
+    //       return {
+    //         structureDescriptionContent: [
+    //           {
+    //             text: '',
+    //             checked: '',
+    //             title: '',
+    //           },
+    //         ],
+    //       };
+    //     });
+    //   } else {
+    //     var newArray = this.added_items5.map((o) => {
+    //       return {
+    //         text: o.text,
+    //         checked: o.checked,
+    //         title: o.title,
+    //       };
+    //     });
+    //   }
+
+    //   this.StoredData = JSON.parse(
+    //     this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+    //   );
+
+    //   console.log('%c G-code ==>', 'color:green;font-size:18px');
+
+    //   console.log(this.added_items5);
+    //   const storageData = JSON.parse(localStorage.getItem('InspectionToEdit'));
+    //   let output = [];
+
+    //   for (let i = 0; i < this.added_items5.length; i++) {
+    //     let objIndex = output.findIndex(
+    //       (obj) => obj.title == this.added_items5[i].title
+    //     );
+    //     if (objIndex == -1) {
+    //       output.push({
+    //         title: this.added_items5[i].title,
+    //         font_color: this.StructureDescriptionContent[i].font_color || '',
+    //         font_size: this.StructureDescriptionContent[i].font_size || '',
+    //         content: [],
+    //       });
+    //     }
+    //   }
+
+    //   for (let i = 0; i < this.added_items5.length; i++) {
+    //     const element = this.added_items5[i];
+
+    //     console.log(output.includes(element.title));
+
+    //     let objIndex = output.findIndex((obj) => obj.title == element.title);
+    //     output[objIndex].content.push({
+    //       content: element.text,
+    //     });
+    //   }
+    //   console.log('%c Final output ==>', 'color:red;font-size:18px');
+
+    //   console.log(output);
+
+    //   console.log(this.StoredData);
+    //   this.StoredData.structureDescriptionContent = output;
+
+    //   this.config.storageRemoveItem('InspectionToEdit');
+    //   this.config.storageSave('InspectionToEdit', this.StoredData);
+
+    //   this.presentAlertConfirm();
+    // }
     this.updateStorage();
+  }
+
+  collectData(index, item) {
+    if (this.descOutput.length) {
+      let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      if (arrObj.length) {
+          const id = arrObj[0].id;
+          this.descOutput.map(e => {
+            if (e.id == id) {
+              e.content.push(item);
+            }
+          })
+      } else {
+        let obj = {
+          content: [item],
+          font_color: this.StructureDescriptionContent[index].font_color || '',
+          font_size: this.StructureDescriptionContent[index].font_size || '',
+          title: this.StructureDescriptionContent[index].title,
+          id: index
+        }
+        this.descOutput.push(obj);
+      }
+    } else {
+      let obj = {
+        content: [item],
+        font_color: this.StructureDescriptionContent[index].font_color || '',
+        font_size: this.StructureDescriptionContent[index].font_size || '',
+        title: this.StructureDescriptionContent[index].title,
+        id: index
+      }
+      this.descOutput.push(obj);
+    }
   }
 
   updateDescription6() {
