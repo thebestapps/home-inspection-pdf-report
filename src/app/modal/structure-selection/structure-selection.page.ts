@@ -932,6 +932,7 @@ export class StructureSelectionPage implements OnInit {
       console.log(this.StoredData);
       this.config.storageRemoveItem('InspectionToEdit');
       this.config.storageSave('InspectionToEdit', this.StoredData);
+      this.presentAlertConfirm();
 
     // let structureLimitations = this.config.storageGet('InspectionToEdit')[
     //   '__zone_symbol__value'
