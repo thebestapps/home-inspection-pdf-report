@@ -129,6 +129,10 @@ const routes: Routes = [
     path: 'general-information',
     loadChildren: () => import('./modal/general-information/general-information.module').then( m => m.GeneralInformationPageModule)
   },
+  {
+    path: 'modal-popup',
+    loadChildren: () => import('./shared/components/modal-popup/modal-popup.module').then( m => m.ModalPopupPageModule)
+  },
 ];
 
 @NgModule({

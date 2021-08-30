@@ -10,6 +10,7 @@ import { CommonService } from '../../common.function';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { CommonSelectionPage } from '../../../app/modal/common-selection/common-selection.page';
+import { ModalPopupPage } from 'src/app/shared/components/modal-popup/modal-popup.page';
 
 @Component({
   selector: 'app-structure-selection',
@@ -82,6 +83,8 @@ export class StructureSelectionPage implements OnInit {
   StructureAtticMethodStructureContent: any = [];
   StructureFoundationStructureContent: any = [];
   StructureFloorStructureContent: any = [];
+
+  backdrop = false;
 
   constructor(
     public modalController: ModalController,
@@ -1002,6 +1005,8 @@ export class StructureSelectionPage implements OnInit {
         if (objIndex == -1) {
           output.push({
             title: this.added_items5[i].title,
+            font_color: this.added_items5[i].font_color || '',
+            font_size: this.added_items5[i].font_size || '',
             content: [],
           });
         }
@@ -2035,8 +2040,6 @@ export class StructureSelectionPage implements OnInit {
   }
 
   updateValue(item, val) {
-    console.log('-item ', item);
-    console.log('-val ', val);
     const title = val.name || '';
     if (title.trim().length) {
       item.text = val.name;
@@ -2047,6 +2050,40 @@ export class StructureSelectionPage implements OnInit {
   updateStorage() {
     const data = JSON.stringify(this.StructureDescriptionContent);
     localStorage.setItem('StructureDescriptionContent', data);
+  }
+
+  // settings modal for color change and font-sized
+  async openIonModal(index) {
+    const payload = this.StructureDescriptionContent[index]
+    this.backdrop = true;
+    const modal = await this.modalController.create({
+      component: ModalPopupPage,
+      componentProps: {
+        'data': payload
+      },
+      cssClass: 'modal-cutomise',
+      backdropDismiss: true
+    });
+
+    // const { data } = await modal.onWillDismiss();
+    // console.log(data);
+
+    modal.onDidDismiss().then((modelData) => {
+      console.log('Modal Data : ', modelData.data);
+      const data = modelData.data;
+      this.setThemeVaribles(index, data);
+    });
+
+    return await modal.present();
+  }
+
+  setThemeVaribles(index, data) {
+    console.log(data);
+    const selectedItem = this.StructureDescriptionContent[index];
+    selectedItem.font_color = data.font_color;
+    selectedItem.font_size = data.font_size;
+    console.log(this.StructureDescriptionContent)
+    // this.updateDescription5();
   }
 
 }

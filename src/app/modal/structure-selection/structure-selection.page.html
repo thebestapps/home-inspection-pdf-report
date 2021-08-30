@@ -116,7 +116,12 @@
       <div
         class="con-inpu"
         *ngFor="let item of StructureDescriptionContent; let ind = index;">
-        <p (click)="AddTitleInfo(item)" class="main-title">{{item.title}}</p>
+        <p (click)="AddTitleInfo(item)" 
+          [ngStyle]="{'font-size': item.font_size ? (item.font_size + 'px') : '', 'color' : item.font_color ? item.font_color : '' }"
+           class="main-title">{{item.title}}</p>
+        <ion-button class="btn-settings" slot="end" size="small" shape="round" (click)="openIonModal(ind)">
+          <ion-icon name="settings-outline"></ion-icon>
+        </ion-button>
         <ion-button class="btn-add" slot="end" size="small" shape="round" (click)="openAddModal(ind)">
           <ion-icon name="add-outline"></ion-icon>
         </ion-button>
@@ -125,16 +130,18 @@
           <div class="input-etr">
             <ion-row>
               <ion-col>
-                <div class="item-rw" *ngFor="let item of item.data; let i = index;">
+                <div class="item-rw" *ngFor="let desc of item.data; let i = index;">
                   <ion-checkbox
                     class="custm-check"
                     item-right
-                    [(ngModel)]="item.checked"
-                    (ionChange)="selectItem5(i, item,  $event);"
+                    [(ngModel)]="desc.checked"
+                    (ionChange)="selectItem5(i, desc,  $event);"
                   >
                   </ion-checkbox>
-                  <p class="label-inside text-primary">{{item.text}}</p>
-                  <ion-button class="btn-edit" slot="start" size="small" shape="round" (click)="editText(item)">Edit</ion-button>
+                  <p class="label-inside text-primary"
+                  [ngStyle]="{'font-size': item.font_size ? (item.font_size + 'px') : '', 'color' : item.font_color ? item.font_color : '' }"
+                  >{{desc.text}}</p>
+                  <ion-button class="btn-edit" slot="start" size="small" shape="round" (click)="editText(desc)">Edit</ion-button>
                 </div>
               </ion-col>
             </ion-row>
@@ -435,3 +442,6 @@
     </ion-col>
   </ion-row>
 </ion-content>
+
+
+

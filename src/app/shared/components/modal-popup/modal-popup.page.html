@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cutomise</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="wrapper-cutomise">
+  <!-- <p>Choose your monster's colors:</p> -->
+
+  <ion-item>
+    <ion-label slot="start">Font color</ion-label>
+    <input type="color" id="color" name="color"
+      [(ngModel)]="fontColor">
+    <!-- <label for="color">Font color</label> -->
+  </ion-item>
+
+<!-- <ion-button (click)="colorChangeEvent()" color="primary">Check</ion-button> -->
+
+<ion-item>
+  <ion-label slot="start">Font size</ion-label>
+  <ion-range min="10" max="40" color="secondary" (ionChange)="getFontSize($event)">
+    <!-- <ion-label slot="start">Font size</ion-label> -->
+    <ion-label slot="end">{{ fontValue }} px</ion-label>
+  </ion-range>
+</ion-item>
+
+<ion-item>
+  <ion-button slot="start" (click)="updateData()" color="primary">Save</ion-button>
+  <ion-button slot="end" (click)="closeModel()" color="primary">Cancel</ion-button>
+</ion-item>
+</ion-content>

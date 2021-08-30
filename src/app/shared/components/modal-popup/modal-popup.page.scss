@@ -1,0 +1,16 @@
+
+::ng-deep .modal-cutomise {
+    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
+    .modal-wrapper {        
+        width: 80%;
+        height: 50%;
+        // position: relative;
+        // top: 50%;
+        // left: 50%;
+        // transform: translate(-50%, -50%);
+    }
+    .wrapper-customise {
+        ion-item{ --border-color: #ffffff; }
+    }
+}
