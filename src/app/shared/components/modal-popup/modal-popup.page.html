@@ -8,6 +8,22 @@
   <!-- <p>Choose your monster's colors:</p> -->
 
   <ion-item>
+    <ion-text color="primary w-100">
+      <p class="ion-text-center" [ngStyle]="{'font-size': (fontValue + 'px'), 'color' : fontColor }">
+        Sample Text</p>
+    </ion-text>
+  </ion-item>
+
+  <!-- <ion-item>
+    <ion-label>Content type</ion-label>
+    <ion-select [(ngModel)]="type" okText="Select" cancelText="Cancel" (ionChange)="selectContentType($event)">
+      <ion-select-option value="title">Title</ion-select-option>
+      <ion-select-option value="description">Description</ion-select-option>
+    </ion-select>
+  </ion-item> -->
+
+
+  <ion-item>
     <ion-label slot="start">Font color</ion-label>
     <input type="color" id="color" name="color"
       [(ngModel)]="fontColor">
@@ -18,7 +34,7 @@
 
 <ion-item>
   <ion-label slot="start">Font size</ion-label>
-  <ion-range min="10" max="40" color="secondary" (ionChange)="getFontSize($event)">
+  <ion-range min="10" max="40" color="secondary" [value]="fontValue" (ionChange)="getFontSize($event)">
     <!-- <ion-label slot="start">Font size</ion-label> -->
     <ion-label slot="end">{{ fontValue }} px</ion-label>
   </ion-range>

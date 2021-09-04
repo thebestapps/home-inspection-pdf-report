@@ -4,13 +4,37 @@
     --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
     .modal-wrapper {        
         width: 80%;
-        height: 50%;
+        height: 36.3%;
         // position: relative;
         // top: 50%;
         // left: 50%;
         // transform: translate(-50%, -50%);
+        ion-content.md {
+            --background: #ffffff;
+            ion-item{ 
+                --border-color: inherit !important;
+                // here other custom CSS from documentation
+                background: #ffffff !important;
+                border-bottom: 1px solid #dadada !important;
+                &:last-child {
+                    border-bottom: 0px solid #dadada !important;
+                }
+             }
+        }
     }
     .wrapper-customise {
-        ion-item{ --border-color: #ffffff; }
+        background: #ffffff !important;
+        ion-item{ 
+            --border-color: inherit !important;
+            // here other custom CSS from documentation
+            background: #ffffff !important;
+            border-bottom: 1px solid #dadada !important;
+         }
+    }
+    ion-text {
+        &.primary {
+            background: #e2e2e2;
+            min-height: 59px;
+        }
     }
 }

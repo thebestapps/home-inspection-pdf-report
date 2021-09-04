@@ -81,6 +81,15 @@ ion-item {
 .btn-edit {
   position: absolute;
   right: 12px;
+  font-size: 12px;
+  text-transform: none;
+  transform: translateY(-8px);
+}
+
+.btn-desc-settings {
+  position: absolute;
+  right: 62px;
+  font-size: 12px;
   text-transform: none;
   transform: translateY(-8px);
 }

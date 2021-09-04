@@ -131,7 +131,11 @@ export class HomePage {
     this.config.storageRemoveItem('InspectionsCreated');
 
     // this.config.storageRemoveItem('InspectionToEdit');
-    // this.config.storageSave('InspectionToEdit', c);
+    const storageData = JSON.parse(localStorage.getItem('InspectionToEdit')) || [];
+    if (storageData.length == 0) {
+      this.config.storageSave('InspectionToEdit', c); 
+    }
+    // this.config.storageSave('InspectionToEdit', c); 
 
     const modal = await this.modalController.create({
       cssClass: 'update-popup-modal',

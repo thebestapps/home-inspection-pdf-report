@@ -928,7 +928,9 @@ export class StructureSelectionPage implements OnInit {
         })
     })
     console.log('desc output ', this.descOutput);
-      this.StoredData.structureDescriptionContent = this.descOutput;
+      if (this.descOutput.length) {
+        this.StoredData.structureDescriptionContent = this.descOutput;
+      }
       console.log(this.StoredData);
       this.config.storageRemoveItem('InspectionToEdit');
       this.config.storageSave('InspectionToEdit', this.StoredData);
@@ -2102,8 +2104,8 @@ export class StructureSelectionPage implements OnInit {
   }
 
   // settings modal for color change and font-sized
-  async openIonModal(index) {
-    const payload = this.StructureDescriptionContent[index]
+  async openIonModal(item) {
+    const payload = item
     this.backdrop = true;
     const modal = await this.modalController.create({
       component: ModalPopupPage,
@@ -2121,18 +2123,18 @@ export class StructureSelectionPage implements OnInit {
       console.log('Modal Data : ', modelData.data);
       const data = modelData.data;
       if (data) {
-        this.setThemeVaribles(index, data);
+        this.setThemeVaribles(item, data);
       }
     });
 
     return await modal.present();
   }
 
-  setThemeVaribles(index, data) {
+  setThemeVaribles(item, data) {
     console.log(data);
-    const selectedItem = this.StructureDescriptionContent[index];
-    selectedItem.font_color = data.font_color;
-    selectedItem.font_size = data.font_size;
+    // const selectedItem = this.StructureDescriptionContent[index];
+    item.font_color = data.font_color;
+    item.font_size = data.font_size;
     console.log(this.StructureDescriptionContent)
     // this.updateDescription5();
   }
