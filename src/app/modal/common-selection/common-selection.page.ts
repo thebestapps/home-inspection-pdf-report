@@ -1337,7 +1337,7 @@ export class CommonSelectionPage implements OnInit {
                 fontSize: 1
               },
             ],
-            [{ text: '', margin: [0, 3, 0, 0], fontSize: 0 }],
+            [{ text: '', margin: [0, 3, 0, 0], fontSize: 0, color: "#000000"}],
           ],
         },
         {
@@ -1626,7 +1626,8 @@ export class CommonSelectionPage implements OnInit {
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
-                fontSize: 9,
+                fontSize: this.StoredData.structureDescriptionContent[i].font_size,
+                color:  this.StoredData.structureDescriptionContent[i].font_color
               },
             ],
           ],
