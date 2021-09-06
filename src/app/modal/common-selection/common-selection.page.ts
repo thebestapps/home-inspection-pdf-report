@@ -1325,6 +1325,23 @@ export class CommonSelectionPage implements OnInit {
         },
         {
           fontSize: 1,
+          columnGap: 4,
+          color: '#000000',
+          columns: [
+            [
+              {
+                text: '',
+                margin: [0, 3, 0, 0],
+                bold: 'true',
+                color: "#000000",
+                fontSize: 1
+              },
+            ],
+            [{ text: '', margin: [0, 3, 0, 0], fontSize: 0 }],
+          ],
+        },
+        {
+          fontSize: 1,
           margin: [0, 0, 6, 0],
           color: '#ff0f06',
           text: [
@@ -1584,23 +1601,12 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.structureDescriptionContent != null) {
       var data = '';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.structureDescriptionContent.length);
-        i++
-      ) {
-        for (
-          let j = 0;
-          j <
-          parseInt(
-            this.StoredData.structureDescriptionContent[i].content.length
-          );
-          j++
-        ) {
-          data =
-            data +
-            ' •' +
-            this.StoredData.structureDescriptionContent[i].content[j].content;
+      var color = '#ff0f06';
+      for (let i = 0;i < parseInt(this.StoredData.structureDescriptionContent.length); i++)
+      {
+        for (let j = 0; j <parseInt(this.StoredData.structureDescriptionContent[i].content.length);j++)
+        {
+          data = data +  ' •' +this.StoredData.structureDescriptionContent[i].content[j].text;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -1609,10 +1615,11 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text:
-                  this.StoredData.structureDescriptionContent[i].title + ':\t',
+                text: this.StoredData.structureDescriptionContent[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
+                color: this.StoredData.structureDescriptionContent[i].font_color,
+                fontSize: this.StoredData.structureDescriptionContent[i].font_size,
               },
             ],
             [
