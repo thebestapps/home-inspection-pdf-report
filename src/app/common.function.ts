@@ -402,14 +402,27 @@ export class CommonService {
       this.ApplicationDescriptionContent = rmv2.AppliancesDescriptionContent;
       this.ApplicationObservationContent = rmv2.AppliancesObservationContent;
 
-      const StructureDescriptionContent = localStorage.getItem('StructureDescriptionContent') || '';
+      const StructureDescriptionContent =
+        localStorage.getItem('StructureDescriptionContent') || '';
       if (StructureDescriptionContent) {
-        this.StructureDescriptionContent = JSON.parse(StructureDescriptionContent);
+        this.StructureDescriptionContent = JSON.parse(
+          StructureDescriptionContent
+        );
       } else {
         this.StructureDescriptionContent = rmv2.StructureDescriptionContent;
       }
 
-      this.StructureObservationContent = rmv2.StructureObservationContent;
+      const StructureObservationContent =
+        localStorage.getItem('StructureObservationContent') || '';
+      if (StructureObservationContent) {
+        this.StructureObservationContent = JSON.parse(
+          StructureObservationContent
+        );
+      } else {
+        this.StructureObservationContent = rmv2.StructureObservationContent;
+      }
+
+      // this.StructureObservationContent = rmv2.StructureObservationContent;
 
       this.CoolingHVACDescriptionContent = rmv2.CoolingHVACDescriptionContent;
       this.CoolingHVACObservationContent = rmv2.CoolingHVACObservationContent;

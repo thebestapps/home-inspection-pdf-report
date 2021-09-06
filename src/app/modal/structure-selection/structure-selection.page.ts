@@ -161,7 +161,10 @@ export class StructureSelectionPage implements OnInit {
     // this.StructureDescriptionContent = this.config.StructureDescriptionContent;
 
     this.StructureDescriptionContent = this.config.StructureDescriptionContent;
-    console.log('---StructureDescriptionContent ', this.StructureDescriptionContent);
+    console.log(
+      '---StructureDescriptionContent ',
+      this.StructureDescriptionContent
+    );
 
     this.StructureObservationContent = this.config.StructureObservationContent;
 
@@ -616,129 +619,149 @@ export class StructureSelectionPage implements OnInit {
   }
 
   updateDescription2() {
-    let structureObservation = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['structureObservation'];
-
-    console.log('To finalize coolingDescription=====' + structureObservation);
-
-    if (structureObservation != undefined) {
-      if (this.added_items2 == '') {
-        this.added_items2 = [];
-
-        var newArray = this.added_items2.map((o) => {
-          return {
-            structureObservation: [
-              {
-                text: '',
-                checked: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items2.map((o) => {
-          return {
-            structureObservation: [
-              {
-                text: o.text,
-                checked: o.checked,
-              },
-            ],
-          };
-        });
-      }
-
-      console.log('Array To Add++++++++' + newArray);
-
-      let arr3 = [...structureObservation, ...newArray];
-
-      console.log(
-        'Updating Again - Fix (2)...coolingDescription, ...newArray' + arr3
-      );
-    }
-
-    if (structureObservation == null || structureObservation == undefined) {
-      console.log('undefined------------------------------');
-
-      let structureObservation = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['structureObservation'];
-
-      if (this.added_items2 == '') {
-        console.log(this.added_items2);
-
-        this.added_items2 = [];
-
-        var newArray = this.added_items2.map((o) => {
-          return {
-            structureObservation: [
-              {
-                text: '',
-                checked: '',
-              },
-            ],
-          };
-        });
-      } else {
-        console.log('??' + this.added_items2);
-        var newArray = this.added_items2.map((o) => {
-          return {
-            text: o.text,
-            checked: o.checked,
-          };
-        });
-      }
-
-      var ObArr = {
-        structureObservation: [this.added_items2],
-      };
-
-      this.StoredData = JSON.parse(
-        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
-      );
-
-      console.log('%c G-code ==>', 'color:green;font-size:18px');
-
-      console.log(this.added_items2);
-      let output = [];
-
-      for (let i = 0; i < this.added_items2.length; i++) {
-        let objIndex = output.findIndex(
-          (obj) => obj.title == this.added_items2[i].title
-        );
-        if (objIndex == -1) {
-          output.push({
-            title: this.added_items2[i].title,
-            content: [],
-          });
+    let data = this.StructureObservationContent;
+    this.descOutput = [];
+    data.map((obj, index) => {
+      obj.data.map((item) => {
+        if (item.checked) {
+          this.collectData2(index, item);
         }
-      }
-
-      for (let i = 0; i < this.added_items2.length; i++) {
-        const element = this.added_items2[i];
-
-        console.log(output.includes(element.title));
-
-        let objIndex = output.findIndex((obj) => obj.title == element.title);
-        output[objIndex].content.push({
-          content: element.text,
-        });
-      }
-      console.log('%c Final output ==>', 'color:red;font-size:18px');
-
-      console.log(output);
-
-      this.StoredData.structureObservation = output;
-
-      this.config.storageRemoveItem('InspectionToEdit');
-      this.config.storageSave('InspectionToEdit', this.StoredData);
-
-      console.log(this.StoredData);
-
-      this.presentAlertConfirm();
+      });
+    });
+    console.log('desc output ', this.descOutput);
+    if (this.descOutput.length) {
+      this.StoredData.structureObservation = this.descOutput;
     }
+    console.log(this.StoredData);
+    this.config.storageRemoveItem('InspectionToEdit');
+    this.config.storageSave('InspectionToEdit', this.StoredData);
+    this.presentAlertConfirm();
+    this.updateStorage2();
   }
+  // updateDescription2() {
+  //   let structureObservation = this.config.storageGet('InspectionToEdit')[
+  //     '__zone_symbol__value'
+  //   ]['structureObservation'];
+
+  //   console.log('To finalize coolingDescription=====' + structureObservation);
+
+  //   if (structureObservation != undefined) {
+  //     if (this.added_items2 == '') {
+  //       this.added_items2 = [];
+
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           structureObservation: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           structureObservation: [
+  //             {
+  //               text: o.text,
+  //               checked: o.checked,
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     }
+
+  //     console.log('Array To Add++++++++' + newArray);
+
+  //     let arr3 = [...structureObservation, ...newArray];
+
+  //     console.log(
+  //       'Updating Again - Fix (2)...coolingDescription, ...newArray' + arr3
+  //     );
+  //   }
+
+  //   if (structureObservation == null || structureObservation == undefined) {
+  //     console.log('undefined------------------------------');
+
+  //     let structureObservation = this.config.storageGet('InspectionToEdit')[
+  //       '__zone_symbol__value'
+  //     ]['structureObservation'];
+
+  //     if (this.added_items2 == '') {
+  //       console.log(this.added_items2);
+
+  //       this.added_items2 = [];
+
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           structureObservation: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       console.log('??' + this.added_items2);
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           text: o.text,
+  //           checked: o.checked,
+  //         };
+  //       });
+  //     }
+
+  //     var ObArr = {
+  //       structureObservation: [this.added_items2],
+  //     };
+
+  //     this.StoredData = JSON.parse(
+  //       this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+  //     );
+
+  //     console.log('%c G-code ==>', 'color:green;font-size:18px');
+
+  //     console.log(this.added_items2);
+  //     let output = [];
+
+  //     for (let i = 0; i < this.added_items2.length; i++) {
+  //       let objIndex = output.findIndex(
+  //         (obj) => obj.title == this.added_items2[i].title
+  //       );
+  //       if (objIndex == -1) {
+  //         output.push({
+  //           title: this.added_items2[i].title,
+  //           content: [],
+  //         });
+  //       }
+  //     }
+
+  //     for (let i = 0; i < this.added_items2.length; i++) {
+  //       const element = this.added_items2[i];
+
+  //       console.log(output.includes(element.title));
+
+  //       let objIndex = output.findIndex((obj) => obj.title == element.title);
+  //       output[objIndex].content.push({
+  //         content: element.text,
+  //       });
+  //     }
+  //     console.log('%c Final output ==>', 'color:red;font-size:18px');
+
+  //     console.log(output);
+
+  //     this.StoredData.structureObservation = output;
+
+  //     this.config.storageRemoveItem('InspectionToEdit');
+  //     this.config.storageSave('InspectionToEdit', this.StoredData);
+
+  //     console.log(this.StoredData);
+
+  //     this.presentAlertConfirm();
+  //   }
+  // }
 
   updateDescription3() {
     let structureComments = this.config.storageGet('InspectionToEdit')[
@@ -918,23 +941,23 @@ export class StructureSelectionPage implements OnInit {
     // this.SelectedTitleToFilter = n.title;
     // this.Selected_Item_to_add.title = this.SelectedTitleToFilter;
 
-    let data = this.StructureDescriptionContent;    
+    let data = this.StructureDescriptionContent;
     this.descOutput = [];
     data.map((obj, index) => {
-        obj.data.map((item) => {
-          if (item.checked) {
-            this.collectData(index, item);
-          }
-        })
-    })
+      obj.data.map((item) => {
+        if (item.checked) {
+          this.collectData(index, item);
+        }
+      });
+    });
     console.log('desc output ', this.descOutput);
-      if (this.descOutput.length) {
-        this.StoredData.structureDescriptionContent = this.descOutput;
-      }
-      console.log(this.StoredData);
-      this.config.storageRemoveItem('InspectionToEdit');
-      this.config.storageSave('InspectionToEdit', this.StoredData);
-      this.presentAlertConfirm();
+    if (this.descOutput.length) {
+      this.StoredData.structureDescriptionContent = this.descOutput;
+    }
+    console.log(this.StoredData);
+    this.config.storageRemoveItem('InspectionToEdit');
+    this.config.storageSave('InspectionToEdit', this.StoredData);
+    this.presentAlertConfirm();
 
     // let structureLimitations = this.config.storageGet('InspectionToEdit')[
     //   '__zone_symbol__value'
@@ -1056,24 +1079,56 @@ export class StructureSelectionPage implements OnInit {
     this.updateStorage();
   }
 
+  collectData2(index, item) {
+    if (this.descOutput.length) {
+      let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      if (arrObj.length) {
+        const id = arrObj[0].id;
+        this.descOutput.map((e) => {
+          if (e.id == id) {
+            e.content.push(item);
+          }
+        });
+      } else {
+        let obj = {
+          content: [item],
+          font_color: this.StructureObservationContent[index].font_color || '',
+          font_size: this.StructureObservationContent[index].font_size || '',
+          title: this.StructureObservationContent[index].title,
+          id: index,
+        };
+        this.descOutput.push(obj);
+      }
+    } else {
+      let obj = {
+        content: [item],
+        font_color: this.StructureObservationContent[index].font_color || '',
+        font_size: this.StructureObservationContent[index].font_size || '',
+        title: this.StructureObservationContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(obj);
+    }
+  }
+
   collectData(index, item) {
     if (this.descOutput.length) {
       let arrObj = this.descOutput.filter((e, i) => e.id == index);
       if (arrObj.length) {
-          const id = arrObj[0].id;
-          this.descOutput.map(e => {
-            if (e.id == id) {
-              e.content.push(item);
-            }
-          })
+        const id = arrObj[0].id;
+        this.descOutput.map((e) => {
+          if (e.id == id) {
+            e.content.push(item);
+          }
+        });
       } else {
         let obj = {
           content: [item],
           font_color: this.StructureDescriptionContent[index].font_color || '',
           font_size: this.StructureDescriptionContent[index].font_size || '',
           title: this.StructureDescriptionContent[index].title,
-          id: index
-        }
+          id: index,
+        };
         this.descOutput.push(obj);
       }
     } else {
@@ -1082,8 +1137,8 @@ export class StructureSelectionPage implements OnInit {
         font_color: this.StructureDescriptionContent[index].font_color || '',
         font_size: this.StructureDescriptionContent[index].font_size || '',
         title: this.StructureDescriptionContent[index].title,
-        id: index
-      }
+        id: index,
+      };
       this.descOutput.push(obj);
     }
   }
@@ -1715,7 +1770,6 @@ export class StructureSelectionPage implements OnInit {
       this.itemsToDelete = data;
       this.removeContent5();
     }
-    // this.updateStorage();
   }
 
   selectItem6(_index: number, data, ev) {
@@ -2008,86 +2062,183 @@ export class StructureSelectionPage implements OnInit {
     let obj = {
       checked: 0,
       id: selectedItem.data.length + 1,
-      main: "Structure Description Content",
+      main: 'Structure Description Content',
       text: data.description,
-      title: selectedItem.title
-    }
+      title: selectedItem.title,
+    };
     selectedItem.data.push(obj);
     this.updateStorage();
   }
 
+  // method to add new Description
+  addDescription2(index, data) {
+    const selectedItem = this.StructureObservationContent[index];
+    // console.log(item, data);
+    // console.log(this.StructureDescriptionContent);
+    let obj = {
+      checked: 0,
+      id: selectedItem.data.length + 1,
+      main: 'Structure Observation Content',
+      text: data.description,
+      title: selectedItem.title,
+    };
+    selectedItem.data.push(obj);
+    this.updateStorage2();
+  }
+
   openAddModal(index) {
     // const obj = this.StructureDescriptionContent[index];
-    this.alertController.create({
-      header: 'Add Description',
-      subHeader: '',
-      message: '',
-      inputs: [
-        {
-          type: 'textarea',
-          name: 'description',
-          placeholder: '',
-          // value: obj.text || ''
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: (data: any) => {
-            console.log('Canceled', data);
-          }
-        },
-        {
-          text: 'Add',
-          handler: (res: any) => {
-            console.log('Saved Information', res);
-            // const data = {...item, ...res};
-            if (res.description.length) {              
-              this.addDescription(index,res)
-            }
-          }
-        }
-      ],
-      cssClass: 'custom-modal-txt-area'
-    }).then(res => {
-      res.present();
-    });
+    this.alertController
+      .create({
+        header: 'Add Description',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'description',
+            placeholder: '',
+            // value: obj.text || ''
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Add',
+            handler: (res: any) => {
+              console.log('Saved Information', res);
+              // const data = {...item, ...res};
+              if (res.description.length) {
+                this.addDescription(index, res);
+              }
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  openAddModal2(index) {
+    // const obj = this.StructureDescriptionContent[index];
+    this.alertController
+      .create({
+        header: 'Add Description',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'description',
+            placeholder: '',
+            // value: obj.text || ''
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Add',
+            handler: (res: any) => {
+              console.log('Saved Information', res);
+              // const data = {...item, ...res};
+              if (res.description.length) {
+                this.addDescription2(index, res);
+              }
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
   }
 
   // method to edit ttle info.
   editText(obj) {
     console.log(obj);
-    this.alertController.create({
-      header: 'Update Text',
-      subHeader: '',
-      message: '',
-      inputs: [
-        {
-          type: 'textarea',
-          name: 'name',
-          placeholder: '',
-          value: obj.text || ''
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: (data: any) => {
-            console.log('Canceled', data);
-          }
-        },
-        {
-          text: 'Update',
-          handler: (data: any) => {
-            console.log('Saved Information', data);
-            this.updateValue(obj,data)
-          }
-        }
-      ],
-      cssClass: 'custom-modal-txt-area'
-    }).then(res => {
-      res.present();
-    });
+    this.alertController
+      .create({
+        header: 'Update Text',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'name',
+            placeholder: '',
+            value: obj.text || '',
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Update',
+            handler: (data: any) => {
+              console.log('Saved Information', data);
+              this.updateValue(obj, data);
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  editText2(obj) {
+    console.log(obj);
+    this.alertController
+      .create({
+        header: 'Update Text',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'name',
+            placeholder: '',
+            value: obj.text || '',
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Update',
+            handler: (data: any) => {
+              console.log('Saved Information', data);
+              this.updateValue2(obj, data);
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
   }
 
   updateValue(item, val) {
@@ -2098,22 +2249,37 @@ export class StructureSelectionPage implements OnInit {
     }
   }
 
+  updateValue2(item, val) {
+    const title = val.name || '';
+    if (title.trim().length) {
+      item.text = val.name;
+      this.updateStorage2();
+    }
+  }
+
   updateStorage() {
-    const data = JSON.stringify(this.StructureDescriptionContent);
-    localStorage.setItem('StructureDescriptionContent', data);
+    const data = this.StructureDescriptionContent;
+    console.log('HERE IS SAVING NOW----->>>>>>');
+    console.log(data);
+
+    this.config.storageSave('StructureDescriptionContent', data);
+  }
+  updateStorage2() {
+    // const data = JSON.stringify(this.structureObservation);
+    // this.config.storageSave('structureObservation', data);
   }
 
   // settings modal for color change and font-sized
   async openIonModal(item) {
-    const payload = item
+    const payload = item;
     this.backdrop = true;
     const modal = await this.modalController.create({
       component: ModalPopupPage,
       componentProps: {
-        'data': payload
+        data: payload,
       },
       cssClass: 'modal-cutomise',
-      backdropDismiss: true
+      backdropDismiss: true,
     });
 
     // const { data } = await modal.onWillDismiss();
@@ -2135,8 +2301,7 @@ export class StructureSelectionPage implements OnInit {
     // const selectedItem = this.StructureDescriptionContent[index];
     item.font_color = data.font_color;
     item.font_size = data.font_size;
-    console.log(this.StructureDescriptionContent)
+    // console.log(this.StructureDescriptionContent);
     // this.updateDescription5();
   }
-
 }

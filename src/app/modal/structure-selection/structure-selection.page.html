@@ -115,14 +115,31 @@
 
       <div
         class="con-inpu"
-        *ngFor="let item of StructureDescriptionContent; let ind = index;">
-        <p (click)="AddTitleInfo(item)" 
+        *ngFor="let item of StructureDescriptionContent; let ind = index;"
+      >
+        <p
+          (click)="AddTitleInfo(item)"
           [ngStyle]="{'font-size': item.font_size ? (item.font_size + 'px') : '', 'color' : item.font_color ? item.font_color : '' }"
-           class="main-title">{{item.title}}</p>
-        <ion-button class="btn-settings" slot="end" size="small" shape="round" (click)="openIonModal(item)">
+          class="main-title"
+        >
+          {{item.title}}
+        </p>
+        <ion-button
+          class="btn-settings"
+          slot="end"
+          size="small"
+          shape="round"
+          (click)="openIonModal(item)"
+        >
           <ion-icon name="settings-outline"></ion-icon>
         </ion-button>
-        <ion-button class="btn-add" slot="end" size="small" shape="round" (click)="openAddModal(ind)">
+        <ion-button
+          class="btn-add"
+          slot="end"
+          size="small"
+          shape="round"
+          (click)="openAddModal(ind)"
+        >
           <ion-icon name="add-outline"></ion-icon>
         </ion-button>
 
@@ -130,7 +147,10 @@
           <div class="input-etr">
             <ion-row class="wrapper-desc">
               <ion-col>
-                <div class="item-rw" *ngFor="let desc of item.data; let i = index;">
+                <div
+                  class="item-rw"
+                  *ngFor="let desc of item.data; let i = index;"
+                >
                   <ion-checkbox
                     class="custm-check"
                     item-right
@@ -138,13 +158,28 @@
                     (ionChange)="selectItem5(i, desc,  $event);"
                   >
                   </ion-checkbox>
-                  <p class="label-inside text-primary"
-                  [ngStyle]="{'font-size': desc.font_size ? (desc.font_size + 'px') : '', 'color' : desc.font_color ? desc.font_color : '' }"
-                  >{{desc.text}}</p>
-                  <ion-button class="btn-desc-settings" slot="end" size="small" shape="round" (click)="openIonModal(desc)">
+                  <p
+                    class="label-inside text-primary"
+                    [ngStyle]="{'font-size': desc.font_size ? (desc.font_size + 'px') : '', 'color' : desc.font_color ? desc.font_color : '' }"
+                  >
+                    {{desc.text}}
+                  </p>
+                  <ion-button
+                    class="btn-desc-settings"
+                    slot="end"
+                    size="small"
+                    shape="round"
+                    (click)="openIonModal(desc)"
+                  >
                     <ion-icon name="settings-outline"></ion-icon>
                   </ion-button>
-                  <ion-button class="btn-edit" slot="start" size="small" shape="round" (click)="editText(desc)">
+                  <ion-button
+                    class="btn-edit"
+                    slot="start"
+                    size="small"
+                    shape="round"
+                    (click)="editText(desc)"
+                  >
                     <ion-icon name="pencil-outline"></ion-icon>
                   </ion-button>
                 </div>
@@ -193,7 +228,33 @@
         class="con-inpu"
         *ngFor="let item of StructureObservationContent; let i = index;"
       >
-        <p (click)="AddTitleInfo2(item)" class="main-title">{{item.title}}</p>
+        <p
+          (click)="AddTitleInfo2(item)"
+          [ngStyle]="{'font-size': item.font_size ? (item.font_size + 'px') : '', 'color' : item.font_color ? item.font_color : '' }"
+          class="main-title"
+        >
+          {{item.title}}
+        </p>
+
+        <ion-button
+          class="btn-settings"
+          slot="end"
+          size="small"
+          shape="round"
+          (click)="openIonModal2(item)"
+        >
+          <ion-icon name="settings-outline"></ion-icon>
+        </ion-button>
+        <ion-button
+          class="btn-add"
+          slot="end"
+          size="small"
+          shape="round"
+          (click)="openAddModal2(ind)"
+        >
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+
         <div *ngIf="item.title == SelectedTitleToFilter2">
           <div class="input-etr">
             <ion-row>
@@ -209,8 +270,31 @@
                     (ionChange)="selectItem22(i, item,  $event);"
                   >
                   </ion-checkbox>
-                  <p class="label-inside">{{item.text}}</p>
-                  <ion-button class="btn-edit" slot="start" size="small" shape="round" (click)="editText(item)">Edit</ion-button>
+
+                  <p
+                    class="label-inside text-primary"
+                    [ngStyle]="{'font-size': desc.font_size ? (desc.font_size + 'px') : '', 'color' : desc.font_color ? desc.font_color : '' }"
+                  >
+                    {{item.text}}
+                  </p>
+                  <ion-button
+                    class="btn-desc-settings"
+                    slot="end"
+                    size="small"
+                    shape="round"
+                    (click)="openIonModal(item)"
+                  >
+                    <ion-icon name="settings-outline"></ion-icon>
+                  </ion-button>
+                  <ion-button
+                    class="btn-edit"
+                    slot="start"
+                    size="small"
+                    shape="round"
+                    (click)="editText2(item)"
+                  >
+                    <ion-icon name="pencil-outline"></ion-icon>
+                  </ion-button>
                 </div>
               </ion-col>
             </ion-row>
@@ -312,7 +396,14 @@
         </ion-checkbox>
 
         <p class="label-inside">{{item.text}}</p>
-        <ion-button class="btn-edit" slot="start" size="small" shape="round" (click)="editText(item)">Edit</ion-button>
+        <ion-button
+          class="btn-edit"
+          slot="start"
+          size="small"
+          shape="round"
+          (click)="editText(item)"
+          >Edit</ion-button
+        >
       </div>
 
       <ion-row>
@@ -447,6 +538,3 @@
     </ion-col>
   </ion-row>
 </ion-content>
-
-
-
