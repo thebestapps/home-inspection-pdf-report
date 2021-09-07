@@ -5,6 +5,7 @@ import { CommonService } from '../../common.function';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { CommonSelectionPage } from '../../../app/modal/common-selection/common-selection.page';
+import { ModalPopupPage } from 'src/app/shared/components/modal-popup/modal-popup.page';
 
 @Component({
   selector: 'app-plumbing-selection',
@@ -83,6 +84,9 @@ export class PlumbingSelectionPage implements OnInit {
 
   SelectedTitleToFilter: any;
   SelectedTitleToFilter2: any;
+
+  backdrop = false;
+  descOutput = [];
 
   constructor(
     public modalController: ModalController,
@@ -263,7 +267,7 @@ export class PlumbingSelectionPage implements OnInit {
 
   closeDescription2() {
     this.SelectedTitleToFilter = '';
-    this.BackPressed = true;
+    this.BackPressed = false;
     this.Description = false;
     this.Observations_UI = false;
     this.Comments_UI = false;
@@ -624,135 +628,155 @@ export class PlumbingSelectionPage implements OnInit {
     }
   }
 
+  // updateDescription2() {
+  //   let plumbingObservation = this.config.storageGet('InspectionToEdit')[
+  //     '__zone_symbol__value'
+  //   ]['plumbingObservation'];
+
+  //   console.log('To finalize coolingDescription=====' + plumbingObservation);
+
+  //   if (plumbingObservation != undefined) {
+  //     if (this.added_items2 == '') {
+  //       this.added_items2 = [];
+
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           plumbingObservation: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //               title: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           plumbingObservation: [
+  //             {
+  //               text: o.text,
+  //               checked: o.checked,
+  //               title: o.title,
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     }
+
+  //     console.log('Array To Add++++++++' + newArray);
+
+  //     let arr3 = [...plumbingObservation, ...newArray];
+
+  //     console.log(
+  //       'Updating Again - Fix (2)...coolingDescription, ...newArray' + arr3
+  //     );
+  //   }
+
+  //   if (plumbingObservation == null || plumbingObservation == undefined) {
+  //     console.log('undefined------------------------------');
+
+  //     let plumbingObservation = this.config.storageGet('InspectionToEdit')[
+  //       '__zone_symbol__value'
+  //     ]['plumbingObservation'];
+
+  //     if (this.added_items2 == '') {
+  //       console.log(this.added_items2);
+
+  //       this.added_items2 = [];
+
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           plumbingObservation: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //               title: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       console.log('??' + this.added_items2);
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           text: o.text,
+  //           checked: o.checked,
+  //           title: o.title,
+  //         };
+  //       });
+  //     }
+
+  //     var ObArr = {
+  //       plumbingObservation: [this.added_items2],
+  //     };
+
+  //     this.StoredData = JSON.parse(
+  //       this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+  //     );
+
+  //     console.log('%c G-code ==>', 'color:green;font-size:18px');
+
+  //     console.log(this.added_items2);
+  //     let output = [];
+
+  //     for (let i = 0; i < this.added_items2.length; i++) {
+  //       let objIndex = output.findIndex(
+  //         (obj) => obj.title == this.added_items2[i].title
+  //       );
+  //       if (objIndex == -1) {
+  //         output.push({
+  //           title: this.added_items2[i].title,
+  //           content: [],
+  //         });
+  //       }
+  //     }
+
+  //     for (let i = 0; i < this.added_items2.length; i++) {
+  //       const element = this.added_items2[i];
+
+  //       console.log(output.includes(element.title));
+
+  //       let objIndex = output.findIndex((obj) => obj.title == element.title);
+  //       output[objIndex].content.push({
+  //         content: element.text,
+  //       });
+  //     }
+  //     console.log('%c Final output ==>', 'color:red;font-size:18px');
+
+  //     console.log(output);
+
+  //     this.StoredData.plumbingObservation = output;
+
+  //     this.config.storageRemoveItem('InspectionToEdit');
+  //     this.config.storageSave('InspectionToEdit', this.StoredData);
+
+  //     console.log(this.StoredData);
+
+  //     this.presentAlertConfirm();
+  //   }
+  // }
+
   updateDescription2() {
-    let plumbingObservation = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['plumbingObservation'];
-
-    console.log('To finalize coolingDescription=====' + plumbingObservation);
-
-    if (plumbingObservation != undefined) {
-      if (this.added_items2 == '') {
-        this.added_items2 = [];
-
-        var newArray = this.added_items2.map((o) => {
-          return {
-            plumbingObservation: [
-              {
-                text: '',
-                checked: '',
-                title: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items2.map((o) => {
-          return {
-            plumbingObservation: [
-              {
-                text: o.text,
-                checked: o.checked,
-                title: o.title,
-              },
-            ],
-          };
-        });
-      }
-
-      console.log('Array To Add++++++++' + newArray);
-
-      let arr3 = [...plumbingObservation, ...newArray];
-
-      console.log(
-        'Updating Again - Fix (2)...coolingDescription, ...newArray' + arr3
-      );
-    }
-
-    if (plumbingObservation == null || plumbingObservation == undefined) {
-      console.log('undefined------------------------------');
-
-      let plumbingObservation = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['plumbingObservation'];
-
-      if (this.added_items2 == '') {
-        console.log(this.added_items2);
-
-        this.added_items2 = [];
-
-        var newArray = this.added_items2.map((o) => {
-          return {
-            plumbingObservation: [
-              {
-                text: '',
-                checked: '',
-                title: '',
-              },
-            ],
-          };
-        });
-      } else {
-        console.log('??' + this.added_items2);
-        var newArray = this.added_items2.map((o) => {
-          return {
-            text: o.text,
-            checked: o.checked,
-            title: o.title,
-          };
-        });
-      }
-
-      var ObArr = {
-        plumbingObservation: [this.added_items2],
-      };
-
-      this.StoredData = JSON.parse(
-        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
-      );
-
-      console.log('%c G-code ==>', 'color:green;font-size:18px');
-
-      console.log(this.added_items2);
-      let output = [];
-
-      for (let i = 0; i < this.added_items2.length; i++) {
-        let objIndex = output.findIndex(
-          (obj) => obj.title == this.added_items2[i].title
-        );
-        if (objIndex == -1) {
-          output.push({
-            title: this.added_items2[i].title,
-            content: [],
-          });
+    let data = this.plumbingObservationContent;
+    this.descOutput = [];
+    data.map((obj, index) => {
+      obj.data.map((item) => {
+        if (item.checked) {
+          this.collectData2(index, item);
         }
-      }
-
-      for (let i = 0; i < this.added_items2.length; i++) {
-        const element = this.added_items2[i];
-
-        console.log(output.includes(element.title));
-
-        let objIndex = output.findIndex((obj) => obj.title == element.title);
-        output[objIndex].content.push({
-          content: element.text,
-        });
-      }
-      console.log('%c Final output ==>', 'color:red;font-size:18px');
-
-      console.log(output);
-
-      this.StoredData.plumbingObservation = output;
-
-      this.config.storageRemoveItem('InspectionToEdit');
-      this.config.storageSave('InspectionToEdit', this.StoredData);
-
-      console.log(this.StoredData);
-
-      this.presentAlertConfirm();
+      });
+    });
+    console.log('desc output ', this.descOutput);
+    if (this.descOutput.length) {
+      this.StoredData.plumbingObservation = this.descOutput;
     }
+    console.log(this.StoredData);
+    this.config.storageRemoveItem('InspectionToEdit');
+    this.config.storageSave('InspectionToEdit', this.StoredData);
+    this.presentAlertConfirm();
+    this.updateStorage2();
   }
-
   updateDescription3() {
     let structureComments = this.config.storageGet('InspectionToEdit')[
       '__zone_symbol__value'
@@ -1418,125 +1442,146 @@ export class PlumbingSelectionPage implements OnInit {
   }
 
   updateDescription5() {
-    let structureLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['plumbingDescriptionContent'];
-
-    console.log('To finalize structureDescription=====' + structureLimitations);
-
-    if (structureLimitations != undefined) {
-      if (this.added_items5 == '') {
-        this.added_items5 = [];
-
-        var newArray = this.added_items5.map((o) => {
-          return {
-            plumbingDescriptionContent: [
-              {
-                text: '',
-                checked: '',
-                title: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items5.map((o) => {
-          return {
-            plumbingDescriptionContent: [
-              {
-                text: o.text,
-                checked: o.checked,
-                title: o.title,
-              },
-            ],
-          };
-        });
-      }
-
-      console.log('Array To Add++++++++' + newArray);
-
-      let arr3 = [...structureLimitations, ...newArray];
-    }
-
-    if (structureLimitations == null || structureLimitations == undefined) {
-      console.log('undefined------------------------------');
-
-      let structureDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['plumbingDescriptionContent'];
-
-      if (this.added_items5 == '') {
-        this.added_items5 = [];
-
-        var newArray = this.added_items5.map((o) => {
-          return {
-            plumbingDescriptionContent: [
-              {
-                text: '',
-                checked: '',
-                title: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items5.map((o) => {
-          return {
-            text: o.text,
-            checked: o.checked,
-            title: o.title,
-          };
-        });
-      }
-
-      this.StoredData = JSON.parse(
-        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
-      );
-
-      console.log(
-        '%c G-code =================================>',
-        'color:green;font-size:18px'
-      );
-
-      console.log(this.added_items5);
-      let output = [];
-
-      for (let i = 0; i < this.added_items5.length; i++) {
-        let objIndex = output.findIndex(
-          (obj) => obj.title == this.added_items5[i].title
-        );
-        if (objIndex == -1) {
-          output.push({
-            title: this.added_items5[i].title,
-            content: [],
-          });
+    let data = this.plumbingDescriptionContent;
+    this.descOutput = [];
+    data.map((obj, index) => {
+      obj.data.map((item) => {
+        if (item.checked) {
+          this.collectData(index, item);
         }
-      }
-
-      for (let i = 0; i < this.added_items5.length; i++) {
-        const element = this.added_items5[i];
-
-        console.log(output.includes(element.title));
-
-        let objIndex = output.findIndex((obj) => obj.title == element.title);
-        output[objIndex].content.push({
-          content: element.text,
-        });
-      }
-      console.log('%c Final output ==>', 'color:red;font-size:18px');
-
-      console.log(output);
-
-      this.StoredData.plumbingDescriptionContent = output;
-
-      this.config.storageRemoveItem('InspectionToEdit');
-      this.config.storageSave('InspectionToEdit', this.StoredData);
-
-      console.log(this.StoredData);
-
-      this.presentAlertConfirm();
+      });
+    });
+    console.log('desc output ', this.descOutput);
+    if (this.descOutput.length) {
+      this.StoredData.plumbingDescriptionContent = this.descOutput;
     }
+    console.log(this.StoredData);
+    this.config.storageRemoveItem('InspectionToEdit');
+    this.config.storageSave('InspectionToEdit', this.StoredData);
+    this.presentAlertConfirm();
+    this.updateStorage();
   }
+  // updateDescription5() {
+
+  //   let structureLimitations = this.config.storageGet('InspectionToEdit')[
+  //     '__zone_symbol__value'
+  //   ]['plumbingDescriptionContent'];
+
+  //   console.log('To finalize structureDescription=====' + structureLimitations);
+
+  //   if (structureLimitations != undefined) {
+  //     if (this.added_items5 == '') {
+  //       this.added_items5 = [];
+
+  //       var newArray = this.added_items5.map((o) => {
+  //         return {
+  //           plumbingDescriptionContent: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //               title: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items5.map((o) => {
+  //         return {
+  //           plumbingDescriptionContent: [
+  //             {
+  //               text: o.text,
+  //               checked: o.checked,
+  //               title: o.title,
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     }
+
+  //     console.log('Array To Add++++++++' + newArray);
+
+  //     let arr3 = [...structureLimitations, ...newArray];
+  //   }
+
+  //   if (structureLimitations == null || structureLimitations == undefined) {
+  //     console.log('undefined------------------------------');
+
+  //     let structureDescription = this.config.storageGet('InspectionToEdit')[
+  //       '__zone_symbol__value'
+  //     ]['plumbingDescriptionContent'];
+
+  //     if (this.added_items5 == '') {
+  //       this.added_items5 = [];
+
+  //       var newArray = this.added_items5.map((o) => {
+  //         return {
+  //           plumbingDescriptionContent: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //               title: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items5.map((o) => {
+  //         return {
+  //           text: o.text,
+  //           checked: o.checked,
+  //           title: o.title,
+  //         };
+  //       });
+  //     }
+
+  //     this.StoredData = JSON.parse(
+  //       this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+  //     );
+
+  //     console.log(
+  //       '%c G-code =================================>',
+  //       'color:green;font-size:18px'
+  //     );
+
+  //     console.log(this.added_items5);
+  //     let output = [];
+
+  //     for (let i = 0; i < this.added_items5.length; i++) {
+  //       let objIndex = output.findIndex(
+  //         (obj) => obj.title == this.added_items5[i].title
+  //       );
+  //       if (objIndex == -1) {
+  //         output.push({
+  //           title: this.added_items5[i].title,
+  //           content: [],
+  //         });
+  //       }
+  //     }
+
+  //     for (let i = 0; i < this.added_items5.length; i++) {
+  //       const element = this.added_items5[i];
+
+  //       console.log(output.includes(element.title));
+
+  //       let objIndex = output.findIndex((obj) => obj.title == element.title);
+  //       output[objIndex].content.push({
+  //         content: element.text,
+  //       });
+  //     }
+  //     console.log('%c Final output ==>', 'color:red;font-size:18px');
+
+  //     console.log(output);
+
+  //     this.StoredData.plumbingDescriptionContent = output;
+
+  //     this.config.storageRemoveItem('InspectionToEdit');
+  //     this.config.storageSave('InspectionToEdit', this.StoredData);
+
+  //     console.log(this.StoredData);
+
+  //     this.presentAlertConfirm();
+  //   }
+  // }
 
   updateDescription6() {
     let structureLimitations = this.config.storageGet('InspectionToEdit')[
@@ -1960,5 +2005,476 @@ export class PlumbingSelectionPage implements OnInit {
     // this.SelectedTitleToFilter = '';
 
     this.SelectedTitleToFilter2 = n.title;
+  }
+
+  // settings modal for color change and font-sized
+  async openIonModal(item) {
+    const payload = item;
+    this.backdrop = true;
+    const modal = await this.modalController.create({
+      component: ModalPopupPage,
+      componentProps: {
+        data: payload,
+      },
+      cssClass: 'modal-cutomise',
+      backdropDismiss: true,
+    });
+
+    // const { data } = await modal.onWillDismiss();
+    // console.log(data);
+
+    modal.onDidDismiss().then((modelData) => {
+      console.log('Modal Data : ', modelData.data);
+      const data = modelData.data;
+      if (data) {
+        this.setThemeVaribles(item, data);
+      }
+    });
+
+    return await modal.present();
+  }
+
+  setThemeVaribles(item, data) {
+    console.log(data);
+    // const selectedItem = this.StructureDescriptionContent[index];
+    item.font_color = data.font_color;
+    item.font_size = data.font_size;
+    // console.log(this.StructureDescriptionContent);
+    // this.updateDescription5();
+  }
+
+  updateStorage() {
+    const data = this.plumbingDescriptionContent;
+    console.log('HERE IS SAVING NOW----->>>>>>');
+    console.log(data);
+
+    this.config.storageSave('plumbingDescriptionContent', data);
+  }
+
+  updateStorage2() {
+    const data = this.plumbingObservationContent;
+    // const data = JSON.stringify(this.structureObservation);
+    this.config.storageSave('plumbingObservationContent', data);
+  }
+
+  updateStorage3() {
+    const data = this.plumbingLimitationsContent;
+    // const data = JSON.stringify(this.structureObservation);
+    this.config.storageSave('plumbingLimitationsContent', data);
+  }
+
+  updateValue(item, val) {
+    const title = val.name || '';
+    if (title.trim().length) {
+      item.text = val.name;
+      this.updateStorage();
+    }
+  }
+
+  updateValue2(item, val) {
+    const title = val.name || '';
+    if (title.trim().length) {
+      item.text = val.name;
+      this.updateStorage2();
+    }
+  }
+
+  updateValue3(item, val) {
+    const title = val.name || '';
+    if (title.trim().length) {
+      item.text = val.name;
+      this.updateStorage3();
+    }
+  }
+
+  // method to add new Description
+  addDescription(index, data) {
+    const selectedItem = this.plumbingDescriptionContent[index];
+    // console.log(item, data);
+    // console.log(this.StructureDescriptionContent);
+    let obj = {
+      checked: 0,
+      id: selectedItem.data.length + 1,
+      main: 'Roofing Description Content',
+      text: data.description,
+      title: selectedItem.title,
+    };
+    selectedItem.data.push(obj);
+    this.updateStorage();
+  }
+
+  addDescription2(index, data) {
+    console.log(data);
+    console.log(index);
+
+    const selectedItem = this.plumbingObservationContent[index];
+
+    // console.log(this.StructureDescriptionContent);
+    let obj = {
+      checked: 0,
+      id: selectedItem.data.length + 1,
+      main: 'Roofing Observation Content',
+      text: data.description,
+      title: selectedItem.title,
+    };
+    selectedItem.data.push(obj);
+    this.updateStorage2();
+  }
+
+  // method to add new Description
+  addDescription3(index, data) {
+    console.log(data);
+    console.log(index);
+
+    const selectedItem = this.plumbingLimitationsContent[index];
+
+    // console.log(this.StructureDescriptionContent);
+    let obj = {
+      checked: 0,
+      id: selectedItem.data.length + 1,
+      main: 'Structure Limitation Content',
+      text: data.description,
+      title: selectedItem.title,
+    };
+    selectedItem.data.push(obj);
+    this.updateStorage3();
+  }
+
+  openAddModal(index) {
+    // const obj = this.StructureDescriptionContent[index];
+    this.alertController
+      .create({
+        header: 'Add Description',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'description',
+            placeholder: '',
+            // value: obj.text || ''
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Add',
+            handler: (res: any) => {
+              console.log('Saved Information', res);
+              // const data = {...item, ...res};
+              if (res.description.length) {
+                console.log(res);
+                console.log(index);
+                this.addDescription(index, res);
+              }
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  openAddModal2(index) {
+    // const obj = this.StructureDescriptionContent[index];
+    this.alertController
+      .create({
+        header: 'Add Description',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'description',
+            placeholder: '',
+            // value: obj.text || ''
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Add',
+            handler: (res: any) => {
+              console.log('Saved Information', res);
+              // const data = {...item, ...res};
+              if (res.description.length) {
+                console.log(res);
+                console.log(index);
+                this.addDescription2(index, res);
+              }
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  openAddModal3(index) {
+    // const obj = this.StructureDescriptionContent[index];
+    this.alertController
+      .create({
+        header: 'Add Limitation',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'description',
+            placeholder: '',
+            // value: obj.text || ''
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Add',
+            handler: (res: any) => {
+              console.log('Saved Information', res);
+              // const data = {...item, ...res};
+              if (res.description.length) {
+                console.log(res);
+                console.log(index);
+                this.addDescription3(index, res);
+              }
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  // method to edit ttle info.
+  editText(obj) {
+    console.log(obj);
+    this.alertController
+      .create({
+        header: 'Update Text',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'name',
+            placeholder: '',
+            value: obj.text || '',
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Update',
+            handler: (data: any) => {
+              console.log('Saved Information', data);
+              this.updateValue(obj, data);
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  editText2(obj) {
+    console.log(obj);
+    this.alertController
+      .create({
+        header: 'Update Text',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'name',
+            placeholder: '',
+            value: obj.text || '',
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Update',
+            handler: (data: any) => {
+              console.log('Saved Information', data);
+              this.updateValue2(obj, data);
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+  editText3(obj) {
+    console.log(obj);
+    this.alertController
+      .create({
+        header: 'Update Text',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'name',
+            placeholder: '',
+            value: obj.text || '',
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Update',
+            handler: (data: any) => {
+              console.log('Saved Information', data);
+              this.updateValue3(obj, data);
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  collectData2(index, item) {
+    if (this.descOutput.length) {
+      let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      if (arrObj.length) {
+        const id = arrObj[0].id;
+        this.descOutput.map((e) => {
+          if (e.id == id) {
+            e.content.push(item);
+          }
+        });
+      } else {
+        let obj = {
+          content: [item],
+          font_color:
+            this.plumbingObservationContent[index].font_color || '#000000',
+          font_size: this.plumbingObservationContent[index].font_size || 12,
+          title: this.plumbingObservationContent[index].title,
+          id: index,
+        };
+        this.descOutput.push(obj);
+      }
+    } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.plumbingObservationContent[index].font_color || '#000000',
+        font_size: this.plumbingObservationContent[index].font_size || 12,
+        title: this.plumbingObservationContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(obj);
+    }
+  }
+  collectData3(index, item) {
+    if (this.descOutput.length) {
+      let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      if (arrObj.length) {
+        const id = arrObj[0].id;
+        this.descOutput.map((e) => {
+          if (e.id == id) {
+            e.content.push(item);
+          }
+        });
+      } else {
+        let obj = {
+          content: [item],
+          font_color:
+            this.plumbingLimitationsContent[index].font_color || '#000000',
+          font_size: this.plumbingLimitationsContent[index].font_size || 12,
+          title: this.plumbingLimitationsContent[index].title,
+          id: index,
+        };
+        this.descOutput.push(obj);
+      }
+    } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.plumbingLimitationsContent[index].font_color || '#000000',
+        font_size: this.plumbingLimitationsContent[index].font_size || 12,
+        title: this.plumbingLimitationsContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(obj);
+    }
+  }
+
+  collectData(index, item) {
+    if (this.descOutput.length) {
+      let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      if (arrObj.length) {
+        const id = arrObj[0].id;
+        this.descOutput.map((e) => {
+          if (e.id == id) {
+            e.content.push(item);
+          }
+        });
+      } else {
+        let obj = {
+          content: [item],
+          font_color:
+            this.plumbingDescriptionContent[index].font_color || '#000000',
+          font_size: this.plumbingDescriptionContent[index].font_size || 12,
+          title: this.plumbingDescriptionContent[index].title,
+          id: index,
+        };
+        this.descOutput.push(obj);
+      }
+    } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.plumbingDescriptionContent[index].font_color || '#000000',
+        font_size: this.plumbingDescriptionContent[index].font_size || 12,
+        title: this.plumbingDescriptionContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(obj);
+    }
   }
 }

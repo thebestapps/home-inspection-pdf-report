@@ -46,7 +46,33 @@
         class="con-inpu"
         *ngFor="let item of electricalDescriptionContent; let i = index;"
       >
-        <p (click)="AddTitleInfo(item)" class="main-title">{{item.title}}</p>
+        <!-- <p (click)="AddTitleInfo(item)" class="main-title">{{item.title}}</p> -->
+
+        <p
+          (click)="AddTitleInfo(item)"
+          [ngStyle]="{'font-size': item.font_size ? (item.font_size + 'px') : '', 'color' : item.font_color ? item.font_color : '#000000' }"
+          class="main-title"
+        >
+          {{item.title}}
+        </p>
+        <ion-button
+          class="btn-settings"
+          slot="end"
+          size="small"
+          shape="round"
+          (click)="openIonModal(item)"
+        >
+          <ion-icon name="settings-outline"></ion-icon>
+        </ion-button>
+        <ion-button
+          class="btn-add"
+          slot="end"
+          size="small"
+          shape="round"
+          (click)="openAddModal(i)"
+        >
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
 
         <div *ngIf="item.title == SelectedTitleToFilter">
           <div class="input-etr">
@@ -54,16 +80,39 @@
               <ion-col>
                 <div
                   class="item-rw"
-                  *ngFor="let item of item.data; let i = index;"
+                  *ngFor="let desc of item.data; let i = index;"
                 >
                   <ion-checkbox
                     class="custm-check"
                     item-right
-                    [(ngModel)]="item.checked"
-                    (ionChange)="selectItem5(i, item,  $event);"
+                    [(ngModel)]="desc.checked"
+                    (ionChange)="selectItem5(i, desc,  $event);"
                   >
                   </ion-checkbox>
-                  <p class="label-inside">{{item.text}}</p>
+                  <p
+                    class="label-inside text-primary"
+                    [ngStyle]="{'font-size': desc.font_size ? (desc.font_size + 'px') : '', 'color' : desc.font_color ? desc.font_color : '#000000' }"
+                  >
+                    {{desc.text}}
+                  </p>
+                  <ion-button
+                    class="btn-desc-settings"
+                    slot="end"
+                    size="small"
+                    shape="round"
+                    (click)="openIonModal(desc)"
+                  >
+                    <ion-icon name="settings-outline"></ion-icon>
+                  </ion-button>
+                  <ion-button
+                    class="btn-edit"
+                    slot="start"
+                    size="small"
+                    shape="round"
+                    (click)="editText(desc)"
+                  >
+                    <ion-icon name="pencil-outline"></ion-icon>
+                  </ion-button>
                 </div>
               </ion-col>
             </ion-row>
@@ -634,23 +683,72 @@
         class="con-inpu"
         *ngFor="let item of electricalObservationContent; let i = index;"
       >
-        <p (click)="AddTitleInfo2(item)" class="main-title">{{item.title}}</p>
+        <p
+          (click)="AddTitleInfo2(item)"
+          [ngStyle]="{'font-size': item.font_size ? (item.font_size + 'px') : '', 'color' : item.font_color ? item.font_color : '#000000' }"
+          class="main-title"
+        >
+          {{item.title}}
+        </p>
+
+        <ion-button
+          class="btn-settings"
+          slot="end"
+          size="small"
+          shape="round"
+          (click)="openIonModal(item)"
+        >
+          <ion-icon name="settings-outline"></ion-icon>
+        </ion-button>
+        <ion-button
+          class="btn-add"
+          slot="end"
+          size="small"
+          shape="round"
+          (click)="openAddModal2(i)"
+        >
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+
         <div *ngIf="item.title == SelectedTitleToFilter">
           <div class="input-etr">
             <ion-row>
               <ion-col>
                 <div
                   class="item-rw"
-                  *ngFor="let item of item.data; let i = index;"
+                  *ngFor="let desc of item.data; let i = index;"
                 >
                   <ion-checkbox
                     class="custm-check"
                     item-right
-                    [(ngModel)]="item.checked"
-                    (ionChange)="selectItem22(i, item,  $event);"
+                    [(ngModel)]="desc.checked"
+                    (ionChange)="selectItem22(i, desc,  $event);"
                   >
                   </ion-checkbox>
-                  <p class="label-inside">{{item.text}}</p>
+                  <p
+                    class="label-inside text-primary"
+                    [ngStyle]="{'font-size': desc.font_size ? (desc.font_size + 'px') : '', 'color' : desc.font_color ? desc.font_color : '#000000' }"
+                  >
+                    {{desc.text}}
+                  </p>
+                  <ion-button
+                    class="btn-desc-settings"
+                    slot="end"
+                    size="small"
+                    shape="round"
+                    (click)="openIonModal(desc)"
+                  >
+                    <ion-icon name="settings-outline"></ion-icon>
+                  </ion-button>
+                  <ion-button
+                    class="btn-edit"
+                    slot="start"
+                    size="small"
+                    shape="round"
+                    (click)="editText2(desc)"
+                  >
+                    <ion-icon name="pencil-outline"></ion-icon>
+                  </ion-button>
                 </div>
               </ion-col>
             </ion-row>
@@ -668,7 +766,7 @@
               </ion-button>
             </ion-col>
             <ion-col style="text-align: center">
-              <ion-button (click)="closeDescription()" class="Back-btn">
+              <ion-button (click)="closeDescription2()" class="Back-btn">
                 <ion-icon class="icn-c" name="close-outline"></ion-icon>
 
                 Cancel
@@ -796,7 +894,30 @@
                 (ionChange)="selectItem4(i, item,  $event);"
               >
               </ion-checkbox>
-              <p class="label-inside">{{item.text}}</p>
+              <p
+                class="label-inside text-primary"
+                [ngStyle]="{'font-size': desc.font_size ? (desc.font_size + 'px') : '', 'color' : desc.font_color ? desc.font_color : '#000000' }"
+              >
+                {{item.text}}
+              </p>
+              <ion-button
+                class="btn-desc-settings"
+                slot="end"
+                size="small"
+                shape="round"
+                (click)="openIonModal(item)"
+              >
+                <ion-icon name="settings-outline"></ion-icon>
+              </ion-button>
+              <ion-button
+                class="btn-edit"
+                slot="start"
+                size="small"
+                shape="round"
+                (click)="editText3(item)"
+              >
+                <ion-icon name="pencil-outline"></ion-icon>
+              </ion-button>
             </div>
           </ion-col>
           <!-- 

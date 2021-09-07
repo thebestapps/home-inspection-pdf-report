@@ -854,88 +854,108 @@ export class StructureSelectionPage implements OnInit {
   }
 
   updateDescription4() {
-    let structureLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['structureLimitations'];
-
-    console.log('To finalize structureDescription=====' + structureLimitations);
-
-    if (structureLimitations != undefined) {
-      if (this.added_items4 == '') {
-        this.added_items4 = [];
-
-        var newArray = this.added_items4.map((o) => {
-          return {
-            structureLimitations: [
-              {
-                text: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items4.map((o) => {
-          return {
-            structureLimitations: [
-              {
-                text: o.text,
-              },
-            ],
-          };
-        });
-      }
-
-      console.log('Array To Add++++++++' + newArray);
-
-      let arr3 = [...structureLimitations, ...newArray];
+    let data = this.StructureLimitationsContent;
+    this.descOutput = [];
+    data.map((obj, index) => {
+      obj.data.map((item) => {
+        if (item.checked) {
+          this.collectData3(index, item);
+        }
+      });
+    });
+    console.log('desc output ', this.descOutput);
+    if (this.descOutput.length) {
+      this.StoredData.structureLimitations = this.descOutput;
     }
-
-    if (structureLimitations == null || structureLimitations == undefined) {
-      console.log('undefined------------------------------');
-
-      let structureDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['structureDescription'];
-
-      if (this.added_items4 == '') {
-        this.added_items4 = [];
-
-        var newArray = this.added_items4.map((o) => {
-          return {
-            structureLimitations: [
-              {
-                text: '',
-              },
-            ],
-          };
-        });
-      } else {
-        console.log('??' + this.added_items4);
-        var newArray = this.added_items4.map((o) => {
-          return {
-            text: o.text,
-          };
-        });
-      }
-
-      var ObArr = {
-        structureLimitations: [this.added_items4],
-      };
-
-      this.StoredData = JSON.parse(
-        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
-      );
-
-      this.StoredData.structureLimitations = newArray;
-
-      this.config.storageRemoveItem('InspectionToEdit');
-      this.config.storageSave('InspectionToEdit', this.StoredData);
-
-      console.log(this.StoredData);
-
-      this.presentAlertConfirm();
-    }
+    console.log(this.StoredData);
+    this.config.storageRemoveItem('InspectionToEdit');
+    this.config.storageSave('InspectionToEdit', this.StoredData);
+    this.presentAlertConfirm();
+    this.updateStorage3();
   }
+  // updateDescription4() {
+  //   let structureLimitations = this.config.storageGet('InspectionToEdit')[
+  //     '__zone_symbol__value'
+  //   ]['structureLimitations'];
+
+  //   console.log('To finalize structureDescription=====' + structureLimitations);
+
+  //   if (structureLimitations != undefined) {
+  //     if (this.added_items4 == '') {
+  //       this.added_items4 = [];
+
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           structureLimitations: [
+  //             {
+  //               text: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           structureLimitations: [
+  //             {
+  //               text: o.text,
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     }
+
+  //     console.log('Array To Add++++++++' + newArray);
+
+  //     let arr3 = [...structureLimitations, ...newArray];
+  //   }
+
+  //   if (structureLimitations == null || structureLimitations == undefined) {
+  //     console.log('undefined------------------------------');
+
+  //     let structureDescription = this.config.storageGet('InspectionToEdit')[
+  //       '__zone_symbol__value'
+  //     ]['structureDescription'];
+
+  //     if (this.added_items4 == '') {
+  //       this.added_items4 = [];
+
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           structureLimitations: [
+  //             {
+  //               text: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       console.log('??' + this.added_items4);
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           text: o.text,
+  //         };
+  //       });
+  //     }
+
+  //     var ObArr = {
+  //       structureLimitations: [this.added_items4],
+  //     };
+
+  //     this.StoredData = JSON.parse(
+  //       this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+  //     );
+
+  //     this.StoredData.structureLimitations = newArray;
+
+  //     this.config.storageRemoveItem('InspectionToEdit');
+  //     this.config.storageSave('InspectionToEdit', this.StoredData);
+
+  //     console.log(this.StoredData);
+
+  //     this.presentAlertConfirm();
+  //   }
+  // }
 
   updateDescription5() {
     // this.SelectedTitleToFilter = n.title;
@@ -1092,8 +1112,9 @@ export class StructureSelectionPage implements OnInit {
       } else {
         let obj = {
           content: [item],
-          font_color: this.StructureObservationContent[index].font_color || '',
-          font_size: this.StructureObservationContent[index].font_size || '',
+          font_color:
+            this.StructureObservationContent[index].font_color || '#000000',
+          font_size: this.StructureObservationContent[index].font_size || 12,
           title: this.StructureObservationContent[index].title,
           id: index,
         };
@@ -1102,9 +1123,43 @@ export class StructureSelectionPage implements OnInit {
     } else {
       let obj = {
         content: [item],
-        font_color: this.StructureObservationContent[index].font_color || '',
-        font_size: this.StructureObservationContent[index].font_size || '',
+        font_color:
+          this.StructureObservationContent[index].font_color || '#000000',
+        font_size: this.StructureObservationContent[index].font_size || 12,
         title: this.StructureObservationContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(obj);
+    }
+  }
+  collectData3(index, item) {
+    if (this.descOutput.length) {
+      let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      if (arrObj.length) {
+        const id = arrObj[0].id;
+        this.descOutput.map((e) => {
+          if (e.id == id) {
+            e.content.push(item);
+          }
+        });
+      } else {
+        let obj = {
+          content: [item],
+          font_color:
+            this.StructureLimitationsContent[index].font_color || '#000000',
+          font_size: this.StructureLimitationsContent[index].font_size || 12,
+          title: this.StructureLimitationsContent[index].title,
+          id: index,
+        };
+        this.descOutput.push(obj);
+      }
+    } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.StructureLimitationsContent[index].font_color || '#000000',
+        font_size: this.StructureLimitationsContent[index].font_size || 12,
+        title: this.StructureLimitationsContent[index].title,
         id: index,
       };
       this.descOutput.push(obj);
@@ -1124,8 +1179,9 @@ export class StructureSelectionPage implements OnInit {
       } else {
         let obj = {
           content: [item],
-          font_color: this.StructureDescriptionContent[index].font_color || '',
-          font_size: this.StructureDescriptionContent[index].font_size || '',
+          font_color:
+            this.StructureDescriptionContent[index].font_color || '#000000',
+          font_size: this.StructureDescriptionContent[index].font_size || 12,
           title: this.StructureDescriptionContent[index].title,
           id: index,
         };
@@ -1134,8 +1190,9 @@ export class StructureSelectionPage implements OnInit {
     } else {
       let obj = {
         content: [item],
-        font_color: this.StructureDescriptionContent[index].font_color || '',
-        font_size: this.StructureDescriptionContent[index].font_size || '',
+        font_color:
+          this.StructureDescriptionContent[index].font_color || '#000000',
+        font_size: this.StructureDescriptionContent[index].font_size || 12,
         title: this.StructureDescriptionContent[index].title,
         id: index,
       };
@@ -2072,8 +2129,11 @@ export class StructureSelectionPage implements OnInit {
 
   // method to add new Description
   addDescription2(index, data) {
+    console.log(data);
+    console.log(index);
+
     const selectedItem = this.StructureObservationContent[index];
-    // console.log(item, data);
+
     // console.log(this.StructureDescriptionContent);
     let obj = {
       checked: 0,
@@ -2084,6 +2144,25 @@ export class StructureSelectionPage implements OnInit {
     };
     selectedItem.data.push(obj);
     this.updateStorage2();
+  }
+
+  // method to add new Description
+  addDescription3(index, data) {
+    console.log(data);
+    console.log(index);
+
+    const selectedItem = this.StructureObservationContent[index];
+
+    // console.log(this.StructureDescriptionContent);
+    let obj = {
+      checked: 0,
+      id: selectedItem.data.length + 1,
+      main: 'Structure Limitation Content',
+      text: data.description,
+      title: selectedItem.title,
+    };
+    selectedItem.data.push(obj);
+    this.updateStorage3();
   }
 
   openAddModal(index) {
@@ -2114,6 +2193,8 @@ export class StructureSelectionPage implements OnInit {
               console.log('Saved Information', res);
               // const data = {...item, ...res};
               if (res.description.length) {
+                console.log(res);
+                console.log(index);
                 this.addDescription(index, res);
               }
             },
@@ -2154,7 +2235,51 @@ export class StructureSelectionPage implements OnInit {
               console.log('Saved Information', res);
               // const data = {...item, ...res};
               if (res.description.length) {
+                console.log(res);
+                console.log(index);
                 this.addDescription2(index, res);
+              }
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  openAddModal3(index) {
+    // const obj = this.StructureDescriptionContent[index];
+    this.alertController
+      .create({
+        header: 'Add Limitation',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'description',
+            placeholder: '',
+            // value: obj.text || ''
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Add',
+            handler: (res: any) => {
+              console.log('Saved Information', res);
+              // const data = {...item, ...res};
+              if (res.description.length) {
+                console.log(res);
+                console.log(index);
+                this.addDescription3(index, res);
               }
             },
           },
@@ -2240,6 +2365,42 @@ export class StructureSelectionPage implements OnInit {
         res.present();
       });
   }
+  editText3(obj) {
+    console.log(obj);
+    this.alertController
+      .create({
+        header: 'Update Text',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'name',
+            placeholder: '',
+            value: obj.text || '',
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Update',
+            handler: (data: any) => {
+              console.log('Saved Information', data);
+              this.updateValue3(obj, data);
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
 
   updateValue(item, val) {
     const title = val.name || '';
@@ -2257,6 +2418,14 @@ export class StructureSelectionPage implements OnInit {
     }
   }
 
+  updateValue3(item, val) {
+    const title = val.name || '';
+    if (title.trim().length) {
+      item.text = val.name;
+      this.updateStorage3();
+    }
+  }
+
   updateStorage() {
     const data = this.StructureDescriptionContent;
     console.log('HERE IS SAVING NOW----->>>>>>');
@@ -2264,9 +2433,17 @@ export class StructureSelectionPage implements OnInit {
 
     this.config.storageSave('StructureDescriptionContent', data);
   }
+
   updateStorage2() {
+    const data = this.StructureObservationContent;
     // const data = JSON.stringify(this.structureObservation);
-    // this.config.storageSave('structureObservation', data);
+    this.config.storageSave('StructureObservationContent', data);
+  }
+
+  updateStorage3() {
+    const data = this.StructureLimitationsContent;
+    // const data = JSON.stringify(this.structureObservation);
+    this.config.storageSave('StructureLimitationsContent', data);
   }
 
   // settings modal for color change and font-sized

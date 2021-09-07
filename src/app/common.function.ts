@@ -399,11 +399,10 @@ export class CommonService {
       console.log(rmv2);
       // console.log(rmv.coolinghvacdescriptioncontent);
 
-      this.ApplicationDescriptionContent = rmv2.AppliancesDescriptionContent;
-      this.ApplicationObservationContent = rmv2.AppliancesObservationContent;
-
       const StructureDescriptionContent =
-        localStorage.getItem('StructureDescriptionContent') || '';
+        this.storageGet('StructureDescriptionContent')[
+          '__zone_symbol__value'
+        ] || '';
       if (StructureDescriptionContent) {
         this.StructureDescriptionContent = JSON.parse(
           StructureDescriptionContent
@@ -422,13 +421,196 @@ export class CommonService {
         this.StructureObservationContent = rmv2.StructureObservationContent;
       }
 
+      const StructureLimitationsContent =
+        localStorage.getItem('StructureLimitationsContent') || '';
+      if (StructureLimitationsContent) {
+        this.StructureLimitationsContent = JSON.parse(
+          StructureLimitationsContent
+        );
+      } else {
+        this.StructureLimitationsContent = rmv2.StructureLimitationsContent;
+      }
+
+      const RoofingDescriptionContent =
+        localStorage.getItem('RoofingDescriptionContent') || '';
+      if (RoofingDescriptionContent) {
+        this.RoofingDescriptionContent = JSON.parse(RoofingDescriptionContent);
+      } else {
+        this.RoofingDescriptionContent = rmv2.RoofingDescriptionContent;
+      }
+
+      const RoofingObservationContent =
+        localStorage.getItem('RoofingObservationContent') || '';
+      if (RoofingObservationContent) {
+        this.RoofingObservationContent = JSON.parse(RoofingObservationContent);
+      } else {
+        this.RoofingObservationContent = rmv2.RoofingObservationContent;
+      }
+
+      const RoofingLimitationsContent =
+        localStorage.getItem('RoofingLimitationsContent') || '';
+      if (RoofingLimitationsContent) {
+        this.RoofingLimitationsContent = JSON.parse(RoofingLimitationsContent);
+      } else {
+        this.RoofingLimitationsContent = rmv2.RoofingLimitationsContent;
+      }
+
+      const CoolingHVACDescriptionContent =
+        this.storageGet('CoolingHVACDescriptionContent')[
+          '__zone_symbol__value'
+        ] || '';
+      if (CoolingHVACDescriptionContent) {
+        this.CoolingHVACDescriptionContent = JSON.parse(
+          CoolingHVACDescriptionContent
+        );
+      } else {
+        this.CoolingHVACDescriptionContent = rmv2.CoolingHVACDescriptionContent;
+      }
+
+      const CoolingHVACObservationContent =
+        this.storageGet('CoolingHVACObservationContent')[
+          '__zone_symbol__value'
+        ] || '';
+      if (CoolingHVACObservationContent) {
+        this.CoolingHVACObservationContent = JSON.parse(
+          CoolingHVACObservationContent
+        );
+      } else {
+        this.CoolingHVACObservationContent = rmv2.CoolingHVACObservationContent;
+      }
+
+      const CoolingHVACLimitationsContent =
+        this.storageGet('CoolingHVACLimitationsContent')[
+          '__zone_symbol__value'
+        ] || '';
+      if (CoolingHVACLimitationsContent) {
+        this.CoolingHVACLimitationsContent = JSON.parse(
+          CoolingHVACLimitationsContent
+        );
+      } else {
+        this.CoolingHVACLimitationsContent = rmv2.CoolingHVACLimitationsContent;
+      }
+
+      const plumbingDescriptionContent =
+        this.storageGet('plumbingDescriptionContent')['__zone_symbol__value'] ||
+        '';
+      if (plumbingDescriptionContent) {
+        this.plumbingDescriptionContent = JSON.parse(
+          plumbingDescriptionContent
+        );
+      } else {
+        this.plumbingDescriptionContent = rmv2.PlumbingDescriptionContent;
+      }
+
+      const plumbingObservationContent =
+        this.storageGet('plumbingObservationContent')['__zone_symbol__value'] ||
+        '';
+      if (plumbingObservationContent) {
+        this.plumbingObservationContent = JSON.parse(
+          plumbingObservationContent
+        );
+      } else {
+        this.plumbingObservationContent = rmv2.PlumbingObservationContent;
+      }
+
+      const plumbingLimitationContent =
+        this.storageGet('plumbingLimitationsContent')['__zone_symbol__value'] ||
+        '';
+      if (plumbingLimitationContent) {
+        this.plumbingLimitationsContent = JSON.parse(plumbingLimitationContent);
+      } else {
+        this.plumbingLimitationsContent = rmv.plumbinglimitationscontent;
+      }
+
+      // this.ApplicationDescriptionContent = rmv2.AppliancesDescriptionContent;
+      // this.ApplicationObservationContent = rmv2.AppliancesObservationContent;
+
+      const ApplicationDescriptionContent =
+        this.storageGet('ApplicationDescriptionContent')[
+          '__zone_symbol__value'
+        ] || '';
+      if (ApplicationDescriptionContent) {
+        this.ApplicationDescriptionContent = JSON.parse(
+          ApplicationDescriptionContent
+        );
+      } else {
+        this.ApplicationDescriptionContent = rmv2.AppliancesDescriptionContent;
+      }
+
+      const ApplicationObservationContent =
+        this.storageGet('ApplicationObservationContent')[
+          '__zone_symbol__value'
+        ] || '';
+      if (ApplicationObservationContent) {
+        this.ApplicationObservationContent = JSON.parse(
+          ApplicationObservationContent
+        );
+      } else {
+        this.ApplicationObservationContent = rmv2.AppliancesObservationContent;
+      }
+
+      const plumbingLimitationsContent =
+        this.storageGet('plumbinglimitationscontent')['__zone_symbol__value'] ||
+        '';
+      if (plumbingLimitationsContent) {
+        this.plumbingLimitationsContent = JSON.parse(
+          plumbingLimitationsContent
+        );
+      } else {
+        this.plumbingLimitationsContent = rmv.plumbinglimitationscontent;
+      }
+
+      // this.ElectricalDescriptionContent = rmv2.ElectricalDescriptionContent;
+      // this.ElectricalObservationContent = rmv2.ElectricalObservationContent;
+
+      const ElectricalDescriptionContent =
+        this.storageGet('electricalDescriptionContent')[
+          '__zone_symbol__value'
+        ] || '';
+      if (ElectricalDescriptionContent) {
+        this.ElectricalDescriptionContent = JSON.parse(
+          ElectricalDescriptionContent
+        );
+      } else {
+        this.ElectricalDescriptionContent = rmv2.ElectricalDescriptionContent;
+      }
+
+      const ElectricalObservationContent =
+        this.storageGet('electricalObservationContent')[
+          '__zone_symbol__value'
+        ] || '';
+      if (ElectricalObservationContent) {
+        this.ElectricalObservationContent = JSON.parse(
+          ElectricalObservationContent
+        );
+      } else {
+        this.ElectricalObservationContent = rmv2.ElectricalObservationContent;
+      }
+
+      const ElectricalLimitationsContent =
+        this.storageGet('electricalLimitationsContent')[
+          '__zone_symbol__value'
+        ] || '';
+      if (ElectricalLimitationsContent) {
+        this.ElectricalLimitationsContent = JSON.parse(
+          ElectricalLimitationsContent
+        );
+      } else {
+        this.ElectricalLimitationsContent = rmv.electricallimitationscontent;
+      }
+
+      // this.plumbingDescriptionContent = rmv.plumbingdescriptioncontent;
+      // this.plumbingObservationContent = rmv.plumbingobservationcontent;
+
+      // this.plumbingLimitationsContent = rmv.plumbinglimitationscontent;
+
       // this.StructureObservationContent = rmv2.StructureObservationContent;
 
-      this.CoolingHVACDescriptionContent = rmv2.CoolingHVACDescriptionContent;
-      this.CoolingHVACObservationContent = rmv2.CoolingHVACObservationContent;
+      // this. = rmv2.CoolingHVACDescriptionContent;
+      // this. = rmv2.CoolingHVACObservationContent;
 
-      this.RoofingDescriptionContent = rmv2.RoofingDescriptionContent;
-      this.RoofingObservationContent = rmv2.RoofingObservationContent;
+      // this.RoofingDescriptionContent = rmv2.RoofingDescriptionContent;
+      // this.RoofingObservationContent = rmv2.RoofingObservationContent;
 
       this.ExteriorDescriptionContent = rmv2.ExteriorDescriptionContent;
       this.ExteriorObservationContent = rmv2.ExteriorObservationContent;
@@ -436,11 +618,8 @@ export class CommonService {
       this.InsulationDescriptionContent = rmv2.InsulationDescriptionContent;
       this.InsulationObservationContent = rmv2.InsulationObservationContent;
 
-      this.plumbingDescriptionContent = rmv2.PlumbingDescriptionContent;
-      this.plumbingObservationContent = rmv2.PlumbingObservationContent;
-
-      this.ElectricalDescriptionContent = rmv2.ElectricalDescriptionContent;
-      this.ElectricalObservationContent = rmv2.ElectricalObservationContent;
+      // this.plumbingDescriptionContent = rmv2.PlumbingDescriptionContent;
+      // this.plumbingObservationContent = rmv2.PlumbingObservationContent;
 
       this.titleof_0 = rmv.titleof[0].title;
       // this.StructureDescriptionContent = rmv.titleof[0].title;
@@ -520,7 +699,6 @@ export class CommonService {
       // this.StructureDescriptionContent = rmv.structuredescriptioncontent;
       // this.StructureObservationContent = rmv.structureobservationcontent;
       this.StructureCommentsContent = rmv.structurecommentscontent;
-      this.StructureLimitationsContent = rmv.structurelimitationscontent;
 
       this.StructureAtticMethodStructureContent =
         rmv.structureatticmethodstructurecontent;
@@ -553,7 +731,7 @@ export class CommonService {
 
       // this.ElectricalDescriptionContent = rmv.electricaldescriptioncontent;
       // this.ElectricalObservationContent = rmv.electricalobservationcontent;
-      this.ElectricalLimitationsContent = rmv.electricallimitationscontent;
+      // this.ElectricalLimitationsContent = rmv.electricallimitationscontent;
 
       this.ElectricalServiceEntryGroundStructureContent =
         rmv.electricalserviceentrygroundstructurecontent;
@@ -571,7 +749,7 @@ export class CommonService {
 
       // this.CoolingHVACDescriptionContent = rmv.coolinghvacdescriptioncontent;
       // this.CoolingHVACObservationContent = rmv.coolinghvacobservationcontent;
-      this.CoolingHVACLimitationsContent = rmv.coolinghvaclimitationscontent;
+      // this.CoolingHVACLimitationsContent = rmv.coolinghvaclimitationscontent;
 
       this.CoolingHVACEnergyStructureContent =
         rmv.coolinghvacenergystructurecontent;
@@ -615,11 +793,8 @@ export class CommonService {
       this.AppliancesOtherStructureContent =
         rmv.appliancesotherstructurecontent;
 
-      // this.plumbingDescriptionContent = rmv.plumbingdescriptioncontent;
-      // this.plumbingObservationContent = rmv.plumbingobservationcontent;
       this.plumbingObservationRecommendations =
         rmv.plumbingobservationrecommendations;
-      this.plumbingLimitationsContent = rmv.plumbinglimitationscontent;
 
       this.PlumbingWaterSuppyContent = rmv.plumbingwatersuppycontent;
       this.PlumbingServicePipeContent = rmv.plumbingservicepipecontent;
@@ -633,7 +808,7 @@ export class CommonService {
 
       // this.RoofingDescriptionContent = rmv.roofingdescriptioncontent;
       // this.RoofingObservationContent = rmv.roofingobservationcontent;
-      this.RoofingLimitationsContent = rmv.roofinglimitationscontent;
+      // this.RoofingLimitationsContent = rmv.roofinglimitationscontent;
       this.RoofingCoveringStructureContent =
         rmv.roofingcoveringstructurecontent;
       this.RoofingGuttersDownspoutsStructureContent =

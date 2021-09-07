@@ -284,3 +284,34 @@ p.label-inside {
 .con-inpu {
   padding-left: 10px;
 }
+
+.btn-desc-settings {
+  position: absolute;
+  right: 62px;
+  font-size: 12px;
+  text-transform: none;
+  transform: translateY(-8px);
+}
+
+::ng-deep .custom-modal-txt-area {
+  .alert-wrapper {
+    min-height: 330px !important;
+    textarea {
+      min-height: 160px !important;
+    }
+  }
+}
+
+.con-inpu {
+  position: relative;
+  .btn-add {
+    position: absolute;
+    right: 8px;
+    top: -1px;
+  }
+  .btn-settings {
+    position: absolute;
+    right: 60px;
+    top: -1px;
+  }
+}

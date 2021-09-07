@@ -1333,11 +1333,11 @@ export class CommonSelectionPage implements OnInit {
                 text: '',
                 margin: [0, 3, 0, 0],
                 bold: 'true',
-                color: "#000000",
-                fontSize: 1
+                color: '#000000',
+                fontSize: 1,
               },
             ],
-            [{ text: '', margin: [0, 3, 0, 0], fontSize: 0, color: "#000000"}],
+            [{ text: '', margin: [0, 3, 0, 0], fontSize: 0, color: '#000000' }],
           ],
         },
         {
@@ -1602,11 +1602,23 @@ export class CommonSelectionPage implements OnInit {
     if (this.StoredData.structureDescriptionContent != null) {
       var data = '';
       var color = '#ff0f06';
-      for (let i = 0;i < parseInt(this.StoredData.structureDescriptionContent.length); i++)
-      {
-        for (let j = 0; j <parseInt(this.StoredData.structureDescriptionContent[i].content.length);j++)
-        {
-          data = data +  ' •' +this.StoredData.structureDescriptionContent[i].content[j].text;
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.structureDescriptionContent.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j <
+          parseInt(
+            this.StoredData.structureDescriptionContent[i].content.length
+          );
+          j++
+        ) {
+          data =
+            data +
+            ' •' +
+            this.StoredData.structureDescriptionContent[i].content[j].text;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -1615,19 +1627,24 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text: this.StoredData.structureDescriptionContent[i].title + ':\t',
+                text:
+                  this.StoredData.structureDescriptionContent[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
-                color: this.StoredData.structureDescriptionContent[i].font_color,
-                fontSize: this.StoredData.structureDescriptionContent[i].font_size,
+                color: this.StoredData.structureDescriptionContent[i]
+                  .font_color,
+                fontSize: this.StoredData.structureDescriptionContent[i]
+                  .font_size,
               },
             ],
             [
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
-                fontSize: this.StoredData.structureDescriptionContent[i].font_size,
-                color:  this.StoredData.structureDescriptionContent[i].font_color
+                fontSize: this.StoredData.structureDescriptionContent[i]
+                  .font_size,
+                color: this.StoredData.structureDescriptionContent[i]
+                  .font_color,
               },
             ],
           ],
@@ -1678,6 +1695,7 @@ export class CommonSelectionPage implements OnInit {
     }
     if (this.StoredData.structureObservation != null) {
       var data = '';
+      var color = '#ff0f06';
       for (
         let i = 0;
         i < parseInt(this.StoredData.structureObservation.length);
@@ -1690,9 +1708,25 @@ export class CommonSelectionPage implements OnInit {
         ) {
           data =
             data +
-            this.StoredData.structureObservation[i].content[j].content +
-            '\n';
+            ' •' +
+            this.StoredData.structureObservation[i].content[j].text;
         }
+
+        // for (
+        //   let i = 0;
+        //   i < parseInt(this.StoredData.structureObservation.length);
+        //   i++
+        // ) {
+        //   for (
+        //     let j = 0;
+        //     j < parseInt(this.StoredData.structureObservation[i].content.length);
+        //     j++
+        //   ) {
+        //     data =
+        //       data +
+        //       this.StoredData.structureObservation[i].content[j].content +
+        //       '\n';
+        //   }
         docDefinition.content.push({
           fontSize: 9.5,
           margin: [30, 10, 6, 0],
@@ -1701,10 +1735,13 @@ export class CommonSelectionPage implements OnInit {
             {
               text: '\n' + this.StoredData.structureObservation[i].title + '\n',
               bold: 'true',
+              color: this.StoredData.structureObservation[i].font_color,
+              fontSize: this.StoredData.structureObservation[i].font_size,
             },
             {
               text: data,
-              fontSize: 8.9,
+              fontSize: this.StoredData.structureObservation[i].font_size,
+              color: this.StoredData.structureObservation[i].font_color,
             },
           ],
         });
