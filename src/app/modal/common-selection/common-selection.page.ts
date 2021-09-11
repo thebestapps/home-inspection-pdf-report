@@ -1356,6 +1356,24 @@ export class CommonSelectionPage implements OnInit {
           ],
         },
         {
+          fontSize: 1,
+          margin: [0, 0, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text: '',
+              bold: 'true',
+              color: '#ff0f06',
+              fontSize: 1,
+            },
+            {
+              text: data,
+              fontSize: 8.9,
+              color: '#ff0f06',
+            },
+          ],
+        },
+        {
           style: 'watermark',
           ol: [''],
         },
@@ -1600,26 +1618,36 @@ export class CommonSelectionPage implements OnInit {
       });
     }
     if (this.StoredData.structureDescriptionContent != null) {
-      var data = '';
-      var color = '#ff0f06';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.structureDescriptionContent.length);
-        i++
-      ) {
-        for (
-          let j = 0;
-          j <
-          parseInt(
-            this.StoredData.structureDescriptionContent[i].content.length
-          );
-          j++
-        ) {
-          data =
-            data +
-            ' •' +
-            this.StoredData.structureDescriptionContent[i].content[j].text;
+      for (let i = 0;i < parseInt(this.StoredData.structureDescriptionContent.length); i++)
+      {
+        var data = '';
+        var content_color = "#ff0f06";
+        var title_color = "#ff0f06";
+        var content_fontSize = 10;
+        var title_fontSize = 10;
+
+        for (let j = 0;j <parseInt(this.StoredData.structureDescriptionContent[i].content.length); j++)
+        {
+          data = data +' •' + this.StoredData.structureDescriptionContent[i].content[j].text;
+
+          //Content color & fontsize
+          if(this.StoredData.structureDescriptionContent[i].content[j].font_color != null)
+          {
+            content_color = this.StoredData.structureDescriptionContent[i].content[j].font_color;
+          }
+          if(this.StoredData.structureDescriptionContent[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.structureDescriptionContent[i].content[j].font_size;
+          }
         }
+        if(this.StoredData.structureDescriptionContent[i].font_color != null)
+          {
+            title_color = this.StoredData.structureDescriptionContent[i].font_color;
+          }
+        if(this.StoredData.structureDescriptionContent[i].font_size != null)
+          {
+            title_fontSize = this.StoredData.structureDescriptionContent[i].font_size;
+          }
         docDefinition.content.push({
           fontSize: 10,
           columnGap: 5,
@@ -1627,29 +1655,23 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text:
-                  this.StoredData.structureDescriptionContent[i].title + ':\t',
+                text: this.StoredData.structureDescriptionContent[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
-                color: this.StoredData.structureDescriptionContent[i]
-                  .font_color,
-                fontSize: this.StoredData.structureDescriptionContent[i]
-                  .font_size,
+                color: title_color,
+                fontSize: title_fontSize,
               },
             ],
             [
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
-                fontSize: this.StoredData.structureDescriptionContent[i]
-                  .font_size,
-                color: this.StoredData.structureDescriptionContent[i]
-                  .font_color,
+                fontSize: content_fontSize,
+                color: content_color,
               },
             ],
           ],
         });
-        data = '';
       }
     }
     if (
@@ -1693,59 +1715,57 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.structureObservation != null) {
-      var data = '';
-      var color = '#ff0f06';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.structureObservation.length);
-        i++
-      ) {
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.structureObservation[i].content.length);
-          j++
-        ) {
-          data =
-            data +
-            ' •' +
-            this.StoredData.structureObservation[i].content[j].text;
+    if(this.StoredData.structureObservation != null)
+    {
+      for(let i=0; i<parseInt(this.StoredData.structureObservation.length); i++)
+      {
+        var data = '';
+        var content_color = "#ff0f06";
+        var title_color = "#ff0f06";
+        var content_fontSize = 9.5;
+        var title_fontSize = 9.5;
+        for(let j=0; j<parseInt(this.StoredData.structureObservation[i].content.length); j++)
+        {
+          data = data + this.StoredData.structureObservation[i].content[j].text + '\n'
+          //Content Color & FontSize
+          if(this.StoredData.structureObservation[i].content[j].font_color != null)
+          {
+            content_color = this.StoredData.structureObservation[i].content[j].font_color;
+          }
+          if(this.StoredData.structureObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.structureObservation[i].content[j].font_size;
+          }
         }
-
-        // for (
-        //   let i = 0;
-        //   i < parseInt(this.StoredData.structureObservation.length);
-        //   i++
-        // ) {
-        //   for (
-        //     let j = 0;
-        //     j < parseInt(this.StoredData.structureObservation[i].content.length);
-        //     j++
-        //   ) {
-        //     data =
-        //       data +
-        //       this.StoredData.structureObservation[i].content[j].content +
-        //       '\n';
-        //   }
-        docDefinition.content.push({
-          fontSize: 9.5,
-          margin: [30, 10, 6, 0],
-          color: '#ff0f06',
-          text: [
-            {
-              text: '\n' + this.StoredData.structureObservation[i].title + '\n',
-              bold: 'true',
-              color: this.StoredData.structureObservation[i].font_color,
-              fontSize: this.StoredData.structureObservation[i].font_size,
-            },
-            {
-              text: data,
-              fontSize: this.StoredData.structureObservation[i].font_size,
-              color: this.StoredData.structureObservation[i].font_color,
-            },
-          ],
-        });
-        data = '';
+        //Title Color & FontSize
+        if(this.StoredData.structureObservation[i].font_color != null)
+          {
+            title_color = this.StoredData.structureObservation[i].font_color;
+          }
+        if(this.StoredData.structureObservation[i].font_size != null)
+          {
+            title_fontSize = this.StoredData.structureObservation[i].font_size;
+          }
+        docDefinition.content.push(
+          {
+            fontSize: 9.5,
+            margin: [30, 4, 6, 0],
+            color: '#ff0f06',
+            text: [
+              {
+                text: '\n' + this.StoredData.structureObservation[i].title + '\n',
+                bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
+              },
+              {
+                text: data,
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          }
+        );
       }
     }
     if (this.StoredData.structureLimitations != null) {
@@ -1910,23 +1930,36 @@ export class CommonSelectionPage implements OnInit {
       });
     }
     if (this.StoredData.roofingDescriptionContent != null) {
-      var data = '';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.roofingDescriptionContent.length);
-        i++
-      ) {
-        for (
-          let j = 0;
-          j <
-          parseInt(this.StoredData.roofingDescriptionContent[i].content.length);
-          j++
-        ) {
-          data =
-            data +
-            ' • ' +
-            this.StoredData.roofingDescriptionContent[i].content[j].content;
+      for (let i = 0;i < parseInt(this.StoredData.roofingDescriptionContent.length); i++)
+      {
+        var data = '';
+        var content_color = "#ff0f06";
+        var title_color = "#ff0f06";
+        var content_fontSize = 10;
+        var title_fontSize = 10;
+  
+        for (let j = 0;j <parseInt(this.StoredData.roofingDescriptionContent[i].content.length); j++)
+        {
+          data = data +' •' + this.StoredData.roofingDescriptionContent[i].content[j].text;
+  
+          //Content color & fontsize
+          if(this.StoredData.roofingDescriptionContent[i].content[j].font_color != null)
+          {
+            content_color = this.StoredData.roofingDescriptionContent[i].content[j].font_color;
+          }
+          if(this.StoredData.roofingDescriptionContent[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.roofingDescriptionContent[i].content[j].font_size;
+          }
         }
+        if(this.StoredData.roofingDescriptionContent[i].font_color != null)
+          {
+            title_color = this.StoredData.roofingDescriptionContent[i].font_color;
+          }
+        if(this.StoredData.roofingDescriptionContent[i].font_size != null)
+          {
+            title_fontSize = this.StoredData.roofingDescriptionContent[i].font_size;
+          }
         docDefinition.content.push({
           fontSize: 10,
           columnGap: 5,
@@ -1934,22 +1967,23 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text:
-                  this.StoredData.roofingDescriptionContent[i].title + ':\t',
+                text: this.StoredData.roofingDescriptionContent[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
               },
             ],
             [
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
-                fontSize: 9,
+                fontSize: content_fontSize,
+                color: content_color,
               },
             ],
           ],
         });
-        data = '';
       }
     }
     if (this.StoredData.roofingObservation != null) {
@@ -1990,39 +2024,57 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.roofingObservation != null) {
-      var data = '';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.roofingObservation.length);
-        i++
-      ) {
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.roofingObservation[i].content.length);
-          j++
-        ) {
-          data =
-            data +
-            this.StoredData.roofingObservation[i].content[j].content +
-            '\n';
+    if(this.StoredData.roofingObservation != null)
+    {
+      for(let i=0; i<parseInt(this.StoredData.roofingObservation.length); i++)
+      {
+        var data = '';
+        var content_color = "#ff0f06";
+        var title_color = "#ff0f06";
+        var content_fontSize = 9.5;
+        var title_fontSize = 9.5;
+        for(let j=0; j<parseInt(this.StoredData.roofingObservation[i].content.length); j++)
+        {
+          data = data + this.StoredData.roofingObservation[i].content[j].text + '\n'
+          //Content Color & FontSize
+          if(this.StoredData.roofingObservation[i].content[j].font_color != null)
+          {
+            content_color = this.StoredData.roofingObservation[i].content[j].font_color;
+          }
+          if(this.StoredData.roofingObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.roofingObservation[i].content[j].font_size;
+          }
         }
-        docDefinition.content.push({
-          fontSize: 9.5,
-          margin: [30, 10, 6, 0],
-          color: '#ff0f06',
-          text: [
-            {
-              text: '\n' + this.StoredData.roofingObservation[i].title + '\n',
-              bold: 'true',
-            },
-            {
-              text: data,
-              fontSize: 8.9,
-            },
-          ],
-        });
-        data = '';
+        //Title Color & FontSize
+        if(this.StoredData.roofingObservation[i].font_color != null)
+          {
+            title_color = this.StoredData.roofingObservation[i].font_color;
+          }
+        if(this.StoredData.roofingObservation[i].font_size != null)
+          {
+            title_fontSize = this.StoredData.roofingObservation[i].font_size;
+          }
+        docDefinition.content.push(
+          {
+            fontSize: 9.5,
+            margin: [30, 4, 6, 0],
+            color: '#ff0f06',
+            text: [
+              {
+                text: '\n' + this.StoredData.roofingObservation[i].title + '\n',
+                bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
+              },
+              {
+                text: data,
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          }
+        );
       }
     }
     if (this.StoredData.roofingLimitations != null) {
@@ -2468,25 +2520,36 @@ export class CommonSelectionPage implements OnInit {
       });
     }
     if (this.StoredData.electricalDescriptionContent != null) {
-      var data = '';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.electricalDescriptionContent.length);
-        i++
-      ) {
-        for (
-          let j = 0;
-          j <
-          parseInt(
-            this.StoredData.electricalDescriptionContent[i].content.length
-          );
-          j++
-        ) {
-          data =
-            data +
-            ' • ' +
-            this.StoredData.electricalDescriptionContent[i].content[j].content;
+      for (let i = 0;i < parseInt(this.StoredData.electricalDescriptionContent.length); i++)
+      {
+        var data = '';
+        var content_color = "#ff0f06";
+        var title_color = "#ff0f06";
+        var content_fontSize = 10;
+        var title_fontSize = 10;
+  
+        for (let j = 0;j <parseInt(this.StoredData.electricalDescriptionContent[i].content.length); j++)
+        {
+          data = data +' •' + this.StoredData.electricalDescriptionContent[i].content[j].text;
+  
+          //Content color & fontsize
+          if(this.StoredData.electricalDescriptionContent[i].content[j].font_color != null)
+          {
+            content_color = this.StoredData.electricalDescriptionContent[i].content[j].font_color;
+          }
+          if(this.StoredData.electricalDescriptionContent[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.electricalDescriptionContent[i].content[j].font_size;
+          }
         }
+        if(this.StoredData.electricalDescriptionContent[i].font_color != null)
+          {
+            title_color = this.StoredData.electricalDescriptionContent[i].font_color;
+          }
+        if(this.StoredData.electricalDescriptionContent[i].font_size != null)
+          {
+            title_fontSize = this.StoredData.electricalDescriptionContent[i].font_size;
+          }
         docDefinition.content.push({
           fontSize: 10,
           columnGap: 5,
@@ -2494,22 +2557,23 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text:
-                  this.StoredData.electricalDescriptionContent[i].title + ':\t',
+                text: this.StoredData.electricalDescriptionContent[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
               },
             ],
             [
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
-                fontSize: 9,
+                fontSize: content_fontSize,
+                color: content_color,
               },
             ],
           ],
         });
-        data = '';
       }
     }
     if (this.StoredData.electricalObservation != null) {
@@ -2550,40 +2614,57 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.electricalObservation != null) {
-      var data = '';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.electricalObservation.length);
-        i++
-      ) {
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.electricalObservation[i].content.length);
-          j++
-        ) {
-          data =
-            data +
-            this.StoredData.electricalObservation[i].content[j].content +
-            '\n';
+    if(this.StoredData.electricalObservation != null)
+    {
+      for(let i=0; i<parseInt(this.StoredData.electricalObservation.length); i++)
+      {
+        var data = '';
+        var content_color = "#ff0f06";
+        var title_color = "#ff0f06";
+        var content_fontSize = 9.5;
+        var title_fontSize = 9.5;
+        for(let j=0; j<parseInt(this.StoredData.electricalObservation[i].content.length); j++)
+        {
+          data = data + this.StoredData.electricalObservation[i].content[j].text + '\n'
+          //Content Color & FontSize
+          if(this.StoredData.electricalObservation[i].content[j].font_color != null)
+          {
+            content_color = this.StoredData.electricalObservation[i].content[j].font_color;
+          }
+          if(this.StoredData.electricalObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.electricalObservation[i].content[j].font_size;
+          }
         }
-        docDefinition.content.push({
-          fontSize: 9.5,
-          margin: [30, 10, 6, 0],
-          color: '#ff0f06',
-          text: [
-            {
-              text:
-                '\n' + this.StoredData.electricalObservation[i].title + '\n',
-              bold: 'true',
-            },
-            {
-              text: data,
-              fontSize: 8.9,
-            },
-          ],
-        });
-        data = '';
+        //Title Color & FontSize
+        if(this.StoredData.electricalObservation[i].font_color != null)
+          {
+            title_color = this.StoredData.electricalObservation[i].font_color;
+          }
+        if(this.StoredData.electricalObservation[i].font_size != null)
+          {
+            title_fontSize = this.StoredData.electricalObservation[i].font_size;
+          }
+        docDefinition.content.push(
+          {
+            fontSize: 9.5,
+            margin: [30, 4, 6, 0],
+            color: '#ff0f06',
+            text: [
+              {
+                text: '\n' + this.StoredData.electricalObservation[i].title + '\n',
+                bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
+              },
+              {
+                text: data,
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          }
+        );
       }
     }
     if (this.StoredData.electricalLimitations != null) {
@@ -2742,25 +2823,36 @@ export class CommonSelectionPage implements OnInit {
       });
     }
     if (this.StoredData.coolingHvacDescriptionContent != null) {
-      var observationData = '';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.coolingHvacDescriptionContent.length);
-        i++
-      ) {
-        for (
-          let j = 0;
-          j <
-          parseInt(
-            this.StoredData.coolingHvacDescriptionContent[i].content.length
-          );
-          j++
-        ) {
-          observationData =
-            observationData +
-            ' • ' +
-            this.StoredData.coolingHvacDescriptionContent[i].content[j].content;
+      for (let i = 0;i < parseInt(this.StoredData.coolingHvacDescriptionContent.length); i++)
+      {
+        var data = '';
+        var content_color = "#ff0f06";
+        var title_color = "#ff0f06";
+        var content_fontSize = 10;
+        var title_fontSize = 10;
+  
+        for (let j = 0;j <parseInt(this.StoredData.coolingHvacDescriptionContent[i].content.length); j++)
+        {
+          data = data +' •' + this.StoredData.coolingHvacDescriptionContent[i].content[j].text;
+  
+          //Content color & fontsize
+          if(this.StoredData.coolingHvacDescriptionContent[i].content[j].font_color != null)
+          {
+            content_color = this.StoredData.coolingHvacDescriptionContent[i].content[j].font_color;
+          }
+          if(this.StoredData.coolingHvacDescriptionContent[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.coolingHvacDescriptionContent[i].content[j].font_size;
+          }
         }
+        if(this.StoredData.coolingHvacDescriptionContent[i].font_color != null)
+          {
+            title_color = this.StoredData.coolingHvacDescriptionContent[i].font_color;
+          }
+        if(this.StoredData.coolingHvacDescriptionContent[i].font_size != null)
+          {
+            title_fontSize = this.StoredData.coolingHvacDescriptionContent[i].font_size;
+          }
         docDefinition.content.push({
           fontSize: 10,
           columnGap: 5,
@@ -2768,23 +2860,23 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text:
-                  this.StoredData.coolingHvacDescriptionContent[i].title +
-                  ':\t',
+                text: this.StoredData.coolingHvacDescriptionContent[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
               },
             ],
             [
               {
-                text: observationData,
+                text: data,
                 margin: [-50, 2, 0, 0],
-                fontSize: 9,
+                fontSize: content_fontSize,
+                color: content_color,
               },
             ],
           ],
         });
-        observationData = '';
       }
     }
     if (this.StoredData.coolingObservation != null) {
@@ -2825,39 +2917,57 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.coolingObservation != null) {
-      var data = '';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.coolingObservation.length);
-        i++
-      ) {
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.coolingObservation[i].content.length);
-          j++
-        ) {
-          data =
-            data +
-            this.StoredData.coolingObservation[i].content[j].content +
-            '\n';
+    if(this.StoredData.coolingObservation != null)
+    {
+      for(let i=0; i<parseInt(this.StoredData.coolingObservation.length); i++)
+      {
+        var data = '';
+        var content_color = "#ff0f06";
+        var title_color = "#ff0f06";
+        var content_fontSize = 9.5;
+        var title_fontSize = 9.5;
+        for(let j=0; j<parseInt(this.StoredData.coolingObservation[i].content.length); j++)
+        {
+          data = data + this.StoredData.coolingObservation[i].content[j].text + '\n'
+          //Content Color & FontSize
+          if(this.StoredData.coolingObservation[i].content[j].font_color != null)
+          {
+            content_color = this.StoredData.coolingObservation[i].content[j].font_color;
+          }
+          if(this.StoredData.coolingObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.coolingObservation[i].content[j].font_size;
+          }
         }
-        docDefinition.content.push({
-          fontSize: 9.5,
-          margin: [30, 10, 6, 0],
-          color: '#ff0f06',
-          text: [
-            {
-              text: '\n' + this.StoredData.coolingObservation[i].title + '\n',
-              bold: 'true',
-            },
-            {
-              text: data,
-              fontSize: 8.9,
-            },
-          ],
-        });
-        data = '';
+        //Title Color & FontSize
+        if(this.StoredData.coolingObservation[i].font_color != null)
+          {
+            title_color = this.StoredData.coolingObservation[i].font_color;
+          }
+        if(this.StoredData.coolingObservation[i].font_size != null)
+          {
+            title_fontSize = this.StoredData.coolingObservation[i].font_size;
+          }
+        docDefinition.content.push(
+          {
+            fontSize: 9.5,
+            margin: [30, 4, 6, 0],
+            color: '#ff0f06',
+            text: [
+              {
+                text: '\n' + this.StoredData.coolingObservation[i].title + '\n',
+                bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
+              },
+              {
+                text: data,
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          }
+        );
       }
     }
     if (this.StoredData.coolingLimitations != null) {
@@ -3347,29 +3457,40 @@ export class CommonSelectionPage implements OnInit {
           paddingBottom: function (i, node) {
             return 1;
           },
-        },
+        },//plumbingDescriptionContent
       });
     }
     if (this.StoredData.plumbingDescriptionContent != null) {
-      var data = '';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.plumbingDescriptionContent.length);
-        i++
-      ) {
-        for (
-          let j = 0;
-          j <
-          parseInt(
-            this.StoredData.plumbingDescriptionContent[i].content.length
-          );
-          j++
-        ) {
-          data =
-            data +
-            ' • ' +
-            this.StoredData.plumbingDescriptionContent[i].content[j].content;
+      for (let i = 0;i < parseInt(this.StoredData.plumbingDescriptionContent.length); i++)
+      {
+        var data = '';
+        var content_color = "#ff0f06";
+        var title_color = "#ff0f06";
+        var content_fontSize = 10;
+        var title_fontSize = 10;
+  
+        for (let j = 0;j <parseInt(this.StoredData.plumbingDescriptionContent[i].content.length); j++)
+        {
+          data = data +' •' + this.StoredData.plumbingDescriptionContent[i].content[j].text;
+  
+          //Content color & fontsize
+          if(this.StoredData.plumbingDescriptionContent[i].content[j].font_color != null)
+          {
+            content_color = this.StoredData.plumbingDescriptionContent[i].content[j].font_color;
+          }
+          if(this.StoredData.plumbingDescriptionContent[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.plumbingDescriptionContent[i].content[j].font_size;
+          }
         }
+        if(this.StoredData.plumbingDescriptionContent[i].font_color != null)
+          {
+            title_color = this.StoredData.plumbingDescriptionContent[i].font_color;
+          }
+        if(this.StoredData.plumbingDescriptionContent[i].font_size != null)
+          {
+            title_fontSize = this.StoredData.plumbingDescriptionContent[i].font_size;
+          }
         docDefinition.content.push({
           fontSize: 10,
           columnGap: 5,
@@ -3377,22 +3498,23 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text:
-                  this.StoredData.plumbingDescriptionContent[i].title + ':\t',
+                text: this.StoredData.plumbingDescriptionContent[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
               },
             ],
             [
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
-                fontSize: 9,
+                fontSize: content_fontSize,
+                color: content_color,
               },
             ],
           ],
         });
-        data = '';
       }
     }
     if (this.StoredData.plumbingObservation != null) {
@@ -3433,39 +3555,57 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.plumbingObservation != null) {
-      var data = '';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.plumbingObservation.length);
-        i++
-      ) {
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.plumbingObservation[i].content.length);
-          j++
-        ) {
-          data =
-            data +
-            this.StoredData.plumbingObservation[i].content[j].content +
-            '\n';
+    if(this.StoredData.plumbingObservation != null)
+    {
+      for(let i=0; i<parseInt(this.StoredData.plumbingObservation.length); i++)
+      {
+        var data = '';
+        var content_color = "#ff0f06";
+        var title_color = "#ff0f06";
+        var content_fontSize = 9.5;
+        var title_fontSize = 9.5;
+        for(let j=0; j<parseInt(this.StoredData.plumbingObservation[i].content.length); j++)
+        {
+          data = data + this.StoredData.plumbingObservation[i].content[j].text + '\n'
+          //Content Color & FontSize
+          if(this.StoredData.plumbingObservation[i].content[j].font_color != null)
+          {
+            content_color = this.StoredData.plumbingObservation[i].content[j].font_color;
+          }
+          if(this.StoredData.plumbingObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.plumbingObservation[i].content[j].font_size;
+          }
         }
-        docDefinition.content.push({
-          fontSize: 9.5,
-          margin: [30, 10, 6, 0],
-          color: '#ff0f06',
-          text: [
-            {
-              text: '\n' + this.StoredData.plumbingObservation[i].title + '\n',
-              bold: 'true',
-            },
-            {
-              text: data,
-              fontSize: 8.9,
-            },
-          ],
-        });
-        data = '';
+        //Title Color & FontSize
+        if(this.StoredData.plumbingObservation[i].font_color != null)
+          {
+            title_color = this.StoredData.plumbingObservation[i].font_color;
+          }
+        if(this.StoredData.plumbingObservation[i].font_size != null)
+          {
+            title_fontSize = this.StoredData.plumbingObservation[i].font_size;
+          }
+        docDefinition.content.push(
+          {
+            fontSize: 9.5,
+            margin: [30, 4, 6, 0],
+            color: '#ff0f06',
+            text: [
+              {
+                text: '\n' + this.StoredData.plumbingObservation[i].title + '\n',
+                bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
+              },
+              {
+                text: data,
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          }
+        );
       }
     }
     if (this.StoredData.plumbingLimitations != null) {
@@ -3866,25 +4006,36 @@ export class CommonSelectionPage implements OnInit {
       });
     }
     if (this.StoredData.appliancesDescriptionContent != null) {
-      var data = '';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.appliancesDescriptionContent.length);
-        i++
-      ) {
-        for (
-          let j = 0;
-          j <
-          parseInt(
-            this.StoredData.appliancesDescriptionContent[i].content.length
-          );
-          j++
-        ) {
-          data =
-            data +
-            ' • ' +
-            this.StoredData.appliancesDescriptionContent[i].content[j].content;
+      for (let i = 0;i < parseInt(this.StoredData.appliancesDescriptionContent.length); i++)
+      {
+        var data = '';
+        var content_color = "#ff0f06";
+        var title_color = "#ff0f06";
+        var content_fontSize = 10;
+        var title_fontSize = 10;
+  
+        for (let j = 0;j <parseInt(this.StoredData.appliancesDescriptionContent[i].content.length); j++)
+        {
+          data = data +' •' + this.StoredData.appliancesDescriptionContent[i].content[j].text;
+  
+          //Content color & fontsize
+          if(this.StoredData.appliancesDescriptionContent[i].content[j].font_color != null)
+          {
+            content_color = this.StoredData.appliancesDescriptionContent[i].content[j].font_color;
+          }
+          if(this.StoredData.appliancesDescriptionContent[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.appliancesDescriptionContent[i].content[j].font_size;
+          }
         }
+        if(this.StoredData.appliancesDescriptionContent[i].font_color != null)
+          {
+            title_color = this.StoredData.appliancesDescriptionContent[i].font_color;
+          }
+        if(this.StoredData.appliancesDescriptionContent[i].font_size != null)
+          {
+            title_fontSize = this.StoredData.appliancesDescriptionContent[i].font_size;
+          }
         docDefinition.content.push({
           fontSize: 10,
           columnGap: 5,
@@ -3892,22 +4043,23 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text:
-                  this.StoredData.appliancesDescriptionContent[i].title + ':\t',
+                text: this.StoredData.appliancesDescriptionContent[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
               },
             ],
             [
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
-                fontSize: 9,
+                fontSize: content_fontSize,
+                color: content_color,
               },
             ],
           ],
         });
-        data = '';
       }
     }
     if (this.StoredData.applianceObservation != null) {
@@ -3948,39 +4100,57 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.applianceObservation != null) {
-      var data = '';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.applianceObservation.length);
-        i++
-      ) {
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.applianceObservation[i].content.length);
-          j++
-        ) {
-          data =
-            data +
-            this.StoredData.applianceObservation[i].content[j].content +
-            '\n';
+    if(this.StoredData.applianceObservation != null)
+    {
+      for(let i=0; i<parseInt(this.StoredData.applianceObservation.length); i++)
+      {
+        var data = '';
+        var content_color = "#ff0f06";
+        var title_color = "#ff0f06";
+        var content_fontSize = 9.5;
+        var title_fontSize = 9.5;
+        for(let j=0; j<parseInt(this.StoredData.applianceObservation[i].content.length); j++)
+        {
+          data = data + this.StoredData.applianceObservation[i].content[j].text + '\n'
+          //Content Color & FontSize
+          if(this.StoredData.applianceObservation[i].content[j].font_color != null)
+          {
+            content_color = this.StoredData.applianceObservation[i].content[j].font_color;
+          }
+          if(this.StoredData.applianceObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.applianceObservation[i].content[j].font_size;
+          }
         }
-        docDefinition.content.push({
-          fontSize: 9.5,
-          margin: [30, 0, 6, 0],
-          color: '#ff0f06',
-          text: [
-            {
-              text: '\n' + this.StoredData.applianceObservation[i].title + '\n',
-              bold: 'true',
-            },
-            {
-              text: data,
-              fontSize: 8.9,
-            },
-          ],
-        });
-        data = '';
+        //Title Color & FontSize
+        if(this.StoredData.applianceObservation[i].font_color != null)
+          {
+            title_color = this.StoredData.applianceObservation[i].font_color;
+          }
+        if(this.StoredData.applianceObservation[i].font_size != null)
+          {
+            title_fontSize = this.StoredData.applianceObservation[i].font_size;
+          }
+        docDefinition.content.push(
+          {
+            fontSize: 9.5,
+            margin: [30, 4, 6, 0],
+            color: '#ff0f06',
+            text: [
+              {
+                text: '\n' + this.StoredData.applianceObservation[i].title + '\n',
+                bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
+              },
+              {
+                text: data,
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          }
+        );
       }
     }
     if (this.StoredData.applianceLimitations != null) {
