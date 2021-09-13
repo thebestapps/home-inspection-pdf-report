@@ -235,7 +235,9 @@ export class InteriorSelectionPage implements OnInit {
   }
 
   closeDescription() {
-    this.BackPressed = false;
+    // this.BackPressed = true;
+
+    // this.BackPressed = false;
     this.Description = false;
     this.Observations_UI = false;
     this.Comments_UI = false;

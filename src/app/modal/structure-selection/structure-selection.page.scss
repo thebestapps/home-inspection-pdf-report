@@ -78,22 +78,6 @@ ion-item {
   // here other custom CSS from documentation
 }
 
-.btn-edit {
-  position: absolute;
-  right: 12px;
-  font-size: 12px;
-  text-transform: none;
-  transform: translateY(-8px);
-}
-
-.btn-desc-settings {
-  position: absolute;
-  right: 62px;
-  font-size: 12px;
-  text-transform: none;
-  transform: translateY(-8px);
-}
-
 ::ng-deep .custom-modal-txt-area {
   .alert-wrapper {
     min-height: 330px !important;

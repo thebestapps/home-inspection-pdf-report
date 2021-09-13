@@ -113,11 +113,11 @@ export class PlumbingSelectionPage implements OnInit {
         val: '2',
       },
 
-      {
-        name: 'Recommendations',
+      // {
+      //   name: 'Recommendations',
 
-        val: '3',
-      },
+      //   val: '3',
+      // },
 
       {
         name: 'Limitations',
@@ -267,7 +267,7 @@ export class PlumbingSelectionPage implements OnInit {
 
   closeDescription2() {
     this.SelectedTitleToFilter = '';
-    this.BackPressed = false;
+    this.BackPressed = true;
     this.Description = false;
     this.Observations_UI = false;
     this.Comments_UI = false;
@@ -872,92 +872,112 @@ export class PlumbingSelectionPage implements OnInit {
   }
 
   updateDescription4() {
-    let plumbingLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['plumbingLimitations'];
-
-    console.log('To finalize coolingDescription=====' + plumbingLimitations);
-
-    if (plumbingLimitations != undefined) {
-      if (this.added_items4 == '') {
-        this.added_items4 = [];
-
-        var newArray = this.added_items4.map((o) => {
-          return {
-            plumbingLimitations: [
-              {
-                text: '',
-                checked: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items4.map((o) => {
-          return {
-            plumbingLimitations: [
-              {
-                text: o.text,
-                checked: o.checked,
-              },
-            ],
-          };
-        });
+    let data = this.plumbingLimitationsContent;
+    this.descOutput = [];
+    data.map((obj, index) => {
+      console.log(obj);
+      if (obj.checked) {
+        this.collectData3(index, obj);
       }
-
-      console.log('Array To Add++++++++' + newArray);
-
-      let arr3 = [...plumbingLimitations, ...newArray];
+    });
+    console.log('desc output ', this.descOutput);
+    if (this.descOutput.length) {
+      this.StoredData.plumbingLimitations = this.descOutput;
     }
-
-    if (plumbingLimitations == null || plumbingLimitations == undefined) {
-      console.log('undefined------------------------------');
-
-      let coolingDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['coolingDescription'];
-
-      if (this.added_items4 == '') {
-        this.added_items4 = [];
-
-        var newArray = this.added_items4.map((o) => {
-          return {
-            plumbingLimitations: [
-              {
-                text: '',
-                checked: '',
-              },
-            ],
-          };
-        });
-      } else {
-        console.log('??' + this.added_items4);
-        var newArray = this.added_items4.map((o) => {
-          return {
-            text: o.text,
-            checked: o.checked,
-          };
-        });
-      }
-
-      var ObArr = {
-        plumbingLimitations: [this.added_items4],
-      };
-
-      this.StoredData = JSON.parse(
-        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
-      );
-
-      this.StoredData.plumbingLimitations = newArray;
-
-      this.config.storageRemoveItem('InspectionToEdit');
-      this.config.storageSave('InspectionToEdit', this.StoredData);
-
-      console.log(this.StoredData);
-
-      this.presentAlertConfirm();
-    }
+    console.log(this.StoredData);
+    this.config.storageRemoveItem('InspectionToEdit');
+    this.config.storageSave('InspectionToEdit', this.StoredData);
+    this.presentAlertConfirm();
+    this.updateStorage3();
   }
+
+  // updateDescription4() {
+  //   let plumbingLimitations = this.config.storageGet('InspectionToEdit')[
+  //     '__zone_symbol__value'
+  //   ]['plumbingLimitations'];
+
+  //   console.log('To finalize coolingDescription=====' + plumbingLimitations);
+
+  //   if (plumbingLimitations != undefined) {
+  //     if (this.added_items4 == '') {
+  //       this.added_items4 = [];
+
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           plumbingLimitations: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           plumbingLimitations: [
+  //             {
+  //               text: o.text,
+  //               checked: o.checked,
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     }
+
+  //     console.log('Array To Add++++++++' + newArray);
+
+  //     let arr3 = [...plumbingLimitations, ...newArray];
+  //   }
+
+  //   if (plumbingLimitations == null || plumbingLimitations == undefined) {
+  //     console.log('undefined------------------------------');
+
+  //     let coolingDescription = this.config.storageGet('InspectionToEdit')[
+  //       '__zone_symbol__value'
+  //     ]['coolingDescription'];
+
+  //     if (this.added_items4 == '') {
+  //       this.added_items4 = [];
+
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           plumbingLimitations: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       console.log('??' + this.added_items4);
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           text: o.text,
+  //           checked: o.checked,
+  //         };
+  //       });
+  //     }
+
+  //     var ObArr = {
+  //       plumbingLimitations: [this.added_items4],
+  //     };
+
+  //     this.StoredData = JSON.parse(
+  //       this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+  //     );
+
+  //     this.StoredData.plumbingLimitations = newArray;
+
+  //     this.config.storageRemoveItem('InspectionToEdit');
+  //     this.config.storageSave('InspectionToEdit', this.StoredData);
+
+  //     console.log(this.StoredData);
+
+  //     this.presentAlertConfirm();
+  //   }
+  // }
 
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
@@ -2131,12 +2151,11 @@ export class PlumbingSelectionPage implements OnInit {
     // console.log(this.StructureDescriptionContent);
     let obj = {
       checked: 0,
-      id: selectedItem.data.length + 1,
+
       main: 'Structure Limitation Content',
       text: data.description,
-      title: selectedItem.title,
     };
-    selectedItem.data.push(obj);
+    selectedItem.push(obj);
     this.updateStorage3();
   }
 
@@ -2412,25 +2431,25 @@ export class PlumbingSelectionPage implements OnInit {
   }
   collectData3(index, item) {
     if (this.descOutput.length) {
-      let arrObj = this.descOutput.filter((e, i) => e.id == index);
-      if (arrObj.length) {
-        const id = arrObj[0].id;
-        this.descOutput.map((e) => {
-          if (e.id == id) {
-            e.content.push(item);
-          }
-        });
-      } else {
-        let obj = {
-          content: [item],
-          font_color:
-            this.plumbingLimitationsContent[index].font_color || '#000000',
-          font_size: this.plumbingLimitationsContent[index].font_size || 12,
-          title: this.plumbingLimitationsContent[index].title,
-          id: index,
-        };
-        this.descOutput.push(obj);
-      }
+      // let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      // if (arrObj.length) {
+      //   const id = arrObj[0].id;
+      //   this.descOutput.map((e) => {
+      //     if (e.id == id) {
+      //       e.content.push(item);
+      //     }
+      //   });
+      // } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.plumbingLimitationsContent[index].font_color || '#000000',
+        font_size: this.plumbingLimitationsContent[index].font_size || 12,
+        title: this.plumbingLimitationsContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(item);
+      // }
     } else {
       let obj = {
         content: [item],
@@ -2440,7 +2459,7 @@ export class PlumbingSelectionPage implements OnInit {
         title: this.plumbingLimitationsContent[index].title,
         id: index,
       };
-      this.descOutput.push(obj);
+      this.descOutput.push(item);
     }
   }
 

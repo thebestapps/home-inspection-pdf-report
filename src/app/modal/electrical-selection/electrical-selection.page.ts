@@ -273,6 +273,8 @@ export class ElectricalSelectionPage implements OnInit {
   }
 
   closeDescription() {
+    // this.BackPressed = true;
+
     this.SelectedTitleToFilter2 = '';
     this.BackPressed = false;
     this.Description = false;
@@ -284,7 +286,7 @@ export class ElectricalSelectionPage implements OnInit {
 
   closeDescription2() {
     this.SelectedTitleToFilter = '';
-    this.BackPressed = false;
+    this.BackPressed = true;
     this.Description = false;
     this.Observations_UI = false;
     this.Comments_UI = false;
@@ -968,11 +970,10 @@ export class ElectricalSelectionPage implements OnInit {
     let data = this.electricalLimitationsContent;
     this.descOutput = [];
     data.map((obj, index) => {
-      obj.data.map((item) => {
-        if (item.checked) {
-          this.collectData3(index, item);
-        }
-      });
+      console.log(obj);
+      if (obj.checked) {
+        this.collectData3(index, obj);
+      }
     });
     console.log('desc output ', this.descOutput);
     if (this.descOutput.length) {
@@ -2155,12 +2156,11 @@ export class ElectricalSelectionPage implements OnInit {
     // console.log(this.StructureDescriptionContent);
     let obj = {
       checked: 0,
-      id: selectedItem.data.length + 1,
+
       main: 'Structure Limitation Content',
       text: data.description,
-      title: selectedItem.title,
     };
-    selectedItem.data.push(obj);
+    selectedItem.push(obj);
     this.updateStorage3();
   }
 
@@ -2436,25 +2436,25 @@ export class ElectricalSelectionPage implements OnInit {
   }
   collectData3(index, item) {
     if (this.descOutput.length) {
-      let arrObj = this.descOutput.filter((e, i) => e.id == index);
-      if (arrObj.length) {
-        const id = arrObj[0].id;
-        this.descOutput.map((e) => {
-          if (e.id == id) {
-            e.content.push(item);
-          }
-        });
-      } else {
-        let obj = {
-          content: [item],
-          font_color:
-            this.electricalLimitationsContent[index].font_color || '#000000',
-          font_size: this.electricalLimitationsContent[index].font_size || 12,
-          title: this.electricalLimitationsContent[index].title,
-          id: index,
-        };
-        this.descOutput.push(obj);
-      }
+      // let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      // if (arrObj.length) {
+      //   const id = arrObj[0].id;
+      //   this.descOutput.map((e) => {
+      //     if (e.id == id) {
+      //       e.content.push(item);
+      //     }
+      //   });
+      // } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.electricalLimitationsContent[index].font_color || '#000000',
+        font_size: this.electricalLimitationsContent[index].font_size || 12,
+        title: this.electricalLimitationsContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(item);
+      // }
     } else {
       let obj = {
         content: [item],
@@ -2464,7 +2464,7 @@ export class ElectricalSelectionPage implements OnInit {
         title: this.electricalLimitationsContent[index].title,
         id: index,
       };
-      this.descOutput.push(obj);
+      this.descOutput.push(item);
     }
   }
 

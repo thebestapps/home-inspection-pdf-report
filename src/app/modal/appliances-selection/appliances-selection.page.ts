@@ -262,6 +262,8 @@ export class AppliancesSelectionPage implements OnInit {
   }
 
   closeDescription() {
+    // this.BackPressed = false;
+
     this.SelectedTitleToFilter2 = '';
     this.BackPressed = false;
     this.Description = false;
@@ -273,7 +275,7 @@ export class AppliancesSelectionPage implements OnInit {
 
   closeDescription2() {
     this.SelectedTitleToFilter = '';
-    this.BackPressed = false;
+    this.BackPressed = true;
     this.Description = false;
     this.Observations_UI = false;
     this.Comments_UI = false;
@@ -962,12 +964,13 @@ export class AppliancesSelectionPage implements OnInit {
     let data = this.applianceLimitationsContent;
     this.descOutput = [];
     data.map((obj, index) => {
-      obj.data.map((item) => {
-        if (item.checked) {
-          this.collectData3(index, item);
-        }
-      });
+      console.log(obj);
+      if (obj.checked) {
+        this.collectData3(index, obj);
+      }
     });
+
+
     console.log('desc output ', this.descOutput);
     if (this.descOutput.length) {
       this.StoredData.applianceLimitations = this.descOutput;
@@ -2127,12 +2130,11 @@ export class AppliancesSelectionPage implements OnInit {
     // console.log(this.StructureDescriptionContent);
     let obj = {
       checked: 0,
-      id: selectedItem.data.length + 1,
+
       main: 'Structure Limitation Content',
       text: data.description,
-      title: selectedItem.title,
     };
-    selectedItem.data.push(obj);
+    selectedItem.push(obj);
     this.updateStorage3();
   }
 
@@ -2408,15 +2410,15 @@ export class AppliancesSelectionPage implements OnInit {
   }
   collectData3(index, item) {
     if (this.descOutput.length) {
-      let arrObj = this.descOutput.filter((e, i) => e.id == index);
-      if (arrObj.length) {
-        const id = arrObj[0].id;
-        this.descOutput.map((e) => {
-          if (e.id == id) {
-            e.content.push(item);
-          }
-        });
-      } else {
+      // let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      // if (arrObj.length) {
+      //   const id = arrObj[0].id;
+      //   this.descOutput.map((e) => {
+      //     if (e.id == id) {
+      //       e.content.push(item);
+      //     }
+      //   });
+      // } else {
         let obj = {
           content: [item],
           font_color:
@@ -2425,8 +2427,8 @@ export class AppliancesSelectionPage implements OnInit {
           title: this.applianceLimitationsContent[index].title,
           id: index,
         };
-        this.descOutput.push(obj);
-      }
+        this.descOutput.push(item);
+      // }
     } else {
       let obj = {
         content: [item],
@@ -2436,7 +2438,7 @@ export class AppliancesSelectionPage implements OnInit {
         title: this.applianceLimitationsContent[index].title,
         id: index,
       };
-      this.descOutput.push(obj);
+      this.descOutput.push(item);
     }
   }
 

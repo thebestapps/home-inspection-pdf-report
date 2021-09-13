@@ -176,12 +176,23 @@ ion-content.ios {
 }
 
 button.btn-f {
+  max-height: 38px;
+  display: inline-flex;
+
   background: var(--ion-color-primary);
   color: white;
   margin-right: 10px;
   margin-left: 10px;
   border-radius: 4px;
   min-width: 106px;
+}
+
+.liner-bx {
+  display: inline-grid;
+}
+
+.btn-edit.lm {
+  position: inherit;
 }
 
 .container {
@@ -314,4 +325,20 @@ p.label-inside {
     right: 60px;
     top: -1px;
   }
+}
+
+.btn-desc-settings {
+  position: absolute;
+  right: 62px;
+  font-size: 12px;
+  text-transform: none;
+  transform: translateY(-8px);
+}
+
+.btn-edit {
+  position: absolute;
+  right: 12px;
+  font-size: 12px;
+  text-transform: none;
+  transform: translateY(-8px);
 }

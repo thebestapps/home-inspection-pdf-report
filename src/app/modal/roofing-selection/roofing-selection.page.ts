@@ -853,88 +853,111 @@ export class RoofingSelectionPage implements OnInit {
     }
   }
 
+  // updateDescription4() {
+  //   let structureLimitations = this.config.storageGet('InspectionToEdit')[
+  //     '__zone_symbol__value'
+  //   ]['roofingLimitations'];
+
+  //   console.log('To finalize roofingDescription=====' + structureLimitations);
+
+  //   if (structureLimitations != undefined) {
+  //     if (this.added_items4 == '') {
+  //       this.added_items4 = [];
+
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           roofingLimitations: [
+  //             {
+  //               text: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           roofingLimitations: [
+  //             {
+  //               text: o.text,
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     }
+
+  //     console.log('Array To Add++++++++' + newArray);
+
+  //     let arr3 = [...structureLimitations, ...newArray];
+  //   }
+
+  //   if (structureLimitations == null || structureLimitations == undefined) {
+  //     console.log('undefined------------------------------');
+
+  //     let roofingDescription = this.config.storageGet('InspectionToEdit')[
+  //       '__zone_symbol__value'
+  //     ]['roofingLimitations'];
+
+  //     if (this.added_items4 == '') {
+  //       this.added_items4 = [];
+
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           roofingLimitations: [
+  //             {
+  //               text: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       console.log('??' + this.added_items4);
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           text: o.text,
+  //         };
+  //       });
+  //     }
+
+  //     var ObArr = {
+  //       structureLimitations: [this.added_items4],
+  //     };
+
+  //     this.StoredData = JSON.parse(
+  //       this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+  //     );
+
+  //     this.StoredData.roofingLimitations = newArray;
+
+  //     this.config.storageRemoveItem('InspectionToEdit');
+  //     this.config.storageSave('InspectionToEdit', this.StoredData);
+
+  //     console.log(this.StoredData);
+
+  //     this.presentAlertConfirm();
+  //   }
+  // }
+
   updateDescription4() {
-    let structureLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['roofingLimitations'];
+    let data = this.RoofingLimitationsContent;
+    console.log(data);
 
-    console.log('To finalize roofingDescription=====' + structureLimitations);
+    this.descOutput = [];
 
-    if (structureLimitations != undefined) {
-      if (this.added_items4 == '') {
-        this.added_items4 = [];
-
-        var newArray = this.added_items4.map((o) => {
-          return {
-            roofingLimitations: [
-              {
-                text: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items4.map((o) => {
-          return {
-            roofingLimitations: [
-              {
-                text: o.text,
-              },
-            ],
-          };
-        });
+    data.map((obj, index) => {
+      console.log(obj);
+      if (obj.checked) {
+        this.collectData3(index, obj);
       }
-
-      console.log('Array To Add++++++++' + newArray);
-
-      let arr3 = [...structureLimitations, ...newArray];
+    });
+    console.log('desc output ', this.descOutput);
+    if (this.descOutput.length) {
+      this.StoredData.roofingLimitations = this.descOutput;
     }
-
-    if (structureLimitations == null || structureLimitations == undefined) {
-      console.log('undefined------------------------------');
-
-      let roofingDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['roofingLimitations'];
-
-      if (this.added_items4 == '') {
-        this.added_items4 = [];
-
-        var newArray = this.added_items4.map((o) => {
-          return {
-            roofingLimitations: [
-              {
-                text: '',
-              },
-            ],
-          };
-        });
-      } else {
-        console.log('??' + this.added_items4);
-        var newArray = this.added_items4.map((o) => {
-          return {
-            text: o.text,
-          };
-        });
-      }
-
-      var ObArr = {
-        structureLimitations: [this.added_items4],
-      };
-
-      this.StoredData = JSON.parse(
-        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
-      );
-
-      this.StoredData.roofingLimitations = newArray;
-
-      this.config.storageRemoveItem('InspectionToEdit');
-      this.config.storageSave('InspectionToEdit', this.StoredData);
-
-      console.log(this.StoredData);
-
-      this.presentAlertConfirm();
-    }
+    console.log(this.StoredData);
+    this.config.storageRemoveItem('InspectionToEdit');
+    this.config.storageSave('InspectionToEdit', this.StoredData);
+    this.presentAlertConfirm();
+    this.updateStorage3();
   }
 
   async presentAlertConfirm() {
@@ -1171,7 +1194,7 @@ export class RoofingSelectionPage implements OnInit {
   }
   closeDescription2() {
     this.SelectedTitleToFilter = '';
-    this.BackPressed = false;
+    this.BackPressed = true;
     this.Description = false;
     this.Observations_UI = false;
     this.Comments_UI = false;
@@ -2140,12 +2163,11 @@ export class RoofingSelectionPage implements OnInit {
     // console.log(this.StructureDescriptionContent);
     let obj = {
       checked: 0,
-      id: selectedItem.data.length + 1,
+
       main: 'Structure Limitation Content',
       text: data.description,
-      title: selectedItem.title,
     };
-    selectedItem.data.push(obj);
+    selectedItem.push(obj);
     this.updateStorage3();
   }
 
@@ -2421,25 +2443,25 @@ export class RoofingSelectionPage implements OnInit {
   }
   collectData3(index, item) {
     if (this.descOutput.length) {
-      let arrObj = this.descOutput.filter((e, i) => e.id == index);
-      if (arrObj.length) {
-        const id = arrObj[0].id;
-        this.descOutput.map((e) => {
-          if (e.id == id) {
-            e.content.push(item);
-          }
-        });
-      } else {
-        let obj = {
-          content: [item],
-          font_color:
-            this.RoofingLimitationsContent[index].font_color || '#000000',
-          font_size: this.RoofingLimitationsContent[index].font_size || 12,
-          title: this.RoofingLimitationsContent[index].title,
-          id: index,
-        };
-        this.descOutput.push(obj);
-      }
+      // let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      // if (arrObj.length) {
+      //   const id = arrObj[0].id;
+      //   this.descOutput.map((e) => {
+      //     if (e.id == id) {
+      //       e.content.push(item);
+      //     }
+      //   });
+      // } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.RoofingLimitationsContent[index].font_color || '#000000',
+        font_size: this.RoofingLimitationsContent[index].font_size || 12,
+        title: this.RoofingLimitationsContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(item);
+      // }
     } else {
       let obj = {
         content: [item],
@@ -2449,7 +2471,7 @@ export class RoofingSelectionPage implements OnInit {
         title: this.RoofingLimitationsContent[index].title,
         id: index,
       };
-      this.descOutput.push(obj);
+      this.descOutput.push(item);
     }
   }
 

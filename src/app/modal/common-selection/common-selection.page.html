@@ -56,7 +56,7 @@
       <button *ngIf="!PreviewPDF" class="btn-f" (click)="previewPDF()">
         <ion-icon class="prev-icns" name="eye-outline"></ion-icon>
 
-        Preview
+        <span class="txt-btm-prv"> Preview </span>
       </button>
 
       <ion-spinner *ngIf="DownloadPDF" name="circles"></ion-spinner>
@@ -64,7 +64,7 @@
       <button *ngIf="!DownloadPDF" class="btn-f" (click)="DownloadPdf_()">
         <ion-icon class="icn-down" name="download-outline"></ion-icon>
 
-        Download
+        <span class="txt-btm-prv dwn"> Download </span>
       </button>
     </ion-col>
     <!-- <ion-col style="text-align: center">

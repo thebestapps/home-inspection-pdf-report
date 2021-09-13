@@ -428,7 +428,7 @@ export class CommonService {
           StructureLimitationsContent
         );
       } else {
-        this.StructureLimitationsContent = rmv2.StructureLimitationsContent;
+        this.StructureLimitationsContent = rmv2.structurelimitationscontent;
       }
 
       const RoofingDescriptionContent =
@@ -452,7 +452,7 @@ export class CommonService {
       if (RoofingLimitationsContent) {
         this.RoofingLimitationsContent = JSON.parse(RoofingLimitationsContent);
       } else {
-        this.RoofingLimitationsContent = rmv2.RoofingLimitationsContent;
+        this.RoofingLimitationsContent = rmv2.roofinglimitationscontent;
       }
 
       const CoolingHVACDescriptionContent =
@@ -488,7 +488,7 @@ export class CommonService {
           CoolingHVACLimitationsContent
         );
       } else {
-        this.CoolingHVACLimitationsContent = rmv2.CoolingHVACLimitationsContent;
+        this.CoolingHVACLimitationsContent = rmv2.coolinghvaclimitationscontent;
       }
 
       const plumbingDescriptionContent =
@@ -519,12 +519,14 @@ export class CommonService {
       if (plumbingLimitationContent) {
         this.plumbingLimitationsContent = JSON.parse(plumbingLimitationContent);
       } else {
-        this.plumbingLimitationsContent = rmv.plumbinglimitationscontent;
+        this.plumbingLimitationsContent = rmv2.plumbinglimitationscontent;
       }
 
       // this.ApplicationDescriptionContent = rmv2.AppliancesDescriptionContent;
       // this.ApplicationObservationContent = rmv2.AppliancesObservationContent;
 
+      console.log(this.ApplicationDescriptionContent);
+      console.log(rmv2.AppliancesDescriptionContent);
       const ApplicationDescriptionContent =
         this.storageGet('ApplicationDescriptionContent')[
           '__zone_symbol__value'
@@ -546,7 +548,7 @@ export class CommonService {
           ApplicationObservationContent
         );
       } else {
-        this.ApplicationObservationContent = rmv2.AppliancesObservationContent;
+        this.ApplicationObservationContent = rmv2.ApplicationObservationContent;
       }
 
       const plumbingLimitationsContent =
@@ -557,7 +559,7 @@ export class CommonService {
           plumbingLimitationsContent
         );
       } else {
-        this.plumbingLimitationsContent = rmv.plumbinglimitationscontent;
+        // this.plumbingLimitationsContent = rmv.plumbinglimitationscontent;
       }
 
       // this.ElectricalDescriptionContent = rmv2.ElectricalDescriptionContent;
@@ -624,77 +626,6 @@ export class CommonService {
       this.titleof_0 = rmv.titleof[0].title;
       // this.StructureDescriptionContent = rmv.titleof[0].title;
       // this.StructureDescriptionContent = rmv.titleof[0].title;
-
-      this.titleof_0 = rmv.titleof[0].title;
-      this.titleof_1 = rmv.titleof[1].title;
-      this.titleof_2 = rmv.titleof[2].title;
-      this.titleof_3 = rmv.titleof[3].title;
-      this.titleof_4 = rmv.titleof[4].title;
-      this.titleof_5 = rmv.titleof[5].title;
-      this.titleof_6 = rmv.titleof[6].title;
-      this.titleof_7 = rmv.titleof[7].title;
-      this.titleof_8 = rmv.titleof[8].title;
-      this.titleof_9 = rmv.titleof[9].title;
-      this.titleof_10 = rmv.titleof[10].title;
-      this.titleof_11 = rmv.titleof[11].title;
-      this.titleof_12 = rmv.titleof[12].title;
-      this.titleof_13 = rmv.titleof[13].title;
-      this.titleof_14 = rmv.titleof[14].title;
-      this.titleof_15 = rmv.titleof[15].title;
-      this.titleof_16 = rmv.titleof[16].title;
-      this.titleof_17 = rmv.titleof[17].title;
-      this.titleof_18 = rmv.titleof[18].title;
-      this.titleof_19 = rmv.titleof[19].title;
-      this.titleof_20 = rmv.titleof[20].title;
-      this.titleof_21 = rmv.titleof[21].title;
-      this.titleof_22 = rmv.titleof[22].title;
-      this.titleof_23 = rmv.titleof[23].title;
-      this.titleof_24 = rmv.titleof[24].title;
-      this.titleof_25 = rmv.titleof[25].title;
-      this.titleof_26 = rmv.titleof[26].title;
-      this.titleof_27 = rmv.titleof[27].title;
-      this.titleof_28 = rmv.titleof[28].title;
-      this.titleof_29 = rmv.titleof[29].title;
-      this.titleof_30 = rmv.titleof[30].title;
-      this.titleof_31 = rmv.titleof[31].title;
-      this.titleof_32 = rmv.titleof[32].title;
-      this.titleof_33 = rmv.titleof[33].title;
-      this.titleof_34 = rmv.titleof[34].title;
-      this.titleof_35 = rmv.titleof[35].title;
-      this.titleof_36 = rmv.titleof[36].title;
-      this.titleof_37 = rmv.titleof[37].title;
-      this.titleof_38 = rmv.titleof[38].title;
-      this.titleof_39 = rmv.titleof[39].title;
-      this.titleof_40 = rmv.titleof[40].title;
-      this.titleof_41 = rmv.titleof[41].title;
-      this.titleof_42 = rmv.titleof[42].title;
-      this.titleof_43 = rmv.titleof[43].title;
-      this.titleof_44 = rmv.titleof[44].title;
-      this.titleof_45 = rmv.titleof[45].title;
-      this.titleof_46 = rmv.titleof[46].title;
-      this.titleof_47 = rmv.titleof[47].title;
-      this.titleof_48 = rmv.titleof[48].title;
-      this.titleof_49 = rmv.titleof[49].title;
-      this.titleof_50 = rmv.titleof[50].title;
-      this.titleof_51 = rmv.titleof[51].title;
-      this.titleof_52 = rmv.titleof[52].title;
-      this.titleof_53 = rmv.titleof[53].title;
-      this.titleof_54 = rmv.titleof[54].title;
-      this.titleof_55 = rmv.titleof[55].title;
-      this.titleof_56 = rmv.titleof[56].title;
-      this.titleof_57 = rmv.titleof[57].title;
-      this.titleof_58 = rmv.titleof[58].title;
-      this.titleof_59 = rmv.titleof[59].title;
-      this.titleof_60 = rmv.titleof[60].title;
-      this.titleof_61 = rmv.titleof[61].title;
-      this.titleof_62 = rmv.titleof[62].title;
-      this.titleof_63 = rmv.titleof[63].title;
-      this.titleof_64 = rmv.titleof[64].title;
-      this.titleof_65 = rmv.titleof[65].title;
-      this.titleof_66 = rmv.titleof[66].title;
-      this.titleof_67 = rmv.titleof[67].title;
-      this.titleof_68 = rmv.titleof[68].title;
-      this.titleof_69 = rmv.titleof[69].title;
 
       // this.StructureDescriptionContent = rmv.structuredescriptioncontent;
       // this.StructureObservationContent = rmv.structureobservationcontent;
@@ -909,10 +840,15 @@ export class CommonService {
 
     await alert.present();
   }
+
   async createPdf() {
+    this.PreviewPDF = true;
+
     this.StoredData = JSON.parse(
       this.storageGet('InspectionToEdit')['__zone_symbol__value']
     );
+
+    this.selPDFname = this.StoredData.client_Info[0].clientName;
 
     if (this.StoredData.report_section[0].ApproximateAgeofHouse === '') {
       this.presentToast('Please fill Report Overview');
@@ -932,44 +868,25 @@ export class CommonService {
     let img_7 = '../../../assets/img_7.jpg';
     let img_8 = '../../../assets/img_8.jpg';
 
-    // let imagesLength = this.StoredData.storedReportOverviewImage;
-
     if (this.StoredData.storedReportOverviewImage != null) {
       var imagesLength = Object.keys(this.StoredData.storedReportOverviewImage)
         .length;
       console.log('LENGHT--' + imagesLength);
     }
-
+    //console.log('COOLING OBSERVATION ======>', this.StoredData.coolingHvacObservation.length);
     // if (imagesLength === '') {
     //   this.config.presentToast('Please upload Inspection Images');
     //   return;
     // }
-
+    // console.log(
+    //   'ARRAY LENGTH',
+    //   parseInt(this.StoredData.structureWallStructure.length)
+    // );
     console.log(this.StoredData.storedReportOverviewImage);
     //ionic cordova run android -l
 
     let asb = this.StoredData.storedReportOverviewImage;
     console.log(asb);
-
-    // if (
-    //   this.selPDFname == '' ||
-    //   this.selPDFname == undefined ||
-    //   this.selPDFname == null
-    // ) {
-    //   this.getPDFName();
-    //   return;
-    // } else {
-    //   this.PreviewPDF = true;
-    // }
-
-    this.PreviewPDF = true;
-
-    this.StoredData = JSON.parse(
-      this.storageGet('InspectionToEdit')['__zone_symbol__value']
-    );
-
-    // alert('yesssss' + this.GetFileDownloadType);
-    this.selPDFname = this.StoredData.client_Info[0].clientName;
 
     /*var areaImpact = [
       {
@@ -1899,6 +1816,71 @@ export class CommonService {
           ],
         },
         {
+          fontSize: 1,
+          columnGap: 4,
+          color: '#000000',
+          columns: [
+            [
+              {
+                text: '',
+                margin: [0, 3, 0, 0],
+                bold: 'true',
+              },
+            ],
+            [{ text: '', margin: [0, 3, 0, 0], fontSize: 0 }],
+          ],
+        },
+        {
+          fontSize: 1,
+          columnGap: 4,
+          color: '#000000',
+          columns: [
+            [
+              {
+                text: '',
+                margin: [0, 3, 0, 0],
+                bold: 'true',
+                color: '#000000',
+                fontSize: 1,
+              },
+            ],
+            [{ text: '', margin: [0, 3, 0, 0], fontSize: 0, color: '#000000' }],
+          ],
+        },
+        {
+          fontSize: 1,
+          margin: [0, 0, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text: '',
+              bold: 'true',
+            },
+            {
+              text: '',
+              fontSize: 8,
+            },
+          ],
+        },
+        {
+          fontSize: 1,
+          margin: [0, 0, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text: '',
+              bold: 'true',
+              color: '#ff0f06',
+              fontSize: 1,
+            },
+            {
+              text: data,
+              fontSize: 8.9,
+              color: '#ff0f06',
+            },
+          ],
+        },
+        {
           style: 'watermark',
           ol: [''],
         },
@@ -2027,7 +2009,6 @@ export class CommonService {
                 image: await this.getBase64ImageFromURL(
                   this.StoredData.storedReportOverviewImage[i].img
                 ),
-                // image: await this.getBase64ImageFromURL(img_7),
                 width: 250,
                 height: 200,
               },
@@ -2038,9 +2019,6 @@ export class CommonService {
             ],
             [
               {
-                // image: await this.getBase64ImageFromURL(
-                //   this.StoredData.storedReportOverviewImage[i].img
-                // ),
                 image: await this.getBase64ImageFromURL(img_8),
                 width: 250,
                 height: 200,
@@ -2054,13 +2032,14 @@ export class CommonService {
         });
       }
     }
+
+    //<==========================================> STRUCTURE <==========================================>
     if (
       this.StoredData.structureDescription != null ||
-      this.StoredData.structureDescription != null ||
-      this.StoredData.structureComments ||
-      this.StoredData.structureLimitations ||
-      this.StoredData.structureWallStructure != null ||
-      this.StoredData.structureCeilingStructure != null
+      this.StoredData.structureDescriptionContent != null ||
+      this.StoredData.structureComments != null ||
+      this.StoredData.structureLimitations != null ||
+      this.StoredData.structureObservation != null
     ) {
       docDefinition.content.push(
         {
@@ -2107,68 +2086,10 @@ export class CommonService {
         }
       );
     }
-
-    /*if (this.StoredData.structureDescription != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF STRUCTURAL / FOUNDATION COMPONENTS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
-            ],
-          },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 124;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
-          },
-        },
-        {
-          fontSize: 10,
-          margin: [30, 5, 0, 0],
-          color: '#ff0f06',
-          text: [
-            {
-              text: this.StoredData.structureDescription,
-              bold: 'true',
-            },
-          ],
-        }
-      );
-    }*/
-
-    if (
-      this.StoredData.structureWallStructure != null ||
-      this.StoredData.structureCeilingStructure != null ||
-      this.StoredData.structureRoofStructure ||
-      this.StoredData.structureDescription != null
-    ) {
+    if (this.StoredData.structureDescriptionContent != null) {
       docDefinition.content.push({
         color: '#000000',
-        margin: [0, 8, 0, 0],
+        margin: [0, 8, 0, 6],
         width: 300,
         table: {
           body: [
@@ -2203,158 +2124,185 @@ export class CommonService {
         },
       });
     }
-    if (this.StoredData.structureWallStructure != null) {
-      docDefinition.content.push({
-        fontSize: 10,
-        columnGap: 5,
-        color: '#ff0f06',
-        columns: [
-          [
-            {
-              text: 'Wall Structure:\n',
-              margin: [30, 7, 0, 0],
-              bold: 'true',
-            },
-          ],
-          [
-            {
-              text: '• ' + this.StoredData.structureWallStructure[0].text,
-              margin: [-50, 7, 0, 0],
-            },
-          ],
-        ],
-      });
-    }
+    if (this.StoredData.structureDescriptionContent != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.structureDescriptionContent.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ff0f06';
+        var title_color = '#ff0f06';
+        var content_fontSize = 10;
+        var title_fontSize = 10;
 
-    if (this.StoredData.structureCeilingStructure != null) {
-      docDefinition.content.push({
-        fontSize: 10,
-        columnGap: 5,
-        color: '#ff0f06',
-        columns: [
-          [
-            {
-              text: 'Ceiling Structure:\n',
-              margin: [30, 3, 0, 0],
-              bold: 'true',
-            },
+        for (
+          let j = 0;
+          j <
+          parseInt(
+            this.StoredData.structureDescriptionContent[i].content.length
+          );
+          j++
+        ) {
+          data =
+            data +
+            ' •' +
+            this.StoredData.structureDescriptionContent[i].content[j].text;
+
+          //Content color & fontsize
+          if (
+            this.StoredData.structureDescriptionContent[i].content[j]
+              .font_color != null
+          ) {
+            content_color = this.StoredData.structureDescriptionContent[i]
+              .content[j].font_color;
+          }
+          if (
+            this.StoredData.structureDescriptionContent[i].content[j]
+              .font_size != null
+          ) {
+            content_fontSize = this.StoredData.structureDescriptionContent[i]
+              .content[j].font_size;
+          }
+        }
+        if (this.StoredData.structureDescriptionContent[i].font_color != null) {
+          title_color = this.StoredData.structureDescriptionContent[i]
+            .font_color;
+        }
+        if (this.StoredData.structureDescriptionContent[i].font_size != null) {
+          title_fontSize = this.StoredData.structureDescriptionContent[i]
+            .font_size;
+        }
+        docDefinition.content.push({
+          fontSize: 10,
+          columnGap: 5,
+          color: '#ff0f06',
+          columns: [
+            [
+              {
+                text:
+                  this.StoredData.structureDescriptionContent[i].title + ':\t',
+                margin: [30, 2, 0, 0],
+                bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
+              },
+            ],
+            [
+              {
+                text: data,
+                margin: [-50, 2, 0, 0],
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
           ],
-          [
-            {
-              text: this.StoredData.structureCeilingStructure,
-              //text: '• ' + this.StoredData.structureCeilingStructure[0].text + ' • ' + this.StoredData.structureCeilingStructure[1].text,
-              margin: [-50, 3, 0, 0],
-            },
-          ],
-        ],
-      });
-    }
-    if (this.StoredData.structureRoofStructure != null) {
-      docDefinition.content.push({
-        fontSize: 10,
-        columnGap: 5,
-        color: '#ff0f06',
-        columns: [
-          [
-            {
-              text: 'Roof Structure:\n',
-              margin: [30, 3, 0, 0],
-              bold: 'true',
-            },
-          ],
-          [
-            {
-              text: this.StoredData.structureRoofStructure,
-              //text: '• ' + this.StoredData.structureRoofStructure[0].text + ' • ' + this.StoredData.structureRoofStructure[1].text,
-              margin: [-50, 3, 0, 0],
-            },
-          ],
-        ],
-      });
+        });
+      }
     }
     if (
       this.StoredData.structureObservation != null ||
       this.StoredData.structureComments != null
     ) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'STRUCTURAL / FOUNDATION COMPONENT OBSERVATIONS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'STRUCTURAL / FOUNDATION COMPONENT OBSERVATIONS',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 139;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 139;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
           },
         },
-        {
+      });
+    }
+    if (this.StoredData.structureObservation != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.structureObservation.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ff0f06';
+        var title_color = '#ff0f06';
+        var content_fontSize = 9.5;
+        var title_fontSize = 9.5;
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.structureObservation[i].content.length);
+          j++
+        ) {
+          data =
+            data +
+            this.StoredData.structureObservation[i].content[j].text +
+            '\n';
+          //Content Color & FontSize
+          if (
+            this.StoredData.structureObservation[i].content[j].font_color !=
+            null
+          ) {
+            content_color = this.StoredData.structureObservation[i].content[j]
+              .font_color;
+          }
+          if (
+            this.StoredData.structureObservation[i].content[j].font_size != null
+          ) {
+            content_fontSize = this.StoredData.structureObservation[i].content[
+              j
+            ].font_size;
+          }
+        }
+        //Title Color & FontSize
+        if (this.StoredData.structureObservation[i].font_color != null) {
+          title_color = this.StoredData.structureObservation[i].font_color;
+        }
+        if (this.StoredData.structureObservation[i].font_size != null) {
+          title_fontSize = this.StoredData.structureObservation[i].font_size;
+        }
+        docDefinition.content.push({
           fontSize: 9.5,
-          margin: [30, 10, 6, 0],
-          color: '#ed3833',
+          margin: [30, 4, 6, 0],
+          color: '#ff0f06',
           text: [
             {
-              text: 'Positive Attributes\n',
+              text: '\n' + this.StoredData.structureObservation[i].title + '\n',
               bold: 'true',
+              color: title_color,
+              fontSize: title_fontSize,
             },
             {
-              text: this.StoredData.structureObservation,
-            },
-            {
-              text: '\nGeneral Comments\n',
-              bold: 'true',
-            },
-            {
-              text: this.StoredData.structureComments,
-            },
-            {
-              text: '\n\nRECOMMENDATIONS / OBSERVATIONS \n',
-              bold: 'true',
-            },
-            {
-              text: 'Wood Boring Insects \n',
-              bold: 'true',
-            },
-            {
-              text:
-                'Monitor:  This home is situated in an area known for wood destroying insect activity (Florida).  Wood destroying insects can do a substantial amount of damage to the wood structural components of a home. Since termites are a living and breeding insect, sometimes damage may take months or years to show evidence.  Several steps can be taken to reduce the risk of a wood destroying insect problem. Additional treatment may be need in the event of swarms. Any form of wood/soil contact should be avoided.  Controlling dampness in the soil around the perimeter of a home, including below porches and in crawl spaces, is recommended.  Preventive chemical treatment, performed by a licensed pest control specialist, is also advisable. Termites are beyond the scope of the inspection. A licensed pest control specialist should be consulted for a thorough termite inspection and treatment (if necessary). If there is currently a termite bond the transfer of the bond is advisable.\n\n',
-            },
-            {
-              text: 'Foundation \n',
-              bold: 'true',
-            },
-            {
-              text:
-                'Monitor:  Common minor cracks were observed in the foundation walls of the house.  This implies that some structural movement of the building has occurred, as is typical of most houses. This is usually the result of shrinkage and/or settling of the slab. It takes several years for the new concrete to fully cure. During the curing process it very common for concrete to crack due to thermal differential inside the core of the concrete. Thicker concrete slabs will cure more slowly than thinner slabs. During renovations, expect to find concrete cracks under the flooring. Floor coverings were not removed at the time of inspection.\n',
+              text: data,
+              fontSize: content_fontSize,
+              color: content_color,
             },
           ],
-        }
-      );
+        });
+      }
     }
     if (this.StoredData.structureLimitations != null) {
       docDefinition.content.push(
@@ -2410,10 +2358,10 @@ export class CommonService {
           fontSize: 9.5,
           color: '#ed3833',
           ul: [
-            this.StoredData.structureLimitations, //tobe
-            //this.StoredData.structureLimitations[1],
-            //this.StoredData.structureLimitations[2],
-            //this.StoredData.structureLimitations[3],
+            this.StoredData.structureLimitations[0], //tobe
+            this.StoredData.structureLimitations[1],
+            this.StoredData.structureLimitations[2],
+            this.StoredData.structureLimitations[3],
           ],
         },
         {
@@ -2424,10 +2372,12 @@ export class CommonService {
         }
       );
     }
+    //<==========================================> ROOFING <==========================================>
     if (
       this.StoredData.roofingDescription != null ||
       this.StoredData.roofingObservation != null ||
-      this.StoredData.roofingLimitations != null
+      this.StoredData.roofingLimitations != null ||
+      this.StoredData.roofingDescriptionContent != null
     ) {
       docDefinition.content.push(
         {
@@ -2474,119 +2424,216 @@ export class CommonService {
         }
       );
     }
-    if (this.StoredData.roofingDescription != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF ROOFING SYSTEM',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+    if (
+      this.StoredData.roofingDescription != null ||
+      this.StoredData.roofingDescriptionContent != null
+    ) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 6],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'DESCRIPTION OF ROOFING SYSTEM',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 275;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 275;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
           },
         },
-        {
-          columnGap: 30,
-          width: '50%',
-          margin: [30, 5, 0, 0],
-          fontSize: 9,
-          color: '#ed3833',
-          columns: [this.StoredData.roofingDescription],
+      });
+    }
+    if (this.StoredData.roofingDescriptionContent != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.roofingDescriptionContent.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ff0f06';
+        var title_color = '#ff0f06';
+        var content_fontSize = 10;
+        var title_fontSize = 10;
+
+        for (
+          let j = 0;
+          j <
+          parseInt(this.StoredData.roofingDescriptionContent[i].content.length);
+          j++
+        ) {
+          data =
+            data +
+            ' •' +
+            this.StoredData.roofingDescriptionContent[i].content[j].text;
+
+          //Content color & fontsize
+          if (
+            this.StoredData.roofingDescriptionContent[i].content[j]
+              .font_color != null
+          ) {
+            content_color = this.StoredData.roofingDescriptionContent[i]
+              .content[j].font_color;
+          }
+          if (
+            this.StoredData.roofingDescriptionContent[i].content[j].font_size !=
+            null
+          ) {
+            content_fontSize = this.StoredData.roofingDescriptionContent[i]
+              .content[j].font_size;
+          }
         }
-      );
+        if (this.StoredData.roofingDescriptionContent[i].font_color != null) {
+          title_color = this.StoredData.roofingDescriptionContent[i].font_color;
+        }
+        if (this.StoredData.roofingDescriptionContent[i].font_size != null) {
+          title_fontSize = this.StoredData.roofingDescriptionContent[i]
+            .font_size;
+        }
+        docDefinition.content.push({
+          fontSize: 10,
+          columnGap: 5,
+          color: '#ff0f06',
+          columns: [
+            [
+              {
+                text:
+                  this.StoredData.roofingDescriptionContent[i].title + ':\t',
+                margin: [30, 2, 0, 0],
+                bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
+              },
+            ],
+            [
+              {
+                text: data,
+                margin: [-50, 2, 0, 0],
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          ],
+        });
+      }
     }
     if (this.StoredData.roofingObservation != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'ROOFING OBSERVATIONS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'ROOFING OBSERVATIONS',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 336;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 336;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
           },
         },
-        {
+      });
+    }
+    if (this.StoredData.roofingObservation != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.roofingObservation.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ff0f06';
+        var title_color = '#ff0f06';
+        var content_fontSize = 9.5;
+        var title_fontSize = 9.5;
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.roofingObservation[i].content.length);
+          j++
+        ) {
+          data =
+            data + this.StoredData.roofingObservation[i].content[j].text + '\n';
+          //Content Color & FontSize
+          if (
+            this.StoredData.roofingObservation[i].content[j].font_color != null
+          ) {
+            content_color = this.StoredData.roofingObservation[i].content[j]
+              .font_color;
+          }
+          if (
+            this.StoredData.roofingObservation[i].content[j].font_size != null
+          ) {
+            content_fontSize = this.StoredData.roofingObservation[i].content[j]
+              .font_size;
+          }
+        }
+        //Title Color & FontSize
+        if (this.StoredData.roofingObservation[i].font_color != null) {
+          title_color = this.StoredData.roofingObservation[i].font_color;
+        }
+        if (this.StoredData.roofingObservation[i].font_size != null) {
+          title_fontSize = this.StoredData.roofingObservation[i].font_size;
+        }
+        docDefinition.content.push({
           fontSize: 9.5,
-          margin: [30, 10, 6, 0],
-          color: '#ed3833',
+          margin: [30, 4, 6, 0],
+          color: '#ff0f06',
           text: [
             {
-              text: '\nGeneral Comments\n',
+              text: '\n' + this.StoredData.roofingObservation[i].title + '\n',
               bold: 'true',
+              color: title_color,
+              fontSize: title_fontSize,
             },
             {
-              text: this.StoredData.roofingObservation,
-            },
-            {
-              text: '\n\nRECOMMENDATIONS / OBSERVATIONS \n',
-              bold: 'true',
-            },
-            {
-              text: 'Sloped Roofing \n',
-              bold: 'true',
-            },
-            {
-              text:
-                'Improve:  The roofing is nearing the later stages of its life cycle.  Minor repairs are recommended in the short term to maintain the weather tightness of the roof.  Damaged or missing roofing material should be repaired.  All roof penetrations should be examined and sealed as necessary. Some insurance companies are limiting coverage on homes with shingle roofs that are 15 years or older.\n\n',
+              text: data,
+              fontSize: content_fontSize,
+              color: content_color,
             },
           ],
-        }
-      );
+        });
+      }
     }
     if (this.StoredData.roofingLimitations != null) {
       docDefinition.content.push(
@@ -2647,9 +2694,9 @@ export class CommonService {
           fontSize: 9.5,
           color: '#ed3833',
           ul: [
-            this.StoredData.roofingLimitations, //tobe
-            //this.StoredData.roofingLimitations[1],
-            //this.StoredData.roofingLimitations[2]
+            this.StoredData.roofingLimitations[0], //tobe
+            this.StoredData.roofingLimitations[1],
+            this.StoredData.roofingLimitations[2],
           ],
         },
         {
@@ -2660,10 +2707,12 @@ export class CommonService {
         }
       );
     }
+    //<==========================================> EXTERIOR <==========================================>
     if (
       this.StoredData.exteriorDescription != null ||
       this.StoredData.exteriorObservation != null ||
-      this.StoredData.exteriorLimitations != null
+      this.StoredData.exteriorLimitations != null ||
+      this.StoredData.exteriorDescriptionContent != null
     ) {
       docDefinition.content.push(
         {
@@ -2710,123 +2759,164 @@ export class CommonService {
         }
       );
     }
-    if (this.StoredData.exteriorDescription != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF EXTERIOR',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+    if (
+      this.StoredData.exteriorDescription != null ||
+      this.StoredData.exteriorDescriptionContent != null
+    ) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 6],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'DESCRIPTION OF EXTERIOR',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
-          },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 324;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
-          },
-        },
-        {
-          columnGap: 30,
-          width: '50%',
-          margin: [30, 5, 0, 0],
-          fontSize: 9,
-          color: '#ed3833',
-          columns: [this.StoredData.exteriorDescription],
-        }
-      );
-    }
-    if (this.StoredData.exteriorObservation != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'EXTERIOR OBSERVATIONS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
-            ],
-          },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 332;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
-          },
-        },
-        {
-          fontSize: 9.5,
-          margin: [30, 10, 6, 0],
-          color: '#ed3833',
-          text: [
-            {
-              text: 'General Comments\n',
-              bold: 'true',
-            },
-            {
-              text: this.StoredData.exteriorObservation,
-            },
-            {
-              text: '\n\nRECOMMENDATIONS / OBSERVATIONS \n',
-              fontSize: 11,
-              bold: 'true',
-              color: '#000000',
-            },
-            {
-              text: 'Exterior and Garage\n',
-              bold: 'true',
-            },
           ],
         },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [this.StoredData.exteriorObservation],
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
+          },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 324;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
+    }
+    if (this.StoredData.exteriorDescriptionContent != null) {
+      var data = '';
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.exteriorDescriptionContent.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j <
+          parseInt(
+            this.StoredData.exteriorDescriptionContent[i].content.length
+          );
+          j++
+        ) {
+          data =
+            data +
+            ' • ' +
+            this.StoredData.exteriorDescriptionContent[i].content[j].content;
         }
-      );
+        docDefinition.content.push({
+          fontSize: 10,
+          columnGap: 5,
+          color: '#ff0f06',
+          columns: [
+            [
+              {
+                text:
+                  this.StoredData.exteriorDescriptionContent[i].title + ':\t',
+                margin: [30, 2, 0, 0],
+                bold: 'true',
+              },
+            ],
+            [
+              {
+                text: data,
+                margin: [-50, 2, 0, 0],
+                fontSize: 9,
+              },
+            ],
+          ],
+        });
+        data = '';
+      }
+    }
+    if (this.StoredData.exteriorObservation != null) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'EXTERIOR OBSERVATIONS',
+                alignment: 'left',
+                style: 'subbox',
+              },
+            ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
+          },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 332;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
+    }
+    if (this.StoredData.exteriorObservation != null) {
+      var data = '';
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.exteriorObservation.length);
+        i++
+      ) {
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.exteriorObservation[i].content.length);
+          j++
+        ) {
+          data =
+            data +
+            this.StoredData.exteriorObservation[i].content[j].content +
+            '\n';
+        }
+        docDefinition.content.push({
+          fontSize: 9.5,
+          margin: [30, 10, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text: '\n' + this.StoredData.exteriorObservation[i].title + '\n',
+              bold: 'true',
+            },
+            {
+              text: data,
+              fontSize: 8.9,
+            },
+          ],
+        });
+        data = '';
+      }
     }
     if (this.StoredData.exteriorLimitations != null) {
       docDefinition.content.push(
@@ -2894,10 +2984,12 @@ export class CommonService {
         }
       );
     }
+    //<==========================================> ELECTICAL <==========================================>
     if (
       this.StoredData.electricalDescription != null ||
       this.StoredData.electricalObservation != null ||
-      this.StoredData.electricalLimitations != null
+      this.StoredData.electricalLimitations != null ||
+      this.StoredData.electricalDescriptionContent != null
     ) {
       docDefinition.content.push(
         {
@@ -2944,123 +3036,227 @@ export class CommonService {
         }
       );
     }
-    if (this.StoredData.electricalDescription != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF ELECTRICAL SYSTEM',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+    if (
+      this.StoredData.electricalDescription != null ||
+      this.StoredData.electricalDescriptionContent != null
+    ) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 6],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'DESCRIPTION OF ELECTRICAL SYSTEM',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
-          },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 262;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
-          },
-        },
-        {
-          columnGap: 30,
-          width: '50%',
-          margin: [30, 5, 0, 0],
-          fontSize: 9,
-          color: '#ed3833',
-          columns: [this.StoredData.electricalDescription],
-        }
-      );
-    }
-    if (this.StoredData.electricalObservation != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'ELECTRICAL OBSERVATIONS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
-            ],
-          },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 319;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
-          },
-        },
-        {
-          fontSize: 9.5,
-          margin: [30, 10, 6, 0],
-          color: '#ed3833',
-          text: [
-            {
-              text: 'General Comments\n',
-              bold: 'true',
-            },
-            {
-              text: this.StoredData.electricalObservation,
-            },
-            {
-              text: '\n\nRECOMMENDATIONS / OBSERVATIONS \n',
-              fontSize: 11,
-              bold: 'true',
-              color: '#000000',
-            },
-            {
-              text: 'Exterior and Garage\n',
-              bold: 'true',
-            },
           ],
         },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [this.StoredData.electricalObservation],
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
+          },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 262;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
+    }
+    if (this.StoredData.electricalDescriptionContent != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.electricalDescriptionContent.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ff0f06';
+        var title_color = '#ff0f06';
+        var content_fontSize = 10;
+        var title_fontSize = 10;
+
+        for (
+          let j = 0;
+          j <
+          parseInt(
+            this.StoredData.electricalDescriptionContent[i].content.length
+          );
+          j++
+        ) {
+          data =
+            data +
+            ' •' +
+            this.StoredData.electricalDescriptionContent[i].content[j].text;
+
+          //Content color & fontsize
+          if (
+            this.StoredData.electricalDescriptionContent[i].content[j]
+              .font_color != null
+          ) {
+            content_color = this.StoredData.electricalDescriptionContent[i]
+              .content[j].font_color;
+          }
+          if (
+            this.StoredData.electricalDescriptionContent[i].content[j]
+              .font_size != null
+          ) {
+            content_fontSize = this.StoredData.electricalDescriptionContent[i]
+              .content[j].font_size;
+          }
         }
-      );
+        if (
+          this.StoredData.electricalDescriptionContent[i].font_color != null
+        ) {
+          title_color = this.StoredData.electricalDescriptionContent[i]
+            .font_color;
+        }
+        if (this.StoredData.electricalDescriptionContent[i].font_size != null) {
+          title_fontSize = this.StoredData.electricalDescriptionContent[i]
+            .font_size;
+        }
+        docDefinition.content.push({
+          fontSize: 10,
+          columnGap: 5,
+          color: '#ff0f06',
+          columns: [
+            [
+              {
+                text:
+                  this.StoredData.electricalDescriptionContent[i].title + ':\t',
+                margin: [30, 2, 0, 0],
+                bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
+              },
+            ],
+            [
+              {
+                text: data,
+                margin: [-50, 2, 0, 0],
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          ],
+        });
+      }
+    }
+    if (this.StoredData.electricalObservation != null) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'ELECTRICAL OBSERVATIONS',
+                alignment: 'left',
+                style: 'subbox',
+              },
+            ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
+          },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 319;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
+    }
+    if (this.StoredData.electricalObservation != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.electricalObservation.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ff0f06';
+        var title_color = '#ff0f06';
+        var content_fontSize = 9.5;
+        var title_fontSize = 9.5;
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.electricalObservation[i].content.length);
+          j++
+        ) {
+          data =
+            data +
+            this.StoredData.electricalObservation[i].content[j].text +
+            '\n';
+          //Content Color & FontSize
+          if (
+            this.StoredData.electricalObservation[i].content[j].font_color !=
+            null
+          ) {
+            content_color = this.StoredData.electricalObservation[i].content[j]
+              .font_color;
+          }
+          if (
+            this.StoredData.electricalObservation[i].content[j].font_size !=
+            null
+          ) {
+            content_fontSize = this.StoredData.electricalObservation[i].content[
+              j
+            ].font_size;
+          }
+        }
+        //Title Color & FontSize
+        if (this.StoredData.electricalObservation[i].font_color != null) {
+          title_color = this.StoredData.electricalObservation[i].font_color;
+        }
+        if (this.StoredData.electricalObservation[i].font_size != null) {
+          title_fontSize = this.StoredData.electricalObservation[i].font_size;
+        }
+        docDefinition.content.push({
+          fontSize: 9.5,
+          margin: [30, 4, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text:
+                '\n' + this.StoredData.electricalObservation[i].title + '\n',
+              bold: 'true',
+              color: title_color,
+              fontSize: title_fontSize,
+            },
+            {
+              text: data,
+              fontSize: content_fontSize,
+              color: content_color,
+            },
+          ],
+        });
+      }
     }
     if (this.StoredData.electricalLimitations != null) {
       docDefinition.content.push(
@@ -3124,10 +3320,12 @@ export class CommonService {
         }
       );
     }
+    //<==========================================> COOLING <==========================================>
     if (
       this.StoredData.coolingDescription != null ||
       this.StoredData.coolingObservation != null ||
-      this.StoredData.coolingLimitations != null
+      this.StoredData.coolingLimitations != null ||
+      this.StoredData.coolingHvacDescriptionContent != null
     ) {
       docDefinition.content.push(
         {
@@ -3174,123 +3372,224 @@ export class CommonService {
         }
       );
     }
-    if (this.StoredData.coolingDescription != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF COOLING SYSTEM',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+    if (
+      this.StoredData.coolingDescription != null ||
+      this.StoredData.coolingHvacDescriptionContent != null
+    ) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 6],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'DESCRIPTION OF COOLING SYSTEM',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
-          },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 278;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
-          },
-        },
-        {
-          columnGap: 30,
-          width: '50%',
-          margin: [30, 5, 0, 0],
-          fontSize: 9,
-          color: '#ed3833',
-          columns: [this.StoredData.coolingDescription],
-        }
-      );
-    }
-    if (this.StoredData.coolingObservation != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'SYSTEM OBSERVATIONS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
-            ],
-          },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 340;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
-          },
-        },
-        {
-          fontSize: 9.5,
-          margin: [30, 10, 6, 0],
-          color: '#ed3833',
-          text: [
-            {
-              text: 'General Comments\n',
-              bold: 'true',
-            },
-            {
-              text: this.StoredData.coolingObservation,
-            },
-            {
-              text: '\n\nRECOMMENDATIONS / OBSERVATIONS \n',
-              fontSize: 11,
-              bold: 'true',
-              color: '#000000',
-            },
-            {
-              text: 'HVAC\n',
-              bold: 'true',
-            },
           ],
         },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [this.StoredData.coolingObservation],
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
+          },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 278;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
+    }
+    if (this.StoredData.coolingHvacDescriptionContent != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.coolingHvacDescriptionContent.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ff0f06';
+        var title_color = '#ff0f06';
+        var content_fontSize = 10;
+        var title_fontSize = 10;
+
+        for (
+          let j = 0;
+          j <
+          parseInt(
+            this.StoredData.coolingHvacDescriptionContent[i].content.length
+          );
+          j++
+        ) {
+          data =
+            data +
+            ' •' +
+            this.StoredData.coolingHvacDescriptionContent[i].content[j].text;
+
+          //Content color & fontsize
+          if (
+            this.StoredData.coolingHvacDescriptionContent[i].content[j]
+              .font_color != null
+          ) {
+            content_color = this.StoredData.coolingHvacDescriptionContent[i]
+              .content[j].font_color;
+          }
+          if (
+            this.StoredData.coolingHvacDescriptionContent[i].content[j]
+              .font_size != null
+          ) {
+            content_fontSize = this.StoredData.coolingHvacDescriptionContent[i]
+              .content[j].font_size;
+          }
         }
-      );
+        if (
+          this.StoredData.coolingHvacDescriptionContent[i].font_color != null
+        ) {
+          title_color = this.StoredData.coolingHvacDescriptionContent[i]
+            .font_color;
+        }
+        if (
+          this.StoredData.coolingHvacDescriptionContent[i].font_size != null
+        ) {
+          title_fontSize = this.StoredData.coolingHvacDescriptionContent[i]
+            .font_size;
+        }
+        docDefinition.content.push({
+          fontSize: 10,
+          columnGap: 5,
+          color: '#ff0f06',
+          columns: [
+            [
+              {
+                text:
+                  this.StoredData.coolingHvacDescriptionContent[i].title +
+                  ':\t',
+                margin: [30, 2, 0, 0],
+                bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
+              },
+            ],
+            [
+              {
+                text: data,
+                margin: [-50, 2, 0, 0],
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          ],
+        });
+      }
+    }
+    if (this.StoredData.coolingObservation != null) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'SYSTEM OBSERVATIONS',
+                alignment: 'left',
+                style: 'subbox',
+              },
+            ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
+          },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 340;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
+    }
+    if (this.StoredData.coolingObservation != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.coolingObservation.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ff0f06';
+        var title_color = '#ff0f06';
+        var content_fontSize = 9.5;
+        var title_fontSize = 9.5;
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.coolingObservation[i].content.length);
+          j++
+        ) {
+          data =
+            data + this.StoredData.coolingObservation[i].content[j].text + '\n';
+          //Content Color & FontSize
+          if (
+            this.StoredData.coolingObservation[i].content[j].font_color != null
+          ) {
+            content_color = this.StoredData.coolingObservation[i].content[j]
+              .font_color;
+          }
+          if (
+            this.StoredData.coolingObservation[i].content[j].font_size != null
+          ) {
+            content_fontSize = this.StoredData.coolingObservation[i].content[j]
+              .font_size;
+          }
+        }
+        //Title Color & FontSize
+        if (this.StoredData.coolingObservation[i].font_color != null) {
+          title_color = this.StoredData.coolingObservation[i].font_color;
+        }
+        if (this.StoredData.coolingObservation[i].font_size != null) {
+          title_fontSize = this.StoredData.coolingObservation[i].font_size;
+        }
+        docDefinition.content.push({
+          fontSize: 9.5,
+          margin: [30, 4, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text: '\n' + this.StoredData.coolingObservation[i].title + '\n',
+              bold: 'true',
+              color: title_color,
+              fontSize: title_fontSize,
+            },
+            {
+              text: data,
+              fontSize: content_fontSize,
+              color: content_color,
+            },
+          ],
+        });
+      }
     }
     if (this.StoredData.coolingLimitations != null) {
       docDefinition.content.push(
@@ -3361,7 +3660,10 @@ export class CommonService {
     if (
       this.StoredData.insulationDescription != null ||
       this.StoredData.insulationObservation != null ||
-      this.StoredData.insulationLimitations != null
+      this.StoredData.insulationLimitations != null ||
+      this.StoredData.D2InsulationAtticStructure != null ||
+      this.StoredData.D2InsulationRoofStructure != null ||
+      this.StoredData.D2InsulationExhastVentStructure != null
     ) {
       docDefinition.content.push(
         {
@@ -3408,54 +3710,50 @@ export class CommonService {
         }
       );
     }
-    if (this.StoredData.insulationDescription != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF INSULATION / VENTILATION',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+    if (
+      this.StoredData.insulationDescription != null ||
+      this.StoredData.D2InsulationAtticStructure != null ||
+      this.StoredData.D2InsulationRoofStructure != null ||
+      this.StoredData.D2InsulationExhastVentStructure != null
+    ) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'DESCRIPTION OF INSULATION / VENTILATION',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
           },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 217;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 217;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
           },
         },
-        {
-          columnGap: 30,
-          width: '50%',
-          margin: [30, 5, 0, 0],
-          fontSize: 9,
-          color: '#ed3833',
-          columns: [this.StoredData.insulationDescription],
-        }
-      );
+      });
     }
+
     if (this.StoredData.insulationObservation != null) {
       docDefinition.content.push(
         {
@@ -3592,10 +3890,12 @@ export class CommonService {
         }
       );
     }
+    //<==========================================> PLUMBING <==========================================>
     if (
       this.StoredData.plumbingDescription != null ||
       this.StoredData.plumbingObservation != null ||
-      this.StoredData.plumbingLimitations != null
+      this.StoredData.plumbingLimitations != null ||
+      this.StoredData.plumbingDescriptionContent != null
     ) {
       docDefinition.content.push(
         {
@@ -3642,123 +3942,221 @@ export class CommonService {
         }
       );
     }
-    if (this.StoredData.plumbingDescription != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF PLUMBING SYSTEM',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+    if (
+      this.StoredData.plumbingDescription != null ||
+      this.StoredData.plumbingDescriptionContent != null
+    ) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 6],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'DESCRIPTION OF PLUMBING SYSTEM',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
-          },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 267;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
-          },
-        },
-        {
-          columnGap: 30,
-          width: '50%',
-          margin: [0, 5, 0, 0],
-          fontSize: 9,
-          color: '#ed3833',
-          columns: [this.StoredData.plumbingDescription],
-        }
-      );
-    }
-    if (this.StoredData.plumbingObservation != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'PLUMBING OBSERVATIONS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
-            ],
-          },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 328;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
-          },
-        },
-        {
-          fontSize: 9.5,
-          margin: [30, 10, 6, 0],
-          color: '#ed3833',
-          text: [
-            {
-              text: 'General Comments\n',
-              bold: 'true',
-            },
-            {
-              text: this.StoredData.plumbingObservation,
-            },
-            {
-              text: '\n\nRECOMMENDATIONS / OBSERVATIONS \n',
-              fontSize: 11,
-              bold: 'true',
-              color: '#000000',
-            },
-            {
-              text: this.StoredData.plumbingObservationRecommendations,
-              bold: 'true',
-            },
           ],
         },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [this.StoredData.plumbingObservation],
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
+          },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 267;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        }, //plumbingDescriptionContent
+      });
+    }
+    if (this.StoredData.plumbingDescriptionContent != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.plumbingDescriptionContent.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ff0f06';
+        var title_color = '#ff0f06';
+        var content_fontSize = 10;
+        var title_fontSize = 10;
+
+        for (
+          let j = 0;
+          j <
+          parseInt(
+            this.StoredData.plumbingDescriptionContent[i].content.length
+          );
+          j++
+        ) {
+          data =
+            data +
+            ' •' +
+            this.StoredData.plumbingDescriptionContent[i].content[j].text;
+
+          //Content color & fontsize
+          if (
+            this.StoredData.plumbingDescriptionContent[i].content[j]
+              .font_color != null
+          ) {
+            content_color = this.StoredData.plumbingDescriptionContent[i]
+              .content[j].font_color;
+          }
+          if (
+            this.StoredData.plumbingDescriptionContent[i].content[j]
+              .font_size != null
+          ) {
+            content_fontSize = this.StoredData.plumbingDescriptionContent[i]
+              .content[j].font_size;
+          }
         }
-      );
+        if (this.StoredData.plumbingDescriptionContent[i].font_color != null) {
+          title_color = this.StoredData.plumbingDescriptionContent[i]
+            .font_color;
+        }
+        if (this.StoredData.plumbingDescriptionContent[i].font_size != null) {
+          title_fontSize = this.StoredData.plumbingDescriptionContent[i]
+            .font_size;
+        }
+        docDefinition.content.push({
+          fontSize: 10,
+          columnGap: 5,
+          color: '#ff0f06',
+          columns: [
+            [
+              {
+                text:
+                  this.StoredData.plumbingDescriptionContent[i].title + ':\t',
+                margin: [30, 2, 0, 0],
+                bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
+              },
+            ],
+            [
+              {
+                text: data,
+                margin: [-50, 2, 0, 0],
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          ],
+        });
+      }
+    }
+    if (this.StoredData.plumbingObservation != null) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'PLUMBING OBSERVATIONS',
+                alignment: 'left',
+                style: 'subbox',
+              },
+            ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
+          },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 328;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
+    }
+    if (this.StoredData.plumbingObservation != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.plumbingObservation.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ff0f06';
+        var title_color = '#ff0f06';
+        var content_fontSize = 9.5;
+        var title_fontSize = 9.5;
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.plumbingObservation[i].content.length);
+          j++
+        ) {
+          data =
+            data +
+            this.StoredData.plumbingObservation[i].content[j].text +
+            '\n';
+          //Content Color & FontSize
+          if (
+            this.StoredData.plumbingObservation[i].content[j].font_color != null
+          ) {
+            content_color = this.StoredData.plumbingObservation[i].content[j]
+              .font_color;
+          }
+          if (
+            this.StoredData.plumbingObservation[i].content[j].font_size != null
+          ) {
+            content_fontSize = this.StoredData.plumbingObservation[i].content[j]
+              .font_size;
+          }
+        }
+        //Title Color & FontSize
+        if (this.StoredData.plumbingObservation[i].font_color != null) {
+          title_color = this.StoredData.plumbingObservation[i].font_color;
+        }
+        if (this.StoredData.plumbingObservation[i].font_size != null) {
+          title_fontSize = this.StoredData.plumbingObservation[i].font_size;
+        }
+        docDefinition.content.push({
+          fontSize: 9.5,
+          margin: [30, 4, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text: '\n' + this.StoredData.plumbingObservation[i].title + '\n',
+              bold: 'true',
+              color: title_color,
+              fontSize: title_fontSize,
+            },
+            {
+              text: data,
+              fontSize: content_fontSize,
+              color: content_color,
+            },
+          ],
+        });
+      }
     }
     if (this.StoredData.plumbingLimitations != null) {
       docDefinition.content.push(
@@ -4064,10 +4462,12 @@ export class CommonService {
         }
       );
     }
+    //<==========================================> APPLIANCES <==========================================>
     if (
       this.StoredData.applianceDescription != null ||
       this.StoredData.applianceObservation != null ||
-      this.StoredData.applianceLimitations != null
+      this.StoredData.applianceLimitations != null ||
+      this.StoredData.appliancesDescriptionContent != null
     ) {
       docDefinition.content.push(
         {
@@ -4114,119 +4514,225 @@ export class CommonService {
         }
       );
     }
-    if (this.StoredData.applianceDescription != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF APPLIANCES',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+    if (
+      this.StoredData.applianceDescription != null ||
+      this.StoredData.appliancesDescriptionContent != null
+    ) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 6],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'DESCRIPTION OF APPLIANCES',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
-          },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 310;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
-          },
-        },
-        {
-          columnGap: 30,
-          width: '50%',
-          margin: [30, 5, 0, 0],
-          fontSize: 9,
-          color: '#ed3833',
-          columns: [this.StoredData.applianceDescription],
-        }
-      );
-    }
-    if (this.StoredData.applianceObservation != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'APPLIANCE OBSERVATIONS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
-            ],
-          },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 328;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
-          },
-        },
-        {
-          fontSize: 9.5,
-          margin: [30, 10, 6, 0],
-          color: '#ed3833',
-          text: [
-            {
-              text: 'General Comments\n',
-              bold: 'true',
-            },
-            {
-              text: this.StoredData.applianceObservation,
-            },
-            {
-              text: '\n\nRECOMMENDATIONS / OBSERVATIONS \n',
-              fontSize: 11,
-              bold: 'true',
-              color: '#000000',
-            },
           ],
         },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [this.StoredData.applianceObservationRecommendations],
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
+          },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 310;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
+    }
+    if (this.StoredData.appliancesDescriptionContent != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.appliancesDescriptionContent.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ff0f06';
+        var title_color = '#ff0f06';
+        var content_fontSize = 10;
+        var title_fontSize = 10;
+
+        for (
+          let j = 0;
+          j <
+          parseInt(
+            this.StoredData.appliancesDescriptionContent[i].content.length
+          );
+          j++
+        ) {
+          data =
+            data +
+            ' •' +
+            this.StoredData.appliancesDescriptionContent[i].content[j].text;
+
+          //Content color & fontsize
+          if (
+            this.StoredData.appliancesDescriptionContent[i].content[j]
+              .font_color != null
+          ) {
+            content_color = this.StoredData.appliancesDescriptionContent[i]
+              .content[j].font_color;
+          }
+          if (
+            this.StoredData.appliancesDescriptionContent[i].content[j]
+              .font_size != null
+          ) {
+            content_fontSize = this.StoredData.appliancesDescriptionContent[i]
+              .content[j].font_size;
+          }
         }
-      );
+        if (
+          this.StoredData.appliancesDescriptionContent[i].font_color != null
+        ) {
+          title_color = this.StoredData.appliancesDescriptionContent[i]
+            .font_color;
+        }
+        if (this.StoredData.appliancesDescriptionContent[i].font_size != null) {
+          title_fontSize = this.StoredData.appliancesDescriptionContent[i]
+            .font_size;
+        }
+        docDefinition.content.push({
+          fontSize: 10,
+          columnGap: 5,
+          color: '#ff0f06',
+          columns: [
+            [
+              {
+                text:
+                  this.StoredData.appliancesDescriptionContent[i].title + ':\t',
+                margin: [30, 2, 0, 0],
+                bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
+              },
+            ],
+            [
+              {
+                text: data,
+                margin: [-50, 2, 0, 0],
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          ],
+        });
+      }
+    }
+    if (this.StoredData.applianceObservation != null) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'APPLIANCE OBSERVATIONS',
+                alignment: 'left',
+                style: 'subbox',
+              },
+            ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
+          },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 328;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
+    }
+    if (this.StoredData.applianceObservation != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.applianceObservation.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ff0f06';
+        var title_color = '#ff0f06';
+        var content_fontSize = 9.5;
+        var title_fontSize = 9.5;
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.applianceObservation[i].content.length);
+          j++
+        ) {
+          data =
+            data +
+            this.StoredData.applianceObservation[i].content[j].text +
+            '\n';
+          //Content Color & FontSize
+          if (
+            this.StoredData.applianceObservation[i].content[j].font_color !=
+            null
+          ) {
+            content_color = this.StoredData.applianceObservation[i].content[j]
+              .font_color;
+          }
+          if (
+            this.StoredData.applianceObservation[i].content[j].font_size != null
+          ) {
+            content_fontSize = this.StoredData.applianceObservation[i].content[
+              j
+            ].font_size;
+          }
+        }
+        //Title Color & FontSize
+        if (this.StoredData.applianceObservation[i].font_color != null) {
+          title_color = this.StoredData.applianceObservation[i].font_color;
+        }
+        if (this.StoredData.applianceObservation[i].font_size != null) {
+          title_fontSize = this.StoredData.applianceObservation[i].font_size;
+        }
+        docDefinition.content.push({
+          fontSize: 9.5,
+          margin: [30, 4, 6, 0],
+          color: '#ff0f06',
+          text: [
+            {
+              text: '\n' + this.StoredData.applianceObservation[i].title + '\n',
+              bold: 'true',
+              color: title_color,
+              fontSize: title_fontSize,
+            },
+            {
+              text: data,
+              fontSize: content_fontSize,
+              color: content_color,
+            },
+          ],
+        });
+      }
     }
     if (this.StoredData.applianceLimitations != null) {
       docDefinition.content.push(

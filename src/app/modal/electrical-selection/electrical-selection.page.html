@@ -896,28 +896,42 @@
               </ion-checkbox>
               <p
                 class="label-inside text-primary"
-                [ngStyle]="{'font-size': desc.font_size ? (desc.font_size + 'px') : '', 'color' : desc.font_color ? desc.font_color : '#000000' }"
+                [ngStyle]="{'font-size': item.font_size ? (item.font_size + 'px') : '', 'color' : item.font_color ? item.font_color : '#000000' }"
               >
                 {{item.text}}
               </p>
-              <ion-button
-                class="btn-desc-settings"
-                slot="end"
-                size="small"
-                shape="round"
-                (click)="openIonModal(item)"
-              >
-                <ion-icon name="settings-outline"></ion-icon>
-              </ion-button>
-              <ion-button
-                class="btn-edit"
-                slot="start"
-                size="small"
-                shape="round"
-                (click)="editText3(item)"
-              >
-                <ion-icon name="pencil-outline"></ion-icon>
-              </ion-button>
+
+              <div class="liner-bx">
+                <ion-button
+                  class="btn-settings lm"
+                  slot="end"
+                  size="small"
+                  shape="round"
+                  (click)="openIonModal(item)"
+                >
+                  <ion-icon name="settings-outline"></ion-icon>
+                </ion-button>
+
+                <ion-button
+                  class="btn-edit lm"
+                  slot="start"
+                  size="small"
+                  shape="round"
+                  (click)="editText3(item)"
+                >
+                  <ion-icon name="pencil-outline"></ion-icon>
+                </ion-button>
+
+                <ion-button
+                  class="btn-add lm"
+                  slot="end"
+                  size="small"
+                  shape="round"
+                  (click)="openAddModal3(i)"
+                >
+                  <ion-icon name="add-outline"></ion-icon>
+                </ion-button>
+              </div>
             </div>
           </ion-col>
           <!-- 

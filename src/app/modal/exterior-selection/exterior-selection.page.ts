@@ -238,6 +238,8 @@ export class ExteriorSelectionPage implements OnInit {
   }
 
   closeDescription() {
+    // this.BackPressed = true;
+
     this.SelectedTitleToFilter2 = '';
     this.BackPressed = false;
     this.Description = false;

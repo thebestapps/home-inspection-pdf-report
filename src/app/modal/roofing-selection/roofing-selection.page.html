@@ -372,6 +372,38 @@
               >
               </ion-checkbox>
               <p class="label-inside">{{item.text}}</p>
+
+              <div class="liner-bx">
+                <ion-button
+                  class="btn-settings lm"
+                  slot="end"
+                  size="small"
+                  shape="round"
+                  (click)="openIonModal(item)"
+                >
+                  <ion-icon name="settings-outline"></ion-icon>
+                </ion-button>
+
+                <ion-button
+                  class="btn-edit lm"
+                  slot="start"
+                  size="small"
+                  shape="round"
+                  (click)="editText3(item)"
+                >
+                  <ion-icon name="pencil-outline"></ion-icon>
+                </ion-button>
+
+                <ion-button
+                  class="btn-add lm"
+                  slot="end"
+                  size="small"
+                  shape="round"
+                  (click)="openAddModal3(i)"
+                >
+                  <ion-icon name="add-outline"></ion-icon>
+                </ion-button>
+              </div>
             </div>
           </ion-col>
 

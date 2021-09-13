@@ -620,6 +620,8 @@ export class StructureSelectionPage implements OnInit {
 
   updateDescription2() {
     let data = this.StructureObservationContent;
+    console.log(data);
+
     this.descOutput = [];
     data.map((obj, index) => {
       obj.data.map((item) => {
@@ -855,13 +857,15 @@ export class StructureSelectionPage implements OnInit {
 
   updateDescription4() {
     let data = this.StructureLimitationsContent;
+    console.log(data);
+
     this.descOutput = [];
+
     data.map((obj, index) => {
-      obj.data.map((item) => {
-        if (item.checked) {
-          this.collectData3(index, item);
-        }
-      });
+      console.log(obj);
+      if (obj.checked) {
+        this.collectData3(index, obj);
+      }
     });
     console.log('desc output ', this.descOutput);
     if (this.descOutput.length) {
@@ -1135,24 +1139,24 @@ export class StructureSelectionPage implements OnInit {
   collectData3(index, item) {
     if (this.descOutput.length) {
       let arrObj = this.descOutput.filter((e, i) => e.id == index);
-      if (arrObj.length) {
-        const id = arrObj[0].id;
-        this.descOutput.map((e) => {
-          if (e.id == id) {
-            e.content.push(item);
-          }
-        });
-      } else {
-        let obj = {
-          content: [item],
-          font_color:
-            this.StructureLimitationsContent[index].font_color || '#000000',
-          font_size: this.StructureLimitationsContent[index].font_size || 12,
-          title: this.StructureLimitationsContent[index].title,
-          id: index,
-        };
-        this.descOutput.push(obj);
-      }
+      // if (arrObj.length) {
+      //   const id = arrObj[0].id;
+      //   this.descOutput.map((e) => {
+      //     if (e.id == id) {
+      //       e.content.push(item);
+      //     }
+      //   });
+      // } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.StructureLimitationsContent[index].font_color || '#000000',
+        font_size: this.StructureLimitationsContent[index].font_size || 12,
+        title: this.StructureLimitationsContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(item);
+      // }
     } else {
       let obj = {
         content: [item],
@@ -1162,7 +1166,7 @@ export class StructureSelectionPage implements OnInit {
         title: this.StructureLimitationsContent[index].title,
         id: index,
       };
-      this.descOutput.push(obj);
+      this.descOutput.push(item);
     }
   }
 
@@ -2123,6 +2127,8 @@ export class StructureSelectionPage implements OnInit {
       text: data.description,
       title: selectedItem.title,
     };
+    console.log(selectedItem);
+
     selectedItem.data.push(obj);
     this.updateStorage();
   }
@@ -2150,18 +2156,25 @@ export class StructureSelectionPage implements OnInit {
   addDescription3(index, data) {
     console.log(data);
     console.log(index);
-
-    const selectedItem = this.StructureObservationContent[index];
+    // const selectedItem = [];
+    //
+    // selectedItem.push(this.StructureLimitationsContent[index]);
+    const selectedItem = this.StructureLimitationsContent[index];
 
     // console.log(this.StructureDescriptionContent);
     let obj = {
       checked: 0,
-      id: selectedItem.data.length + 1,
+      id: this.StructureLimitationsContent.length + 1 + 2,
       main: 'Structure Limitation Content',
       text: data.description,
-      title: selectedItem.title,
     };
-    selectedItem.data.push(obj);
+
+    console.log(this.StructureLimitationsContent);
+    this.StructureLimitationsContent.push(obj);
+    console.log(this.StructureLimitationsContent);
+    // selectedItem.push(obj);
+    console.log(selectedItem);
+
     this.updateStorage3();
   }
 

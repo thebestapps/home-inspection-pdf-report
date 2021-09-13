@@ -5,12 +5,12 @@
     <ion-buttons slot="end">
       <ion-spinner *ngIf="PreviewPDF" name="circles"></ion-spinner>
 
-      <!-- <ion-icon
+      <ion-icon
         (click)="createPdf()"
         class="prev-icn"
         *ngIf="!PreviewPDF"
         name="eye-outline"
-      ></ion-icon> -->
+      ></ion-icon>
 
       <!-- <ion-icon
         (click)="closeM()"
@@ -463,37 +463,40 @@
             [ngStyle]="{'font-size': item.font_size ? (item.font_size + 'px') : '', 'color' : item.font_color ? item.font_color : '#000000' }"
             class="main-title"
           >
-            {{item.title}}
+            {{item.text}}
           </p>
 
-          <ion-button
-            class="btn-settings"
-            slot="end"
-            size="small"
-            shape="round"
-            (click)="openIonModal(item)"
-          >
-            <ion-icon name="settings-outline"></ion-icon>
-          </ion-button>
-          <ion-button
-            class="btn-add"
-            slot="end"
-            size="small"
-            shape="round"
-            (click)="openAddModal3(i)"
-          >
-            <ion-icon name="add-outline"></ion-icon>
-          </ion-button>
+          <div class="liner-bx">
+            <ion-button
+              class="btn-settings lm"
+              slot="end"
+              size="small"
+              shape="round"
+              (click)="openIonModal(item)"
+            >
+              <ion-icon name="settings-outline"></ion-icon>
+            </ion-button>
 
-          <ion-button
-            class="btn-edit"
-            slot="start"
-            size="small"
-            shape="round"
-            (click)="editText3(item)"
-          >
-            <ion-icon name="pencil-outline"></ion-icon>
-          </ion-button>
+            <ion-button
+              class="btn-edit lm"
+              slot="start"
+              size="small"
+              shape="round"
+              (click)="editText3(item)"
+            >
+              <ion-icon name="pencil-outline"></ion-icon>
+            </ion-button>
+
+            <ion-button
+              class="btn-add lm"
+              slot="end"
+              size="small"
+              shape="round"
+              (click)="openAddModal3(i)"
+            >
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+          </div>
         </div>
 
         <!-- <ion-row>
