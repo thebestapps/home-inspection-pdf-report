@@ -1734,53 +1734,29 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.structureObservation != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.structureObservation.length);
-        i++
-      ) {
-        var data = '';
-        var content_color = '#ff0f06';
-        var title_color = '#ff0f06';
+    if (this.StoredData.structureObservation != null)
+    {
+      for(let i = 0;i < parseInt(this.StoredData.structureObservation.length);i++)
+      {
+        
+        var content_color = '#000000';
+        var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.structureObservation[i].content.length);
-          j++
-        ) {
-          data =
-            data +
-            this.StoredData.structureObservation[i].content[j].text +
-            '\n';
-          //Content Color & FontSize
-          if (
-            this.StoredData.structureObservation[i].content[j].font_color !=
-            null
-          ) {
-            content_color = this.StoredData.structureObservation[i].content[j]
-              .font_color;
-          }
-          if (
-            this.StoredData.structureObservation[i].content[j].font_size != null
-          ) {
-            content_fontSize = this.StoredData.structureObservation[i].content[
-              j
-            ].font_size;
-          }
-        }
+
         //Title Color & FontSize
-        if (this.StoredData.structureObservation[i].font_color != null) {
+        if(this.StoredData.structureObservation[i].font_color != null)
+        {
           title_color = this.StoredData.structureObservation[i].font_color;
         }
-        if (this.StoredData.structureObservation[i].font_size != null) {
+        if(this.StoredData.structureObservation[i].font_size != null)
+        {
           title_fontSize = this.StoredData.structureObservation[i].font_size;
         }
         docDefinition.content.push({
           fontSize: 9.5,
           margin: [30, 4, 6, 0],
-          color: '#ff0f06',
+          color: '#000000',
           text: [
             {
               text: '\n' + this.StoredData.structureObservation[i].title + '\n',
@@ -1788,13 +1764,34 @@ export class CommonSelectionPage implements OnInit {
               color: title_color,
               fontSize: title_fontSize,
             },
-            {
-              text: data,
-              fontSize: content_fontSize,
-              color: content_color,
-            },
           ],
         });
+        for(let j = 0; j < parseInt(this.StoredData.structureObservation[i].content.length); j++)
+        {
+          var data = '';
+          data = this.StoredData.structureObservation[i].content[j].text +'\n';
+          //Content Color & FontSize
+          if(this.StoredData.structureObservation[i].content[j].font_color !=null)
+          {
+            content_color = this.StoredData.structureObservation[i].content[j].font_color;
+          }
+          if(this.StoredData.structureObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.structureObservation[i].content[j].font_size;
+          }
+          docDefinition.content.push({
+            fontSize: 9.5,
+            margin: [30, 4, 6, 0],
+            color: '#000000',
+            text: [
+              {
+                text: data,
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          });
+        }
       }
     }
     if (this.StoredData.structureLimitations != null) {
@@ -2069,49 +2066,29 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.roofingObservation != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.roofingObservation.length);
-        i++
-      ) {
-        var data = '';
-        var content_color = '#ff0f06';
-        var title_color = '#ff0f06';
+    if (this.StoredData.roofingObservation != null)
+    {
+      for(let i = 0;i < parseInt(this.StoredData.roofingObservation.length);i++)
+      {
+        
+        var content_color = '#000000';
+        var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.roofingObservation[i].content.length);
-          j++
-        ) {
-          data =
-            data + this.StoredData.roofingObservation[i].content[j].text + '\n';
-          //Content Color & FontSize
-          if (
-            this.StoredData.roofingObservation[i].content[j].font_color != null
-          ) {
-            content_color = this.StoredData.roofingObservation[i].content[j]
-              .font_color;
-          }
-          if (
-            this.StoredData.roofingObservation[i].content[j].font_size != null
-          ) {
-            content_fontSize = this.StoredData.roofingObservation[i].content[j]
-              .font_size;
-          }
-        }
+
         //Title Color & FontSize
-        if (this.StoredData.roofingObservation[i].font_color != null) {
+        if(this.StoredData.roofingObservation[i].font_color != null)
+        {
           title_color = this.StoredData.roofingObservation[i].font_color;
         }
-        if (this.StoredData.roofingObservation[i].font_size != null) {
+        if(this.StoredData.roofingObservation[i].font_size != null)
+        {
           title_fontSize = this.StoredData.roofingObservation[i].font_size;
         }
         docDefinition.content.push({
           fontSize: 9.5,
           margin: [30, 4, 6, 0],
-          color: '#ff0f06',
+          color: '#000000',
           text: [
             {
               text: '\n' + this.StoredData.roofingObservation[i].title + '\n',
@@ -2119,13 +2096,34 @@ export class CommonSelectionPage implements OnInit {
               color: title_color,
               fontSize: title_fontSize,
             },
-            {
-              text: data,
-              fontSize: content_fontSize,
-              color: content_color,
-            },
           ],
         });
+        for(let j = 0; j < parseInt(this.StoredData.roofingObservation[i].content.length); j++)
+        {
+          var data = '';
+          data = this.StoredData.roofingObservation[i].content[j].text +'\n';
+          //Content Color & FontSize
+          if(this.StoredData.roofingObservation[i].content[j].font_color !=null)
+          {
+            content_color = this.StoredData.roofingObservation[i].content[j].font_color;
+          }
+          if(this.StoredData.roofingObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.roofingObservation[i].content[j].font_size;
+          }
+          docDefinition.content.push({
+            fontSize: 9.5,
+            margin: [30, 4, 6, 0],
+            color: '#000000',
+            text: [
+              {
+                text: data,
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          });
+        }
       }
     }
     if (this.StoredData.roofingLimitations != null) {
@@ -2685,70 +2683,65 @@ export class CommonSelectionPage implements OnInit {
           },
         },
       });
-    }
-    if (this.StoredData.electricalObservation != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.electricalObservation.length);
-        i++
-      ) {
-        var data = '';
-        var content_color = '#ff0f06';
-        var title_color = '#ff0f06';
+    }//electricalObservation
+    if (this.StoredData.electricalObservation != null)
+    {
+      for(let i = 0;i < parseInt(this.StoredData.electricalObservation.length);i++)
+      {
+        
+        var content_color = '#000000';
+        var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.electricalObservation[i].content.length);
-          j++
-        ) {
-          data =
-            data +
-            this.StoredData.electricalObservation[i].content[j].text +
-            '\n';
-          //Content Color & FontSize
-          if (
-            this.StoredData.electricalObservation[i].content[j].font_color !=
-            null
-          ) {
-            content_color = this.StoredData.electricalObservation[i].content[j]
-              .font_color;
-          }
-          if (
-            this.StoredData.electricalObservation[i].content[j].font_size !=
-            null
-          ) {
-            content_fontSize = this.StoredData.electricalObservation[i].content[
-              j
-            ].font_size;
-          }
-        }
+
         //Title Color & FontSize
-        if (this.StoredData.electricalObservation[i].font_color != null) {
+        if(this.StoredData.electricalObservation[i].font_color != null)
+        {
           title_color = this.StoredData.electricalObservation[i].font_color;
         }
-        if (this.StoredData.electricalObservation[i].font_size != null) {
+        if(this.StoredData.electricalObservation[i].font_size != null)
+        {
           title_fontSize = this.StoredData.electricalObservation[i].font_size;
         }
         docDefinition.content.push({
           fontSize: 9.5,
           margin: [30, 4, 6, 0],
-          color: '#ff0f06',
+          color: '#000000',
           text: [
             {
-              text:
-                '\n' + this.StoredData.electricalObservation[i].title + '\n',
+              text: '\n' + this.StoredData.electricalObservation[i].title + '\n',
               bold: 'true',
               color: title_color,
               fontSize: title_fontSize,
             },
-            {
-              text: data,
-              fontSize: content_fontSize,
-              color: content_color,
-            },
           ],
         });
+        for(let j = 0; j < parseInt(this.StoredData.electricalObservation[i].content.length); j++)
+        {
+          var data = '';
+          data = this.StoredData.electricalObservation[i].content[j].text +'\n';
+          //Content Color & FontSize
+          if(this.StoredData.electricalObservation[i].content[j].font_color !=null)
+          {
+            content_color = this.StoredData.electricalObservation[i].content[j].font_color;
+          }
+          if(this.StoredData.electricalObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.electricalObservation[i].content[j].font_size;
+          }
+          docDefinition.content.push({
+            fontSize: 9.5,
+            margin: [30, 4, 6, 0],
+            color: '#000000',
+            text: [
+              {
+                text: data,
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          });
+        }
       }
     }
     if (this.StoredData.electricalLimitations != null) {
@@ -3025,49 +3018,29 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.coolingObservation != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.coolingObservation.length);
-        i++
-      ) {
-        var data = '';
-        var content_color = '#ff0f06';
-        var title_color = '#ff0f06';
+    if (this.StoredData.coolingObservation != null)
+    {
+      for(let i = 0;i < parseInt(this.StoredData.coolingObservation.length);i++)
+      {
+        
+        var content_color = '#000000';
+        var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.coolingObservation[i].content.length);
-          j++
-        ) {
-          data =
-            data + this.StoredData.coolingObservation[i].content[j].text + '\n';
-          //Content Color & FontSize
-          if (
-            this.StoredData.coolingObservation[i].content[j].font_color != null
-          ) {
-            content_color = this.StoredData.coolingObservation[i].content[j]
-              .font_color;
-          }
-          if (
-            this.StoredData.coolingObservation[i].content[j].font_size != null
-          ) {
-            content_fontSize = this.StoredData.coolingObservation[i].content[j]
-              .font_size;
-          }
-        }
+
         //Title Color & FontSize
-        if (this.StoredData.coolingObservation[i].font_color != null) {
+        if(this.StoredData.coolingObservation[i].font_color != null)
+        {
           title_color = this.StoredData.coolingObservation[i].font_color;
         }
-        if (this.StoredData.coolingObservation[i].font_size != null) {
+        if(this.StoredData.coolingObservation[i].font_size != null)
+        {
           title_fontSize = this.StoredData.coolingObservation[i].font_size;
         }
         docDefinition.content.push({
           fontSize: 9.5,
           margin: [30, 4, 6, 0],
-          color: '#ff0f06',
+          color: '#000000',
           text: [
             {
               text: '\n' + this.StoredData.coolingObservation[i].title + '\n',
@@ -3075,13 +3048,34 @@ export class CommonSelectionPage implements OnInit {
               color: title_color,
               fontSize: title_fontSize,
             },
-            {
-              text: data,
-              fontSize: content_fontSize,
-              color: content_color,
-            },
           ],
         });
+        for(let j = 0; j < parseInt(this.StoredData.coolingObservation[i].content.length); j++)
+        {
+          var data = '';
+          data = this.StoredData.coolingObservation[i].content[j].text +'\n';
+          //Content Color & FontSize
+          if(this.StoredData.coolingObservation[i].content[j].font_color !=null)
+          {
+            content_color = this.StoredData.coolingObservation[i].content[j].font_color;
+          }
+          if(this.StoredData.coolingObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.coolingObservation[i].content[j].font_size;
+          }
+          docDefinition.content.push({
+            fontSize: 9.5,
+            margin: [30, 4, 6, 0],
+            color: '#000000',
+            text: [
+              {
+                text: data,
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          });
+        }
       }
     }
     if (this.StoredData.coolingLimitations != null) {
@@ -3688,51 +3682,29 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.plumbingObservation != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.plumbingObservation.length);
-        i++
-      ) {
-        var data = '';
-        var content_color = '#ff0f06';
-        var title_color = '#ff0f06';
+    if (this.StoredData.plumbingObservation != null)
+    {
+      for(let i = 0;i < parseInt(this.StoredData.plumbingObservation.length);i++)
+      {
+        
+        var content_color = '#000000';
+        var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.plumbingObservation[i].content.length);
-          j++
-        ) {
-          data =
-            data +
-            this.StoredData.plumbingObservation[i].content[j].text +
-            '\n';
-          //Content Color & FontSize
-          if (
-            this.StoredData.plumbingObservation[i].content[j].font_color != null
-          ) {
-            content_color = this.StoredData.plumbingObservation[i].content[j]
-              .font_color;
-          }
-          if (
-            this.StoredData.plumbingObservation[i].content[j].font_size != null
-          ) {
-            content_fontSize = this.StoredData.plumbingObservation[i].content[j]
-              .font_size;
-          }
-        }
+
         //Title Color & FontSize
-        if (this.StoredData.plumbingObservation[i].font_color != null) {
+        if(this.StoredData.plumbingObservation[i].font_color != null)
+        {
           title_color = this.StoredData.plumbingObservation[i].font_color;
         }
-        if (this.StoredData.plumbingObservation[i].font_size != null) {
+        if(this.StoredData.plumbingObservation[i].font_size != null)
+        {
           title_fontSize = this.StoredData.plumbingObservation[i].font_size;
         }
         docDefinition.content.push({
           fontSize: 9.5,
           margin: [30, 4, 6, 0],
-          color: '#ff0f06',
+          color: '#000000',
           text: [
             {
               text: '\n' + this.StoredData.plumbingObservation[i].title + '\n',
@@ -3740,13 +3712,34 @@ export class CommonSelectionPage implements OnInit {
               color: title_color,
               fontSize: title_fontSize,
             },
-            {
-              text: data,
-              fontSize: content_fontSize,
-              color: content_color,
-            },
           ],
         });
+        for(let j = 0; j < parseInt(this.StoredData.plumbingObservation[i].content.length); j++)
+        {
+          var data = '';
+          data = this.StoredData.plumbingObservation[i].content[j].text +'\n';
+          //Content Color & FontSize
+          if(this.StoredData.plumbingObservation[i].content[j].font_color !=null)
+          {
+            content_color = this.StoredData.plumbingObservation[i].content[j].font_color;
+          }
+          if(this.StoredData.plumbingObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.plumbingObservation[i].content[j].font_size;
+          }
+          docDefinition.content.push({
+            fontSize: 9.5,
+            margin: [30, 4, 6, 0],
+            color: '#000000',
+            text: [
+              {
+                text: data,
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          });
+        }
       }
     }
     if (this.StoredData.plumbingLimitations != null) {
@@ -4262,53 +4255,29 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.applianceObservation != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.applianceObservation.length);
-        i++
-      ) {
-        var data = '';
-        var content_color = '#ff0f06';
-        var title_color = '#ff0f06';
+    if (this.StoredData.applianceObservation != null)
+    {
+      for(let i = 0;i < parseInt(this.StoredData.applianceObservation.length);i++)
+      {
+        
+        var content_color = '#000000';
+        var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.applianceObservation[i].content.length);
-          j++
-        ) {
-          data =
-            data +
-            this.StoredData.applianceObservation[i].content[j].text +
-            '\n';
-          //Content Color & FontSize
-          if (
-            this.StoredData.applianceObservation[i].content[j].font_color !=
-            null
-          ) {
-            content_color = this.StoredData.applianceObservation[i].content[j]
-              .font_color;
-          }
-          if (
-            this.StoredData.applianceObservation[i].content[j].font_size != null
-          ) {
-            content_fontSize = this.StoredData.applianceObservation[i].content[
-              j
-            ].font_size;
-          }
-        }
+
         //Title Color & FontSize
-        if (this.StoredData.applianceObservation[i].font_color != null) {
+        if(this.StoredData.applianceObservation[i].font_color != null)
+        {
           title_color = this.StoredData.applianceObservation[i].font_color;
         }
-        if (this.StoredData.applianceObservation[i].font_size != null) {
+        if(this.StoredData.applianceObservation[i].font_size != null)
+        {
           title_fontSize = this.StoredData.applianceObservation[i].font_size;
         }
         docDefinition.content.push({
           fontSize: 9.5,
           margin: [30, 4, 6, 0],
-          color: '#ff0f06',
+          color: '#000000',
           text: [
             {
               text: '\n' + this.StoredData.applianceObservation[i].title + '\n',
@@ -4316,13 +4285,34 @@ export class CommonSelectionPage implements OnInit {
               color: title_color,
               fontSize: title_fontSize,
             },
-            {
-              text: data,
-              fontSize: content_fontSize,
-              color: content_color,
-            },
           ],
         });
+        for(let j = 0; j < parseInt(this.StoredData.applianceObservation[i].content.length); j++)
+        {
+          var data = '';
+          data = this.StoredData.applianceObservation[i].content[j].text +'\n';
+          //Content Color & FontSize
+          if(this.StoredData.applianceObservation[i].content[j].font_color !=null)
+          {
+            content_color = this.StoredData.applianceObservation[i].content[j].font_color;
+          }
+          if(this.StoredData.applianceObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.applianceObservation[i].content[j].font_size;
+          }
+          docDefinition.content.push({
+            fontSize: 9.5,
+            margin: [30, 4, 6, 0],
+            color: '#000000',
+            text: [
+              {
+                text: data,
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          });
+        }
       }
     }
     if (this.StoredData.applianceLimitations != null) {
