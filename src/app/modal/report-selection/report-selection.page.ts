@@ -4,12 +4,14 @@ import { CommonService } from '../../common.function';
 // import { ReportSelectionPage } from '../../../app/modal/report-selection/report-selection.page';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonSelectionPage } from '../../../app/modal/common-selection/common-selection.page';
+import { ActionSheetController } from '@ionic/angular';
 
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 import { File } from '@ionic-native/file/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
 
 @Component({
   selector: 'app-report-selection',
@@ -40,7 +42,9 @@ export class ReportSelectionPage implements OnInit {
     private alertController: AlertController,
     private camera: Camera,
     private file: File,
-    private webview: WebView
+    private webview: WebView,
+    private sctionS: ActionSheetController,
+    private filePath: FilePath
   ) {
     this.inspectionTypes = [{ name: 'Structure' }];
 
@@ -410,8 +414,36 @@ export class ReportSelectionPage implements OnInit {
     console.log('It');
   }
 
-  async takeAPicture() {
+  async selectImage() {
+    const actionSheet = await this.sctionS.create({
+      header: 'Select Image source',
+      buttons: [
+        {
+          text: 'Load from Library',
+          handler: () => {
+            this.takeAPicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+          },
+        },
+        {
+          text: 'Use Camera',
+          handler: () => {
+            this.takeAPicture(this.camera.PictureSourceType.CAMERA);
+          },
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+      ],
+    });
+    await actionSheet.present();
+  }
+
+  async takeAPicture(sourceType) {
+    console.log(sourceType);
+
     const options: CameraOptions = {
+      sourceType: sourceType,
       quality: 100,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
@@ -419,43 +451,100 @@ export class ReportSelectionPage implements OnInit {
 
     const tempImage = await this.camera.getPicture(options);
 
+    // this.camera.getPicture(options).then(
+    //   (imageData) => {
+    //     // imageData is either a base64 encoded string or a file URI
+    //     this.displayImage = displayImage;
+    //     // console.log();
+
+    //     this.displayImage = 'data:image/jpeg;base64,' + imageData;
+    //   },
+    //   (err) => {
+    //     // Handle error
+    //   }
+    // );
+
     console.log(tempImage);
 
-    // Extract just the filename. Result example: cdv_photo_003.jpg
-    const tempFilename = tempImage.substr(tempImage.lastIndexOf('/') + 1);
+    if (sourceType === 0) {
+      this.filePath
+        .resolveNativePath(tempImage)
+        .then((filePath) => {
+          console.log(filePath);
+          const tempFilename2 = filePath.substr(tempImage.lastIndexOf('/') + 1);
+          console.log('Only File Name -1- GALLERY' + tempFilename2);
 
-    // Now, the opposite. Extract the full path, minus filename.
-    // Result example: file:///var/mobile/Containers/Data/Application
-    // /E4A79B4A-E5CB-4E0C-A7D9-0603ECD48690/tmp/
-    const tempBaseFilesystemPath = tempImage.substr(
-      0,
-      tempImage.lastIndexOf('/') + 1
-    );
+          this.displayImage = filePath;
+          return;
+          const tempBaseFilesystemPath = filePath.substr(
+            0,
+            filePath.lastIndexOf('/') + 1
+          );
 
-    // Get the Data directory on the device.
-    // Result example: file:///var/mobile/Containers/Data/Application
-    // /E4A79B4A-E5CB-4E0C-A7D9-0603ECD48690/Library/NoCloud/
-    const newBaseFilesystemPath = this.file.dataDirectory;
+          // Get the Data directory on the device.
+          // Result example: file:///var/mobile/Containers/Data/Application
+          // /E4A79B4A-E5CB-4E0C-A7D9-0603ECD48690/Library/NoCloud/
+          const newBaseFilesystemPath = this.file.dataDirectory;
 
-    await this.file.copyFile(
-      tempBaseFilesystemPath,
-      tempFilename,
-      newBaseFilesystemPath,
-      tempFilename
-    );
+          this.file.copyFile(
+            tempBaseFilesystemPath,
+            tempFilename2,
+            newBaseFilesystemPath,
+            tempFilename2
+          );
 
-    // Result example: file:///var/mobile/Containers/Data/Application
-    // /E4A79B4A-E5CB-4E0C-A7D9-0603ECD48690/Library/NoCloud/cdv_photo_003.jpg
-    const storedPhoto = newBaseFilesystemPath + tempFilename;
+          // Result example: file:///var/mobile/Containers/Data/Application
+          // /E4A79B4A-E5CB-4E0C-A7D9-0603ECD48690/Library/NoCloud/cdv_photo_003.jpg
+          const storedPhoto = newBaseFilesystemPath + tempFilename2;
 
-    // window.Ionic.WebView.convertFileSrc()
+          // window.Ionic.WebView.convertFileSrc()
 
-    // const displayImage = this.webview.convertFileSrc(storedPhoto);
-    const displayImage = this.webview.convertFileSrc(storedPhoto);
+          // const displayImage = this.webview.convertFileSrc(storedPhoto);
+          const displayImage = this.webview.convertFileSrc(storedPhoto);
 
-    console.log('displayImage' + displayImage);
-    this.displayImage = displayImage;
+          console.log('displayImage' + displayImage);
+          // this.displayImage = displayImage;
+        })
+        .catch((err) => console.log(err));
+    }
+    if (sourceType === 1) {
+      // Extract just the filename. Result example: cdv_photo_003.jpg
+      const tempFilename = tempImage.substr(tempImage.lastIndexOf('/') + 1);
 
+      console.log('Only File Name -0-' + tempFilename);
+
+      // Now, the opposite. Extract the full path, minus filename.
+      // Result example: file:///var/mobile/Containers/Data/Application
+      // /E4A79B4A-E5CB-4E0C-A7D9-0603ECD48690/tmp/
+      const tempBaseFilesystemPath = tempImage.substr(
+        0,
+        tempImage.lastIndexOf('/') + 1
+      );
+
+      // Get the Data directory on the device.
+      // Result example: file:///var/mobile/Containers/Data/Application
+      // /E4A79B4A-E5CB-4E0C-A7D9-0603ECD48690/Library/NoCloud/
+      const newBaseFilesystemPath = this.file.dataDirectory;
+
+      await this.file.copyFile(
+        tempBaseFilesystemPath,
+        tempFilename,
+        newBaseFilesystemPath,
+        tempFilename
+      );
+
+      // Result example: file:///var/mobile/Containers/Data/Application
+      // /E4A79B4A-E5CB-4E0C-A7D9-0603ECD48690/Library/NoCloud/cdv_photo_003.jpg
+      const storedPhoto = newBaseFilesystemPath + tempFilename;
+
+      // window.Ionic.WebView.convertFileSrc()
+
+      // const displayImage = this.webview.convertFileSrc(storedPhoto);
+      const displayImage = this.webview.convertFileSrc(storedPhoto);
+
+      console.log('displayImage' + displayImage);
+      this.displayImage = displayImage;
+    }
     // this.updatePhoto(this.displayImage, this.createInpForm.value.textEnter);
   }
 

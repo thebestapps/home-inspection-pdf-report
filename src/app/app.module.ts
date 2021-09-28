@@ -15,6 +15,9 @@ import { FormsModule } from '@angular/forms';
 import { Camera } from '@ionic-native/camera/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+
+import { FilePath } from '@ionic-native/file-path/ngx';
+
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +40,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
     ApiService,
     FileTransfer,
     AndroidPermissions,
+    FilePath,
   ],
   bootstrap: [AppComponent],
 })
