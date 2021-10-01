@@ -188,9 +188,17 @@
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col *ngFor="let n of storedReportOverviewImage">
+          <ion-col size="4" *ngFor="let n of storedReportOverviewImage">
             <img class="img-uploaded" src="{{n.img}}" />
-            <p class="commnt-tx">{{n.text}}</p>
+            <p class="commnt-tx">
+              <ion-icon
+                class="dele_icon"
+                (click)="DelImg(n.img)"
+                name="trash-outline"
+              ></ion-icon>
+
+              {{n.text}}
+            </p>
           </ion-col>
         </ion-row>
       </div>

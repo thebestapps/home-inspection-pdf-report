@@ -803,7 +803,13 @@ export class CommonService {
     localStorage.removeItem(key);
     this.storage.remove(key);
   }
-  async presentToast(message) {}
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+    });
+    toast.present();
+  }
 
   async getPDFName() {
     const alert = await this.alertController.create({

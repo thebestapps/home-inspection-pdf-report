@@ -217,9 +217,15 @@ export class ReportSelectionPage implements OnInit {
         tempSet: [this.StoredData.report_section[0].tempSet],
       });
 
-      this.storedReportOverviewImage = this.config.storageGet(
-        'InspectionToEdit'
-      )['__zone_symbol__value']['storedReportOverviewImage'];
+      let storedReportOverviewImage = JSON.parse(
+        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+      );
+
+      this.storedReportOverviewImage =
+        storedReportOverviewImage.storedReportOverviewImage;
+
+      console.log(this.storedReportOverviewImage);
+      console.log(storedReportOverviewImage.storedReportOverviewImage);
     }
   }
 
@@ -310,30 +316,7 @@ export class ReportSelectionPage implements OnInit {
   }
 
   async presentAlertConfirm() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Report Overview Updated.',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          },
-        },
-        {
-          text: 'Continue Editing',
-          handler: () => {
-            console.log('Confirm Okay');
-
-            this.openCommonModal();
-          },
-        },
-      ],
-    });
-
-    await alert.present();
+    this.config.presentToast('Selection have been saved.');
   }
 
   async openCommonModal() {
@@ -442,15 +425,6 @@ export class ReportSelectionPage implements OnInit {
   async takeAPicture(sourceType) {
     console.log(sourceType);
 
-    const options: CameraOptions = {
-      sourceType: sourceType,
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-    };
-
-    const tempImage = await this.camera.getPicture(options);
-
     // this.camera.getPicture(options).then(
     //   (imageData) => {
     //     // imageData is either a base64 encoded string or a file URI
@@ -464,22 +438,51 @@ export class ReportSelectionPage implements OnInit {
     //   }
     // );
 
-    console.log(tempImage);
+    // console.log(tempImage);
 
     if (sourceType === 0) {
+      const options2: CameraOptions = {
+        sourceType: sourceType,
+        quality: 100,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+      };
+
+      const tempImage2 = await this.camera.getPicture(options2);
+
+      console.log('image data =>  ', tempImage2);
+      let base64Img = 'data:image/jpeg;base64,' + tempImage2;
+      // this.userImg = this.base64Img;
+      console.log('displayImage' + base64Img);
+      this.displayImage = base64Img;
+
+      return;
       this.filePath
-        .resolveNativePath(tempImage)
+        .resolveNativePath(tempImage2)
         .then((filePath) => {
           console.log(filePath);
-          const tempFilename2 = filePath.substr(tempImage.lastIndexOf('/') + 1);
+          const tempFilename2 = filePath.substr(
+            tempImage2.lastIndexOf('/') + 1
+          );
           console.log('Only File Name -1- GALLERY' + tempFilename2);
 
-          this.displayImage = filePath;
-          return;
-          const tempBaseFilesystemPath = filePath.substr(
+          // return;
+          // const tempBaseFilesystemPath = filePath.substr(
+          //   0,
+          //   filePath.lastIndexOf('/') + 1
+          // );
+
+          let correctPath: string = filePath.substr(
             0,
             filePath.lastIndexOf('/') + 1
           );
+          let currentName: string = filePath.substr(
+            filePath.lastIndexOf('/') + 1
+          );
+          console.log('currentName', currentName);
+          console.log('correctPath', correctPath);
+
+          console.log('Whats This 2nd?' + correctPath);
 
           // Get the Data directory on the device.
           // Result example: file:///var/mobile/Containers/Data/Application
@@ -487,7 +490,7 @@ export class ReportSelectionPage implements OnInit {
           const newBaseFilesystemPath = this.file.dataDirectory;
 
           this.file.copyFile(
-            tempBaseFilesystemPath,
+            correctPath,
             tempFilename2,
             newBaseFilesystemPath,
             tempFilename2
@@ -501,13 +504,22 @@ export class ReportSelectionPage implements OnInit {
 
           // const displayImage = this.webview.convertFileSrc(storedPhoto);
           const displayImage = this.webview.convertFileSrc(storedPhoto);
-
+          // this.displayImage = filePath;
           console.log('displayImage' + displayImage);
-          // this.displayImage = displayImage;
+          this.displayImage = displayImage;
         })
         .catch((err) => console.log(err));
     }
     if (sourceType === 1) {
+      const options: CameraOptions = {
+        sourceType: sourceType,
+        quality: 100,
+        destinationType: this.camera.DestinationType.FILE_URI,
+        encodingType: this.camera.EncodingType.JPEG,
+      };
+
+      const tempImage = await this.camera.getPicture(options);
+
       // Extract just the filename. Result example: cdv_photo_003.jpg
       const tempFilename = tempImage.substr(tempImage.lastIndexOf('/') + 1);
 
@@ -674,5 +686,16 @@ export class ReportSelectionPage implements OnInit {
     if (an['__zone_symbol__state'] == true) {
       this.PreviewPDF = false;
     }
+  }
+
+  DelImg(data_item) {
+    this.storedReportOverviewImage = this.storedReportOverviewImage.filter(
+      (item) => item.img !== data_item
+    );
+
+    this.StoredData.storedReportOverviewImage = this.storedReportOverviewImage;
+
+    this.config.storageRemoveItem('InspectionToEdit');
+    this.config.storageSave('InspectionToEdit', this.StoredData);
   }
 }

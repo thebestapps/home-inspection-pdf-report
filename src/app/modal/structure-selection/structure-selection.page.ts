@@ -1622,11 +1622,11 @@ export class StructureSelectionPage implements OnInit {
   async presentAlertConfirm() {
     this.config.presentToast('Success.');
 
-    const toast = await this.toastController.create({
-      message: 'Selection have been saved.',
-      duration: 2000,
-    });
-    toast.present();
+    // const toast = await this.toastController.create({
+    //   message: 'Selection have been saved.',
+    //   duration: 2000,
+    // });
+    // toast.present();
 
     // const alert = await this.alertController.create({
     //   cssClass: 'my-custom-class',
