@@ -100,7 +100,7 @@ export class ExteriorSelectionPage implements OnInit {
       // },
 
       {
-        name: 'Exterior System Description',
+        name: 'Exterior Description',
 
         val: '1',
       },
@@ -197,7 +197,7 @@ export class ExteriorSelectionPage implements OnInit {
     this.BackPressed = true;
     if (n.val == '1') {
       console.log(n);
-      this.StructureFoundationComponents_UI = false;
+      this.StructureFoundationComponents_UI = true;
       this.Description = true;
       this.Observations_UI = false;
       this.Comments_UI = false;
@@ -243,6 +243,7 @@ export class ExteriorSelectionPage implements OnInit {
 
   closeDescription() {
     // this.BackPressed = true;
+    console.log('WHY----');
 
     this.SelectedTitleToFilter2 = '';
     this.BackPressed = false;
@@ -254,6 +255,8 @@ export class ExteriorSelectionPage implements OnInit {
   }
 
   closeDescription2() {
+    console.log('WHY ?? NOT');
+
     this.SelectedTitleToFilter = '';
     this.BackPressed = true;
     this.Description = false;
@@ -2109,6 +2112,7 @@ export class ExteriorSelectionPage implements OnInit {
       text: data.description,
     };
     selectedItem.push(obj);
+    this.ExteriorLimitationsContent.push(obj);
     this.updateStorage3();
   }
 

@@ -1734,23 +1734,22 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.structureObservation != null)
-    {
-      for(let i = 0;i < parseInt(this.StoredData.structureObservation.length);i++)
-      {
-        
+    if (this.StoredData.structureObservation != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.structureObservation.length);
+        i++
+      ) {
         var content_color = '#000000';
         var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
 
         //Title Color & FontSize
-        if(this.StoredData.structureObservation[i].font_color != null)
-        {
+        if (this.StoredData.structureObservation[i].font_color != null) {
           title_color = this.StoredData.structureObservation[i].font_color;
         }
-        if(this.StoredData.structureObservation[i].font_size != null)
-        {
+        if (this.StoredData.structureObservation[i].font_size != null) {
           title_fontSize = this.StoredData.structureObservation[i].font_size;
         }
         docDefinition.content.push({
@@ -1766,18 +1765,27 @@ export class CommonSelectionPage implements OnInit {
             },
           ],
         });
-        for(let j = 0; j < parseInt(this.StoredData.structureObservation[i].content.length); j++)
-        {
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.structureObservation[i].content.length);
+          j++
+        ) {
           var data = '';
-          data = this.StoredData.structureObservation[i].content[j].text +'\n';
+          data = this.StoredData.structureObservation[i].content[j].text + '\n';
           //Content Color & FontSize
-          if(this.StoredData.structureObservation[i].content[j].font_color !=null)
-          {
-            content_color = this.StoredData.structureObservation[i].content[j].font_color;
+          if (
+            this.StoredData.structureObservation[i].content[j].font_color !=
+            null
+          ) {
+            content_color = this.StoredData.structureObservation[i].content[j]
+              .font_color;
           }
-          if(this.StoredData.structureObservation[i].content[j].font_size != null)
-          {
-            content_fontSize = this.StoredData.structureObservation[i].content[j].font_size;
+          if (
+            this.StoredData.structureObservation[i].content[j].font_size != null
+          ) {
+            content_fontSize = this.StoredData.structureObservation[i].content[
+              j
+            ].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -1842,26 +1850,35 @@ export class CommonSelectionPage implements OnInit {
                 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Assessing the structural integrity of a building is beyond the scope of a standard home inspection.  A certified Licensed Professional Engineer (P.E.) is recommended where there are structural concerns about the building.  Inspection of structural components was limited by (but not restricted to) the following conditions: \n',
             },
           ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [
-            this.StoredData.structureLimitations[0], //tobe
-            this.StoredData.structureLimitations[1],
-            this.StoredData.structureLimitations[2],
-            this.StoredData.structureLimitations[3],
-          ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          text:
-            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
         }
       );
     }
+    if (this.StoredData.structureLimitations != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.structureLimitations.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ed3833';
+        var content_fontSize = 9.5;
+        docDefinition.content.push({
+          margin: [30, 10, 6, 0],
+          fontSize: this.StoredData.structureLimitations[i].font_size,
+          color: this.StoredData.structureLimitations[i].font_color,
+          ul: [this.StoredData.structureLimitations[i]],
+        });
+      }
+    }
+    if (this.StoredData.structureLimitations != null) {
+      docDefinition.content.push({
+        margin: [30, 10, 6, 0],
+        fontSize: 9.5,
+        text:
+          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+      });
+    }
+
     //<==========================================> ROOFING <==========================================>
     if (
       this.StoredData.roofingDescription != null ||
@@ -2066,23 +2083,22 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.roofingObservation != null)
-    {
-      for(let i = 0;i < parseInt(this.StoredData.roofingObservation.length);i++)
-      {
-        
+    if (this.StoredData.roofingObservation != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.roofingObservation.length);
+        i++
+      ) {
         var content_color = '#000000';
         var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
 
         //Title Color & FontSize
-        if(this.StoredData.roofingObservation[i].font_color != null)
-        {
+        if (this.StoredData.roofingObservation[i].font_color != null) {
           title_color = this.StoredData.roofingObservation[i].font_color;
         }
-        if(this.StoredData.roofingObservation[i].font_size != null)
-        {
+        if (this.StoredData.roofingObservation[i].font_size != null) {
           title_fontSize = this.StoredData.roofingObservation[i].font_size;
         }
         docDefinition.content.push({
@@ -2098,18 +2114,25 @@ export class CommonSelectionPage implements OnInit {
             },
           ],
         });
-        for(let j = 0; j < parseInt(this.StoredData.roofingObservation[i].content.length); j++)
-        {
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.roofingObservation[i].content.length);
+          j++
+        ) {
           var data = '';
-          data = this.StoredData.roofingObservation[i].content[j].text +'\n';
+          data = this.StoredData.roofingObservation[i].content[j].text + '\n';
           //Content Color & FontSize
-          if(this.StoredData.roofingObservation[i].content[j].font_color !=null)
-          {
-            content_color = this.StoredData.roofingObservation[i].content[j].font_color;
+          if (
+            this.StoredData.roofingObservation[i].content[j].font_color != null
+          ) {
+            content_color = this.StoredData.roofingObservation[i].content[j]
+              .font_color;
           }
-          if(this.StoredData.roofingObservation[i].content[j].font_size != null)
-          {
-            content_fontSize = this.StoredData.roofingObservation[i].content[j].font_size;
+          if (
+            this.StoredData.roofingObservation[i].content[j].font_size != null
+          ) {
+            content_fontSize = this.StoredData.roofingObservation[i].content[j]
+              .font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -2179,25 +2202,35 @@ export class CommonSelectionPage implements OnInit {
                 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Roofing life expectancies can vary depending on several factors.  Any estimates of remaining life are approximations only.  This assessment of the roof does not preclude the possibility of leakage.  Leakage can develop at any time and may depend on rain intensity, wind direction, ice build up, etc.  The inspection of the roofing system was limited by (but not restricted to) the following conditions: \n',
             },
           ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [
-            this.StoredData.roofingLimitations[0], //tobe
-            this.StoredData.roofingLimitations[1],
-            this.StoredData.roofingLimitations[2],
-          ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          text:
-            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
         }
       );
     }
+    if (this.StoredData.roofingLimitations != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.roofingLimitations.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ed3833';
+        var content_fontSize = 9.5;
+        docDefinition.content.push({
+          margin: [30, 10, 6, 0],
+          fontSize: this.StoredData.roofingLimitations[i].font_size,
+          color: this.StoredData.roofingLimitations[i].font_color,
+          ul: [this.StoredData.roofingLimitations[i]],
+        });
+      }
+    }
+    if (this.StoredData.roofingLimitations != null) {
+      docDefinition.content.push({
+        margin: [30, 10, 6, 0],
+        fontSize: 9.5,
+        text:
+          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+      });
+    }
+
     //<==========================================> EXTERIOR <==========================================>
     if (
       this.StoredData.exteriorDescription != null ||
@@ -2292,12 +2325,17 @@ export class CommonSelectionPage implements OnInit {
       });
     }
     if (this.StoredData.exteriorDescriptionContent != null) {
-      var data = '';
       for (
         let i = 0;
         i < parseInt(this.StoredData.exteriorDescriptionContent.length);
         i++
       ) {
+        var data = '';
+        var content_color = '#ff0f06';
+        var title_color = '#ff0f06';
+        var content_fontSize = 10;
+        var title_fontSize = 10;
+
         for (
           let j = 0;
           j <
@@ -2308,8 +2346,32 @@ export class CommonSelectionPage implements OnInit {
         ) {
           data =
             data +
-            ' • ' +
-            this.StoredData.exteriorDescriptionContent[i].content[j].content;
+            ' •' +
+            this.StoredData.exteriorDescriptionContent[i].content[j].text;
+
+          //Content color & fontsize
+          if (
+            this.StoredData.exteriorDescriptionContent[i].content[j]
+              .font_color != null
+          ) {
+            content_color = this.StoredData.exteriorDescriptionContent[i]
+              .content[j].font_color;
+          }
+          if (
+            this.StoredData.exteriorDescriptionContent[i].content[j]
+              .font_size != null
+          ) {
+            content_fontSize = this.StoredData.exteriorDescriptionContent[i]
+              .content[j].font_size;
+          }
+        }
+        if (this.StoredData.exteriorDescriptionContent[i].font_color != null) {
+          title_color = this.StoredData.exteriorDescriptionContent[i]
+            .font_color;
+        }
+        if (this.StoredData.exteriorDescriptionContent[i].font_size != null) {
+          title_fontSize = this.StoredData.exteriorDescriptionContent[i]
+            .font_size;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -2322,18 +2384,20 @@ export class CommonSelectionPage implements OnInit {
                   this.StoredData.exteriorDescriptionContent[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
               },
             ],
             [
               {
                 text: data,
                 margin: [-50, 2, 0, 0],
-                fontSize: 9,
+                fontSize: content_fontSize,
+                color: content_color,
               },
             ],
           ],
         });
-        data = '';
       }
     }
     if (this.StoredData.exteriorObservation != null) {
@@ -2375,38 +2439,69 @@ export class CommonSelectionPage implements OnInit {
       });
     }
     if (this.StoredData.exteriorObservation != null) {
-      var data = '';
       for (
         let i = 0;
         i < parseInt(this.StoredData.exteriorObservation.length);
         i++
       ) {
+        var content_color = '#000000';
+        var title_color = '#000000';
+        var content_fontSize = 9.5;
+        var title_fontSize = 9.5;
+
+        //Title Color & FontSize
+        if (this.StoredData.exteriorObservation[i].font_color != null) {
+          title_color = this.StoredData.exteriorObservation[i].font_color;
+        }
+        if (this.StoredData.exteriorObservation[i].font_size != null) {
+          title_fontSize = this.StoredData.exteriorObservation[i].font_size;
+        }
+        docDefinition.content.push({
+          fontSize: 9.5,
+          margin: [30, 4, 6, 0],
+          color: '#000000',
+          text: [
+            {
+              text: '\n' + this.StoredData.exteriorObservation[i].title + '\n',
+              bold: 'true',
+              color: title_color,
+              fontSize: title_fontSize,
+            },
+          ],
+        });
         for (
           let j = 0;
           j < parseInt(this.StoredData.exteriorObservation[i].content.length);
           j++
         ) {
-          data =
-            data +
-            this.StoredData.exteriorObservation[i].content[j].content +
-            '\n';
+          var data = '';
+          data = this.StoredData.exteriorObservation[i].content[j].text + '\n';
+          //Content Color & FontSize
+          if (
+            this.StoredData.exteriorObservation[i].content[j].font_color != null
+          ) {
+            content_color = this.StoredData.exteriorObservation[i].content[j]
+              .font_color;
+          }
+          if (
+            this.StoredData.exteriorObservation[i].content[j].font_size != null
+          ) {
+            content_fontSize = this.StoredData.exteriorObservation[i].content[j]
+              .font_size;
+          }
+          docDefinition.content.push({
+            fontSize: 9.5,
+            margin: [30, 4, 6, 0],
+            color: '#000000',
+            text: [
+              {
+                text: data,
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          });
         }
-        docDefinition.content.push({
-          fontSize: 9.5,
-          margin: [30, 10, 6, 0],
-          color: '#ff0f06',
-          text: [
-            {
-              text: '\n' + this.StoredData.exteriorObservation[i].title + '\n',
-              bold: 'true',
-            },
-            {
-              text: data,
-              fontSize: 8.9,
-            },
-          ],
-        });
-        data = '';
       }
     }
     if (this.StoredData.exteriorLimitations != null) {
@@ -2460,21 +2555,35 @@ export class CommonSelectionPage implements OnInit {
                 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  The inspection of the exterior was limited by (but not restricted to) the following conditions: \n',
             },
           ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [this.StoredData.exteriorLimitations],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          text:
-            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
         }
       );
+    } //exteriorLimitations
+    if (this.StoredData.exteriorLimitations != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.exteriorLimitations.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ed3833';
+        var content_fontSize = 9.5;
+        docDefinition.content.push({
+          margin: [30, 10, 6, 0],
+          fontSize: this.StoredData.exteriorLimitations[i].font_size,
+          color: this.StoredData.exteriorLimitations[i].font_color,
+          ul: [this.StoredData.exteriorLimitations[i]],
+        });
+      }
     }
+    if (this.StoredData.exteriorLimitations != null) {
+      docDefinition.content.push({
+        margin: [30, 10, 6, 0],
+        fontSize: 9.5,
+        text:
+          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+      });
+    }
+
     //<==========================================> ELECTICAL <==========================================>
     if (
       this.StoredData.electricalDescription != null ||
@@ -2683,24 +2792,23 @@ export class CommonSelectionPage implements OnInit {
           },
         },
       });
-    }//electricalObservation
-    if (this.StoredData.electricalObservation != null)
-    {
-      for(let i = 0;i < parseInt(this.StoredData.electricalObservation.length);i++)
-      {
-        
+    } //electricalObservation
+    if (this.StoredData.electricalObservation != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.electricalObservation.length);
+        i++
+      ) {
         var content_color = '#000000';
         var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
 
         //Title Color & FontSize
-        if(this.StoredData.electricalObservation[i].font_color != null)
-        {
+        if (this.StoredData.electricalObservation[i].font_color != null) {
           title_color = this.StoredData.electricalObservation[i].font_color;
         }
-        if(this.StoredData.electricalObservation[i].font_size != null)
-        {
+        if (this.StoredData.electricalObservation[i].font_size != null) {
           title_fontSize = this.StoredData.electricalObservation[i].font_size;
         }
         docDefinition.content.push({
@@ -2709,25 +2817,37 @@ export class CommonSelectionPage implements OnInit {
           color: '#000000',
           text: [
             {
-              text: '\n' + this.StoredData.electricalObservation[i].title + '\n',
+              text:
+                '\n' + this.StoredData.electricalObservation[i].title + '\n',
               bold: 'true',
               color: title_color,
               fontSize: title_fontSize,
             },
           ],
         });
-        for(let j = 0; j < parseInt(this.StoredData.electricalObservation[i].content.length); j++)
-        {
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.electricalObservation[i].content.length);
+          j++
+        ) {
           var data = '';
-          data = this.StoredData.electricalObservation[i].content[j].text +'\n';
+          data =
+            this.StoredData.electricalObservation[i].content[j].text + '\n';
           //Content Color & FontSize
-          if(this.StoredData.electricalObservation[i].content[j].font_color !=null)
-          {
-            content_color = this.StoredData.electricalObservation[i].content[j].font_color;
+          if (
+            this.StoredData.electricalObservation[i].content[j].font_color !=
+            null
+          ) {
+            content_color = this.StoredData.electricalObservation[i].content[j]
+              .font_color;
           }
-          if(this.StoredData.electricalObservation[i].content[j].font_size != null)
-          {
-            content_fontSize = this.StoredData.electricalObservation[i].content[j].font_size;
+          if (
+            this.StoredData.electricalObservation[i].content[j].font_size !=
+            null
+          ) {
+            content_fontSize = this.StoredData.electricalObservation[i].content[
+              j
+            ].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -2791,20 +2911,33 @@ export class CommonSelectionPage implements OnInit {
                 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  The inspection does not include low voltage systems, telephone wiring, intercoms, alarm systems, TV cable, timers or smoke detectors.  The inspection of the electrical system was limited by (but not restricted to) the following conditions:\n',
             },
           ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [this.StoredData.electricalLimitations],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          text:
-            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
         }
       );
+    }
+    if (this.StoredData.electricalLimitations != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.electricalLimitations.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ed3833';
+        var content_fontSize = 9.5;
+        docDefinition.content.push({
+          margin: [30, 10, 6, 0],
+          fontSize: this.StoredData.electricalLimitations[i].font_size,
+          color: this.StoredData.electricalLimitations[i].font_color,
+          ul: [this.StoredData.electricalLimitations[i]],
+        });
+      }
+    }
+    if (this.StoredData.electricalLimitations != null) {
+      docDefinition.content.push({
+        margin: [30, 10, 6, 0],
+        fontSize: 9.5,
+        text:
+          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+      });
     }
     //<==========================================> COOLING <==========================================>
     if (
@@ -3018,23 +3151,22 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.coolingObservation != null)
-    {
-      for(let i = 0;i < parseInt(this.StoredData.coolingObservation.length);i++)
-      {
-        
+    if (this.StoredData.coolingObservation != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.coolingObservation.length);
+        i++
+      ) {
         var content_color = '#000000';
         var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
 
         //Title Color & FontSize
-        if(this.StoredData.coolingObservation[i].font_color != null)
-        {
+        if (this.StoredData.coolingObservation[i].font_color != null) {
           title_color = this.StoredData.coolingObservation[i].font_color;
         }
-        if(this.StoredData.coolingObservation[i].font_size != null)
-        {
+        if (this.StoredData.coolingObservation[i].font_size != null) {
           title_fontSize = this.StoredData.coolingObservation[i].font_size;
         }
         docDefinition.content.push({
@@ -3050,18 +3182,25 @@ export class CommonSelectionPage implements OnInit {
             },
           ],
         });
-        for(let j = 0; j < parseInt(this.StoredData.coolingObservation[i].content.length); j++)
-        {
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.coolingObservation[i].content.length);
+          j++
+        ) {
           var data = '';
-          data = this.StoredData.coolingObservation[i].content[j].text +'\n';
+          data = this.StoredData.coolingObservation[i].content[j].text + '\n';
           //Content Color & FontSize
-          if(this.StoredData.coolingObservation[i].content[j].font_color !=null)
-          {
-            content_color = this.StoredData.coolingObservation[i].content[j].font_color;
+          if (
+            this.StoredData.coolingObservation[i].content[j].font_color != null
+          ) {
+            content_color = this.StoredData.coolingObservation[i].content[j]
+              .font_color;
           }
-          if(this.StoredData.coolingObservation[i].content[j].font_size != null)
-          {
-            content_fontSize = this.StoredData.coolingObservation[i].content[j].font_size;
+          if (
+            this.StoredData.coolingObservation[i].content[j].font_size != null
+          ) {
+            content_fontSize = this.StoredData.coolingObservation[i].content[j]
+              .font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -3129,28 +3268,41 @@ export class CommonSelectionPage implements OnInit {
                 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Air conditioning and heat pump systems, like most mechanical components, can fail at any time.  The inspection of the cooling system was limited by (but not restricted to) the following conditions: \n',
             },
           ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [this.StoredData.coolingLimitations],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          text:
-            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
         }
       );
+    } //coolingLimitations
+    if (this.StoredData.coolingLimitations != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.coolingLimitations.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ed3833';
+        var content_fontSize = 9.5;
+        docDefinition.content.push({
+          margin: [30, 10, 6, 0],
+          fontSize: this.StoredData.coolingLimitations[i].font_size,
+          color: this.StoredData.coolingLimitations[i].font_color,
+          ul: [this.StoredData.coolingLimitations[i]],
+        });
+      }
     }
+    if (this.StoredData.coolingLimitations != null) {
+      docDefinition.content.push({
+        margin: [30, 10, 6, 0],
+        fontSize: 9.5,
+        text:
+          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+      });
+    }
+
+    //<==========================================> INSULATION <==========================================>
     if (
       this.StoredData.insulationDescription != null ||
       this.StoredData.insulationObservation != null ||
       this.StoredData.insulationLimitations != null ||
-      this.StoredData.D2InsulationAtticStructure != null ||
-      this.StoredData.D2InsulationRoofStructure != null ||
-      this.StoredData.D2InsulationExhastVentStructure != null
+      this.StoredData.insulationDescriptionContent != null
     ) {
       docDefinition.content.push(
         {
@@ -3199,9 +3351,7 @@ export class CommonSelectionPage implements OnInit {
     }
     if (
       this.StoredData.insulationDescription != null ||
-      this.StoredData.D2InsulationAtticStructure != null ||
-      this.StoredData.D2InsulationRoofStructure != null ||
-      this.StoredData.D2InsulationExhastVentStructure != null
+      this.StoredData.insulationDescriptionContent != null
     ) {
       docDefinition.content.push({
         color: '#000000',
@@ -3240,175 +3390,194 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.D2InsulationAtticStructure != null) {
-      var D2InsulationAtticStructure = ' ';
+    if (this.StoredData.insulationDescriptionContent != null) {
       for (
         let i = 0;
-        i < parseInt(this.StoredData.D2InsulationAtticStructure.length);
+        i < parseInt(this.StoredData.insulationDescriptionContent.length);
         i++
       ) {
-        D2InsulationAtticStructure =
-          D2InsulationAtticStructure +
-          ' • ' +
-          this.StoredData.D2InsulationAtticStructure[i].text;
+        var data = '';
+        var content_color = '#ff0f06';
+        var title_color = '#ff0f06';
+        var content_fontSize = 10;
+        var title_fontSize = 10;
+
+        for (
+          let j = 0;
+          j <
+          parseInt(
+            this.StoredData.insulationDescriptionContent[i].content.length
+          );
+          j++
+        ) {
+          data =
+            data +
+            ' •' +
+            this.StoredData.insulationDescriptionContent[i].content[j].text;
+
+          //Content color & fontsize
+          if (
+            this.StoredData.insulationDescriptionContent[i].content[j]
+              .font_color != null
+          ) {
+            content_color = this.StoredData.insulationDescriptionContent[i]
+              .content[j].font_color;
+          }
+          if (
+            this.StoredData.insulationDescriptionContent[i].content[j]
+              .font_size != null
+          ) {
+            content_fontSize = this.StoredData.insulationDescriptionContent[i]
+              .content[j].font_size;
+          }
+        }
+        if (
+          this.StoredData.insulationDescriptionContent[i].font_color != null
+        ) {
+          title_color = this.StoredData.insulationDescriptionContent[i]
+            .font_color;
+        }
+        if (this.StoredData.insulationDescriptionContent[i].font_size != null) {
+          title_fontSize = this.StoredData.insulationDescriptionContent[i]
+            .font_size;
+        }
+        docDefinition.content.push({
+          fontSize: 10,
+          columnGap: 5,
+          color: '#ff0f06',
+          columns: [
+            [
+              {
+                text:
+                  this.StoredData.insulationDescriptionContent[i].title + ':\t',
+                margin: [30, 2, 0, 0],
+                bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
+              },
+            ],
+            [
+              {
+                text: data,
+                margin: [-50, 2, 0, 0],
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          ],
+        });
       }
-      docDefinition.content.push({
-        fontSize: 10,
-        columnGap: 5,
-        color: '#ff0f06',
-        columns: [
-          [
-            {
-              text: this.config.titleof_31 + ':\n',
-              margin: [30, 7, 0, 0],
-              bold: 'true',
-            },
-          ],
-          [
-            {
-              text: D2InsulationAtticStructure,
-              margin: [-50, 7, 0, 0],
-            },
-          ],
-        ],
-      });
     }
-    if (this.StoredData.D2InsulationRoofStructure != null) {
-      var D2InsulationRoofStructure = ' ';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.D2InsulationRoofStructure.length);
-        i++
-      ) {
-        D2InsulationRoofStructure =
-          D2InsulationRoofStructure +
-          ' • ' +
-          this.StoredData.D2InsulationRoofStructure[i].text;
-      }
+    if (this.StoredData.insulationObservation != null) {
       docDefinition.content.push({
-        fontSize: 10,
-        columnGap: 5,
-        color: '#ff0f06',
-        columns: [
-          [
-            {
-              text: this.config.titleof_33 + ':\n',
-              margin: [30, 3, 0, 0],
-              bold: 'true',
-            },
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'INSULATION / VENTILATION OBSERVATIONS ',
+                alignment: 'left',
+                style: 'subbox',
+              },
+            ],
           ],
-          [
-            {
-              text: D2InsulationRoofStructure,
-              margin: [-50, 3, 0, 0],
-            },
-          ],
-        ],
-      });
-    }
-    if (this.StoredData.D2InsulationExhastVentStructure != null) {
-      var D2InsulationExhastVentStructure = ' ';
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.D2InsulationExhastVentStructure.length);
-        i++
-      ) {
-        D2InsulationExhastVentStructure =
-          D2InsulationExhastVentStructure +
-          ' • ' +
-          this.StoredData.D2InsulationExhastVentStructure[i].text;
-      }
-      docDefinition.content.push({
-        fontSize: 10,
-        columnGap: 5,
-        color: '#ff0f06',
-        columns: [
-          [
-            {
-              text: this.config.titleof_32 + ':\n',
-              margin: [30, 3, 0, 0],
-              bold: 'true',
-            },
-          ],
-          [
-            {
-              text: D2InsulationExhastVentStructure,
-              margin: [-50, 3, 0, 0],
-            },
-          ],
-        ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
+          },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 225;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
       });
     }
     if (this.StoredData.insulationObservation != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'INSULATION / VENTILATION OBSERVATIONS ',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
-            ],
-          },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 225;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
-          },
-        },
-        {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.insulationObservation.length);
+        i++
+      ) {
+        var content_color = '#000000';
+        var title_color = '#000000';
+        var content_fontSize = 9.5;
+        var title_fontSize = 9.5;
+
+        //Title Color & FontSize
+        if (this.StoredData.insulationObservation[i].font_color != null) {
+          title_color = this.StoredData.insulationObservation[i].font_color;
+        }
+        if (this.StoredData.insulationObservation[i].font_size != null) {
+          title_fontSize = this.StoredData.insulationObservation[i].font_size;
+        }
+        docDefinition.content.push({
           fontSize: 9.5,
-          margin: [30, 10, 6, 0],
-          color: '#ed3833',
+          margin: [30, 4, 6, 0],
+          color: '#000000',
           text: [
             {
-              text: 'General Comments\n',
+              text:
+                '\n' + this.StoredData.insulationObservation[i].title + '\n',
               bold: 'true',
-            },
-            {
-              text: this.StoredData.insulationObservation,
-            },
-            {
-              text: '\n\nRECOMMENDATIONS / OBSERVATIONS \n',
-              fontSize: 11,
-              bold: 'true',
-              color: '#000000',
-            },
-            {
-              text: 'Attic / Roof\n',
-              bold: 'true',
+              color: title_color,
+              fontSize: title_fontSize,
             },
           ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [this.StoredData.insulationObservation],
+        });
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.insulationObservation[i].content.length);
+          j++
+        ) {
+          var data = '';
+          data =
+            this.StoredData.insulationObservation[i].content[j].text + '\n';
+          //Content Color & FontSize
+          if (
+            this.StoredData.insulationObservation[i].content[j].font_color !=
+            null
+          ) {
+            content_color = this.StoredData.insulationObservation[i].content[j]
+              .font_color;
+          }
+          if (
+            this.StoredData.insulationObservation[i].content[j].font_size !=
+            null
+          ) {
+            content_fontSize = this.StoredData.insulationObservation[i].content[
+              j
+            ].font_size;
+          }
+          docDefinition.content.push({
+            fontSize: 9.5,
+            margin: [30, 4, 6, 0],
+            color: '#000000',
+            text: [
+              {
+                text: data,
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          });
         }
-      );
+      }
     }
+
     if (this.StoredData.insulationLimitations != null) {
       docDefinition.content.push(
         {
@@ -3456,25 +3625,35 @@ export class CommonSelectionPage implements OnInit {
                 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  The inspection of insulation and ventilation was limited by (but not restricted to) the following conditions:\n',
             },
           ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [
-            this.StoredData.insulationLimitations, //tobe
-            //this.StoredData.coolingLimitations[1],
-            //this.StoredData.coolingLimitations[2],
-          ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          text:
-            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
         }
       );
     }
+    if (this.StoredData.insulationLimitations != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.insulationLimitations.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ed3833';
+        var content_fontSize = 9.5;
+        docDefinition.content.push({
+          margin: [30, 10, 6, 0],
+          fontSize: this.StoredData.insulationLimitations[i].font_size,
+          color: this.StoredData.insulationLimitations[i].font_color,
+          ul: [this.StoredData.insulationLimitations[i]],
+        });
+      }
+    }
+    if (this.StoredData.insulationLimitations != null) {
+      docDefinition.content.push({
+        margin: [30, 10, 6, 0],
+        fontSize: 9.5,
+        text:
+          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+      });
+    }
+
     //<==========================================> PLUMBING <==========================================>
     if (
       this.StoredData.plumbingDescription != null ||
@@ -3565,7 +3744,7 @@ export class CommonSelectionPage implements OnInit {
           paddingBottom: function (i, node) {
             return 1;
           },
-        }, //plumbingDescriptionContent
+        },
       });
     }
     if (this.StoredData.plumbingDescriptionContent != null) {
@@ -3682,23 +3861,22 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.plumbingObservation != null)
-    {
-      for(let i = 0;i < parseInt(this.StoredData.plumbingObservation.length);i++)
-      {
-        
+    if (this.StoredData.plumbingObservation != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.plumbingObservation.length);
+        i++
+      ) {
         var content_color = '#000000';
         var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
 
         //Title Color & FontSize
-        if(this.StoredData.plumbingObservation[i].font_color != null)
-        {
+        if (this.StoredData.plumbingObservation[i].font_color != null) {
           title_color = this.StoredData.plumbingObservation[i].font_color;
         }
-        if(this.StoredData.plumbingObservation[i].font_size != null)
-        {
+        if (this.StoredData.plumbingObservation[i].font_size != null) {
           title_fontSize = this.StoredData.plumbingObservation[i].font_size;
         }
         docDefinition.content.push({
@@ -3714,18 +3892,25 @@ export class CommonSelectionPage implements OnInit {
             },
           ],
         });
-        for(let j = 0; j < parseInt(this.StoredData.plumbingObservation[i].content.length); j++)
-        {
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.plumbingObservation[i].content.length);
+          j++
+        ) {
           var data = '';
-          data = this.StoredData.plumbingObservation[i].content[j].text +'\n';
+          data = this.StoredData.plumbingObservation[i].content[j].text + '\n';
           //Content Color & FontSize
-          if(this.StoredData.plumbingObservation[i].content[j].font_color !=null)
-          {
-            content_color = this.StoredData.plumbingObservation[i].content[j].font_color;
+          if (
+            this.StoredData.plumbingObservation[i].content[j].font_color != null
+          ) {
+            content_color = this.StoredData.plumbingObservation[i].content[j]
+              .font_color;
           }
-          if(this.StoredData.plumbingObservation[i].content[j].font_size != null)
-          {
-            content_fontSize = this.StoredData.plumbingObservation[i].content[j].font_size;
+          if (
+            this.StoredData.plumbingObservation[i].content[j].font_size != null
+          ) {
+            content_fontSize = this.StoredData.plumbingObservation[i].content[j]
+              .font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -3789,29 +3974,41 @@ export class CommonSelectionPage implements OnInit {
                 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  The inspection of the plumbing system was limited by (but not restricted to) the following conditions:\n',
             },
           ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [
-            this.StoredData.plumbingLimitations, //tobe
-            //this.StoredData.coolingLimitations[1],
-            //this.StoredData.coolingLimitations[2],
-          ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          text:
-            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
         }
       );
     }
+    if (this.StoredData.plumbingLimitations != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.plumbingLimitations.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ed3833';
+        var content_fontSize = 9.5;
+        docDefinition.content.push({
+          margin: [30, 10, 6, 0],
+          fontSize: this.StoredData.plumbingLimitations[i].font_size,
+          color: this.StoredData.plumbingLimitations[i].font_color,
+          ul: [this.StoredData.plumbingLimitations[i]],
+        });
+      }
+    }
+    if (this.StoredData.plumbingLimitations != null) {
+      docDefinition.content.push({
+        margin: [30, 10, 6, 0],
+        fontSize: 9.5,
+        text:
+          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+      });
+    }
+
+    //<==========================================> INTERIOR <==========================================>
     if (
       this.StoredData.interiorDescription != null ||
       this.StoredData.interiorObservation != null ||
-      this.StoredData.interiorLimitations != null
+      this.StoredData.interiorLimitations != null ||
+      this.StoredData.interiorDescriptionContent != null
     ) {
       docDefinition.content.push(
         {
@@ -3858,123 +4055,227 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    if (this.StoredData.interiorDescription != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'DESCRIPTION OF INTERIOR',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
+    if (
+      this.StoredData.interiorDescription != null ||
+      this.StoredData.interiorDescriptionContent != null
+    ) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'DESCRIPTION OF INTERIOR',
+                alignment: 'left',
+                style: 'subbox',
+              },
             ],
-          },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 325;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
-          },
-        },
-        {
-          columnGap: 30,
-          width: '50%',
-          margin: [0, 5, 0, 0],
-          fontSize: 9,
-          color: '#ed3833',
-          columns: [this.StoredData.interiorDescription],
-        }
-      );
-    }
-    if (this.StoredData.interiorObservation != null) {
-      docDefinition.content.push(
-        {
-          color: '#000000',
-          margin: [0, 8, 0, 0],
-          width: 300,
-          table: {
-            body: [
-              [
-                {
-                  text: 'INTERIOR OBSERVATIONS',
-                  alignment: 'left',
-                  style: 'subbox',
-                },
-              ],
-            ],
-          },
-          layout: {
-            hLineColor: function (i, node) {
-              return 'black';
-            },
-            vLineColor: function (i, node) {
-              return 'black';
-            },
-            paddingLeft: function (i, node) {
-              return 15;
-            },
-            paddingRight: function (i, node) {
-              return 333;
-            },
-            paddingTop: function (i, node) {
-              return 1;
-            },
-            paddingBottom: function (i, node) {
-              return 1;
-            },
-          },
-        },
-        {
-          fontSize: 9.5,
-          margin: [30, 10, 6, 0],
-          color: '#ed3833',
-          text: [
-            {
-              text: 'General Condition of Interior Finishes\n',
-              bold: 'true',
-            },
-            {
-              text: this.StoredData.interiorObservation,
-            },
-            {
-              text: '\n\nRECOMMENDATIONS / OBSERVATIONS \n',
-              fontSize: 11,
-              bold: 'true',
-              color: '#000000',
-            },
-            {
-              text: this.StoredData.interiorObservationRecommendations,
-              bold: 'true',
-            },
           ],
         },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [this.StoredData.interiorObservation],
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
+          },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 325;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
+    }
+    if (this.StoredData.interiorDescriptionContent != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.interiorDescriptionContent.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ff0f06';
+        var title_color = '#ff0f06';
+        var content_fontSize = 10;
+        var title_fontSize = 10;
+
+        for (
+          let j = 0;
+          j <
+          parseInt(
+            this.StoredData.interiorDescriptionContent[i].content.length
+          );
+          j++
+        ) {
+          data =
+            data +
+            ' •' +
+            this.StoredData.interiorDescriptionContent[i].content[j].text;
+
+          //Content color & fontsize
+          if (
+            this.StoredData.interiorDescriptionContent[i].content[j]
+              .font_color != null
+          ) {
+            content_color = this.StoredData.interiorDescriptionContent[i]
+              .content[j].font_color;
+          }
+          if (
+            this.StoredData.interiorDescriptionContent[i].content[j]
+              .font_size != null
+          ) {
+            content_fontSize = this.StoredData.interiorDescriptionContent[i]
+              .content[j].font_size;
+          }
         }
-      );
+        if (this.StoredData.interiorDescriptionContent[i].font_color != null) {
+          title_color = this.StoredData.interiorDescriptionContent[i]
+            .font_color;
+        }
+        if (this.StoredData.interiorDescriptionContent[i].font_size != null) {
+          title_fontSize = this.StoredData.interiorDescriptionContent[i]
+            .font_size;
+        }
+        docDefinition.content.push({
+          fontSize: 10,
+          columnGap: 5,
+          color: '#ff0f06',
+          columns: [
+            [
+              {
+                text:
+                  this.StoredData.interiorDescriptionContent[i].title + ':\t',
+                margin: [30, 2, 0, 0],
+                bold: 'true',
+                color: title_color,
+                fontSize: title_fontSize,
+              },
+            ],
+            [
+              {
+                text: data,
+                margin: [-50, 2, 0, 0],
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          ],
+        });
+      }
+    }
+
+    if (this.StoredData.interiorObservation != null) {
+      docDefinition.content.push({
+        color: '#000000',
+        margin: [0, 8, 0, 0],
+        width: 300,
+        table: {
+          body: [
+            [
+              {
+                text: 'INTERIOR OBSERVATIONS',
+                alignment: 'left',
+                style: 'subbox',
+              },
+            ],
+          ],
+        },
+        layout: {
+          hLineColor: function (i, node) {
+            return 'black';
+          },
+          vLineColor: function (i, node) {
+            return 'black';
+          },
+          paddingLeft: function (i, node) {
+            return 15;
+          },
+          paddingRight: function (i, node) {
+            return 333;
+          },
+          paddingTop: function (i, node) {
+            return 1;
+          },
+          paddingBottom: function (i, node) {
+            return 1;
+          },
+        },
+      });
+    }
+    if (this.StoredData.interiorObservation != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.interiorObservation.length);
+        i++
+      ) {
+        var content_color = '#000000';
+        var title_color = '#000000';
+        var content_fontSize = 9.5;
+        var title_fontSize = 9.5;
+
+        //Title Color & FontSize
+        if (this.StoredData.interiorObservation[i].font_color != null) {
+          title_color = this.StoredData.interiorObservation[i].font_color;
+        }
+        if (this.StoredData.interiorObservation[i].font_size != null) {
+          title_fontSize = this.StoredData.interiorObservation[i].font_size;
+        }
+        docDefinition.content.push({
+          fontSize: 9.5,
+          margin: [30, 4, 6, 0],
+          color: '#000000',
+          text: [
+            {
+              text: '\n' + this.StoredData.interiorObservation[i].title + '\n',
+              bold: 'true',
+              color: title_color,
+              fontSize: title_fontSize,
+            },
+          ],
+        });
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.interiorObservation[i].content.length);
+          j++
+        ) {
+          var data = '';
+          data = this.StoredData.interiorObservation[i].content[j].text + '\n';
+          //Content Color & FontSize
+          if (
+            this.StoredData.interiorObservation[i].content[j].font_color != null
+          ) {
+            content_color = this.StoredData.interiorObservation[i].content[j]
+              .font_color;
+          }
+          if (
+            this.StoredData.interiorObservation[i].content[j].font_size != null
+          ) {
+            content_fontSize = this.StoredData.interiorObservation[i].content[j]
+              .font_size;
+          }
+          docDefinition.content.push({
+            fontSize: 9.5,
+            margin: [30, 4, 6, 0],
+            color: '#000000',
+            text: [
+              {
+                text: data,
+                fontSize: content_fontSize,
+                color: content_color,
+              },
+            ],
+          });
+        }
+      }
     }
     if (this.StoredData.interiorLimitations != null) {
       docDefinition.content.push(
@@ -4027,25 +4328,35 @@ export class CommonSelectionPage implements OnInit {
                 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Assessing the quality and condition of interior finishes is highly subjective.  Issues such as cleanliness, cosmetic flaws, quality of materials, architectural appeal and color are outside the scope of this inspection.  Comments will be general, except where functional concerns exist.  No comment is offered on the extent of cosmetic repairs that may be needed after removal of existing wall hangings and furniture.  The inspection of the interior was limited by (but not restricted to) the following conditions\n',
             },
           ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [
-            this.StoredData.interiorLimitations, //tobe
-            //this.StoredData.coolingLimitations[1],
-            //this.StoredData.coolingLimitations[2],
-          ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          text:
-            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
         }
       );
     }
+    if (this.StoredData.interiorLimitations != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.interiorLimitations.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ed3833';
+        var content_fontSize = 9.5;
+        docDefinition.content.push({
+          margin: [30, 10, 6, 0],
+          fontSize: this.StoredData.interiorLimitations[i].font_size,
+          color: this.StoredData.interiorLimitations[i].font_color,
+          ul: [this.StoredData.interiorLimitations[i]],
+        });
+      }
+    }
+    if (this.StoredData.interiorLimitations != null) {
+      docDefinition.content.push({
+        margin: [30, 10, 6, 0],
+        fontSize: 9.5,
+        text:
+          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+      });
+    }
+
     //<==========================================> APPLIANCES <==========================================>
     if (
       this.StoredData.applianceDescription != null ||
@@ -4255,23 +4566,22 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.applianceObservation != null)
-    {
-      for(let i = 0;i < parseInt(this.StoredData.applianceObservation.length);i++)
-      {
-        
+    if (this.StoredData.applianceObservation != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.applianceObservation.length);
+        i++
+      ) {
         var content_color = '#000000';
         var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
 
         //Title Color & FontSize
-        if(this.StoredData.applianceObservation[i].font_color != null)
-        {
+        if (this.StoredData.applianceObservation[i].font_color != null) {
           title_color = this.StoredData.applianceObservation[i].font_color;
         }
-        if(this.StoredData.applianceObservation[i].font_size != null)
-        {
+        if (this.StoredData.applianceObservation[i].font_size != null) {
           title_fontSize = this.StoredData.applianceObservation[i].font_size;
         }
         docDefinition.content.push({
@@ -4287,18 +4597,27 @@ export class CommonSelectionPage implements OnInit {
             },
           ],
         });
-        for(let j = 0; j < parseInt(this.StoredData.applianceObservation[i].content.length); j++)
-        {
+        for (
+          let j = 0;
+          j < parseInt(this.StoredData.applianceObservation[i].content.length);
+          j++
+        ) {
           var data = '';
-          data = this.StoredData.applianceObservation[i].content[j].text +'\n';
+          data = this.StoredData.applianceObservation[i].content[j].text + '\n';
           //Content Color & FontSize
-          if(this.StoredData.applianceObservation[i].content[j].font_color !=null)
-          {
-            content_color = this.StoredData.applianceObservation[i].content[j].font_color;
+          if (
+            this.StoredData.applianceObservation[i].content[j].font_color !=
+            null
+          ) {
+            content_color = this.StoredData.applianceObservation[i].content[j]
+              .font_color;
           }
-          if(this.StoredData.applianceObservation[i].content[j].font_size != null)
-          {
-            content_fontSize = this.StoredData.applianceObservation[i].content[j].font_size;
+          if (
+            this.StoredData.applianceObservation[i].content[j].font_size != null
+          ) {
+            content_fontSize = this.StoredData.applianceObservation[i].content[
+              j
+            ].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -4362,24 +4681,33 @@ export class CommonSelectionPage implements OnInit {
                 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Appliances are tested by turning them on for a short period of time only. It is strongly recommended that a Homeowner’s Warranty or service contract be purchased to cover the operation of appliances.  It is further recommended that appliances be tested during any scheduled pre-closing walk through.  Like any mechanical device, appliances can malfunction at any time (including the day after taking possession of the house).  The inspection of the appliances was limited by (but not restricted to) the following conditions:\n',
             },
           ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          color: '#ed3833',
-          ul: [
-            this.StoredData.applianceLimitations, //tobe
-            //this.StoredData.coolingLimitations[1],
-            //this.StoredData.coolingLimitations[2],
-          ],
-        },
-        {
-          margin: [30, 10, 6, 0],
-          fontSize: 9.5,
-          text:
-            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
         }
       );
+    }
+    if (this.StoredData.applianceLimitations != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.applianceLimitations.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ed3833';
+        var content_fontSize = 9.5;
+        docDefinition.content.push({
+          margin: [30, 10, 6, 0],
+          fontSize: this.StoredData.applianceLimitations[i].font_size,
+          color: this.StoredData.applianceLimitations[i].font_color,
+          ul: [this.StoredData.applianceLimitations[i]],
+        });
+      }
+    }
+    if (this.StoredData.applianceLimitations != null) {
+      docDefinition.content.push({
+        margin: [30, 10, 6, 0],
+        fontSize: 9.5,
+        text:
+          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+      });
     }
     docDefinition.content.push(
       {
@@ -4442,33 +4770,26 @@ export class CommonSelectionPage implements OnInit {
         style: 'paraData_2',
         italics: 'true',
         color: '#ff0000',
-      },
-      {
-        style: 'aggrementOL',
-        /*ol: [
-          'The fee for our inspection is the price payable in full at the time of the appointment.\n\n',
-          'We will perform a visual inspection of the home/building and provide you with a written report identifying the defects that we (1) observed and (2) deemed material.  The report is only supplementary to the seller’s disclosure.\n\n',
-          'Unless otherwise noted in this Agreement or not possible, we will perform the inspection in accordance with the current Standards of Practice (SOP) of the International Association of Certified Home Inspectors (“InterNACHI”) posted at www.nachi.org/sop  If your jurisdiction has adopted mandatory standards that differ from InterNACHI’s SOP, we will perform the inspection in accordance with your jurisdiction’s standards.  You understand that InterNACHI’s SOP contains limitations, exceptions, and exclusions.  You understand that InterNACHI is not a party to this Agreement, has no control over us, and does not employ or supervise us.',
-          'Unless otherwise indicated in writing, we will NOT test for the presence of radon, a harmful gas.  Unless otherwise indicated in writing, we will not test for mold.  Unless otherwise indicated in writing, we will not test for compliance with applicable building codes or for the presence of or for any potential dangers arising from the presence of asbestos, lead paint, soil contamination, or other environmental hazards or violations.  If any structure you want us to inspect is a log structure or includes log construction, you understand that such structures have unique characteristics that may make it impossible for us to inspect and evaluate them.  Therefore, the scope of our inspection will not include decay of the interior of logs in log walls, log foundations or roofs, or similar defects.\n\n',
-          'Our inspection and report are for your use only.  You give us permission to discuss our observations with real estate agents, owners, repair persons, or other interested parties. You will be the sole owner of the report and all rights to it.  We are not responsible for use or misinterpretation by third parties, and third parties who rely on it in any way do so at their own risk and release us (including employees and business entities) from any liability whatsoever. If you or any person acting on your behalf provide the report to a third party who then sues you and/or us, you release us from any liability and agree to pay our costs and legal fees in defending any action naming us. Our inspection and report are in no way a guarantee or warranty, express or implied, regarding the future use, operability, habitability or suitability of the home/building or its components. We disclaim all warranties, express or implied, to the fullest extent allowed by law.\n\n Liquidated Damages- Limited Liability Clause \n\n',
-          'Due to the nature of the services we are providing, it is difficult to foresee or determine (at the time this Agreement is formed) potential damages in the event of negligence or breach of Agreement by us. Thus, if we fail to perform the services as provided herein or are careless and negligent in the performance of the Services and/or preparing the report, our liability any and all claims related thereto is limited to the fee paid for the Services and or preparing the Report and you release us from any and all additional liability, whether based on contract, tort, or any other legal theory. There will be no recovery for consequential damages. You understand the performance of the Services without this limitation would be more technically exhaustive, likely require specialties and would cost substantially more than the fee paid for this limited visual inspection.\nWe assume no liability for the cost of repair or replacement of unreported defects, either current or arising in the future. In all cases, our liability is limited to liquidate damages in an amount not greater than the fee you paid us.  You waive any claim for consequential, exemplary, special or incidental damages or for the loss of the use of the home/building.  You acknowledge that this liquidated damages is not a penalty, but that we intend it to: (i) reflect the fact that actual damages may be difficult or impractical to ascertain; (ii) allocate risk between us; and (iii) enable us to perform the inspection for the agreed-upon fee.\n\n',
-          'We do not perform engineering, architectural, plumbing, or any other job function requiring an occupational license in the jurisdiction where the property is located.  If we hold a valid occupational license, we may inform you of this and you may hire us to perform additional functions. Any agreement for such additional services shall be in a separate writing.\n\n',
-          'Dispute Resolution-Arbitration Clause\nAny dispute, controversy, interpretation or claim including claims for, but not limited to, breach of contract, any form of negligence, fraud, or misinterpretation arising out of, from or related to, this contractor arising out of, from or related to the inspection or inspection report shall be submitted first to a Non-Binding Mediation conference and absent a voluntary settlement through Non-Binding Mediation to followed by final and Binding Arbitration, if necessary, as conducted by Construction Dispute Resolution Services, LLC or Resolute Systems Inc. utilizing their respective Rules and Procedures. If the dispute is submitted to Binding Arbitration, the decision of the Arbitrator appointed there under shall be final and binding and the enforcement of the Arbitration Award may be entered in any Court or administrative tribunal having jurisdiction thereof.\n\n',
-          'If you believe you have a claim against us, you agree to provide us with the following: (1) written notification of your claim within seven days of discovery in sufficient detail and with sufficient supporting documents that we can evaluate it; and (2) immediate access to the premises.  Failure to comply with these conditions releases us from liability.\n\n',
-          'You agree that the exclusive venue for any litigation arising out of this Agreement shall be in the county where we have our principal place of business.  If you fail to prove any claim against us, you agree to pay all our legal costs, expenses and attorney’s fees incurred in defending that claim. You agree that the exclusive venue for any legal action against InterNACHI itself, allegedly arising out of this Agreement or our membership in InterNACHI, will be in Boulder County, Colorado.  Before bringing any such action, you must provide InterNACHI with 30 days’ written notice of the nature of the claim in sufficient detail and with sufficient supporting documents that InterNACHI can evaluate it.  In any action against us or InterNACHI, you waive trial by jury.\n\n',
-          'If a court declares any provision of this Agreement invalid, the remaining provisions remain in effect.  This Agreement represents our entire agreement; there are no terms other than those set forth herein.  All prior discussions are merged into this Agreement.  No statement or promise by us shall be binding unless reduced to writing and signed by one of our authorized officers.  Any modification of this Agreement must be in writing and signed by you and by one of our authorized officers. This Agreement shall be binding upon and enforceable by the parties and their heirs, executors, administrators, successors and assignees. You will have no cause of action against us after one year from the date of the inspection.\n\n',
-          'Past-due fees for your inspection shall accrue interest at 8% per year.  You agree to pay all costs and attorney’s fees we incur in collecting the fees owed to us.  If the Client is a corporation, LLC, or similar entity, you personally guarantee payment of the fee\n\n',
-          'If you request a re-inspection, the re-inspection is subject to the terms of this Agreement. \n\n',
-          'You may not assign this Agreement.\n\n',
-          'If a court finds any term of this Agreement ambiguous or requiring judicial interpretation, the court shall not construe that term against us by reason of the rule that any ambiguity in a document is construed against the party drafting it.  You had the opportunity to consult qualified counsel before signing this.\n\n',
-          'If there is more than one Client, you are signing on behalf of all of them, and you represent that you are authorized to do so.\n\n',
-          'If you would like a large print version of this Agreement before signing it, you may request one by emailing us.\n\n',
-          'If you elect to participate in InterNACHI’s Buy-Back Program, you will be bound by the terms you may view at www.nachi.org/buy. \n\n' 
-        ],*/
-
-        ol: [this.StoredData.generalDescription],
       }
     );
+    if (this.StoredData.generalContent != null) {
+      for (
+        let i = 0;
+        i < parseInt(this.StoredData.generalContent.length);
+        i++
+      ) {
+        var data = '';
+        var content_color = '#ed3833';
+        var content_fontSize = 9.5;
+        let count = i++;
+        docDefinition.content.push({
+          margin: [30, 3, 0, 0],
+          fontSize: this.StoredData.generalContent[i].font_size,
+          color: this.StoredData.generalContent[i].font_color,
+          text: count + this.StoredData.generalContent[i],
+        });
+      }
+    }
 
     this.pdfObj = pdfMake.createPdf(docDefinition);
     this.pdfObjBtn = true;
