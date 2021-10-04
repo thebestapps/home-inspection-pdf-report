@@ -970,7 +970,6 @@ export class AppliancesSelectionPage implements OnInit {
       }
     });
 
-
     console.log('desc output ', this.descOutput);
     if (this.descOutput.length) {
       this.StoredData.applianceLimitations = this.descOutput;
@@ -982,30 +981,7 @@ export class AppliancesSelectionPage implements OnInit {
     this.updateStorage3();
   }
   async presentAlertConfirm() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Done.',
-      buttons: [
-        {
-          text: 'Go Back',
-          handler: () => {
-            console.log('Confirm Okay');
-
-            this.openCommonModal();
-          },
-        },
-        {
-          text: 'Dismiss',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          },
-        },
-      ],
-    });
-
-    await alert.present();
+    this.config.presentToast('Success.');
   }
 
   async openCommonModal() {
@@ -2419,15 +2395,15 @@ export class AppliancesSelectionPage implements OnInit {
       //     }
       //   });
       // } else {
-        let obj = {
-          content: [item],
-          font_color:
-            this.applianceLimitationsContent[index].font_color || '#000000',
-          font_size: this.applianceLimitationsContent[index].font_size || 12,
-          title: this.applianceLimitationsContent[index].title,
-          id: index,
-        };
-        this.descOutput.push(item);
+      let obj = {
+        content: [item],
+        font_color:
+          this.applianceLimitationsContent[index].font_color || '#000000',
+        font_size: this.applianceLimitationsContent[index].font_size || 12,
+        title: this.applianceLimitationsContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(item);
       // }
     } else {
       let obj = {

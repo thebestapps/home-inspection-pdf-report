@@ -5,6 +5,7 @@ import { CommonService } from '../../common.function';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { CommonSelectionPage } from '../../../app/modal/common-selection/common-selection.page';
+import { ModalPopupPage } from 'src/app/shared/components/modal-popup/modal-popup.page';
 
 @Component({
   selector: 'app-general-information',
@@ -47,6 +48,9 @@ export class GeneralInformationPage implements OnInit {
   Obersations_UI_Recommendations = false;
   itemsToDeleteObs: any;
   generalContentRecommendations: any;
+
+  backdrop = false;
+  descOutput = [];
 
   constructor(
     public modalController: ModalController,
@@ -244,9 +248,52 @@ export class GeneralInformationPage implements OnInit {
     this.itemsToDelete = n;
   }
 
+  openAddModal3(index) {
+    // const obj = this.StructureDescriptionContent[index];
+    this.alertController
+      .create({
+        header: 'Add Limitation',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'description',
+            placeholder: '',
+            // value: obj.text || ''
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Add',
+            handler: (res: any) => {
+              console.log('Saved Information', res);
+              // const data = {...item, ...res};
+              if (res.description.length) {
+                console.log(res);
+                console.log(index);
+                this.addDescription3(index, res);
+              }
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
   selectItem22(_index: number, data, ev) {
     this.selectedIndex = _index;
     this.Selected_Item_to_add2 = data;
+    // this.Selected_Item_to_add2.title = this.SelectedTitleToFilter2;
 
     if (ev.detail.checked == true) {
       this.itemsToDelete2 = data;
@@ -562,98 +609,119 @@ export class GeneralInformationPage implements OnInit {
   }
 
   updateDescription2() {
-    let generalContent = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['generalContent'];
-
-    console.log('To finalize generalDescription=====' + generalContent);
-
-    if (generalContent != undefined) {
-      if (this.added_items2 == '') {
-        this.added_items2 = [];
-
-        var newArray = this.added_items2.map((o) => {
-          return {
-            generalContent: [
-              {
-                text: '',
-                checked: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items2.map((o) => {
-          return {
-            generalContent: [
-              {
-                text: o.text,
-                checked: o.checked,
-              },
-            ],
-          };
-        });
+    let data = this.generalDescriptionContent;
+    this.descOutput = [];
+    data.map((obj, index) => {
+      console.log(obj);
+      if (obj.checked) {
+        this.collectData3(index, obj);
       }
+    });
 
-      console.log('Array To Add++++++++' + newArray);
-
-      let arr3 = [...generalContent, ...newArray];
-
-      console.log(
-        'Updating Again - Fix (2)...generalDescription, ...newArray' + arr3
-      );
+    console.log('desc output ', this.descOutput);
+    if (this.descOutput.length) {
+      this.StoredData.generalContent = this.descOutput;
     }
-
-    if (generalContent == null || generalContent == undefined) {
-      console.log('undefined------------------------------');
-
-      let generalContent = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['generalContent'];
-
-      if (this.added_items2 == '') {
-        console.log(this.added_items2);
-
-        this.added_items2 = [];
-
-        var newArray = this.added_items2.map((o) => {
-          return {
-            generalContent: [
-              {
-                text: '',
-                checked: '',
-              },
-            ],
-          };
-        });
-      } else {
-        console.log('??' + this.added_items2);
-        var newArray = this.added_items2.map((o) => {
-          return {
-            text: o.text,
-            checked: o.checked,
-          };
-        });
-      }
-
-      var ObArr = {
-        generalContent: [this.added_items2],
-      };
-
-      this.StoredData = JSON.parse(
-        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
-      );
-
-      this.StoredData.generalContent = newArray;
-
-      this.config.storageRemoveItem('InspectionToEdit');
-      this.config.storageSave('InspectionToEdit', this.StoredData);
-
-      console.log(this.StoredData);
-
-      this.presentAlertConfirm();
-    }
+    console.log(this.StoredData);
+    this.config.storageRemoveItem('InspectionToEdit');
+    this.config.storageSave('InspectionToEdit', this.StoredData);
+    this.presentAlertConfirm();
+    this.updateStorage3();
   }
+
+  // updateDescription2() {
+  //   let generalContent = this.config.storageGet('InspectionToEdit')[
+  //     '__zone_symbol__value'
+  //   ]['generalContent'];
+
+  //   console.log('To finalize generalDescription=====' + generalContent);
+
+  //   if (generalContent != undefined) {
+  //     if (this.added_items2 == '') {
+  //       this.added_items2 = [];
+
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           generalContent: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           generalContent: [
+  //             {
+  //               text: o.text,
+  //               checked: o.checked,
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     }
+
+  //     console.log('Array To Add++++++++' + newArray);
+
+  //     let arr3 = [...generalContent, ...newArray];
+
+  //     console.log(
+  //       'Updating Again - Fix (2)...generalDescription, ...newArray' + arr3
+  //     );
+  //   }
+
+  //   if (generalContent == null || generalContent == undefined) {
+  //     console.log('undefined------------------------------');
+
+  //     let generalContent = this.config.storageGet('InspectionToEdit')[
+  //       '__zone_symbol__value'
+  //     ]['generalContent'];
+
+  //     if (this.added_items2 == '') {
+  //       console.log(this.added_items2);
+
+  //       this.added_items2 = [];
+
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           generalContent: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       console.log('??' + this.added_items2);
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           text: o.text,
+  //           checked: o.checked,
+  //         };
+  //       });
+  //     }
+
+  //     var ObArr = {
+  //       generalContent: [this.added_items2],
+  //     };
+
+  //     this.StoredData = JSON.parse(
+  //       this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+  //     );
+
+  //     this.StoredData.generalContent = newArray;
+
+  //     this.config.storageRemoveItem('InspectionToEdit');
+  //     this.config.storageSave('InspectionToEdit', this.StoredData);
+
+  //     console.log(this.StoredData);
+
+  //     this.presentAlertConfirm();
+  //   }
+  // }
 
   updateDescription3() {
     let structureComments = this.config.storageGet('InspectionToEdit')[
@@ -963,5 +1031,142 @@ export class GeneralInformationPage implements OnInit {
     if (an['__zone_symbol__state'] == true) {
       this.PreviewPDF = false;
     }
+  }
+
+  collectData3(index, item) {
+    if (this.descOutput.length) {
+      // let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      // if (arrObj.length) {
+      //   const id = arrObj[0].id;
+      //   this.descOutput.map((e) => {
+      //     if (e.id == id) {
+      //       e.content.push(item);
+      //     }
+      //   });
+      // } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.generalDescriptionContent[index].font_color || '#000000',
+        font_size: this.generalDescriptionContent[index].font_size || 12,
+        title: this.generalDescriptionContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(item);
+      // }
+    } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.generalDescriptionContent[index].font_color || '#000000',
+        font_size: this.generalDescriptionContent[index].font_size || 12,
+        title: this.generalDescriptionContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(item);
+    }
+  }
+
+  editText3(obj) {
+    console.log(obj);
+    this.alertController
+      .create({
+        header: 'Update Text',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'name',
+            placeholder: '',
+            value: obj.text || '',
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Update',
+            handler: (data: any) => {
+              console.log('Saved Information', data);
+              this.updateValue3(obj, data);
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  // method to add new Description
+  addDescription3(index, data) {
+    console.log(data);
+    console.log(index);
+
+    const selectedItem = this.generalDescriptionContent[index];
+
+    // console.log(this.StructureDescriptionContent);
+    let obj = {
+      checked: 0,
+
+      main: 'Structure Limitation Content',
+      text: data.description,
+    };
+    selectedItem.push(obj);
+    this.updateStorage3();
+  }
+
+  updateValue3(item, val) {
+    const title = val.name || '';
+    if (title.trim().length) {
+      item.text = val.name;
+      this.updateStorage3();
+    }
+  }
+
+  updateStorage3() {
+    const data = this.generalDescriptionContent;
+    // const data = JSON.stringify(this.structureObservation);
+    this.config.storageSave('generalDescriptionContent', data);
+  }
+  setThemeVaribles(item, data) {
+    console.log(data);
+    // const selectedItem = this.StructureDescriptionContent[index];
+    item.font_color = data.font_color;
+    item.font_size = data.font_size;
+    // console.log(this.StructureDescriptionContent);
+    // this.updateDescription5();
+  }
+
+  async openIonModal(item) {
+    const payload = item;
+    this.backdrop = true;
+    const modal = await this.modalController.create({
+      component: ModalPopupPage,
+      componentProps: {
+        data: payload,
+      },
+      cssClass: 'modal-cutomise',
+      backdropDismiss: true,
+    });
+
+    // const { data } = await modal.onWillDismiss();
+    // console.log(data);
+
+    modal.onDidDismiss().then((modelData) => {
+      console.log('Modal Data : ', modelData.data);
+      const data = modelData.data;
+      if (data) {
+        this.setThemeVaribles(item, data);
+      }
+    });
+
+    return await modal.present();
   }
 }

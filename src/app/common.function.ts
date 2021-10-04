@@ -601,6 +601,83 @@ export class CommonService {
         this.ElectricalLimitationsContent = rmv.electricallimitationscontent;
       }
 
+      const ExteriorDescriptionContent =
+        this.storageGet('ExteriorDescriptionContent')['__zone_symbol__value'] ||
+        '';
+      if (ExteriorDescriptionContent) {
+        this.ExteriorDescriptionContent = JSON.parse(
+          ExteriorDescriptionContent
+        );
+      } else {
+        this.ExteriorDescriptionContent = rmv2.ExteriorDescriptionContent;
+      }
+
+      const ExteriorObservationContent =
+        this.storageGet('ExteriorObservationContent')['__zone_symbol__value'] ||
+        '';
+      if (ExteriorObservationContent) {
+        this.ExteriorObservationContent = JSON.parse(
+          ExteriorObservationContent
+        );
+      } else {
+        this.ExteriorObservationContent = rmv2.ExteriorObservationContent;
+      }
+
+      const ExteriorLimitationsContent =
+        this.storageGet('ExteriorLimitationsContent')['__zone_symbol__value'] ||
+        '';
+      if (ExteriorLimitationsContent) {
+        this.ExteriorLimitationsContent = JSON.parse(
+          ExteriorLimitationsContent
+        );
+      } else {
+        this.ExteriorLimitationsContent = rmv.exteriorlimitationscontent;
+      }
+
+      // this.ExteriorLimitationsContent = rmv.exteriorlimitationscontent;
+
+      // this.ExteriorDescriptionContent = rmv2.ExteriorDescriptionContent;
+      // this.ExteriorObservationContent = rmv2.ExteriorObservationContent;
+
+      const InsulationDescriptionContent =
+        this.storageGet('InsulationDescriptionContent')[
+          '__zone_symbol__value'
+        ] || '';
+      if (InsulationDescriptionContent) {
+        this.InsulationDescriptionContent = JSON.parse(
+          InsulationDescriptionContent
+        );
+      } else {
+        this.InsulationDescriptionContent = rmv2.InsulationDescriptionContent;
+      }
+
+      const InsulationObservationContent =
+        this.storageGet('InsulationObservationContent')[
+          '__zone_symbol__value'
+        ] || '';
+      if (InsulationObservationContent) {
+        this.InsulationObservationContent = JSON.parse(
+          InsulationObservationContent
+        );
+      } else {
+        this.InsulationObservationContent = rmv2.InsulationObservationContent;
+      }
+
+      const insulationLimitationsContent =
+        this.storageGet('insulationLimitationsContent')[
+          '__zone_symbol__value'
+        ] || '';
+      if (insulationLimitationsContent) {
+        this.insulationLimitationsContent = JSON.parse(
+          insulationLimitationsContent
+        );
+      } else {
+        this.insulationLimitationsContent = rmv.insulationLimitationsContent;
+      }
+
+      // this.InsulationDescriptionContent = rmv2.InsulationDescriptionContent;
+      // this.InsulationObservationContent = rmv2.InsulationObservationContent;
+
       // this.plumbingDescriptionContent = rmv.plumbingdescriptioncontent;
       // this.plumbingObservationContent = rmv.plumbingobservationcontent;
 
@@ -613,12 +690,6 @@ export class CommonService {
 
       // this.RoofingDescriptionContent = rmv2.RoofingDescriptionContent;
       // this.RoofingObservationContent = rmv2.RoofingObservationContent;
-
-      this.ExteriorDescriptionContent = rmv2.ExteriorDescriptionContent;
-      this.ExteriorObservationContent = rmv2.ExteriorObservationContent;
-
-      this.InsulationDescriptionContent = rmv2.InsulationDescriptionContent;
-      this.InsulationObservationContent = rmv2.InsulationObservationContent;
 
       // this.plumbingDescriptionContent = rmv2.PlumbingDescriptionContent;
       // this.plumbingObservationContent = rmv2.PlumbingObservationContent;
@@ -644,7 +715,6 @@ export class CommonService {
 
       // this.ExteriorDescriptionContent = rmv.exteriordescriptioncontent;
       // this.ExteriorObservationContent = rmv.exteriorobservationcontent;
-      this.ExteriorLimitationsContent = rmv.exteriorlimitationscontent;
 
       this.ExteriorWallCladdingStructureContent =
         rmv.exteriorwallcladdingstructurecontent;
@@ -698,8 +768,6 @@ export class CommonService {
       // this.insulationObservationContent = rmv.insulationobservationcontent;
       this.insulationObservationRecommendations =
         rmv.insulationobservationrecommendations;
-
-      this.insulationLimitationsContent = rmv.insulationlimitationscontent;
 
       this.InsulationAtticStructureContent =
         rmv.insulationatticstructurecontent;

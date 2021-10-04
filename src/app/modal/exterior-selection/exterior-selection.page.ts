@@ -5,6 +5,7 @@ import { CommonService } from '../../common.function';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { CommonSelectionPage } from '../../../app/modal/common-selection/common-selection.page';
+import { ModalPopupPage } from 'src/app/shared/components/modal-popup/modal-popup.page';
 
 @Component({
   selector: 'app-exterior-selection',
@@ -81,6 +82,9 @@ export class ExteriorSelectionPage implements OnInit {
   SelectedTitleToFilter: any;
   SelectedTitleToFilter2: any;
 
+  descOutput = [];
+  backdrop = false;
+
   constructor(
     public modalController: ModalController,
     private formBuilder: FormBuilder,
@@ -96,12 +100,12 @@ export class ExteriorSelectionPage implements OnInit {
       // },
 
       {
-        name: 'Roofing System Description',
+        name: 'Exterior System Description',
 
         val: '1',
       },
       {
-        name: 'Roofing Observation',
+        name: 'Exterior Observation',
 
         val: '2',
       },
@@ -596,136 +600,157 @@ export class ExteriorSelectionPage implements OnInit {
     }
   }
 
+  // updateDescription2() {
+  //   let exteriorObservation = this.config.storageGet('InspectionToEdit')[
+  //     '__zone_symbol__value'
+  //   ]['exteriorObservation'];
+
+  //   console.log('To finalize exteriorDescription=====' + exteriorObservation);
+
+  //   if (exteriorObservation != undefined) {
+  //     if (this.added_items2 == '') {
+  //       this.added_items2 = [];
+
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           exteriorObservation: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //               title: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           exteriorObservation: [
+  //             {
+  //               text: o.text,
+  //               checked: o.checked,
+  //               title: o.title,
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     }
+
+  //     console.log('Array To Add++++++++' + newArray);
+
+  //     let arr3 = [...exteriorObservation, ...newArray];
+
+  //     console.log(
+  //       'Updating Again - Fix (2)...exteriorDescription, ...newArray' + arr3
+  //     );
+  //   }
+
+  //   if (exteriorObservation == null || exteriorObservation == undefined) {
+  //     console.log('undefined------------------------------');
+
+  //     let exteriorObservation = this.config.storageGet('InspectionToEdit')[
+  //       '__zone_symbol__value'
+  //     ]['exteriorObservation'];
+
+  //     if (this.added_items2 == '') {
+  //       console.log(this.added_items2);
+
+  //       this.added_items2 = [];
+
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           exteriorObservation: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //               title: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       console.log('??' + this.added_items2);
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           text: o.text,
+  //           checked: o.checked,
+  //           title: o.title,
+  //         };
+  //       });
+  //     }
+
+  //     var ObArr = {
+  //       exteriorObservation: [this.added_items2],
+  //     };
+
+  //     this.StoredData = JSON.parse(
+  //       this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+  //     );
+
+  //     console.log(
+  //       '%c G-code =================================>',
+  //       'color:green;font-size:18px'
+  //     );
+
+  //     console.log(this.added_items5);
+  //     let output = [];
+
+  //     for (let i = 0; i < this.added_items5.length; i++) {
+  //       let objIndex = output.findIndex(
+  //         (obj) => obj.title == this.added_items5[i].title
+  //       );
+  //       if (objIndex == -1) {
+  //         output.push({
+  //           title: this.added_items5[i].title,
+  //           content: [],
+  //         });
+  //       }
+  //     }
+
+  //     for (let i = 0; i < this.added_items5.length; i++) {
+  //       const element = this.added_items5[i];
+
+  //       console.log(output.includes(element.title));
+
+  //       let objIndex = output.findIndex((obj) => obj.title == element.title);
+  //       output[objIndex].content.push({
+  //         content: element.text,
+  //       });
+  //     }
+  //     console.log('%c Final output ==>', 'color:red;font-size:18px');
+
+  //     console.log(output);
+
+  //     this.StoredData.exteriorObservation = output;
+
+  //     this.config.storageRemoveItem('InspectionToEdit');
+  //     this.config.storageSave('InspectionToEdit', this.StoredData);
+
+  //     console.log(this.StoredData);
+
+  //     this.presentAlertConfirm();
+  //   }
+  // }
+
   updateDescription2() {
-    let exteriorObservation = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['exteriorObservation'];
-
-    console.log('To finalize exteriorDescription=====' + exteriorObservation);
-
-    if (exteriorObservation != undefined) {
-      if (this.added_items2 == '') {
-        this.added_items2 = [];
-
-        var newArray = this.added_items2.map((o) => {
-          return {
-            exteriorObservation: [
-              {
-                text: '',
-                checked: '',
-                title: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items2.map((o) => {
-          return {
-            exteriorObservation: [
-              {
-                text: o.text,
-                checked: o.checked,
-                title: o.title,
-              },
-            ],
-          };
-        });
-      }
-
-      console.log('Array To Add++++++++' + newArray);
-
-      let arr3 = [...exteriorObservation, ...newArray];
-
-      console.log(
-        'Updating Again - Fix (2)...exteriorDescription, ...newArray' + arr3
-      );
-    }
-
-    if (exteriorObservation == null || exteriorObservation == undefined) {
-      console.log('undefined------------------------------');
-
-      let exteriorObservation = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['exteriorObservation'];
-
-      if (this.added_items2 == '') {
-        console.log(this.added_items2);
-
-        this.added_items2 = [];
-
-        var newArray = this.added_items2.map((o) => {
-          return {
-            exteriorObservation: [
-              {
-                text: '',
-                checked: '',
-                title: '',
-              },
-            ],
-          };
-        });
-      } else {
-        console.log('??' + this.added_items2);
-        var newArray = this.added_items2.map((o) => {
-          return {
-            text: o.text,
-            checked: o.checked,
-            title: o.title,
-          };
-        });
-      }
-
-      var ObArr = {
-        exteriorObservation: [this.added_items2],
-      };
-
-      this.StoredData = JSON.parse(
-        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
-      );
-
-      console.log(
-        '%c G-code =================================>',
-        'color:green;font-size:18px'
-      );
-
-      console.log(this.added_items5);
-      let output = [];
-
-      for (let i = 0; i < this.added_items5.length; i++) {
-        let objIndex = output.findIndex(
-          (obj) => obj.title == this.added_items5[i].title
-        );
-        if (objIndex == -1) {
-          output.push({
-            title: this.added_items5[i].title,
-            content: [],
-          });
+    let data = this.ExteriorObservationContent;
+    this.descOutput = [];
+    data.map((obj, index) => {
+      obj.data.map((item) => {
+        if (item.checked) {
+          this.collectData2(index, item);
         }
-      }
-
-      for (let i = 0; i < this.added_items5.length; i++) {
-        const element = this.added_items5[i];
-
-        console.log(output.includes(element.title));
-
-        let objIndex = output.findIndex((obj) => obj.title == element.title);
-        output[objIndex].content.push({
-          content: element.text,
-        });
-      }
-      console.log('%c Final output ==>', 'color:red;font-size:18px');
-
-      console.log(output);
-
-      this.StoredData.exteriorObservation = output;
-
-      this.config.storageRemoveItem('InspectionToEdit');
-      this.config.storageSave('InspectionToEdit', this.StoredData);
-
-      console.log(this.StoredData);
-
-      this.presentAlertConfirm();
+      });
+    });
+    console.log('desc output ', this.descOutput);
+    if (this.descOutput.length) {
+      this.StoredData.exteriorObservation = this.descOutput;
     }
+    console.log(this.StoredData);
+    this.config.storageRemoveItem('InspectionToEdit');
+    this.config.storageSave('InspectionToEdit', this.StoredData);
+    this.presentAlertConfirm();
+    this.updateStorage2();
   }
 
   updateDescription3() {
@@ -818,119 +843,117 @@ export class ExteriorSelectionPage implements OnInit {
     }
   }
 
+  // updateDescription4() {
+  //   let exteriorLimitations = this.config.storageGet('InspectionToEdit')[
+  //     '__zone_symbol__value'
+  //   ]['exteriorLimitations'];
+
+  //   console.log('To finalize exteriorDescription=====' + exteriorLimitations);
+
+  //   if (exteriorLimitations != undefined) {
+  //     if (this.added_items4 == '') {
+  //       this.added_items4 = [];
+
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           exteriorLimitations: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           exteriorLimitations: [
+  //             {
+  //               text: o.text,
+  //               checked: o.checked,
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     }
+
+  //     console.log('Array To Add++++++++' + newArray);
+
+  //     let arr3 = [...exteriorLimitations, ...newArray];
+  //   }
+
+  //   if (exteriorLimitations == null || exteriorLimitations == undefined) {
+  //     console.log('undefined------------------------------');
+
+  //     let exteriorDescription = this.config.storageGet('InspectionToEdit')[
+  //       '__zone_symbol__value'
+  //     ]['exteriorDescription'];
+
+  //     if (this.added_items4 == '') {
+  //       this.added_items4 = [];
+
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           exteriorLimitations: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       console.log('??' + this.added_items4);
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           text: o.text,
+  //           checked: o.checked,
+  //         };
+  //       });
+  //     }
+
+  //     var ObArr = {
+  //       exteriorLimitations: [this.added_items4],
+  //     };
+
+  //     this.StoredData = JSON.parse(
+  //       this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+  //     );
+
+  //     this.StoredData.exteriorLimitations = newArray;
+
+  //     this.config.storageRemoveItem('InspectionToEdit');
+  //     this.config.storageSave('InspectionToEdit', this.StoredData);
+
+  //     console.log(this.StoredData);
+
+  //     this.presentAlertConfirm();
+  //   }
+  // }
+
   updateDescription4() {
-    let exteriorLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['exteriorLimitations'];
-
-    console.log('To finalize exteriorDescription=====' + exteriorLimitations);
-
-    if (exteriorLimitations != undefined) {
-      if (this.added_items4 == '') {
-        this.added_items4 = [];
-
-        var newArray = this.added_items4.map((o) => {
-          return {
-            exteriorLimitations: [
-              {
-                text: '',
-                checked: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items4.map((o) => {
-          return {
-            exteriorLimitations: [
-              {
-                text: o.text,
-                checked: o.checked,
-              },
-            ],
-          };
-        });
+    let data = this.ExteriorLimitationsContent;
+    this.descOutput = [];
+    data.map((obj, index) => {
+      console.log(obj);
+      if (obj.checked) {
+        this.collectData3(index, obj);
       }
+    });
 
-      console.log('Array To Add++++++++' + newArray);
-
-      let arr3 = [...exteriorLimitations, ...newArray];
+    console.log('desc output ', this.descOutput);
+    if (this.descOutput.length) {
+      this.StoredData.exteriorLimitations = this.descOutput;
     }
-
-    if (exteriorLimitations == null || exteriorLimitations == undefined) {
-      console.log('undefined------------------------------');
-
-      let exteriorDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['exteriorDescription'];
-
-      if (this.added_items4 == '') {
-        this.added_items4 = [];
-
-        var newArray = this.added_items4.map((o) => {
-          return {
-            exteriorLimitations: [
-              {
-                text: '',
-                checked: '',
-              },
-            ],
-          };
-        });
-      } else {
-        console.log('??' + this.added_items4);
-        var newArray = this.added_items4.map((o) => {
-          return {
-            text: o.text,
-            checked: o.checked,
-          };
-        });
-      }
-
-      var ObArr = {
-        exteriorLimitations: [this.added_items4],
-      };
-
-      this.StoredData = JSON.parse(
-        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
-      );
-
-      this.StoredData.exteriorLimitations = newArray;
-
-      this.config.storageRemoveItem('InspectionToEdit');
-      this.config.storageSave('InspectionToEdit', this.StoredData);
-
-      console.log(this.StoredData);
-
-      this.presentAlertConfirm();
-    }
+    console.log(this.StoredData);
+    this.config.storageRemoveItem('InspectionToEdit');
+    this.config.storageSave('InspectionToEdit', this.StoredData);
+    this.presentAlertConfirm();
+    this.updateStorage3();
   }
 
   async presentAlertConfirm() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Done.',
-      buttons: [
-        {
-          text: 'Go Back',
-          handler: () => {
-            console.log('Confirm Okay');
-
-            this.openCommonModal();
-          },
-        },
-        {
-          text: 'Dismiss',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          },
-        },
-      ],
-    });
-
-    await alert.present();
+    this.config.presentToast('Success.');
   }
 
   async openCommonModal() {
@@ -1391,125 +1414,146 @@ export class ExteriorSelectionPage implements OnInit {
     console.log(this.added_items);
   }
 
+  // updateDescription5() {
+  //   let structureLimitations = this.config.storageGet('InspectionToEdit')[
+  //     '__zone_symbol__value'
+  //   ]['exteriorDescriptionContent'];
+
+  //   console.log('To finalize structureDescription=====' + structureLimitations);
+
+  //   if (structureLimitations != undefined) {
+  //     if (this.added_items5 == '') {
+  //       this.added_items5 = [];
+
+  //       var newArray = this.added_items5.map((o) => {
+  //         return {
+  //           exteriorDescriptionContent: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //               title: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items5.map((o) => {
+  //         return {
+  //           exteriorDescriptionContent: [
+  //             {
+  //               text: o.text,
+  //               checked: o.checked,
+  //               title: o.title,
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     }
+
+  //     console.log('Array To Add++++++++' + newArray);
+
+  //     let arr3 = [...structureLimitations, ...newArray];
+  //   }
+
+  //   if (structureLimitations == null || structureLimitations == undefined) {
+  //     console.log('undefined------------------------------');
+
+  //     let structureDescription = this.config.storageGet('InspectionToEdit')[
+  //       '__zone_symbol__value'
+  //     ]['exteriorDescriptionContent'];
+
+  //     if (this.added_items5 == '') {
+  //       this.added_items5 = [];
+
+  //       var newArray = this.added_items5.map((o) => {
+  //         return {
+  //           exteriorDescriptionContent: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //               title: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items5.map((o) => {
+  //         return {
+  //           text: o.text,
+  //           checked: o.checked,
+  //           title: o.title,
+  //         };
+  //       });
+  //     }
+
+  //     this.StoredData = JSON.parse(
+  //       this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+  //     );
+
+  //     console.log(
+  //       '%c G-code =================================>',
+  //       'color:green;font-size:18px'
+  //     );
+
+  //     console.log(this.added_items5);
+  //     let output = [];
+
+  //     for (let i = 0; i < this.added_items5.length; i++) {
+  //       let objIndex = output.findIndex(
+  //         (obj) => obj.title == this.added_items5[i].title
+  //       );
+  //       if (objIndex == -1) {
+  //         output.push({
+  //           title: this.added_items5[i].title,
+  //           content: [],
+  //         });
+  //       }
+  //     }
+
+  //     for (let i = 0; i < this.added_items5.length; i++) {
+  //       const element = this.added_items5[i];
+
+  //       console.log(output.includes(element.title));
+
+  //       let objIndex = output.findIndex((obj) => obj.title == element.title);
+  //       output[objIndex].content.push({
+  //         content: element.text,
+  //       });
+  //     }
+  //     console.log('%c Final output ==>', 'color:red;font-size:18px');
+
+  //     console.log(output);
+
+  //     this.StoredData.exteriorDescriptionContent = output;
+
+  //     this.config.storageRemoveItem('InspectionToEdit');
+  //     this.config.storageSave('InspectionToEdit', this.StoredData);
+
+  //     console.log(this.StoredData);
+
+  //     this.presentAlertConfirm();
+  //   }
+  // }
+
   updateDescription5() {
-    let structureLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['exteriorDescriptionContent'];
-
-    console.log('To finalize structureDescription=====' + structureLimitations);
-
-    if (structureLimitations != undefined) {
-      if (this.added_items5 == '') {
-        this.added_items5 = [];
-
-        var newArray = this.added_items5.map((o) => {
-          return {
-            exteriorDescriptionContent: [
-              {
-                text: '',
-                checked: '',
-                title: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items5.map((o) => {
-          return {
-            exteriorDescriptionContent: [
-              {
-                text: o.text,
-                checked: o.checked,
-                title: o.title,
-              },
-            ],
-          };
-        });
-      }
-
-      console.log('Array To Add++++++++' + newArray);
-
-      let arr3 = [...structureLimitations, ...newArray];
-    }
-
-    if (structureLimitations == null || structureLimitations == undefined) {
-      console.log('undefined------------------------------');
-
-      let structureDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['exteriorDescriptionContent'];
-
-      if (this.added_items5 == '') {
-        this.added_items5 = [];
-
-        var newArray = this.added_items5.map((o) => {
-          return {
-            exteriorDescriptionContent: [
-              {
-                text: '',
-                checked: '',
-                title: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items5.map((o) => {
-          return {
-            text: o.text,
-            checked: o.checked,
-            title: o.title,
-          };
-        });
-      }
-
-      this.StoredData = JSON.parse(
-        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
-      );
-
-      console.log(
-        '%c G-code =================================>',
-        'color:green;font-size:18px'
-      );
-
-      console.log(this.added_items5);
-      let output = [];
-
-      for (let i = 0; i < this.added_items5.length; i++) {
-        let objIndex = output.findIndex(
-          (obj) => obj.title == this.added_items5[i].title
-        );
-        if (objIndex == -1) {
-          output.push({
-            title: this.added_items5[i].title,
-            content: [],
-          });
+    let data = this.ExteriorDescriptionContent;
+    this.descOutput = [];
+    data.map((obj, index) => {
+      obj.data.map((item) => {
+        if (item.checked) {
+          this.collectData(index, item);
         }
-      }
-
-      for (let i = 0; i < this.added_items5.length; i++) {
-        const element = this.added_items5[i];
-
-        console.log(output.includes(element.title));
-
-        let objIndex = output.findIndex((obj) => obj.title == element.title);
-        output[objIndex].content.push({
-          content: element.text,
-        });
-      }
-      console.log('%c Final output ==>', 'color:red;font-size:18px');
-
-      console.log(output);
-
-      this.StoredData.exteriorDescriptionContent = output;
-
-      this.config.storageRemoveItem('InspectionToEdit');
-      this.config.storageSave('InspectionToEdit', this.StoredData);
-
-      console.log(this.StoredData);
-
-      this.presentAlertConfirm();
+      });
+    });
+    console.log('desc output ', this.descOutput);
+    if (this.descOutput.length) {
+      this.StoredData.exteriorDescriptionContent = this.descOutput;
     }
+    console.log(this.StoredData);
+    this.config.storageRemoveItem('InspectionToEdit');
+    this.config.storageSave('InspectionToEdit', this.StoredData);
+    this.presentAlertConfirm();
+    this.updateStorage();
   }
 
   updateDescription6() {
@@ -1934,5 +1978,475 @@ export class ExteriorSelectionPage implements OnInit {
     // this.SelectedTitleToFilter = '';
 
     this.SelectedTitleToFilter2 = n.title;
+  }
+
+  // settings modal for color change and font-sized
+  async openIonModal(item) {
+    const payload = item;
+    this.backdrop = true;
+    const modal = await this.modalController.create({
+      component: ModalPopupPage,
+      componentProps: {
+        data: payload,
+      },
+      cssClass: 'modal-cutomise',
+      backdropDismiss: true,
+    });
+
+    // const { data } = await modal.onWillDismiss();
+    // console.log(data);
+
+    modal.onDidDismiss().then((modelData) => {
+      console.log('Modal Data : ', modelData.data);
+      const data = modelData.data;
+      if (data) {
+        this.setThemeVaribles(item, data);
+      }
+    });
+
+    return await modal.present();
+  }
+
+  setThemeVaribles(item, data) {
+    console.log(data);
+    // const selectedItem = this.StructureDescriptionContent[index];
+    item.font_color = data.font_color;
+    item.font_size = data.font_size;
+    // console.log(this.StructureDescriptionContent);
+    // this.updateDescription5();
+  }
+
+  updateStorage() {
+    const data = this.ExteriorDescriptionContent;
+    console.log('HERE IS SAVING NOW----->>>>>>');
+    console.log(data);
+
+    this.config.storageSave('ExteriorDescriptionContent', data);
+  }
+
+  updateStorage2() {
+    const data = this.ExteriorObservationContent;
+    // const data = JSON.stringify(this.structureObservation);
+    this.config.storageSave('ExteriorObservationContent', data);
+  }
+
+  updateStorage3() {
+    const data = this.ExteriorLimitationsContent;
+    // const data = JSON.stringify(this.structureObservation);
+    this.config.storageSave('ExteriorLimitationsContent', data);
+  }
+
+  updateValue(item, val) {
+    const title = val.name || '';
+    if (title.trim().length) {
+      item.text = val.name;
+      this.updateStorage();
+    }
+  }
+
+  updateValue2(item, val) {
+    const title = val.name || '';
+    if (title.trim().length) {
+      item.text = val.name;
+      this.updateStorage2();
+    }
+  }
+
+  updateValue3(item, val) {
+    const title = val.name || '';
+    if (title.trim().length) {
+      item.text = val.name;
+      this.updateStorage3();
+    }
+  }
+
+  // method to add new Description
+  addDescription(index, data) {
+    const selectedItem = this.ExteriorDescriptionContent[index];
+    // console.log(item, data);
+    // console.log(this.StructureDescriptionContent);
+    let obj = {
+      checked: 0,
+      id: selectedItem.data.length + 1,
+      main: 'Exterior Description Content',
+      text: data.description,
+      title: selectedItem.title,
+    };
+    selectedItem.data.push(obj);
+    this.updateStorage();
+  }
+
+  addDescription2(index, data) {
+    console.log(data);
+    console.log(index);
+
+    const selectedItem = this.ExteriorObservationContent[index];
+
+    // console.log(this.StructureDescriptionContent);
+    let obj = {
+      checked: 0,
+      id: selectedItem.data.length + 1,
+      main: 'Exterior Observation Content',
+      text: data.description,
+      title: selectedItem.title,
+    };
+    selectedItem.data.push(obj);
+    this.updateStorage2();
+  }
+
+  // method to add new Description
+  addDescription3(index, data) {
+    console.log(data);
+    console.log(index);
+
+    const selectedItem = this.ExteriorLimitationsContent[index];
+
+    // console.log(this.StructureDescriptionContent);
+    let obj = {
+      checked: 0,
+
+      main: 'Exerior Limitation Content',
+      text: data.description,
+    };
+    selectedItem.push(obj);
+    this.updateStorage3();
+  }
+
+  openAddModal(index) {
+    // const obj = this.StructureDescriptionContent[index];
+    this.alertController
+      .create({
+        header: 'Add Description',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'description',
+            placeholder: '',
+            // value: obj.text || ''
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Add',
+            handler: (res: any) => {
+              console.log('Saved Information', res);
+              // const data = {...item, ...res};
+              if (res.description.length) {
+                console.log(res);
+                console.log(index);
+                this.addDescription(index, res);
+              }
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  openAddModal2(index) {
+    // const obj = this.StructureDescriptionContent[index];
+    this.alertController
+      .create({
+        header: 'Add Description',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'description',
+            placeholder: '',
+            // value: obj.text || ''
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Add',
+            handler: (res: any) => {
+              console.log('Saved Information', res);
+              // const data = {...item, ...res};
+              if (res.description.length) {
+                console.log(res);
+                console.log(index);
+                this.addDescription2(index, res);
+              }
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  openAddModal3(index) {
+    // const obj = this.StructureDescriptionContent[index];
+    this.alertController
+      .create({
+        header: 'Add Limitation',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'description',
+            placeholder: '',
+            // value: obj.text || ''
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Add',
+            handler: (res: any) => {
+              console.log('Saved Information', res);
+              // const data = {...item, ...res};
+              if (res.description.length) {
+                console.log(res);
+                console.log(index);
+                this.addDescription3(index, res);
+              }
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  // method to edit ttle info.
+  editText(obj) {
+    console.log(obj);
+    this.alertController
+      .create({
+        header: 'Update Text',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'name',
+            placeholder: '',
+            value: obj.text || '',
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Update',
+            handler: (data: any) => {
+              console.log('Saved Information', data);
+              this.updateValue(obj, data);
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  editText2(obj) {
+    console.log(obj);
+    this.alertController
+      .create({
+        header: 'Update Text',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'name',
+            placeholder: '',
+            value: obj.text || '',
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Update',
+            handler: (data: any) => {
+              console.log('Saved Information', data);
+              this.updateValue2(obj, data);
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+  editText3(obj) {
+    console.log(obj);
+    this.alertController
+      .create({
+        header: 'Update Text',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'name',
+            placeholder: '',
+            value: obj.text || '',
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Update',
+            handler: (data: any) => {
+              console.log('Saved Information', data);
+              this.updateValue3(obj, data);
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  collectData2(index, item) {
+    if (this.descOutput.length) {
+      let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      if (arrObj.length) {
+        const id = arrObj[0].id;
+        this.descOutput.map((e) => {
+          if (e.id == id) {
+            e.content.push(item);
+          }
+        });
+      } else {
+        let obj = {
+          content: [item],
+          font_color:
+            this.ExteriorObservationContent[index].font_color || '#000000',
+          font_size: this.ExteriorObservationContent[index].font_size || 12,
+          title: this.ExteriorObservationContent[index].title,
+          id: index,
+        };
+        this.descOutput.push(obj);
+      }
+    } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.ExteriorObservationContent[index].font_color || '#000000',
+        font_size: this.ExteriorObservationContent[index].font_size || 12,
+        title: this.ExteriorObservationContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(obj);
+    }
+  }
+  collectData3(index, item) {
+    if (this.descOutput.length) {
+      // let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      // if (arrObj.length) {
+      //   const id = arrObj[0].id;
+      //   this.descOutput.map((e) => {
+      //     if (e.id == id) {
+      //       e.content.push(item);
+      //     }
+      //   });
+      // } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.ExteriorLimitationsContent[index].font_color || '#000000',
+        font_size: this.ExteriorLimitationsContent[index].font_size || 12,
+        title: this.ExteriorLimitationsContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(item);
+      // }
+    } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.ExteriorLimitationsContent[index].font_color || '#000000',
+        font_size: this.ExteriorLimitationsContent[index].font_size || 12,
+        title: this.ExteriorLimitationsContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(item);
+    }
+  }
+
+  collectData(index, item) {
+    if (this.descOutput.length) {
+      let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      if (arrObj.length) {
+        const id = arrObj[0].id;
+        this.descOutput.map((e) => {
+          if (e.id == id) {
+            e.content.push(item);
+          }
+        });
+      } else {
+        let obj = {
+          content: [item],
+          font_color:
+            this.ExteriorDescriptionContent[index].font_color || '#000000',
+          font_size: this.ExteriorDescriptionContent[index].font_size || 12,
+          title: this.ExteriorDescriptionContent[index].title,
+          id: index,
+        };
+        this.descOutput.push(obj);
+      }
+    } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.ExteriorDescriptionContent[index].font_color || '#000000',
+        font_size: this.ExteriorDescriptionContent[index].font_size || 12,
+        title: this.ExteriorDescriptionContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(obj);
+    }
   }
 }

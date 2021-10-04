@@ -5,6 +5,7 @@ import { CommonService } from '../../common.function';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { CommonSelectionPage } from '../../../app/modal/common-selection/common-selection.page';
+import { ModalPopupPage } from 'src/app/shared/components/modal-popup/modal-popup.page';
 
 @Component({
   selector: 'app-insulation-selection',
@@ -19,7 +20,7 @@ export class InsulationSelectionPage implements OnInit {
   public currentCompany;
   inspectionTypes: any = [];
   insulationDescriptionContent: any = [];
-  insulationObservationContent: any = [];
+  InsulationObservationContent: any = [];
   StructureCommentsContent: any = [];
   insulationLimitationsContent: any = [];
   insulationObservationRecommendations: any;
@@ -59,6 +60,11 @@ export class InsulationSelectionPage implements OnInit {
   selectedIndex9: any;
   selectedIndex10: any;
 
+  SelectedTitleToFilter: any;
+  SelectedTitleToFilter2: any;
+  backdrop = false;
+  descOutput = [];
+
   HSView1 = false;
   HSView2 = false;
   HSView3 = false;
@@ -94,7 +100,7 @@ export class InsulationSelectionPage implements OnInit {
   ) {
     this.inspectionTypes = [
       {
-        name: 'Foundational Components',
+        name: 'Description Selection',
 
         val: '5',
       },
@@ -110,11 +116,11 @@ export class InsulationSelectionPage implements OnInit {
         val: '2',
       },
 
-      {
-        name: 'Recommendations',
+      // {
+      //   name: 'Recommendations',
 
-        val: '3',
-      },
+      //   val: '3',
+      // },
 
       {
         name: 'Limitations',
@@ -159,8 +165,8 @@ export class InsulationSelectionPage implements OnInit {
   }
 
   ionViewDidEnter() {
-    this.insulationDescriptionContent = this.config.insulationDescriptionContent;
-    this.insulationObservationContent = this.config.insulationObservationContent;
+    this.insulationDescriptionContent = this.config.InsulationDescriptionContent;
+    this.InsulationObservationContent = this.config.InsulationObservationContent;
     this.insulationObservationRecommendations = this.config.insulationObservationRecommendations;
     this.StructureCommentsContent = this.config.StructureCommentsContent;
     this.insulationLimitationsContent = this.config.insulationLimitationsContent;
@@ -624,100 +630,121 @@ export class InsulationSelectionPage implements OnInit {
   }
 
   updateDescription2() {
-    let insulationObservation = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['insulationObservation'];
-
-    console.log(
-      'To finalize insulationDescription=====' + insulationObservation
-    );
-
-    if (insulationObservation != undefined) {
-      if (this.added_items2 == '') {
-        this.added_items2 = [];
-
-        var newArray = this.added_items2.map((o) => {
-          return {
-            insulationObservation: [
-              {
-                text: '',
-                checked: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items2.map((o) => {
-          return {
-            insulationObservation: [
-              {
-                text: o.text,
-                checked: o.checked,
-              },
-            ],
-          };
-        });
-      }
-
-      console.log('Array To Add++++++++' + newArray);
-
-      let arr3 = [...insulationObservation, ...newArray];
-
-      console.log(
-        'Updating Again - Fix (2)...insulationDescription, ...newArray' + arr3
-      );
+    let data = this.InsulationObservationContent;
+    this.descOutput = [];
+    data.map((obj, index) => {
+      obj.data.map((item) => {
+        if (item.checked) {
+          this.collectData2(index, item);
+        }
+      });
+    });
+    console.log('desc output ', this.descOutput);
+    if (this.descOutput.length) {
+      this.StoredData.insulationObservation = this.descOutput;
     }
-
-    if (insulationObservation == null || insulationObservation == undefined) {
-      console.log('undefined------------------------------');
-
-      let insulationObservation = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['insulationObservation'];
-
-      if (this.added_items2 == '') {
-        console.log(this.added_items2);
-
-        this.added_items2 = [];
-
-        var newArray = this.added_items2.map((o) => {
-          return {
-            insulationObservation: [
-              {
-                text: '',
-                checked: '',
-              },
-            ],
-          };
-        });
-      } else {
-        console.log('??' + this.added_items2);
-        var newArray = this.added_items2.map((o) => {
-          return {
-            text: o.text,
-            checked: o.checked,
-          };
-        });
-      }
-
-      var ObArr = {
-        insulationObservation: [this.added_items2],
-      };
-
-      this.StoredData = JSON.parse(
-        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
-      );
-
-      this.StoredData.insulationObservation = newArray;
-
-      this.config.storageRemoveItem('InspectionToEdit');
-      this.config.storageSave('InspectionToEdit', this.StoredData);
-
-      console.log(this.StoredData);
-
-      this.presentAlertConfirm();
-    }
+    console.log(this.StoredData);
+    this.config.storageRemoveItem('InspectionToEdit');
+    this.config.storageSave('InspectionToEdit', this.StoredData);
+    this.presentAlertConfirm();
+    this.updateStorage2();
   }
+
+  // updateDescription2() {
+  //   let insulationObservation = this.config.storageGet('InspectionToEdit')[
+  //     '__zone_symbol__value'
+  //   ]['insulationObservation'];
+
+  //   console.log(
+  //     'To finalize insulationDescription=====' + insulationObservation
+  //   );
+
+  //   if (insulationObservation != undefined) {
+  //     if (this.added_items2 == '') {
+  //       this.added_items2 = [];
+
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           insulationObservation: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           insulationObservation: [
+  //             {
+  //               text: o.text,
+  //               checked: o.checked,
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     }
+
+  //     console.log('Array To Add++++++++' + newArray);
+
+  //     let arr3 = [...insulationObservation, ...newArray];
+
+  //     console.log(
+  //       'Updating Again - Fix (2)...insulationDescription, ...newArray' + arr3
+  //     );
+  //   }
+
+  //   if (insulationObservation == null || insulationObservation == undefined) {
+  //     console.log('undefined------------------------------');
+
+  //     let insulationObservation = this.config.storageGet('InspectionToEdit')[
+  //       '__zone_symbol__value'
+  //     ]['insulationObservation'];
+
+  //     if (this.added_items2 == '') {
+  //       console.log(this.added_items2);
+
+  //       this.added_items2 = [];
+
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           insulationObservation: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       console.log('??' + this.added_items2);
+  //       var newArray = this.added_items2.map((o) => {
+  //         return {
+  //           text: o.text,
+  //           checked: o.checked,
+  //         };
+  //       });
+  //     }
+
+  //     var ObArr = {
+  //       insulationObservation: [this.added_items2],
+  //     };
+
+  //     this.StoredData = JSON.parse(
+  //       this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+  //     );
+
+  //     this.StoredData.insulationObservation = newArray;
+
+  //     this.config.storageRemoveItem('InspectionToEdit');
+  //     this.config.storageSave('InspectionToEdit', this.StoredData);
+
+  //     console.log(this.StoredData);
+
+  //     this.presentAlertConfirm();
+  //   }
+  // }
 
   updateDescription3() {
     let structureComments = this.config.storageGet('InspectionToEdit')[
@@ -813,121 +840,143 @@ export class InsulationSelectionPage implements OnInit {
     }
   }
 
+  // updateDescription4() {
+  //   let insulationLimitations = this.config.storageGet('InspectionToEdit')[
+  //     '__zone_symbol__value'
+  //   ]['insulationLimitations'];
+
+  //   console.log(
+  //     'To finalize insulationDescription=====' + insulationLimitations
+  //   );
+
+  //   if (insulationLimitations != undefined) {
+  //     if (this.added_items4 == '') {
+  //       this.added_items4 = [];
+
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           insulationLimitations: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           insulationLimitations: [
+  //             {
+  //               text: o.text,
+  //               checked: o.checked,
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     }
+
+  //     console.log('Array To Add++++++++' + newArray);
+
+  //     let arr3 = [...insulationLimitations, ...newArray];
+  //   }
+
+  //   if (insulationLimitations == null || insulationLimitations == undefined) {
+  //     console.log('undefined------------------------------');
+
+  //     let insulationDescription = this.config.storageGet('InspectionToEdit')[
+  //       '__zone_symbol__value'
+  //     ]['insulationDescription'];
+
+  //     if (this.added_items4 == '') {
+  //       this.added_items4 = [];
+
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           insulationLimitations: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       console.log('??' + this.added_items4);
+  //       var newArray = this.added_items4.map((o) => {
+  //         return {
+  //           text: o.text,
+  //           checked: o.checked,
+  //         };
+  //       });
+  //     }
+
+  //     var ObArr = {
+  //       insulationLimitations: [this.added_items4],
+  //     };
+
+  //     this.StoredData = JSON.parse(
+  //       this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+  //     );
+
+  //     this.StoredData.insulationLimitations = newArray;
+
+  //     this.config.storageRemoveItem('InspectionToEdit');
+  //     this.config.storageSave('InspectionToEdit', this.StoredData);
+
+  //     console.log(this.StoredData);
+
+  //     this.presentAlertConfirm();
+  //   }
+  // }
+
   updateDescription4() {
-    let insulationLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['insulationLimitations'];
-
-    console.log(
-      'To finalize insulationDescription=====' + insulationLimitations
-    );
-
-    if (insulationLimitations != undefined) {
-      if (this.added_items4 == '') {
-        this.added_items4 = [];
-
-        var newArray = this.added_items4.map((o) => {
-          return {
-            insulationLimitations: [
-              {
-                text: '',
-                checked: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items4.map((o) => {
-          return {
-            insulationLimitations: [
-              {
-                text: o.text,
-                checked: o.checked,
-              },
-            ],
-          };
-        });
+    let data = this.insulationLimitationsContent;
+    this.descOutput = [];
+    data.map((obj, index) => {
+      console.log(obj);
+      if (obj.checked) {
+        this.collectData3(index, obj);
       }
+    });
 
-      console.log('Array To Add++++++++' + newArray);
-
-      let arr3 = [...insulationLimitations, ...newArray];
+    console.log('desc output ', this.descOutput);
+    if (this.descOutput.length) {
+      this.StoredData.insulationLimitations = this.descOutput;
     }
-
-    if (insulationLimitations == null || insulationLimitations == undefined) {
-      console.log('undefined------------------------------');
-
-      let insulationDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['insulationDescription'];
-
-      if (this.added_items4 == '') {
-        this.added_items4 = [];
-
-        var newArray = this.added_items4.map((o) => {
-          return {
-            insulationLimitations: [
-              {
-                text: '',
-                checked: '',
-              },
-            ],
-          };
-        });
-      } else {
-        console.log('??' + this.added_items4);
-        var newArray = this.added_items4.map((o) => {
-          return {
-            text: o.text,
-            checked: o.checked,
-          };
-        });
-      }
-
-      var ObArr = {
-        insulationLimitations: [this.added_items4],
-      };
-
-      this.StoredData = JSON.parse(
-        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
-      );
-
-      this.StoredData.insulationLimitations = newArray;
-
-      this.config.storageRemoveItem('InspectionToEdit');
-      this.config.storageSave('InspectionToEdit', this.StoredData);
-
-      console.log(this.StoredData);
-
-      this.presentAlertConfirm();
-    }
+    console.log(this.StoredData);
+    this.config.storageRemoveItem('InspectionToEdit');
+    this.config.storageSave('InspectionToEdit', this.StoredData);
+    this.presentAlertConfirm();
+    this.updateStorage3();
   }
 
   async presentAlertConfirm() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Done.',
-      buttons: [
-        {
-          text: 'Go Back',
-          handler: () => {
-            console.log('Confirm Okay');
+    this.config.presentToast('Success.');
+    // const alert = await this.alertController.create({
+    //   cssClass: 'my-custom-class',
+    //   header: 'Done.',
+    //   buttons: [
+    //     {
+    //       text: 'Go Back',
+    //       handler: () => {
+    //         console.log('Confirm Okay');
 
-            this.openCommonModal();
-          },
-        },
-        {
-          text: 'Dismiss',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          },
-        },
-      ],
-    });
+    //         this.openCommonModal();
+    //       },
+    //     },
+    //     {
+    //       text: 'Dismiss',
+    //       role: 'cancel',
+    //       cssClass: 'secondary',
+    //       handler: (blah) => {
+    //         console.log('Confirm Cancel: blah');
+    //       },
+    //     },
+    //   ],
+    // });
 
-    await alert.present();
+    // await alert.present();
   }
 
   async openCommonModal() {
@@ -1387,87 +1436,108 @@ export class InsulationSelectionPage implements OnInit {
     console.log(this.added_items);
   }
 
+  // updateDescription5() {
+  //   let structureLimitations = this.config.storageGet('InspectionToEdit')[
+  //     '__zone_symbol__value'
+  //   ]['D2InsulationAtticStructure'];
+
+  //   console.log('To finalize structureDescription=====' + structureLimitations);
+
+  //   if (structureLimitations != undefined) {
+  //     if (this.added_items5 == '') {
+  //       this.added_items5 = [];
+
+  //       var newArray = this.added_items5.map((o) => {
+  //         return {
+  //           D2InsulationAtticStructure: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items5.map((o) => {
+  //         return {
+  //           D2InsulationAtticStructure: [
+  //             {
+  //               text: o.text,
+  //               checked: o.checked,
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     }
+
+  //     console.log('Array To Add++++++++' + newArray);
+
+  //     let arr3 = [...structureLimitations, ...newArray];
+  //   }
+
+  //   if (structureLimitations == null || structureLimitations == undefined) {
+  //     console.log('undefined------------------------------');
+
+  //     let structureDescription = this.config.storageGet('InspectionToEdit')[
+  //       '__zone_symbol__value'
+  //     ]['D2InsulationAtticStructure'];
+
+  //     if (this.added_items5 == '') {
+  //       this.added_items5 = [];
+
+  //       var newArray = this.added_items5.map((o) => {
+  //         return {
+  //           D2InsulationAtticStructure: [
+  //             {
+  //               text: '',
+  //               checked: '',
+  //             },
+  //           ],
+  //         };
+  //       });
+  //     } else {
+  //       var newArray = this.added_items5.map((o) => {
+  //         return {
+  //           text: o.text,
+  //           checked: o.checked,
+  //         };
+  //       });
+  //     }
+
+  //     this.StoredData = JSON.parse(
+  //       this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
+  //     );
+
+  //     this.StoredData.D2InsulationAtticStructure = newArray;
+
+  //     this.config.storageRemoveItem('InspectionToEdit');
+  //     this.config.storageSave('InspectionToEdit', this.StoredData);
+
+  //     console.log(this.StoredData);
+
+  //     this.presentAlertConfirm();
+  //   }
+  // }
+
   updateDescription5() {
-    let structureLimitations = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ]['D2InsulationAtticStructure'];
-
-    console.log('To finalize structureDescription=====' + structureLimitations);
-
-    if (structureLimitations != undefined) {
-      if (this.added_items5 == '') {
-        this.added_items5 = [];
-
-        var newArray = this.added_items5.map((o) => {
-          return {
-            D2InsulationAtticStructure: [
-              {
-                text: '',
-                checked: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items5.map((o) => {
-          return {
-            D2InsulationAtticStructure: [
-              {
-                text: o.text,
-                checked: o.checked,
-              },
-            ],
-          };
-        });
-      }
-
-      console.log('Array To Add++++++++' + newArray);
-
-      let arr3 = [...structureLimitations, ...newArray];
+    let data = this.insulationDescriptionContent;
+    this.descOutput = [];
+    data.map((obj, index) => {
+      obj.data.map((item) => {
+        if (item.checked) {
+          this.collectData(index, item);
+        }
+      });
+    });
+    console.log('desc output ', this.descOutput);
+    if (this.descOutput.length) {
+      this.StoredData.insulationDescription = this.descOutput;
     }
-
-    if (structureLimitations == null || structureLimitations == undefined) {
-      console.log('undefined------------------------------');
-
-      let structureDescription = this.config.storageGet('InspectionToEdit')[
-        '__zone_symbol__value'
-      ]['D2InsulationAtticStructure'];
-
-      if (this.added_items5 == '') {
-        this.added_items5 = [];
-
-        var newArray = this.added_items5.map((o) => {
-          return {
-            D2InsulationAtticStructure: [
-              {
-                text: '',
-                checked: '',
-              },
-            ],
-          };
-        });
-      } else {
-        var newArray = this.added_items5.map((o) => {
-          return {
-            text: o.text,
-            checked: o.checked,
-          };
-        });
-      }
-
-      this.StoredData = JSON.parse(
-        this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
-      );
-
-      this.StoredData.D2InsulationAtticStructure = newArray;
-
-      this.config.storageRemoveItem('InspectionToEdit');
-      this.config.storageSave('InspectionToEdit', this.StoredData);
-
-      console.log(this.StoredData);
-
-      this.presentAlertConfirm();
-    }
+    console.log(this.StoredData);
+    this.config.storageRemoveItem('InspectionToEdit');
+    this.config.storageSave('InspectionToEdit', this.StoredData);
+    this.presentAlertConfirm();
+    this.updateStorage();
   }
 
   updateDescription6() {
@@ -1870,6 +1940,489 @@ export class InsulationSelectionPage implements OnInit {
       console.log(this.StoredData);
 
       this.presentAlertConfirm();
+    }
+  }
+
+  AddTitleInfo(n) {
+    console.log(n);
+    // this.SelectedTitleToFilter = '';
+
+    this.SelectedTitleToFilter = n.title;
+  }
+  AddTitleInfo2(n) {
+    console.log(n);
+    // this.SelectedTitleToFilter = '';
+
+    this.SelectedTitleToFilter2 = n.title;
+  }
+
+  // settings modal for color change and font-sized
+  async openIonModal(item) {
+    const payload = item;
+    this.backdrop = true;
+    const modal = await this.modalController.create({
+      component: ModalPopupPage,
+      componentProps: {
+        data: payload,
+      },
+      cssClass: 'modal-cutomise',
+      backdropDismiss: true,
+    });
+
+    // const { data } = await modal.onWillDismiss();
+    // console.log(data);
+
+    modal.onDidDismiss().then((modelData) => {
+      console.log('Modal Data : ', modelData.data);
+      const data = modelData.data;
+      if (data) {
+        this.setThemeVaribles(item, data);
+      }
+    });
+
+    return await modal.present();
+  }
+
+  setThemeVaribles(item, data) {
+    console.log(data);
+    // const selectedItem = this.StructureDescriptionContent[index];
+    item.font_color = data.font_color;
+    item.font_size = data.font_size;
+    // console.log(this.StructureDescriptionContent);
+    // this.updateDescription5();
+  }
+
+  updateStorage() {
+    const data = this.insulationDescriptionContent;
+    console.log('HERE IS SAVING NOW----->>>>>>');
+    console.log(data);
+
+    this.config.storageSave('InsulationDescriptionContent', data);
+  }
+
+  updateStorage2() {
+    const data = this.InsulationObservationContent;
+    // const data = JSON.stringify(this.structureObservation);
+    this.config.storageSave('InsulationObservationContent', data);
+  }
+
+  updateStorage3() {
+    const data = this.insulationLimitationsContent;
+    // const data = JSON.stringify(this.structureObservation);
+    this.config.storageSave('insulationLimitationsContent', data);
+  }
+
+  updateValue(item, val) {
+    const title = val.name || '';
+    if (title.trim().length) {
+      item.text = val.name;
+      this.updateStorage();
+    }
+  }
+
+  updateValue2(item, val) {
+    const title = val.name || '';
+    if (title.trim().length) {
+      item.text = val.name;
+      this.updateStorage2();
+    }
+  }
+
+  updateValue3(item, val) {
+    const title = val.name || '';
+    if (title.trim().length) {
+      item.text = val.name;
+      this.updateStorage3();
+    }
+  }
+
+  // method to add new Description
+  addDescription(index, data) {
+    const selectedItem = this.insulationDescriptionContent[index];
+    // console.log(item, data);
+    // console.log(this.StructureDescriptionContent);
+    let obj = {
+      checked: 0,
+      id: selectedItem.data.length + 1,
+      main: 'Roofing Description Content',
+      text: data.description,
+      title: selectedItem.title,
+    };
+    selectedItem.data.push(obj);
+    this.updateStorage();
+  }
+
+  addDescription2(index, data) {
+    console.log(data);
+    console.log(index);
+
+    const selectedItem = this.InsulationObservationContent[index];
+
+    // console.log(this.StructureDescriptionContent);
+    let obj = {
+      checked: 0,
+      id: selectedItem.data.length + 1,
+      main: 'Roofing Observation Content',
+      text: data.description,
+      title: selectedItem.title,
+    };
+    selectedItem.data.push(obj);
+    this.updateStorage2();
+  }
+
+  // method to add new Description
+  addDescription3(index, data) {
+    console.log(data);
+    console.log(index);
+
+    const selectedItem = this.insulationLimitationsContent[index];
+
+    // console.log(this.StructureDescriptionContent);
+    let obj = {
+      checked: 0,
+
+      main: 'Structure Limitation Content',
+      text: data.description,
+    };
+    selectedItem.push(obj);
+    this.updateStorage3();
+  }
+
+  openAddModal(index) {
+    // const obj = this.StructureDescriptionContent[index];
+    this.alertController
+      .create({
+        header: 'Add Description',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'description',
+            placeholder: '',
+            // value: obj.text || ''
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Add',
+            handler: (res: any) => {
+              console.log('Saved Information', res);
+              // const data = {...item, ...res};
+              if (res.description.length) {
+                console.log(res);
+                console.log(index);
+                this.addDescription(index, res);
+              }
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  openAddModal2(index) {
+    // const obj = this.StructureDescriptionContent[index];
+    this.alertController
+      .create({
+        header: 'Add Description',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'description',
+            placeholder: '',
+            // value: obj.text || ''
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Add',
+            handler: (res: any) => {
+              console.log('Saved Information', res);
+              // const data = {...item, ...res};
+              if (res.description.length) {
+                console.log(res);
+                console.log(index);
+                this.addDescription2(index, res);
+              }
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  openAddModal3(index) {
+    // const obj = this.StructureDescriptionContent[index];
+    this.alertController
+      .create({
+        header: 'Add Limitation',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'description',
+            placeholder: '',
+            // value: obj.text || ''
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Add',
+            handler: (res: any) => {
+              console.log('Saved Information', res);
+              // const data = {...item, ...res};
+              if (res.description.length) {
+                console.log(res);
+                console.log(index);
+                this.addDescription3(index, res);
+              }
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  // method to edit ttle info.
+  editText(obj) {
+    console.log(obj);
+    this.alertController
+      .create({
+        header: 'Update Text',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'name',
+            placeholder: '',
+            value: obj.text || '',
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Update',
+            handler: (data: any) => {
+              console.log('Saved Information', data);
+              this.updateValue(obj, data);
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  editText2(obj) {
+    console.log(obj);
+    this.alertController
+      .create({
+        header: 'Update Text',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'name',
+            placeholder: '',
+            value: obj.text || '',
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Update',
+            handler: (data: any) => {
+              console.log('Saved Information', data);
+              this.updateValue2(obj, data);
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+  editText3(obj) {
+    console.log(obj);
+    this.alertController
+      .create({
+        header: 'Update Text',
+        subHeader: '',
+        message: '',
+        inputs: [
+          {
+            type: 'textarea',
+            name: 'name',
+            placeholder: '',
+            value: obj.text || '',
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: (data: any) => {
+              console.log('Canceled', data);
+            },
+          },
+          {
+            text: 'Update',
+            handler: (data: any) => {
+              console.log('Saved Information', data);
+              this.updateValue3(obj, data);
+            },
+          },
+        ],
+        cssClass: 'custom-modal-txt-area',
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+
+  collectData2(index, item) {
+    if (this.descOutput.length) {
+      let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      if (arrObj.length) {
+        const id = arrObj[0].id;
+        this.descOutput.map((e) => {
+          if (e.id == id) {
+            e.content.push(item);
+          }
+        });
+      } else {
+        let obj = {
+          content: [item],
+          font_color:
+            this.InsulationObservationContent[index].font_color || '#000000',
+          font_size: this.InsulationObservationContent[index].font_size || 12,
+          title: this.InsulationObservationContent[index].title,
+          id: index,
+        };
+        this.descOutput.push(obj);
+      }
+    } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.InsulationObservationContent[index].font_color || '#000000',
+        font_size: this.InsulationObservationContent[index].font_size || 12,
+        title: this.InsulationObservationContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(obj);
+    }
+  }
+  collectData3(index, item) {
+    if (this.descOutput.length) {
+      // let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      // if (arrObj.length) {
+      //   const id = arrObj[0].id;
+      //   this.descOutput.map((e) => {
+      //     if (e.id == id) {
+      //       e.content.push(item);
+      //     }
+      //   });
+      // } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.insulationLimitationsContent[index].font_color || '#000000',
+        font_size: this.insulationLimitationsContent[index].font_size || 12,
+        title: this.insulationLimitationsContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(item);
+      // }
+    } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.insulationLimitationsContent[index].font_color || '#000000',
+        font_size: this.insulationLimitationsContent[index].font_size || 12,
+        title: this.insulationLimitationsContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(item);
+    }
+  }
+
+  collectData(index, item) {
+    if (this.descOutput.length) {
+      let arrObj = this.descOutput.filter((e, i) => e.id == index);
+      if (arrObj.length) {
+        const id = arrObj[0].id;
+        this.descOutput.map((e) => {
+          if (e.id == id) {
+            e.content.push(item);
+          }
+        });
+      } else {
+        let obj = {
+          content: [item],
+          font_color:
+            this.insulationDescriptionContent[index].font_color || '#000000',
+          font_size: this.insulationDescriptionContent[index].font_size || 12,
+          title: this.insulationDescriptionContent[index].title,
+          id: index,
+        };
+        this.descOutput.push(obj);
+      }
+    } else {
+      let obj = {
+        content: [item],
+        font_color:
+          this.insulationDescriptionContent[index].font_color || '#000000',
+        font_size: this.insulationDescriptionContent[index].font_size || 12,
+        title: this.insulationDescriptionContent[index].title,
+        id: index,
+      };
+      this.descOutput.push(obj);
     }
   }
 }
