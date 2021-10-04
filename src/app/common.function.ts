@@ -675,6 +675,17 @@ export class CommonService {
         this.insulationLimitationsContent = rmv.insulationLimitationsContent;
       }
 
+      const generalDescriptionContent =
+        this.storageGet('generalDescriptionContent')['__zone_symbol__value'] ||
+        '';
+      if (generalDescriptionContent) {
+        this.generalDescriptionContent = JSON.parse(generalDescriptionContent);
+      } else {
+        this.generalDescriptionContent = rmv.generaldescriptioncontent;
+      }
+
+      // this.generalDescriptionContent = rmv.generaldescriptioncontent;
+
       // this.InsulationDescriptionContent = rmv2.InsulationDescriptionContent;
       // this.InsulationObservationContent = rmv2.InsulationObservationContent;
 
@@ -815,8 +826,6 @@ export class CommonService {
       this.RoofingMethodsStructureContent = rmv.roofingmethodsstructurecontent;
       this.RoofingChimneysStructureContent =
         rmv.roofingchimneysstructurecontent;
-
-      this.generalDescriptionContent = rmv.generaldescriptioncontent;
 
       this.generalContent = rmv.generalcontent;
     }, 4000);

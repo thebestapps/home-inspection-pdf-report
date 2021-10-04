@@ -1114,11 +1114,13 @@ export class GeneralInformationPage implements OnInit {
     // console.log(this.StructureDescriptionContent);
     let obj = {
       checked: 0,
-
+      id: this.generalDescriptionContent.length + 1 + 2,
       main: 'Structure Limitation Content',
       text: data.description,
     };
-    selectedItem.push(obj);
+    this.generalDescriptionContent.push(obj);
+
+    // selectedItem.push(obj);
     this.updateStorage3();
   }
 
