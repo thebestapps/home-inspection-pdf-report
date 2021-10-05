@@ -1734,22 +1734,23 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.structureObservation != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.structureObservation.length);
-        i++
-      ) {
+    if (this.StoredData.structureObservation != null)
+    {
+      for(let i = 0;i < parseInt(this.StoredData.structureObservation.length);i++)
+      {
+        
         var content_color = '#000000';
         var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
 
         //Title Color & FontSize
-        if (this.StoredData.structureObservation[i].font_color != null) {
+        if(this.StoredData.structureObservation[i].font_color != null)
+        {
           title_color = this.StoredData.structureObservation[i].font_color;
         }
-        if (this.StoredData.structureObservation[i].font_size != null) {
+        if(this.StoredData.structureObservation[i].font_size != null)
+        {
           title_fontSize = this.StoredData.structureObservation[i].font_size;
         }
         docDefinition.content.push({
@@ -1765,27 +1766,18 @@ export class CommonSelectionPage implements OnInit {
             },
           ],
         });
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.structureObservation[i].content.length);
-          j++
-        ) {
+        for(let j = 0; j < parseInt(this.StoredData.structureObservation[i].content.length); j++)
+        {
           var data = '';
-          data = this.StoredData.structureObservation[i].content[j].text + '\n';
+          data = this.StoredData.structureObservation[i].content[j].text +'\n';
           //Content Color & FontSize
-          if (
-            this.StoredData.structureObservation[i].content[j].font_color !=
-            null
-          ) {
-            content_color = this.StoredData.structureObservation[i].content[j]
-              .font_color;
+          if(this.StoredData.structureObservation[i].content[j].font_color !=null)
+          {
+            content_color = this.StoredData.structureObservation[i].content[j].font_color;
           }
-          if (
-            this.StoredData.structureObservation[i].content[j].font_size != null
-          ) {
-            content_fontSize = this.StoredData.structureObservation[i].content[
-              j
-            ].font_size;
+          if(this.StoredData.structureObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.structureObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -1850,35 +1842,41 @@ export class CommonSelectionPage implements OnInit {
                 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Assessing the structural integrity of a building is beyond the scope of a standard home inspection.  A certified Licensed Professional Engineer (P.E.) is recommended where there are structural concerns about the building.  Inspection of structural components was limited by (but not restricted to) the following conditions: \n',
             },
           ],
-        }
+        },
+        
       );
     }
-    if (this.StoredData.structureLimitations != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.structureLimitations.length);
-        i++
-      ) {
+    if (this.StoredData.structureLimitations != null)
+    {
+      for (let i = 0; i < parseInt(this.StoredData.structureLimitations.length); i++)
+      {
         var data = '';
         var content_color = '#ed3833';
         var content_fontSize = 9.5;
-        docDefinition.content.push({
-          margin: [30, 10, 6, 0],
-          fontSize: this.StoredData.structureLimitations[i].font_size,
-          color: this.StoredData.structureLimitations[i].font_color,
-          ul: [this.StoredData.structureLimitations[i]],
-        });
+        docDefinition.content.push(
+          {
+            margin: [30, 10, 6, 0],
+            fontSize: this.StoredData.structureLimitations[i].font_size,
+            color: this.StoredData.structureLimitations[i].font_color,
+            ul: [
+              this.StoredData.structureLimitations[i]
+            ],
+          }
+        )
       }
     }
-    if (this.StoredData.structureLimitations != null) {
-      docDefinition.content.push({
-        margin: [30, 10, 6, 0],
-        fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
-      });
+    if (this.StoredData.structureLimitations != null)
+    {
+      docDefinition.content.push(
+        {
+          margin: [30, 10, 6, 0],
+          fontSize: 9.5,
+          text:
+            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        }
+      )
     }
-
+    
     //<==========================================> ROOFING <==========================================>
     if (
       this.StoredData.roofingDescription != null ||
@@ -2083,22 +2081,23 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.roofingObservation != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.roofingObservation.length);
-        i++
-      ) {
+    if (this.StoredData.roofingObservation != null)
+    {
+      for(let i = 0;i < parseInt(this.StoredData.roofingObservation.length);i++)
+      {
+        
         var content_color = '#000000';
         var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
 
         //Title Color & FontSize
-        if (this.StoredData.roofingObservation[i].font_color != null) {
+        if(this.StoredData.roofingObservation[i].font_color != null)
+        {
           title_color = this.StoredData.roofingObservation[i].font_color;
         }
-        if (this.StoredData.roofingObservation[i].font_size != null) {
+        if(this.StoredData.roofingObservation[i].font_size != null)
+        {
           title_fontSize = this.StoredData.roofingObservation[i].font_size;
         }
         docDefinition.content.push({
@@ -2114,25 +2113,18 @@ export class CommonSelectionPage implements OnInit {
             },
           ],
         });
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.roofingObservation[i].content.length);
-          j++
-        ) {
+        for(let j = 0; j < parseInt(this.StoredData.roofingObservation[i].content.length); j++)
+        {
           var data = '';
-          data = this.StoredData.roofingObservation[i].content[j].text + '\n';
+          data = this.StoredData.roofingObservation[i].content[j].text +'\n';
           //Content Color & FontSize
-          if (
-            this.StoredData.roofingObservation[i].content[j].font_color != null
-          ) {
-            content_color = this.StoredData.roofingObservation[i].content[j]
-              .font_color;
+          if(this.StoredData.roofingObservation[i].content[j].font_color !=null)
+          {
+            content_color = this.StoredData.roofingObservation[i].content[j].font_color;
           }
-          if (
-            this.StoredData.roofingObservation[i].content[j].font_size != null
-          ) {
-            content_fontSize = this.StoredData.roofingObservation[i].content[j]
-              .font_size;
+          if(this.StoredData.roofingObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.roofingObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -2205,30 +2197,35 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    if (this.StoredData.roofingLimitations != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.roofingLimitations.length);
-        i++
-      ) {
+    if (this.StoredData.roofingLimitations != null)
+    {
+      for (let i = 0; i < parseInt(this.StoredData.roofingLimitations.length); i++)
+      {
         var data = '';
         var content_color = '#ed3833';
         var content_fontSize = 9.5;
-        docDefinition.content.push({
-          margin: [30, 10, 6, 0],
-          fontSize: this.StoredData.roofingLimitations[i].font_size,
-          color: this.StoredData.roofingLimitations[i].font_color,
-          ul: [this.StoredData.roofingLimitations[i]],
-        });
+        docDefinition.content.push(
+          {
+            margin: [30, 10, 6, 0],
+            fontSize: this.StoredData.roofingLimitations[i].font_size,
+            color: this.StoredData.roofingLimitations[i].font_color,
+            ul: [
+              this.StoredData.roofingLimitations[i]
+            ],
+          }
+        )
       }
     }
-    if (this.StoredData.roofingLimitations != null) {
-      docDefinition.content.push({
-        margin: [30, 10, 6, 0],
-        fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
-      });
+    if (this.StoredData.roofingLimitations != null)
+    {
+      docDefinition.content.push(
+        {
+          margin: [30, 10, 6, 0],
+          fontSize: 9.5,
+          text:
+            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        }
+      )
     }
 
     //<==========================================> EXTERIOR <==========================================>
@@ -2323,7 +2320,7 @@ export class CommonSelectionPage implements OnInit {
           },
         },
       });
-    }
+    } 
     if (this.StoredData.exteriorDescriptionContent != null) {
       for (
         let i = 0;
@@ -2335,20 +2332,18 @@ export class CommonSelectionPage implements OnInit {
         var title_color = '#ff0f06';
         var content_fontSize = 10;
         var title_fontSize = 10;
-
+  
         for (
           let j = 0;
           j <
-          parseInt(
-            this.StoredData.exteriorDescriptionContent[i].content.length
-          );
+          parseInt(this.StoredData.exteriorDescriptionContent[i].content.length);
           j++
         ) {
           data =
             data +
             ' •' +
             this.StoredData.exteriorDescriptionContent[i].content[j].text;
-
+  
           //Content color & fontsize
           if (
             this.StoredData.exteriorDescriptionContent[i].content[j]
@@ -2358,16 +2353,15 @@ export class CommonSelectionPage implements OnInit {
               .content[j].font_color;
           }
           if (
-            this.StoredData.exteriorDescriptionContent[i].content[j]
-              .font_size != null
+            this.StoredData.exteriorDescriptionContent[i].content[j].font_size !=
+            null
           ) {
             content_fontSize = this.StoredData.exteriorDescriptionContent[i]
               .content[j].font_size;
           }
         }
         if (this.StoredData.exteriorDescriptionContent[i].font_color != null) {
-          title_color = this.StoredData.exteriorDescriptionContent[i]
-            .font_color;
+          title_color = this.StoredData.exteriorDescriptionContent[i].font_color;
         }
         if (this.StoredData.exteriorDescriptionContent[i].font_size != null) {
           title_fontSize = this.StoredData.exteriorDescriptionContent[i]
@@ -2438,22 +2432,23 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.exteriorObservation != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.exteriorObservation.length);
-        i++
-      ) {
+    if (this.StoredData.exteriorObservation != null)
+    {
+      for(let i = 0;i < parseInt(this.StoredData.exteriorObservation.length);i++)
+      {
+        
         var content_color = '#000000';
         var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
 
         //Title Color & FontSize
-        if (this.StoredData.exteriorObservation[i].font_color != null) {
+        if(this.StoredData.exteriorObservation[i].font_color != null)
+        {
           title_color = this.StoredData.exteriorObservation[i].font_color;
         }
-        if (this.StoredData.exteriorObservation[i].font_size != null) {
+        if(this.StoredData.exteriorObservation[i].font_size != null)
+        {
           title_fontSize = this.StoredData.exteriorObservation[i].font_size;
         }
         docDefinition.content.push({
@@ -2469,25 +2464,18 @@ export class CommonSelectionPage implements OnInit {
             },
           ],
         });
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.exteriorObservation[i].content.length);
-          j++
-        ) {
+        for(let j = 0; j < parseInt(this.StoredData.exteriorObservation[i].content.length); j++)
+        {
           var data = '';
-          data = this.StoredData.exteriorObservation[i].content[j].text + '\n';
+          data = this.StoredData.exteriorObservation[i].content[j].text +'\n';
           //Content Color & FontSize
-          if (
-            this.StoredData.exteriorObservation[i].content[j].font_color != null
-          ) {
-            content_color = this.StoredData.exteriorObservation[i].content[j]
-              .font_color;
+          if(this.StoredData.exteriorObservation[i].content[j].font_color !=null)
+          {
+            content_color = this.StoredData.exteriorObservation[i].content[j].font_color;
           }
-          if (
-            this.StoredData.exteriorObservation[i].content[j].font_size != null
-          ) {
-            content_fontSize = this.StoredData.exteriorObservation[i].content[j]
-              .font_size;
+          if(this.StoredData.exteriorObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.exteriorObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -2555,33 +2543,38 @@ export class CommonSelectionPage implements OnInit {
                 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  The inspection of the exterior was limited by (but not restricted to) the following conditions: \n',
             },
           ],
-        }
+        },
       );
     } //exteriorLimitations
-    if (this.StoredData.exteriorLimitations != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.exteriorLimitations.length);
-        i++
-      ) {
+    if (this.StoredData.exteriorLimitations != null)
+    {
+      for (let i = 0; i < parseInt(this.StoredData.exteriorLimitations.length); i++)
+      {
         var data = '';
         var content_color = '#ed3833';
         var content_fontSize = 9.5;
-        docDefinition.content.push({
-          margin: [30, 10, 6, 0],
-          fontSize: this.StoredData.exteriorLimitations[i].font_size,
-          color: this.StoredData.exteriorLimitations[i].font_color,
-          ul: [this.StoredData.exteriorLimitations[i]],
-        });
+        docDefinition.content.push(
+          {
+            margin: [30, 10, 6, 0],
+            fontSize: this.StoredData.exteriorLimitations[i].font_size,
+            color: this.StoredData.exteriorLimitations[i].font_color,
+            ul: [
+              this.StoredData.exteriorLimitations[i]
+            ],
+          }
+        )
       }
     }
-    if (this.StoredData.exteriorLimitations != null) {
-      docDefinition.content.push({
-        margin: [30, 10, 6, 0],
-        fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
-      });
+    if (this.StoredData.exteriorLimitations != null)
+    {
+      docDefinition.content.push(
+        {
+          margin: [30, 10, 6, 0],
+          fontSize: 9.5,
+          text:
+            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        }
+      )
     }
 
     //<==========================================> ELECTICAL <==========================================>
@@ -2792,23 +2785,24 @@ export class CommonSelectionPage implements OnInit {
           },
         },
       });
-    } //electricalObservation
-    if (this.StoredData.electricalObservation != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.electricalObservation.length);
-        i++
-      ) {
+    }//electricalObservation
+    if (this.StoredData.electricalObservation != null)
+    {
+      for(let i = 0;i < parseInt(this.StoredData.electricalObservation.length);i++)
+      {
+        
         var content_color = '#000000';
         var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
 
         //Title Color & FontSize
-        if (this.StoredData.electricalObservation[i].font_color != null) {
+        if(this.StoredData.electricalObservation[i].font_color != null)
+        {
           title_color = this.StoredData.electricalObservation[i].font_color;
         }
-        if (this.StoredData.electricalObservation[i].font_size != null) {
+        if(this.StoredData.electricalObservation[i].font_size != null)
+        {
           title_fontSize = this.StoredData.electricalObservation[i].font_size;
         }
         docDefinition.content.push({
@@ -2817,37 +2811,25 @@ export class CommonSelectionPage implements OnInit {
           color: '#000000',
           text: [
             {
-              text:
-                '\n' + this.StoredData.electricalObservation[i].title + '\n',
+              text: '\n' + this.StoredData.electricalObservation[i].title + '\n',
               bold: 'true',
               color: title_color,
               fontSize: title_fontSize,
             },
           ],
         });
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.electricalObservation[i].content.length);
-          j++
-        ) {
+        for(let j = 0; j < parseInt(this.StoredData.electricalObservation[i].content.length); j++)
+        {
           var data = '';
-          data =
-            this.StoredData.electricalObservation[i].content[j].text + '\n';
+          data = this.StoredData.electricalObservation[i].content[j].text +'\n';
           //Content Color & FontSize
-          if (
-            this.StoredData.electricalObservation[i].content[j].font_color !=
-            null
-          ) {
-            content_color = this.StoredData.electricalObservation[i].content[j]
-              .font_color;
+          if(this.StoredData.electricalObservation[i].content[j].font_color !=null)
+          {
+            content_color = this.StoredData.electricalObservation[i].content[j].font_color;
           }
-          if (
-            this.StoredData.electricalObservation[i].content[j].font_size !=
-            null
-          ) {
-            content_fontSize = this.StoredData.electricalObservation[i].content[
-              j
-            ].font_size;
+          if(this.StoredData.electricalObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.electricalObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -2914,30 +2896,35 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    if (this.StoredData.electricalLimitations != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.electricalLimitations.length);
-        i++
-      ) {
+    if (this.StoredData.electricalLimitations != null)
+    {
+      for (let i = 0; i < parseInt(this.StoredData.electricalLimitations.length); i++)
+      {
         var data = '';
         var content_color = '#ed3833';
         var content_fontSize = 9.5;
-        docDefinition.content.push({
-          margin: [30, 10, 6, 0],
-          fontSize: this.StoredData.electricalLimitations[i].font_size,
-          color: this.StoredData.electricalLimitations[i].font_color,
-          ul: [this.StoredData.electricalLimitations[i]],
-        });
+        docDefinition.content.push(
+          {
+            margin: [30, 10, 6, 0],
+            fontSize: this.StoredData.electricalLimitations[i].font_size,
+            color: this.StoredData.electricalLimitations[i].font_color,
+            ul: [
+              this.StoredData.electricalLimitations[i]
+            ],
+          }
+        )
       }
     }
-    if (this.StoredData.electricalLimitations != null) {
-      docDefinition.content.push({
-        margin: [30, 10, 6, 0],
-        fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
-      });
+    if (this.StoredData.electricalLimitations != null)
+    {
+      docDefinition.content.push(
+        {
+          margin: [30, 10, 6, 0],
+          fontSize: 9.5,
+          text:
+            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        }
+      )
     }
     //<==========================================> COOLING <==========================================>
     if (
@@ -3151,22 +3138,23 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.coolingObservation != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.coolingObservation.length);
-        i++
-      ) {
+    if (this.StoredData.coolingObservation != null)
+    {
+      for(let i = 0;i < parseInt(this.StoredData.coolingObservation.length);i++)
+      {
+        
         var content_color = '#000000';
         var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
 
         //Title Color & FontSize
-        if (this.StoredData.coolingObservation[i].font_color != null) {
+        if(this.StoredData.coolingObservation[i].font_color != null)
+        {
           title_color = this.StoredData.coolingObservation[i].font_color;
         }
-        if (this.StoredData.coolingObservation[i].font_size != null) {
+        if(this.StoredData.coolingObservation[i].font_size != null)
+        {
           title_fontSize = this.StoredData.coolingObservation[i].font_size;
         }
         docDefinition.content.push({
@@ -3182,25 +3170,18 @@ export class CommonSelectionPage implements OnInit {
             },
           ],
         });
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.coolingObservation[i].content.length);
-          j++
-        ) {
+        for(let j = 0; j < parseInt(this.StoredData.coolingObservation[i].content.length); j++)
+        {
           var data = '';
-          data = this.StoredData.coolingObservation[i].content[j].text + '\n';
+          data = this.StoredData.coolingObservation[i].content[j].text +'\n';
           //Content Color & FontSize
-          if (
-            this.StoredData.coolingObservation[i].content[j].font_color != null
-          ) {
-            content_color = this.StoredData.coolingObservation[i].content[j]
-              .font_color;
+          if(this.StoredData.coolingObservation[i].content[j].font_color !=null)
+          {
+            content_color = this.StoredData.coolingObservation[i].content[j].font_color;
           }
-          if (
-            this.StoredData.coolingObservation[i].content[j].font_size != null
-          ) {
-            content_fontSize = this.StoredData.coolingObservation[i].content[j]
-              .font_size;
+          if(this.StoredData.coolingObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.coolingObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -3271,38 +3252,42 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     } //coolingLimitations
-    if (this.StoredData.coolingLimitations != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.coolingLimitations.length);
-        i++
-      ) {
+    if (this.StoredData.coolingLimitations != null)
+    {
+      for (let i = 0; i < parseInt(this.StoredData.coolingLimitations.length); i++)
+      {
         var data = '';
         var content_color = '#ed3833';
         var content_fontSize = 9.5;
-        docDefinition.content.push({
-          margin: [30, 10, 6, 0],
-          fontSize: this.StoredData.coolingLimitations[i].font_size,
-          color: this.StoredData.coolingLimitations[i].font_color,
-          ul: [this.StoredData.coolingLimitations[i]],
-        });
+        docDefinition.content.push(
+          {
+            margin: [30, 10, 6, 0],
+            fontSize: this.StoredData.coolingLimitations[i].font_size,
+            color: this.StoredData.coolingLimitations[i].font_color,
+            ul: [
+              this.StoredData.coolingLimitations[i]
+            ],
+          }
+        )
       }
     }
-    if (this.StoredData.coolingLimitations != null) {
-      docDefinition.content.push({
-        margin: [30, 10, 6, 0],
-        fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
-      });
+    if (this.StoredData.coolingLimitations != null)
+    {
+      docDefinition.content.push(
+        {
+          margin: [30, 10, 6, 0],
+          fontSize: 9.5,
+          text:
+            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        }
+      )
     }
 
     //<==========================================> INSULATION <==========================================>
     if (
       this.StoredData.insulationDescription != null ||
       this.StoredData.insulationObservation != null ||
-      this.StoredData.insulationLimitations != null ||
-      this.StoredData.insulationDescriptionContent != null
+      this.StoredData.insulationLimitations != null
     ) {
       docDefinition.content.push(
         {
@@ -3350,8 +3335,7 @@ export class CommonSelectionPage implements OnInit {
       );
     }
     if (
-      this.StoredData.insulationDescription != null ||
-      this.StoredData.insulationDescriptionContent != null
+      this.StoredData.insulationDescription != null
     ) {
       docDefinition.content.push({
         color: '#000000',
@@ -3390,10 +3374,10 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.insulationDescriptionContent != null) {
+    if (this.StoredData.insulationDescription != null) {
       for (
         let i = 0;
-        i < parseInt(this.StoredData.insulationDescriptionContent.length);
+        i < parseInt(this.StoredData.insulationDescription.length);
         i++
       ) {
         var data = '';
@@ -3401,44 +3385,39 @@ export class CommonSelectionPage implements OnInit {
         var title_color = '#ff0f06';
         var content_fontSize = 10;
         var title_fontSize = 10;
-
+  
         for (
           let j = 0;
           j <
-          parseInt(
-            this.StoredData.insulationDescriptionContent[i].content.length
-          );
+          parseInt(this.StoredData.insulationDescription[i].content.length);
           j++
         ) {
           data =
             data +
             ' •' +
-            this.StoredData.insulationDescriptionContent[i].content[j].text;
-
+            this.StoredData.insulationDescription[i].content[j].text;
+  
           //Content color & fontsize
           if (
-            this.StoredData.insulationDescriptionContent[i].content[j]
+            this.StoredData.insulationDescription[i].content[j]
               .font_color != null
           ) {
-            content_color = this.StoredData.insulationDescriptionContent[i]
+            content_color = this.StoredData.insulationDescription[i]
               .content[j].font_color;
           }
           if (
-            this.StoredData.insulationDescriptionContent[i].content[j]
-              .font_size != null
+            this.StoredData.insulationDescription[i].content[j].font_size !=
+            null
           ) {
-            content_fontSize = this.StoredData.insulationDescriptionContent[i]
+            content_fontSize = this.StoredData.insulationDescription[i]
               .content[j].font_size;
           }
         }
-        if (
-          this.StoredData.insulationDescriptionContent[i].font_color != null
-        ) {
-          title_color = this.StoredData.insulationDescriptionContent[i]
-            .font_color;
+        if (this.StoredData.insulationDescription[i].font_color != null) {
+          title_color = this.StoredData.insulationDescription[i].font_color;
         }
-        if (this.StoredData.insulationDescriptionContent[i].font_size != null) {
-          title_fontSize = this.StoredData.insulationDescriptionContent[i]
+        if (this.StoredData.insulationDescription[i].font_size != null) {
+          title_fontSize = this.StoredData.insulationDescription[i]
             .font_size;
         }
         docDefinition.content.push({
@@ -3449,7 +3428,7 @@ export class CommonSelectionPage implements OnInit {
             [
               {
                 text:
-                  this.StoredData.insulationDescriptionContent[i].title + ':\t',
+                  this.StoredData.insulationDescription[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
                 color: title_color,
@@ -3469,59 +3448,62 @@ export class CommonSelectionPage implements OnInit {
       }
     }
     if (this.StoredData.insulationObservation != null) {
-      docDefinition.content.push({
-        color: '#000000',
-        margin: [0, 8, 0, 0],
-        width: 300,
-        table: {
-          body: [
-            [
-              {
-                text: 'INSULATION / VENTILATION OBSERVATIONS ',
-                alignment: 'left',
-                style: 'subbox',
-              },
+      docDefinition.content.push(
+        {
+          color: '#000000',
+          margin: [0, 8, 0, 0],
+          width: 300,
+          table: {
+            body: [
+              [
+                {
+                  text: 'INSULATION / VENTILATION OBSERVATIONS ',
+                  alignment: 'left',
+                  style: 'subbox',
+                },
+              ],
             ],
-          ],
-        },
-        layout: {
-          hLineColor: function (i, node) {
-            return 'black';
           },
-          vLineColor: function (i, node) {
-            return 'black';
+          layout: {
+            hLineColor: function (i, node) {
+              return 'black';
+            },
+            vLineColor: function (i, node) {
+              return 'black';
+            },
+            paddingLeft: function (i, node) {
+              return 15;
+            },
+            paddingRight: function (i, node) {
+              return 225;
+            },
+            paddingTop: function (i, node) {
+              return 1;
+            },
+            paddingBottom: function (i, node) {
+              return 1;
+            },
           },
-          paddingLeft: function (i, node) {
-            return 15;
-          },
-          paddingRight: function (i, node) {
-            return 225;
-          },
-          paddingTop: function (i, node) {
-            return 1;
-          },
-          paddingBottom: function (i, node) {
-            return 1;
-          },
-        },
-      });
+        }
+      );
     }
-    if (this.StoredData.insulationObservation != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.insulationObservation.length);
-        i++
-      ) {
+    if (this.StoredData.insulationObservation != null)
+    {
+      for(let i = 0;i < parseInt(this.StoredData.insulationObservation.length);i++)
+      {
+        
         var content_color = '#000000';
         var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
 
         //Title Color & FontSize
-        if (this.StoredData.insulationObservation[i].font_color != null) {
+        if(this.StoredData.insulationObservation[i].font_color != null)
+        {
           title_color = this.StoredData.insulationObservation[i].font_color;
         }
-        if (this.StoredData.insulationObservation[i].font_size != null) {
+        if(this.StoredData.insulationObservation[i].font_size != null)
+        {
           title_fontSize = this.StoredData.insulationObservation[i].font_size;
         }
         docDefinition.content.push({
@@ -3530,37 +3512,25 @@ export class CommonSelectionPage implements OnInit {
           color: '#000000',
           text: [
             {
-              text:
-                '\n' + this.StoredData.insulationObservation[i].title + '\n',
+              text: '\n' + this.StoredData.insulationObservation[i].title + '\n',
               bold: 'true',
               color: title_color,
               fontSize: title_fontSize,
             },
           ],
         });
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.insulationObservation[i].content.length);
-          j++
-        ) {
+        for(let j = 0; j < parseInt(this.StoredData.insulationObservation[i].content.length); j++)
+        {
           var data = '';
-          data =
-            this.StoredData.insulationObservation[i].content[j].text + '\n';
+          data = this.StoredData.insulationObservation[i].content[j].text +'\n';
           //Content Color & FontSize
-          if (
-            this.StoredData.insulationObservation[i].content[j].font_color !=
-            null
-          ) {
-            content_color = this.StoredData.insulationObservation[i].content[j]
-              .font_color;
+          if(this.StoredData.insulationObservation[i].content[j].font_color !=null)
+          {
+            content_color = this.StoredData.insulationObservation[i].content[j].font_color;
           }
-          if (
-            this.StoredData.insulationObservation[i].content[j].font_size !=
-            null
-          ) {
-            content_fontSize = this.StoredData.insulationObservation[i].content[
-              j
-            ].font_size;
+          if(this.StoredData.insulationObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.insulationObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -3628,30 +3598,35 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    if (this.StoredData.insulationLimitations != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.insulationLimitations.length);
-        i++
-      ) {
+    if (this.StoredData.insulationLimitations != null)
+    {
+      for (let i = 0; i < parseInt(this.StoredData.insulationLimitations.length); i++)
+      {
         var data = '';
         var content_color = '#ed3833';
         var content_fontSize = 9.5;
-        docDefinition.content.push({
-          margin: [30, 10, 6, 0],
-          fontSize: this.StoredData.insulationLimitations[i].font_size,
-          color: this.StoredData.insulationLimitations[i].font_color,
-          ul: [this.StoredData.insulationLimitations[i]],
-        });
+        docDefinition.content.push(
+          {
+            margin: [30, 10, 6, 0],
+            fontSize: this.StoredData.insulationLimitations[i].font_size,
+            color: this.StoredData.insulationLimitations[i].font_color,
+            ul: [
+              this.StoredData.insulationLimitations[i]
+            ],
+          }
+        )
       }
     }
-    if (this.StoredData.insulationLimitations != null) {
-      docDefinition.content.push({
-        margin: [30, 10, 6, 0],
-        fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
-      });
+    if (this.StoredData.insulationLimitations != null)
+    {
+      docDefinition.content.push(
+        {
+          margin: [30, 10, 6, 0],
+          fontSize: 9.5,
+          text:
+            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        }
+      )
     }
 
     //<==========================================> PLUMBING <==========================================>
@@ -3744,7 +3719,7 @@ export class CommonSelectionPage implements OnInit {
           paddingBottom: function (i, node) {
             return 1;
           },
-        },
+        }
       });
     }
     if (this.StoredData.plumbingDescriptionContent != null) {
@@ -3861,22 +3836,23 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.plumbingObservation != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.plumbingObservation.length);
-        i++
-      ) {
+    if (this.StoredData.plumbingObservation != null)
+    {
+      for(let i = 0;i < parseInt(this.StoredData.plumbingObservation.length);i++)
+      {
+        
         var content_color = '#000000';
         var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
 
         //Title Color & FontSize
-        if (this.StoredData.plumbingObservation[i].font_color != null) {
+        if(this.StoredData.plumbingObservation[i].font_color != null)
+        {
           title_color = this.StoredData.plumbingObservation[i].font_color;
         }
-        if (this.StoredData.plumbingObservation[i].font_size != null) {
+        if(this.StoredData.plumbingObservation[i].font_size != null)
+        {
           title_fontSize = this.StoredData.plumbingObservation[i].font_size;
         }
         docDefinition.content.push({
@@ -3892,25 +3868,18 @@ export class CommonSelectionPage implements OnInit {
             },
           ],
         });
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.plumbingObservation[i].content.length);
-          j++
-        ) {
+        for(let j = 0; j < parseInt(this.StoredData.plumbingObservation[i].content.length); j++)
+        {
           var data = '';
-          data = this.StoredData.plumbingObservation[i].content[j].text + '\n';
+          data = this.StoredData.plumbingObservation[i].content[j].text +'\n';
           //Content Color & FontSize
-          if (
-            this.StoredData.plumbingObservation[i].content[j].font_color != null
-          ) {
-            content_color = this.StoredData.plumbingObservation[i].content[j]
-              .font_color;
+          if(this.StoredData.plumbingObservation[i].content[j].font_color !=null)
+          {
+            content_color = this.StoredData.plumbingObservation[i].content[j].font_color;
           }
-          if (
-            this.StoredData.plumbingObservation[i].content[j].font_size != null
-          ) {
-            content_fontSize = this.StoredData.plumbingObservation[i].content[j]
-              .font_size;
+          if(this.StoredData.plumbingObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.plumbingObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -3977,30 +3946,35 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    if (this.StoredData.plumbingLimitations != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.plumbingLimitations.length);
-        i++
-      ) {
+    if (this.StoredData.plumbingLimitations != null)
+    {
+      for (let i = 0; i < parseInt(this.StoredData.plumbingLimitations.length); i++)
+      {
         var data = '';
         var content_color = '#ed3833';
         var content_fontSize = 9.5;
-        docDefinition.content.push({
-          margin: [30, 10, 6, 0],
-          fontSize: this.StoredData.plumbingLimitations[i].font_size,
-          color: this.StoredData.plumbingLimitations[i].font_color,
-          ul: [this.StoredData.plumbingLimitations[i]],
-        });
+        docDefinition.content.push(
+          {
+            margin: [30, 10, 6, 0],
+            fontSize: this.StoredData.plumbingLimitations[i].font_size,
+            color: this.StoredData.plumbingLimitations[i].font_color,
+            ul: [
+              this.StoredData.plumbingLimitations[i]
+            ],
+          }
+        )
       }
     }
-    if (this.StoredData.plumbingLimitations != null) {
-      docDefinition.content.push({
-        margin: [30, 10, 6, 0],
-        fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
-      });
+    if (this.StoredData.plumbingLimitations != null)
+    {
+      docDefinition.content.push(
+        {
+          margin: [30, 10, 6, 0],
+          fontSize: 9.5,
+          text:
+            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        }
+      )
     }
 
     //<==========================================> INTERIOR <==========================================>
@@ -4055,46 +4029,45 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    if (
-      this.StoredData.interiorDescription != null ||
-      this.StoredData.interiorDescriptionContent != null
-    ) {
-      docDefinition.content.push({
-        color: '#000000',
-        margin: [0, 8, 0, 0],
-        width: 300,
-        table: {
-          body: [
-            [
-              {
-                text: 'DESCRIPTION OF INTERIOR',
-                alignment: 'left',
-                style: 'subbox',
-              },
+    if (this.StoredData.interiorDescription != null || this.StoredData.interiorDescriptionContent != null) {
+      docDefinition.content.push(
+        {
+          color: '#000000',
+          margin: [0, 8, 0, 0],
+          width: 300,
+          table: {
+            body: [
+              [
+                {
+                  text: 'DESCRIPTION OF INTERIOR',
+                  alignment: 'left',
+                  style: 'subbox',
+                },
+              ],
             ],
-          ],
-        },
-        layout: {
-          hLineColor: function (i, node) {
-            return 'black';
           },
-          vLineColor: function (i, node) {
-            return 'black';
+          layout: {
+            hLineColor: function (i, node) {
+              return 'black';
+            },
+            vLineColor: function (i, node) {
+              return 'black';
+            },
+            paddingLeft: function (i, node) {
+              return 15;
+            },
+            paddingRight: function (i, node) {
+              return 325;
+            },
+            paddingTop: function (i, node) {
+              return 1;
+            },
+            paddingBottom: function (i, node) {
+              return 1;
+            },
           },
-          paddingLeft: function (i, node) {
-            return 15;
-          },
-          paddingRight: function (i, node) {
-            return 325;
-          },
-          paddingTop: function (i, node) {
-            return 1;
-          },
-          paddingBottom: function (i, node) {
-            return 1;
-          },
-        },
-      });
+        }
+      );
     }
     if (this.StoredData.interiorDescriptionContent != null) {
       for (
@@ -4107,20 +4080,18 @@ export class CommonSelectionPage implements OnInit {
         var title_color = '#ff0f06';
         var content_fontSize = 10;
         var title_fontSize = 10;
-
+  
         for (
           let j = 0;
           j <
-          parseInt(
-            this.StoredData.interiorDescriptionContent[i].content.length
-          );
+          parseInt(this.StoredData.interiorDescriptionContent[i].content.length);
           j++
         ) {
           data =
             data +
             ' •' +
             this.StoredData.interiorDescriptionContent[i].content[j].text;
-
+  
           //Content color & fontsize
           if (
             this.StoredData.interiorDescriptionContent[i].content[j]
@@ -4130,16 +4101,15 @@ export class CommonSelectionPage implements OnInit {
               .content[j].font_color;
           }
           if (
-            this.StoredData.interiorDescriptionContent[i].content[j]
-              .font_size != null
+            this.StoredData.interiorDescriptionContent[i].content[j].font_size !=
+            null
           ) {
             content_fontSize = this.StoredData.interiorDescriptionContent[i]
               .content[j].font_size;
           }
         }
         if (this.StoredData.interiorDescriptionContent[i].font_color != null) {
-          title_color = this.StoredData.interiorDescriptionContent[i]
-            .font_color;
+          title_color = this.StoredData.interiorDescriptionContent[i].font_color;
         }
         if (this.StoredData.interiorDescriptionContent[i].font_size != null) {
           title_fontSize = this.StoredData.interiorDescriptionContent[i]
@@ -4174,59 +4144,62 @@ export class CommonSelectionPage implements OnInit {
     }
 
     if (this.StoredData.interiorObservation != null) {
-      docDefinition.content.push({
-        color: '#000000',
-        margin: [0, 8, 0, 0],
-        width: 300,
-        table: {
-          body: [
-            [
-              {
-                text: 'INTERIOR OBSERVATIONS',
-                alignment: 'left',
-                style: 'subbox',
-              },
+      docDefinition.content.push(
+        {
+          color: '#000000',
+          margin: [0, 8, 0, 0],
+          width: 300,
+          table: {
+            body: [
+              [
+                {
+                  text: 'INTERIOR OBSERVATIONS',
+                  alignment: 'left',
+                  style: 'subbox',
+                },
+              ],
             ],
-          ],
-        },
-        layout: {
-          hLineColor: function (i, node) {
-            return 'black';
           },
-          vLineColor: function (i, node) {
-            return 'black';
+          layout: {
+            hLineColor: function (i, node) {
+              return 'black';
+            },
+            vLineColor: function (i, node) {
+              return 'black';
+            },
+            paddingLeft: function (i, node) {
+              return 15;
+            },
+            paddingRight: function (i, node) {
+              return 333;
+            },
+            paddingTop: function (i, node) {
+              return 1;
+            },
+            paddingBottom: function (i, node) {
+              return 1;
+            },
           },
-          paddingLeft: function (i, node) {
-            return 15;
-          },
-          paddingRight: function (i, node) {
-            return 333;
-          },
-          paddingTop: function (i, node) {
-            return 1;
-          },
-          paddingBottom: function (i, node) {
-            return 1;
-          },
-        },
-      });
+        }
+      );
     }
-    if (this.StoredData.interiorObservation != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.interiorObservation.length);
-        i++
-      ) {
+    if (this.StoredData.interiorObservation != null)
+    {
+      for(let i = 0;i < parseInt(this.StoredData.interiorObservation.length);i++)
+      {
+        
         var content_color = '#000000';
         var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
 
         //Title Color & FontSize
-        if (this.StoredData.interiorObservation[i].font_color != null) {
+        if(this.StoredData.interiorObservation[i].font_color != null)
+        {
           title_color = this.StoredData.interiorObservation[i].font_color;
         }
-        if (this.StoredData.interiorObservation[i].font_size != null) {
+        if(this.StoredData.interiorObservation[i].font_size != null)
+        {
           title_fontSize = this.StoredData.interiorObservation[i].font_size;
         }
         docDefinition.content.push({
@@ -4242,25 +4215,18 @@ export class CommonSelectionPage implements OnInit {
             },
           ],
         });
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.interiorObservation[i].content.length);
-          j++
-        ) {
+        for(let j = 0; j < parseInt(this.StoredData.interiorObservation[i].content.length); j++)
+        {
           var data = '';
-          data = this.StoredData.interiorObservation[i].content[j].text + '\n';
+          data = this.StoredData.interiorObservation[i].content[j].text +'\n';
           //Content Color & FontSize
-          if (
-            this.StoredData.interiorObservation[i].content[j].font_color != null
-          ) {
-            content_color = this.StoredData.interiorObservation[i].content[j]
-              .font_color;
+          if(this.StoredData.interiorObservation[i].content[j].font_color !=null)
+          {
+            content_color = this.StoredData.interiorObservation[i].content[j].font_color;
           }
-          if (
-            this.StoredData.interiorObservation[i].content[j].font_size != null
-          ) {
-            content_fontSize = this.StoredData.interiorObservation[i].content[j]
-              .font_size;
+          if(this.StoredData.interiorObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.interiorObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -4331,30 +4297,35 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    if (this.StoredData.interiorLimitations != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.interiorLimitations.length);
-        i++
-      ) {
+    if (this.StoredData.interiorLimitations != null)
+    {
+      for (let i = 0; i < parseInt(this.StoredData.interiorLimitations.length); i++)
+      {
         var data = '';
         var content_color = '#ed3833';
         var content_fontSize = 9.5;
-        docDefinition.content.push({
-          margin: [30, 10, 6, 0],
-          fontSize: this.StoredData.interiorLimitations[i].font_size,
-          color: this.StoredData.interiorLimitations[i].font_color,
-          ul: [this.StoredData.interiorLimitations[i]],
-        });
+        docDefinition.content.push(
+          {
+            margin: [30, 10, 6, 0],
+            fontSize: this.StoredData.interiorLimitations[i].font_size,
+            color: this.StoredData.interiorLimitations[i].font_color,
+            ul: [
+              this.StoredData.interiorLimitations[i]
+            ],
+          }
+        )
       }
     }
-    if (this.StoredData.interiorLimitations != null) {
-      docDefinition.content.push({
-        margin: [30, 10, 6, 0],
-        fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
-      });
+    if (this.StoredData.interiorLimitations != null)
+    {
+      docDefinition.content.push(
+        {
+          margin: [30, 10, 6, 0],
+          fontSize: 9.5,
+          text:
+            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        }
+      )
     }
 
     //<==========================================> APPLIANCES <==========================================>
@@ -4566,22 +4537,23 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.applianceObservation != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.applianceObservation.length);
-        i++
-      ) {
+    if (this.StoredData.applianceObservation != null)
+    {
+      for(let i = 0;i < parseInt(this.StoredData.applianceObservation.length);i++)
+      {
+        
         var content_color = '#000000';
         var title_color = '#000000';
         var content_fontSize = 9.5;
         var title_fontSize = 9.5;
 
         //Title Color & FontSize
-        if (this.StoredData.applianceObservation[i].font_color != null) {
+        if(this.StoredData.applianceObservation[i].font_color != null)
+        {
           title_color = this.StoredData.applianceObservation[i].font_color;
         }
-        if (this.StoredData.applianceObservation[i].font_size != null) {
+        if(this.StoredData.applianceObservation[i].font_size != null)
+        {
           title_fontSize = this.StoredData.applianceObservation[i].font_size;
         }
         docDefinition.content.push({
@@ -4597,27 +4569,18 @@ export class CommonSelectionPage implements OnInit {
             },
           ],
         });
-        for (
-          let j = 0;
-          j < parseInt(this.StoredData.applianceObservation[i].content.length);
-          j++
-        ) {
+        for(let j = 0; j < parseInt(this.StoredData.applianceObservation[i].content.length); j++)
+        {
           var data = '';
-          data = this.StoredData.applianceObservation[i].content[j].text + '\n';
+          data = this.StoredData.applianceObservation[i].content[j].text +'\n';
           //Content Color & FontSize
-          if (
-            this.StoredData.applianceObservation[i].content[j].font_color !=
-            null
-          ) {
-            content_color = this.StoredData.applianceObservation[i].content[j]
-              .font_color;
+          if(this.StoredData.applianceObservation[i].content[j].font_color !=null)
+          {
+            content_color = this.StoredData.applianceObservation[i].content[j].font_color;
           }
-          if (
-            this.StoredData.applianceObservation[i].content[j].font_size != null
-          ) {
-            content_fontSize = this.StoredData.applianceObservation[i].content[
-              j
-            ].font_size;
+          if(this.StoredData.applianceObservation[i].content[j].font_size != null)
+          {
+            content_fontSize = this.StoredData.applianceObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -4681,33 +4644,38 @@ export class CommonSelectionPage implements OnInit {
                 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Appliances are tested by turning them on for a short period of time only. It is strongly recommended that a Homeowner’s Warranty or service contract be purchased to cover the operation of appliances.  It is further recommended that appliances be tested during any scheduled pre-closing walk through.  Like any mechanical device, appliances can malfunction at any time (including the day after taking possession of the house).  The inspection of the appliances was limited by (but not restricted to) the following conditions:\n',
             },
           ],
-        }
+        },
       );
     }
-    if (this.StoredData.applianceLimitations != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.applianceLimitations.length);
-        i++
-      ) {
+    if (this.StoredData.applianceLimitations != null)
+    {
+      for (let i = 0; i < parseInt(this.StoredData.applianceLimitations.length); i++)
+      {
         var data = '';
         var content_color = '#ed3833';
         var content_fontSize = 9.5;
-        docDefinition.content.push({
-          margin: [30, 10, 6, 0],
-          fontSize: this.StoredData.applianceLimitations[i].font_size,
-          color: this.StoredData.applianceLimitations[i].font_color,
-          ul: [this.StoredData.applianceLimitations[i]],
-        });
+        docDefinition.content.push(
+          {
+            margin: [30, 10, 6, 0],
+            fontSize: this.StoredData.applianceLimitations[i].font_size,
+            color: this.StoredData.applianceLimitations[i].font_color,
+            ul: [
+              this.StoredData.applianceLimitations[i]
+            ],
+          }
+        )
       }
     }
-    if (this.StoredData.applianceLimitations != null) {
-      docDefinition.content.push({
-        margin: [30, 10, 6, 0],
-        fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
-      });
+    if (this.StoredData.applianceLimitations != null)
+    {
+      docDefinition.content.push(
+        {
+          margin: [30, 10, 6, 0],
+          fontSize: 9.5,
+          text:
+            'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        }
+      )
     }
     docDefinition.content.push(
       {
@@ -4770,24 +4738,23 @@ export class CommonSelectionPage implements OnInit {
         style: 'paraData_2',
         italics: 'true',
         color: '#ff0000',
-      }
+      },
     );
-    if (this.StoredData.generalContent != null) {
-      for (
-        let i = 0;
-        i < parseInt(this.StoredData.generalContent.length);
-        i++
-      ) {
+    if (this.StoredData.generalContent != null)
+    {
+      for (let i = 0; i < parseInt(this.StoredData.generalContent.length); i++)
+      {
         var data = '';
         var content_color = '#ed3833';
         var content_fontSize = 9.5;
-        let count = i++;
-        docDefinition.content.push({
-          margin: [30, 3, 0, 0],
-          fontSize: this.StoredData.generalContent[i].font_size,
-          color: this.StoredData.generalContent[i].font_color,
-          text: count + this.StoredData.generalContent[i],
-        });
+        docDefinition.content.push(
+          {
+            margin: [30, 3, 0, 0],
+            fontSize: this.StoredData.generalContent[i].font_size,
+            color: this.StoredData.generalContent[i].font_color,
+            text: this.StoredData.generalContent[i].id + this.StoredData.generalContent[i].text
+          }
+        )
       }
     }
 
