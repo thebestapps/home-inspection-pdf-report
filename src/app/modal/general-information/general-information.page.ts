@@ -52,6 +52,8 @@ export class GeneralInformationPage implements OnInit {
   backdrop = false;
   descOutput = [];
 
+  BackPressed = false;
+
   constructor(
     public modalController: ModalController,
     private formBuilder: FormBuilder,
@@ -157,7 +159,7 @@ export class GeneralInformationPage implements OnInit {
   }
 
   async goToSelection(n) {
-    // this.BackPressed = true;
+    this.BackPressed = true;
     if (n.val == '1') {
       console.log(n);
       this.Description = true;
@@ -206,6 +208,7 @@ export class GeneralInformationPage implements OnInit {
   }
 
   closeDescription() {
+    this.BackPressed = false;
     this.Description = false;
     this.Observations_UI = false;
     this.Comments_UI = false;
@@ -898,30 +901,31 @@ export class GeneralInformationPage implements OnInit {
   }
 
   async presentAlertConfirm() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Done.',
-      buttons: [
-        {
-          text: 'Go Back',
-          handler: () => {
-            console.log('Confirm Okay');
+    this.config.presentToast('Success.');
+    // const alert = await this.alertController.create({
+    //   cssClass: 'my-custom-class',
+    //   header: 'Done.',
+    //   buttons: [
+    //     {
+    //       text: 'Go Back',
+    //       handler: () => {
+    //         console.log('Confirm Okay');
 
-            this.openCommonModal();
-          },
-        },
-        {
-          text: 'Dismiss',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          },
-        },
-      ],
-    });
+    //         this.openCommonModal();
+    //       },
+    //     },
+    //     {
+    //       text: 'Dismiss',
+    //       role: 'cancel',
+    //       cssClass: 'secondary',
+    //       handler: (blah) => {
+    //         console.log('Confirm Cancel: blah');
+    //       },
+    //     },
+    //   ],
+    // });
 
-    await alert.present();
+    // await alert.present();
   }
 
   async openCommonModal() {

@@ -49,18 +49,6 @@ ion-refresher-content.ios.hydrated {
   display: block;
 }
 
-ion-content.md.hydrated {
-  --background: #f5f6f9;
-}
-
-ion-content.ios.hydrated {
-  --background: #f5f6f9;
-}
-
-.container {
-  background: #f5f6f9;
-}
-
 .row-card {
   background: white;
   color: var(--ion-color-primary);
@@ -73,3 +61,26 @@ refresher-component {
   position: relative;
   height: 60px;
 }
+
+ion-content.md.hydrated {
+  --background: black;
+}
+
+ion-content.ios.hydrated {
+  --background: black;
+}
+
+.container {
+  background-image: url(../../../assets/Res/bubbleimg.jpeg);
+  background-attachment: fixed;
+}
+
+// ion-row.md.hydrated {
+//   background-image: url(../../../assets/Res/bubbleimg.jpeg);
+//   background-attachment: fixed;
+// }
+
+// ion-row.ios.hydrated {
+//   background-image: url(../../../assets/Res/bubbleimg.jpeg);
+//   background-attachment: fixed;
+// }

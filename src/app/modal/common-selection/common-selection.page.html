@@ -49,28 +49,30 @@
 </ion-content>
 
 <ion-footer>
-  <ion-row>
-    <ion-col style="text-align: center">
-      <ion-spinner *ngIf="PreviewPDF" name="circles"></ion-spinner>
+  <div class="imgbgft">
+    <ion-row>
+      <ion-col style="text-align: center">
+        <ion-spinner *ngIf="PreviewPDF" name="circles"></ion-spinner>
 
-      <button *ngIf="!PreviewPDF" class="btn-f" (click)="previewPDF()">
-        <ion-icon class="prev-icns" name="eye-outline"></ion-icon>
+        <button *ngIf="!PreviewPDF" class="btn-f" (click)="previewPDF()">
+          <ion-icon class="prev-icns" name="eye-outline"></ion-icon>
 
-        <span class="txt-btm-prv"> Preview </span>
-      </button>
+          <span class="txt-btm-prv"> Preview </span>
+        </button>
 
-      <ion-spinner *ngIf="DownloadPDF" name="circles"></ion-spinner>
+        <ion-spinner *ngIf="DownloadPDF" name="circles"></ion-spinner>
 
-      <button *ngIf="!DownloadPDF" class="btn-f" (click)="DownloadPdf_()">
-        <ion-icon class="icn-down" name="download-outline"></ion-icon>
+        <button *ngIf="!DownloadPDF" class="btn-f" (click)="DownloadPdf_()">
+          <ion-icon class="icn-down" name="download-outline"></ion-icon>
 
-        <span class="txt-btm-prv dwn"> Download </span>
-      </button>
-    </ion-col>
-    <!-- <ion-col style="text-align: center">
+          <span class="txt-btm-prv dwn"> Download </span>
+        </button>
+      </ion-col>
+      <!-- <ion-col style="text-align: center">
       <button class="btn-f" (click)="downloadPdf()" *ngIf="pdfObjBtn">
         Download PDF
       </button>
     </ion-col> -->
-  </ion-row>
+    </ion-row>
+  </div>
 </ion-footer>

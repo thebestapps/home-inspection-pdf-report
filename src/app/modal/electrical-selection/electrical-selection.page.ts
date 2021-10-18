@@ -287,8 +287,27 @@ export class ElectricalSelectionPage implements OnInit {
   closeDescription2() {
     this.SelectedTitleToFilter = '';
     this.BackPressed = true;
-    this.Description = false;
+    this.Description = true;
     this.Observations_UI = false;
+    this.Comments_UI = false;
+    this.Limitations_UI = false;
+    this.StructureFoundationComponents_UI = false;
+
+    this.HSView1 = false;
+    this.HSView2 = false;
+    this.HSView3 = false;
+    this.HSView8 = false;
+    this.HSView9 = false;
+    this.HSView10 = false;
+
+    // this.StructureFoundationComponents_UI = false;
+  }
+
+  closeDescription222() {
+    this.SelectedTitleToFilter2 = '';
+    this.BackPressed = true;
+    this.Description = false;
+    this.Observations_UI = true;
     this.Comments_UI = false;
     this.Limitations_UI = false;
     this.StructureFoundationComponents_UI = false;
@@ -2160,7 +2179,7 @@ export class ElectricalSelectionPage implements OnInit {
       main: 'Structure Limitation Content',
       text: data.description,
     };
-    selectedItem.push(obj);
+    this.electricalLimitationsContent.push(obj);
     this.updateStorage3();
   }
 

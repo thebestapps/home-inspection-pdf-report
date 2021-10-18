@@ -265,12 +265,32 @@ export class InsulationSelectionPage implements OnInit {
   }
 
   closeDescription2() {
+    this.SelectedTitleToFilter = '';
     this.BackPressed = true;
     this.Description = false;
     this.Observations_UI = false;
     this.Comments_UI = false;
     this.Limitations_UI = false;
     this.StructureFoundationComponents_UI = true;
+
+    this.HSView1 = false;
+    this.HSView2 = false;
+    this.HSView3 = false;
+    this.HSView8 = false;
+    this.HSView9 = false;
+    this.HSView10 = false;
+
+    // this.StructureFoundationComponents_UI = false;
+  }
+
+  closeDescription22() {
+    this.SelectedTitleToFilter2 = '';
+    this.BackPressed = true;
+    this.Description = false;
+    this.Observations_UI = true;
+    this.Comments_UI = false;
+    this.Limitations_UI = false;
+    this.StructureFoundationComponents_UI = false;
 
     this.HSView1 = false;
     this.HSView2 = false;
@@ -2084,7 +2104,9 @@ export class InsulationSelectionPage implements OnInit {
       main: 'Structure Limitation Content',
       text: data.description,
     };
-    selectedItem.push(obj);
+    // selectedItem.push(obj);
+    this.insulationLimitationsContent.push(obj);
+
     this.updateStorage3();
   }
 

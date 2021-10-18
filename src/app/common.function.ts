@@ -329,11 +329,11 @@ export class CommonService {
 
         val: '9',
       },
-      {
-        name: 'Interior',
+      // {
+      //   name: 'Interior',
 
-        val: '10',
-      },
+      //   val: '10',
+      // },
       {
         name: 'Appliances',
 
@@ -672,7 +672,7 @@ export class CommonService {
           insulationLimitationsContent
         );
       } else {
-        this.insulationLimitationsContent = rmv.insulationLimitationsContent;
+        this.insulationLimitationsContent = rmv.insulationlimitationscontent;
       }
 
       const generalDescriptionContent =

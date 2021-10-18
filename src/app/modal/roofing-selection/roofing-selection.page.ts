@@ -961,30 +961,31 @@ export class RoofingSelectionPage implements OnInit {
   }
 
   async presentAlertConfirm() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Done.',
-      buttons: [
-        {
-          text: 'Go Back',
-          handler: () => {
-            console.log('Confirm Okay');
+    this.config.presentToast('Success.');
+    // const alert = await this.alertController.create({
+    //   cssClass: 'my-custom-class',
+    //   header: 'Done.',
+    //   buttons: [
+    //     {
+    //       text: 'Go Back',
+    //       handler: () => {
+    //         console.log('Confirm Okay');
 
-            this.openCommonModal();
-          },
-        },
-        {
-          text: 'Dismiss',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          },
-        },
-      ],
-    });
+    //         this.openCommonModal();
+    //       },
+    //     },
+    //     {
+    //       text: 'Dismiss',
+    //       role: 'cancel',
+    //       cssClass: 'secondary',
+    //       handler: (blah) => {
+    //         console.log('Confirm Cancel: blah');
+    //       },
+    //     },
+    //   ],
+    // });
 
-    await alert.present();
+    // await alert.present();
   }
 
   async openCommonModal() {
@@ -1195,11 +1196,29 @@ export class RoofingSelectionPage implements OnInit {
   closeDescription2() {
     this.SelectedTitleToFilter = '';
     this.BackPressed = true;
-    this.Description = false;
+    this.Description = true;
     this.Observations_UI = false;
     this.Comments_UI = false;
     this.Limitations_UI = false;
-    this.StructureFoundationComponents_UI = true;
+    this.StructureFoundationComponents_UI = false;
+
+    this.HSView1 = false;
+    this.HSView2 = false;
+    this.HSView3 = false;
+    this.HSView8 = false;
+    this.HSView9 = false;
+    this.HSView10 = false;
+    // this.StructureFoundationComponents_UI = false;
+  }
+
+  closeDescription22() {
+    this.SelectedTitleToFilter2 = '';
+    this.BackPressed = true;
+    this.Description = false;
+    this.Observations_UI = true;
+    this.Comments_UI = false;
+    this.Limitations_UI = false;
+    this.StructureFoundationComponents_UI = false;
 
     this.HSView1 = false;
     this.HSView2 = false;
@@ -2167,7 +2186,7 @@ export class RoofingSelectionPage implements OnInit {
       main: 'Structure Limitation Content',
       text: data.description,
     };
-    selectedItem.push(obj);
+    this.RoofingLimitationsContent.push(obj);
     this.updateStorage3();
   }
 

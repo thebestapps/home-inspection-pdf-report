@@ -1983,6 +1983,24 @@ export class ExteriorSelectionPage implements OnInit {
     this.SelectedTitleToFilter2 = n.title;
   }
 
+  closeDescription22() {
+    this.SelectedTitleToFilter2 = '';
+    this.BackPressed = true;
+    this.Description = false;
+    this.Observations_UI = true;
+    this.Comments_UI = false;
+    this.Limitations_UI = false;
+    this.StructureFoundationComponents_UI = false;
+
+    this.HSView1 = false;
+    this.HSView2 = false;
+    this.HSView3 = false;
+    this.HSView8 = false;
+    this.HSView9 = false;
+    this.HSView10 = false;
+    // this.StructureFoundationComponents_UI = false;
+  }
+
   // settings modal for color change and font-sized
   async openIonModal(item) {
     const payload = item;
@@ -2111,7 +2129,7 @@ export class ExteriorSelectionPage implements OnInit {
       main: 'Exerior Limitation Content',
       text: data.description,
     };
-    selectedItem.push(obj);
+    // selectedItem.push(obj);
     this.ExteriorLimitationsContent.push(obj);
     this.updateStorage3();
   }

@@ -178,12 +178,11 @@ ion-content.ios {
 button.btn-f {
   max-height: 38px;
   display: inline-flex;
-
-  background: var(--ion-color-primary);
-  color: white;
+  background: white;
+  color: black;
   margin-right: 10px;
   margin-left: 10px;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   min-width: 106px;
 }
 
@@ -301,7 +300,7 @@ p.label-inside {
   right: 62px;
   font-size: 12px;
   text-transform: none;
-  transform: translateY(-8px);
+  // transform: translateY(-8px);
 }
 
 ::ng-deep .custom-modal-txt-area {
@@ -328,11 +327,12 @@ p.label-inside {
 }
 
 .btn-desc-settings {
-  position: absolute;
+  position: absolute !important;
   right: 62px;
   font-size: 12px;
   text-transform: none;
-  transform: translateY(-8px);
+
+  // transform: translateY(-8px);
 }
 
 .btn-edit {
@@ -340,5 +340,4 @@ p.label-inside {
   right: 12px;
   font-size: 12px;
   text-transform: none;
-  transform: translateY(-8px);
 }

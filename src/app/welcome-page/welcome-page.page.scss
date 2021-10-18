@@ -19,8 +19,18 @@ ion-slides {
   height: 100%;
 }
 
-.slide-content {
-  color: #666666;
+ion-button.customButton.Next.ios.button.button-solid.ion-activatable.ion-focusable.hydrated {
+  --background: none;
+  color: var(--ion-color-primary);
+
+  -border: 1px solid var(--ion-color-primary);
+}
+
+ion-button.customButton.Next.md.button.button-solid.ion-activatable.ion-focusable.hydrated {
+  --background: none;
+  color: var(--ion-color-primary);
+
+  -border: 1px solid var(--ion-color-primary);
 }
 
 .customButton:hover {
@@ -43,7 +53,7 @@ ion-slides {
 .customButton {
   width: 55%;
   --background: var(--ion-color-primary);
-  box-shadow: -10px -10px 20px #ec763d, 10px 10px 20px #ec763d;
+  // box-shadow: -10px -10px 20px #ec763d, 10px 10px 20px #ec763d;
   border-radius: 11px;
   margin-right: auto;
   margin-left: auto;
@@ -59,10 +69,12 @@ ion-slides {
 
 ion-label.sc-ion-label-md-h.sc-ion-label-md-s.md.hydrated {
   line-height: 27px;
+  font-family: "Avenir";
 }
 
 ion-label.sc-ion-label-ios-h.sc-ion-label-ios-s.ios.hydrated {
   line-height: 27px;
+  font-family: "Avenir";
 }
 
 ion-row.md.hydrated {
@@ -94,14 +106,10 @@ ion-row.label-intro.ios.hydrated {
 }
 
 ion-label.txt-header.sc-ion-label-md-h.sc-ion-label-md-s.md.hydrated {
-  font-weight: bold;
-
   font-family: "Avenir";
 }
 
 ion-label.txt-header.sc-ion-label-ios-h.sc-ion-label-ios-s.ios.hydrated {
-  font-weight: bold;
-
   font-family: "Avenir";
 }
 

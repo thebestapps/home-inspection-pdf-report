@@ -3301,8 +3301,7 @@ export class CommonSelectionPage implements OnInit {
     if (
       this.StoredData.insulationDescription != null ||
       this.StoredData.insulationObservation != null ||
-      this.StoredData.insulationLimitations != null ||
-      this.StoredData.insulationDescriptionContent != null
+      this.StoredData.insulationLimitations != null
     ) {
       docDefinition.content.push(
         {
@@ -3349,10 +3348,7 @@ export class CommonSelectionPage implements OnInit {
         }
       );
     }
-    if (
-      this.StoredData.insulationDescription != null ||
-      this.StoredData.insulationDescriptionContent != null
-    ) {
+    if (this.StoredData.insulationDescription != null) {
       docDefinition.content.push({
         color: '#000000',
         margin: [0, 8, 0, 0],
@@ -3390,10 +3386,10 @@ export class CommonSelectionPage implements OnInit {
         },
       });
     }
-    if (this.StoredData.insulationDescriptionContent != null) {
+    if (this.StoredData.insulationDescription != null) {
       for (
         let i = 0;
-        i < parseInt(this.StoredData.insulationDescriptionContent.length);
+        i < parseInt(this.StoredData.insulationDescription.length);
         i++
       ) {
         var data = '';
@@ -3404,42 +3400,36 @@ export class CommonSelectionPage implements OnInit {
 
         for (
           let j = 0;
-          j <
-          parseInt(
-            this.StoredData.insulationDescriptionContent[i].content.length
-          );
+          j < parseInt(this.StoredData.insulationDescription[i].content.length);
           j++
         ) {
           data =
             data +
             ' •' +
-            this.StoredData.insulationDescriptionContent[i].content[j].text;
+            this.StoredData.insulationDescription[i].content[j].text;
 
           //Content color & fontsize
           if (
-            this.StoredData.insulationDescriptionContent[i].content[j]
-              .font_color != null
+            this.StoredData.insulationDescription[i].content[j].font_color !=
+            null
           ) {
-            content_color = this.StoredData.insulationDescriptionContent[i]
-              .content[j].font_color;
+            content_color = this.StoredData.insulationDescription[i].content[j]
+              .font_color;
           }
           if (
-            this.StoredData.insulationDescriptionContent[i].content[j]
-              .font_size != null
+            this.StoredData.insulationDescription[i].content[j].font_size !=
+            null
           ) {
-            content_fontSize = this.StoredData.insulationDescriptionContent[i]
-              .content[j].font_size;
+            content_fontSize = this.StoredData.insulationDescription[i].content[
+              j
+            ].font_size;
           }
         }
-        if (
-          this.StoredData.insulationDescriptionContent[i].font_color != null
-        ) {
-          title_color = this.StoredData.insulationDescriptionContent[i]
-            .font_color;
+        if (this.StoredData.insulationDescription[i].font_color != null) {
+          title_color = this.StoredData.insulationDescription[i].font_color;
         }
-        if (this.StoredData.insulationDescriptionContent[i].font_size != null) {
-          title_fontSize = this.StoredData.insulationDescriptionContent[i]
-            .font_size;
+        if (this.StoredData.insulationDescription[i].font_size != null) {
+          title_fontSize = this.StoredData.insulationDescription[i].font_size;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -3448,8 +3438,7 @@ export class CommonSelectionPage implements OnInit {
           columns: [
             [
               {
-                text:
-                  this.StoredData.insulationDescriptionContent[i].title + ':\t',
+                text: this.StoredData.insulationDescription[i].title + ':\t',
                 margin: [30, 2, 0, 0],
                 bold: 'true',
                 color: title_color,
@@ -4781,12 +4770,13 @@ export class CommonSelectionPage implements OnInit {
         var data = '';
         var content_color = '#ed3833';
         var content_fontSize = 9.5;
-        let count = i++;
         docDefinition.content.push({
           margin: [30, 3, 0, 0],
           fontSize: this.StoredData.generalContent[i].font_size,
           color: this.StoredData.generalContent[i].font_color,
-          text: count + this.StoredData.generalContent[i],
+          text:
+            this.StoredData.generalContent[i].id +
+            this.StoredData.generalContent[i].text,
         });
       }
     }

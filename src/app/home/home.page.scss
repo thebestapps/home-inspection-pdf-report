@@ -217,29 +217,39 @@ p.text-info {
   margin-top: 62px;
 }
 
-@media only screen and (max-width: 720px) {
-  .slide-box {
-    background-repeat: no-repeat, repeat;
-    background-position: bottom center;
-    background-image: url(../../assets/Res/group-circles.png) !important;
-  }
-
-  .on-mid {
-    margin-top: 0px !important;
-    padding-left: 22px !important;
-  }
-
-  .content-two {
-    margin-top: 0px !important;
-    padding-left: 22px !important;
-  }
-
-  .content-three {
-    padding-left: 4px !important;
-    padding-bottom: 13px;
-  }
+// @media only screen and (max-width: 720px) {
+.slide-box {
+  background-repeat: no-repeat, repeat;
+  background-position: bottom center;
+  background-image: url(../../assets/Res/group-circles.png) !important;
 }
+
+.on-mid {
+  margin-top: 0px !important;
+  padding-left: 22px !important;
+}
+
+.content-two {
+  margin-top: 0px !important;
+  padding-left: 22px !important;
+}
+
+.content-three {
+  padding-left: 4px !important;
+  padding-bottom: 13px;
+}
+// }
 
 p.title-btn {
   float: right;
+}
+
+ion-button.cus-top-selection-btn.createins.md.button.button-small.button-solid.ion-activatable.ion-focusable.hydrated {
+  --background: none;
+  color: var(--ion-color-primary);
+}
+
+ion-button.cus-top-selection-btn.createins.ios.button.button-small.button-solid.ion-activatable.ion-focusable.hydrated {
+  --background: none;
+  color: var(--ion-color-primary);
 }

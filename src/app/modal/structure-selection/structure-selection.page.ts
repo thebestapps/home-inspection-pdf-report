@@ -120,7 +120,7 @@ export class StructureSelectionPage implements OnInit {
       // },
 
       {
-        name: 'Inspection Limitations',
+        name: 'Structure Limitations',
 
         val: '4',
       },
@@ -1617,6 +1617,25 @@ export class StructureSelectionPage implements OnInit {
 
       this.presentAlertConfirm();
     }
+  }
+
+  closeDescription22() {
+    this.SelectedTitleToFilter2 = '';
+    this.BackPressed = true;
+    this.Description = false;
+    this.Observations_UI = true;
+    this.Comments_UI = false;
+    this.Limitations_UI = false;
+    this.StructureFoundationComponents_UI = false;
+
+    this.HSView1 = false;
+    this.HSView2 = false;
+    this.HSView3 = false;
+    this.HSView8 = false;
+    this.HSView9 = false;
+    this.HSView10 = false;
+
+    // this.StructureFoundationComponents_UI = false;
   }
 
   async presentAlertConfirm() {
