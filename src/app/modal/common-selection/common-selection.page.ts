@@ -76,9 +76,8 @@ export class CommonSelectionPage implements OnInit {
 
   ionViewDidEnter() {
     this.pdfObjBtn = false;
-    let StorageDate = this.config.storageGet('InspectionToEdit')[
-      '__zone_symbol__value'
-    ];
+    let StorageDate =
+      this.config.storageGet('InspectionToEdit')['__zone_symbol__value'];
 
     if (StorageDate != undefined) {
       // var uniqueCount = arr1["0"].Unique;
@@ -343,9 +342,9 @@ export class CommonSelectionPage implements OnInit {
       this.config.storageGet('InspectionToEdit')['__zone_symbol__value']
     );
 
-    if (this.StoredData.report_section[0].ApproximateAgeofHouse === '') {
-      this.config.presentToast('Please fill Report Overview');
-    }
+    // if (this.StoredData.report_section[0].ApproximateAgeofHouse === '') {
+    //   this.config.presentToast('Please fill Report Overview');
+    // }
 
     console.log(this.StoredData);
     let Logo_Header = '../../../assets/logo.png';
@@ -362,8 +361,9 @@ export class CommonSelectionPage implements OnInit {
     let img_8 = '../../../assets/img_8.jpg';
 
     if (this.StoredData.storedReportOverviewImage != null) {
-      var imagesLength = Object.keys(this.StoredData.storedReportOverviewImage)
-        .length;
+      var imagesLength = Object.keys(
+        this.StoredData.storedReportOverviewImage
+      ).length;
       console.log('LENGHT--' + imagesLength);
     }
     //console.log('COOLING OBSERVATION ======>', this.StoredData.coolingHvacObservation.length);
@@ -530,8 +530,7 @@ export class CommonSelectionPage implements OnInit {
               },
               { text: 'Prepared By:', style: 'ptitle', margin: [80, 7, 0, 0] },
               {
-                text:
-                  'A Pro Inspection Service\n 4702  Bay Breeze Dr Gulf\n Breeze, FL 32563, USA',
+                text: 'A Pro Inspection Service\n 4702  Bay Breeze Dr Gulf\n Breeze, FL 32563, USA',
                 margin: [14, 0, 6, 0],
                 style: 'pdata',
               },
@@ -572,8 +571,7 @@ export class CommonSelectionPage implements OnInit {
           pageBreak: 'after',
           text: [
             {
-              text:
-                'A portion of the inspection fee has been\ndonated to the American Cancer Society\n\n\n\n\n',
+              text: 'A portion of the inspection fee has been\ndonated to the American Cancer Society\n\n\n\n\n',
             },
             '© 2021 ',
             {
@@ -843,15 +841,15 @@ export class CommonSelectionPage implements OnInit {
             },
           ],
         },
-        {
-          text:
-            'This is an average quality ' +
-            this.StoredData.report_section[0].ApproximateAgeofHouse +
-            ' years old (approximate age) home.  As with all homes, ongoing maintenance is required and improvements to the systems of the home will be needed over time. The improvements that are recommended in this report are not considered unusual for a home of this age and location. Please remember that there is no such thing as a perfect home.',
-          style: 'paraData',
-          italics: 'true',
-          color: '#ed3833',
-        },
+        // {
+        //   text:
+        //     'This is an average quality ' +
+        //     this.StoredData.report_section[0].ApproximateAgeofHouse +
+        //     ' years old (approximate age) home.  As with all homes, ongoing maintenance is required and improvements to the systems of the home will be needed over time. The improvements that are recommended in this report are not considered unusual for a home of this age and location. Please remember that there is no such thing as a perfect home.',
+        //   style: 'paraData',
+        //   italics: 'true',
+        //   color: '#ed3833',
+        // },
         {
           margin: [0, 8, 0, 8],
           columns: [
@@ -865,8 +863,7 @@ export class CommonSelectionPage implements OnInit {
           ],
         },
         {
-          text:
-            'It would be wise to consider a homeowner’s warranty to protect the buyers from unexpected breakdown and failure. A one year home owner’s warranty purchased from Residential Warranty Service will be extended to 18 months and will include a 5 year Roof Leak warranty as a benefit of having the home inspected by A Pro Inspections. For more information, please call 844-367-0885 or online at MySimpleHomeWarranty.com. Choosing the premium option will provide sewer line, water line, structure, and mold coverage as well.',
+          text: 'It would be wise to consider a homeowner’s warranty to protect the buyers from unexpected breakdown and failure. A one year home owner’s warranty purchased from Residential Warranty Service will be extended to 18 months and will include a 5 year Roof Leak warranty as a benefit of having the home inspected by A Pro Inspections. For more information, please call 844-367-0885 or online at MySimpleHomeWarranty.com. Choosing the premium option will provide sewer line, water line, structure, and mold coverage as well.',
           style: 'paraData',
         },
         {
@@ -940,8 +937,7 @@ export class CommonSelectionPage implements OnInit {
             body: [
               [
                 {
-                  text:
-                    'For your convenience, the following keys have been used in this report.',
+                  text: 'For your convenience, the following keys have been used in this report.',
                   alignment: 'left',
                 },
               ],
@@ -982,8 +978,7 @@ export class CommonSelectionPage implements OnInit {
           },
         },
         {
-          text:
-            'Note: Observations listed under “Discretionary Improvements” are not essential repairs, but represent logical long-term improvements. Conditions may exist that are conducive to the growth and formation of mold and mold spores. These conditions are, but not confined to, the presence of moisture or rotten or rotting material.  If these conditions exist, or mold is a concern, it is the responsibility of the prospective homeowner to have specific mold sampling for testing done. Mold sampling is beyond the scope of this inspection',
+          text: 'Note: Observations listed under “Discretionary Improvements” are not essential repairs, but represent logical long-term improvements. Conditions may exist that are conducive to the growth and formation of mold and mold spores. These conditions are, but not confined to, the presence of moisture or rotten or rotting material.  If these conditions exist, or mold is a concern, it is the responsibility of the prospective homeowner to have specific mold sampling for testing done. Mold sampling is beyond the scope of this inspection',
           fontSize: 9.5,
           margin: [0, 1, 0, 1],
         },
@@ -1171,18 +1166,15 @@ export class CommonSelectionPage implements OnInit {
           margin: [0, 10, 6, 0],
           text: [
             {
-              text:
-                'Please refer to the pre-inspection contract for a full explanation of the scope of the inspection\n',
+              text: 'Please refer to the pre-inspection contract for a full explanation of the scope of the inspection\n',
               bold: 'true',
             },
             {
-              text:
-                'Verification of compliance with current or past Building Code and/or Zoning Regulations or requirements is outside the scope of this inspection.\n\n',
+              text: 'Verification of compliance with current or past Building Code and/or Zoning Regulations or requirements is outside the scope of this inspection.\n\n',
               bold: 'true',
             },
             {
-              text:
-                'Please refer to the NACHI® Inspector Standards and the inspection authorization and agreement for a full explanation of the scope of the inspection. NACHI.org\n\n',
+              text: 'Please refer to the NACHI® Inspector Standards and the inspection authorization and agreement for a full explanation of the scope of the inspection. NACHI.org\n\n',
               italics: 'true',
             },
             {
@@ -1190,9 +1182,8 @@ export class CommonSelectionPage implements OnInit {
               bold: 'true',
               fontSize: 12,
             },
-            this.StoredData.report_section[0].WeatherConditions +
-              ' weather conditions prevailed at the time of the inspection. The estimated outside temperature was 68 degrees F. ' +
-              this.StoredData.report_section[0].RecentWeatherConditions +
+
+            ' weather conditions prevailed at the time of the inspection. The estimated outside temperature was 68 degrees F. ' +
               ' weather conditions have been experienced in the days leading up to the inspection.',
           ],
         },
@@ -1486,8 +1477,7 @@ export class CommonSelectionPage implements OnInit {
     };
     if (this.StoredData.storedReportOverviewImage != null) {
       docDefinition.content.push({
-        text:
-          'Photos are only a representative sample of conditions observed. There may be more than one area of concern not shown by photo',
+        text: 'Photos are only a representative sample of conditions observed. There may be more than one area of concern not shown by photo',
         bold: 'true',
         fontSize: 10,
       });
@@ -1647,24 +1637,26 @@ export class CommonSelectionPage implements OnInit {
             this.StoredData.structureDescriptionContent[i].content[j]
               .font_color != null
           ) {
-            content_color = this.StoredData.structureDescriptionContent[i]
-              .content[j].font_color;
+            content_color =
+              this.StoredData.structureDescriptionContent[i].content[j]
+                .font_color;
           }
           if (
             this.StoredData.structureDescriptionContent[i].content[j]
               .font_size != null
           ) {
-            content_fontSize = this.StoredData.structureDescriptionContent[i]
-              .content[j].font_size;
+            content_fontSize =
+              this.StoredData.structureDescriptionContent[i].content[j]
+                .font_size;
           }
         }
         if (this.StoredData.structureDescriptionContent[i].font_color != null) {
-          title_color = this.StoredData.structureDescriptionContent[i]
-            .font_color;
+          title_color =
+            this.StoredData.structureDescriptionContent[i].font_color;
         }
         if (this.StoredData.structureDescriptionContent[i].font_size != null) {
-          title_fontSize = this.StoredData.structureDescriptionContent[i]
-            .font_size;
+          title_fontSize =
+            this.StoredData.structureDescriptionContent[i].font_size;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -1777,15 +1769,14 @@ export class CommonSelectionPage implements OnInit {
             this.StoredData.structureObservation[i].content[j].font_color !=
             null
           ) {
-            content_color = this.StoredData.structureObservation[i].content[j]
-              .font_color;
+            content_color =
+              this.StoredData.structureObservation[i].content[j].font_color;
           }
           if (
             this.StoredData.structureObservation[i].content[j].font_size != null
           ) {
-            content_fontSize = this.StoredData.structureObservation[i].content[
-              j
-            ].font_size;
+            content_fontSize =
+              this.StoredData.structureObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -1812,8 +1803,7 @@ export class CommonSelectionPage implements OnInit {
             body: [
               [
                 {
-                  text:
-                    'LIMITATIONS OF STRUCTURAL / FOUNDATION COMPONENT INSPECTION',
+                  text: 'LIMITATIONS OF STRUCTURAL / FOUNDATION COMPONENT INSPECTION',
                   alignment: 'left',
                   style: 'subbox',
                 },
@@ -1846,8 +1836,7 @@ export class CommonSelectionPage implements OnInit {
           margin: [30, 10, 6, 0],
           text: [
             {
-              text:
-                'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Assessing the structural integrity of a building is beyond the scope of a standard home inspection.  A certified Licensed Professional Engineer (P.E.) is recommended where there are structural concerns about the building.  Inspection of structural components was limited by (but not restricted to) the following conditions: \n',
+              text: 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Assessing the structural integrity of a building is beyond the scope of a standard home inspection.  A certified Licensed Professional Engineer (P.E.) is recommended where there are structural concerns about the building.  Inspection of structural components was limited by (but not restricted to) the following conditions: \n',
             },
           ],
         }
@@ -1874,8 +1863,7 @@ export class CommonSelectionPage implements OnInit {
       docDefinition.content.push({
         margin: [30, 10, 6, 0],
         fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        text: 'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
       });
     }
 
@@ -2000,23 +1988,24 @@ export class CommonSelectionPage implements OnInit {
             this.StoredData.roofingDescriptionContent[i].content[j]
               .font_color != null
           ) {
-            content_color = this.StoredData.roofingDescriptionContent[i]
-              .content[j].font_color;
+            content_color =
+              this.StoredData.roofingDescriptionContent[i].content[j]
+                .font_color;
           }
           if (
             this.StoredData.roofingDescriptionContent[i].content[j].font_size !=
             null
           ) {
-            content_fontSize = this.StoredData.roofingDescriptionContent[i]
-              .content[j].font_size;
+            content_fontSize =
+              this.StoredData.roofingDescriptionContent[i].content[j].font_size;
           }
         }
         if (this.StoredData.roofingDescriptionContent[i].font_color != null) {
           title_color = this.StoredData.roofingDescriptionContent[i].font_color;
         }
         if (this.StoredData.roofingDescriptionContent[i].font_size != null) {
-          title_fontSize = this.StoredData.roofingDescriptionContent[i]
-            .font_size;
+          title_fontSize =
+            this.StoredData.roofingDescriptionContent[i].font_size;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -2125,14 +2114,14 @@ export class CommonSelectionPage implements OnInit {
           if (
             this.StoredData.roofingObservation[i].content[j].font_color != null
           ) {
-            content_color = this.StoredData.roofingObservation[i].content[j]
-              .font_color;
+            content_color =
+              this.StoredData.roofingObservation[i].content[j].font_color;
           }
           if (
             this.StoredData.roofingObservation[i].content[j].font_size != null
           ) {
-            content_fontSize = this.StoredData.roofingObservation[i].content[j]
-              .font_size;
+            content_fontSize =
+              this.StoredData.roofingObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -2193,13 +2182,11 @@ export class CommonSelectionPage implements OnInit {
           color: 'black',
           text: [
             {
-              text:
-                'Roofs are designed to shed water like an umbrella and are not “waterproof”. In events of wind driven rains, and periods of intense rain, water can sometimes blow into areas such as ridge vents, roof vents and valleys and present leaking conditions. This occurrence is rare, but can possibly happen in severe storm events. Unless it is raining at the time of inspection, some roof leaks may not be identified during the inspection process. \n',
+              text: 'Roofs are designed to shed water like an umbrella and are not “waterproof”. In events of wind driven rains, and periods of intense rain, water can sometimes blow into areas such as ridge vents, roof vents and valleys and present leaking conditions. This occurrence is rare, but can possibly happen in severe storm events. Unless it is raining at the time of inspection, some roof leaks may not be identified during the inspection process. \n',
               bold: 'true',
             },
             {
-              text:
-                'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Roofing life expectancies can vary depending on several factors.  Any estimates of remaining life are approximations only.  This assessment of the roof does not preclude the possibility of leakage.  Leakage can develop at any time and may depend on rain intensity, wind direction, ice build up, etc.  The inspection of the roofing system was limited by (but not restricted to) the following conditions: \n',
+              text: 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Roofing life expectancies can vary depending on several factors.  Any estimates of remaining life are approximations only.  This assessment of the roof does not preclude the possibility of leakage.  Leakage can develop at any time and may depend on rain intensity, wind direction, ice build up, etc.  The inspection of the roofing system was limited by (but not restricted to) the following conditions: \n',
             },
           ],
         }
@@ -2226,8 +2213,7 @@ export class CommonSelectionPage implements OnInit {
       docDefinition.content.push({
         margin: [30, 10, 6, 0],
         fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        text: 'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
       });
     }
 
@@ -2354,24 +2340,26 @@ export class CommonSelectionPage implements OnInit {
             this.StoredData.exteriorDescriptionContent[i].content[j]
               .font_color != null
           ) {
-            content_color = this.StoredData.exteriorDescriptionContent[i]
-              .content[j].font_color;
+            content_color =
+              this.StoredData.exteriorDescriptionContent[i].content[j]
+                .font_color;
           }
           if (
             this.StoredData.exteriorDescriptionContent[i].content[j]
               .font_size != null
           ) {
-            content_fontSize = this.StoredData.exteriorDescriptionContent[i]
-              .content[j].font_size;
+            content_fontSize =
+              this.StoredData.exteriorDescriptionContent[i].content[j]
+                .font_size;
           }
         }
         if (this.StoredData.exteriorDescriptionContent[i].font_color != null) {
-          title_color = this.StoredData.exteriorDescriptionContent[i]
-            .font_color;
+          title_color =
+            this.StoredData.exteriorDescriptionContent[i].font_color;
         }
         if (this.StoredData.exteriorDescriptionContent[i].font_size != null) {
-          title_fontSize = this.StoredData.exteriorDescriptionContent[i]
-            .font_size;
+          title_fontSize =
+            this.StoredData.exteriorDescriptionContent[i].font_size;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -2480,14 +2468,14 @@ export class CommonSelectionPage implements OnInit {
           if (
             this.StoredData.exteriorObservation[i].content[j].font_color != null
           ) {
-            content_color = this.StoredData.exteriorObservation[i].content[j]
-              .font_color;
+            content_color =
+              this.StoredData.exteriorObservation[i].content[j].font_color;
           }
           if (
             this.StoredData.exteriorObservation[i].content[j].font_size != null
           ) {
-            content_fontSize = this.StoredData.exteriorObservation[i].content[j]
-              .font_size;
+            content_fontSize =
+              this.StoredData.exteriorObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -2547,12 +2535,10 @@ export class CommonSelectionPage implements OnInit {
           margin: [30, 10, 6, 0],
           text: [
             {
-              text:
-                'The general topography of the area is such that it will be difficult to control storm water entirely.  During heavy rains, the accumulation of storm water on the lot may be unavoidable.\n',
+              text: 'The general topography of the area is such that it will be difficult to control storm water entirely.  During heavy rains, the accumulation of storm water on the lot may be unavoidable.\n',
             },
             {
-              text:
-                'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  The inspection of the exterior was limited by (but not restricted to) the following conditions: \n',
+              text: 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  The inspection of the exterior was limited by (but not restricted to) the following conditions: \n',
             },
           ],
         }
@@ -2579,8 +2565,7 @@ export class CommonSelectionPage implements OnInit {
       docDefinition.content.push({
         margin: [30, 10, 6, 0],
         fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        text: 'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
       });
     }
 
@@ -2707,26 +2692,28 @@ export class CommonSelectionPage implements OnInit {
             this.StoredData.electricalDescriptionContent[i].content[j]
               .font_color != null
           ) {
-            content_color = this.StoredData.electricalDescriptionContent[i]
-              .content[j].font_color;
+            content_color =
+              this.StoredData.electricalDescriptionContent[i].content[j]
+                .font_color;
           }
           if (
             this.StoredData.electricalDescriptionContent[i].content[j]
               .font_size != null
           ) {
-            content_fontSize = this.StoredData.electricalDescriptionContent[i]
-              .content[j].font_size;
+            content_fontSize =
+              this.StoredData.electricalDescriptionContent[i].content[j]
+                .font_size;
           }
         }
         if (
           this.StoredData.electricalDescriptionContent[i].font_color != null
         ) {
-          title_color = this.StoredData.electricalDescriptionContent[i]
-            .font_color;
+          title_color =
+            this.StoredData.electricalDescriptionContent[i].font_color;
         }
         if (this.StoredData.electricalDescriptionContent[i].font_size != null) {
-          title_fontSize = this.StoredData.electricalDescriptionContent[i]
-            .font_size;
+          title_fontSize =
+            this.StoredData.electricalDescriptionContent[i].font_size;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -2838,16 +2825,15 @@ export class CommonSelectionPage implements OnInit {
             this.StoredData.electricalObservation[i].content[j].font_color !=
             null
           ) {
-            content_color = this.StoredData.electricalObservation[i].content[j]
-              .font_color;
+            content_color =
+              this.StoredData.electricalObservation[i].content[j].font_color;
           }
           if (
             this.StoredData.electricalObservation[i].content[j].font_size !=
             null
           ) {
-            content_fontSize = this.StoredData.electricalObservation[i].content[
-              j
-            ].font_size;
+            content_fontSize =
+              this.StoredData.electricalObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -2907,8 +2893,7 @@ export class CommonSelectionPage implements OnInit {
           margin: [30, 10, 6, 0],
           text: [
             {
-              text:
-                'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  The inspection does not include low voltage systems, telephone wiring, intercoms, alarm systems, TV cable, timers or smoke detectors.  The inspection of the electrical system was limited by (but not restricted to) the following conditions:\n',
+              text: 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  The inspection does not include low voltage systems, telephone wiring, intercoms, alarm systems, TV cable, timers or smoke detectors.  The inspection of the electrical system was limited by (but not restricted to) the following conditions:\n',
             },
           ],
         }
@@ -2935,8 +2920,7 @@ export class CommonSelectionPage implements OnInit {
       docDefinition.content.push({
         margin: [30, 10, 6, 0],
         fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        text: 'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
       });
     }
     //<==========================================> COOLING <==========================================>
@@ -3062,28 +3046,30 @@ export class CommonSelectionPage implements OnInit {
             this.StoredData.coolingHvacDescriptionContent[i].content[j]
               .font_color != null
           ) {
-            content_color = this.StoredData.coolingHvacDescriptionContent[i]
-              .content[j].font_color;
+            content_color =
+              this.StoredData.coolingHvacDescriptionContent[i].content[j]
+                .font_color;
           }
           if (
             this.StoredData.coolingHvacDescriptionContent[i].content[j]
               .font_size != null
           ) {
-            content_fontSize = this.StoredData.coolingHvacDescriptionContent[i]
-              .content[j].font_size;
+            content_fontSize =
+              this.StoredData.coolingHvacDescriptionContent[i].content[j]
+                .font_size;
           }
         }
         if (
           this.StoredData.coolingHvacDescriptionContent[i].font_color != null
         ) {
-          title_color = this.StoredData.coolingHvacDescriptionContent[i]
-            .font_color;
+          title_color =
+            this.StoredData.coolingHvacDescriptionContent[i].font_color;
         }
         if (
           this.StoredData.coolingHvacDescriptionContent[i].font_size != null
         ) {
-          title_fontSize = this.StoredData.coolingHvacDescriptionContent[i]
-            .font_size;
+          title_fontSize =
+            this.StoredData.coolingHvacDescriptionContent[i].font_size;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -3193,14 +3179,14 @@ export class CommonSelectionPage implements OnInit {
           if (
             this.StoredData.coolingObservation[i].content[j].font_color != null
           ) {
-            content_color = this.StoredData.coolingObservation[i].content[j]
-              .font_color;
+            content_color =
+              this.StoredData.coolingObservation[i].content[j].font_color;
           }
           if (
             this.StoredData.coolingObservation[i].content[j].font_size != null
           ) {
-            content_fontSize = this.StoredData.coolingObservation[i].content[j]
-              .font_size;
+            content_fontSize =
+              this.StoredData.coolingObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -3260,12 +3246,10 @@ export class CommonSelectionPage implements OnInit {
           margin: [30, 10, 6, 0],
           text: [
             {
-              text:
-                'As of January 2006, air conditioning manufacturers are no longer allowed to manufacture products, or certain individual components (condensers, evaporator, compressors) for systems with less than a 13 SEER rating. As existing inventories of older efficiency style components are depleted, replacement of the A/C unit may be required in place of repairs.\n',
+              text: 'As of January 2006, air conditioning manufacturers are no longer allowed to manufacture products, or certain individual components (condensers, evaporator, compressors) for systems with less than a 13 SEER rating. As existing inventories of older efficiency style components are depleted, replacement of the A/C unit may be required in place of repairs.\n',
             },
             {
-              text:
-                'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Air conditioning and heat pump systems, like most mechanical components, can fail at any time.  The inspection of the cooling system was limited by (but not restricted to) the following conditions: \n',
+              text: 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Air conditioning and heat pump systems, like most mechanical components, can fail at any time.  The inspection of the cooling system was limited by (but not restricted to) the following conditions: \n',
             },
           ],
         }
@@ -3292,8 +3276,7 @@ export class CommonSelectionPage implements OnInit {
       docDefinition.content.push({
         margin: [30, 10, 6, 0],
         fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        text: 'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
       });
     }
 
@@ -3413,16 +3396,15 @@ export class CommonSelectionPage implements OnInit {
             this.StoredData.insulationDescription[i].content[j].font_color !=
             null
           ) {
-            content_color = this.StoredData.insulationDescription[i].content[j]
-              .font_color;
+            content_color =
+              this.StoredData.insulationDescription[i].content[j].font_color;
           }
           if (
             this.StoredData.insulationDescription[i].content[j].font_size !=
             null
           ) {
-            content_fontSize = this.StoredData.insulationDescription[i].content[
-              j
-            ].font_size;
+            content_fontSize =
+              this.StoredData.insulationDescription[i].content[j].font_size;
           }
         }
         if (this.StoredData.insulationDescription[i].font_color != null) {
@@ -3540,16 +3522,15 @@ export class CommonSelectionPage implements OnInit {
             this.StoredData.insulationObservation[i].content[j].font_color !=
             null
           ) {
-            content_color = this.StoredData.insulationObservation[i].content[j]
-              .font_color;
+            content_color =
+              this.StoredData.insulationObservation[i].content[j].font_color;
           }
           if (
             this.StoredData.insulationObservation[i].content[j].font_size !=
             null
           ) {
-            content_fontSize = this.StoredData.insulationObservation[i].content[
-              j
-            ].font_size;
+            content_fontSize =
+              this.StoredData.insulationObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -3610,8 +3591,7 @@ export class CommonSelectionPage implements OnInit {
           margin: [30, 10, 6, 0],
           text: [
             {
-              text:
-                'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  The inspection of insulation and ventilation was limited by (but not restricted to) the following conditions:\n',
+              text: 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  The inspection of insulation and ventilation was limited by (but not restricted to) the following conditions:\n',
             },
           ],
         }
@@ -3638,8 +3618,7 @@ export class CommonSelectionPage implements OnInit {
       docDefinition.content.push({
         margin: [30, 10, 6, 0],
         fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        text: 'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
       });
     }
 
@@ -3766,24 +3745,26 @@ export class CommonSelectionPage implements OnInit {
             this.StoredData.plumbingDescriptionContent[i].content[j]
               .font_color != null
           ) {
-            content_color = this.StoredData.plumbingDescriptionContent[i]
-              .content[j].font_color;
+            content_color =
+              this.StoredData.plumbingDescriptionContent[i].content[j]
+                .font_color;
           }
           if (
             this.StoredData.plumbingDescriptionContent[i].content[j]
               .font_size != null
           ) {
-            content_fontSize = this.StoredData.plumbingDescriptionContent[i]
-              .content[j].font_size;
+            content_fontSize =
+              this.StoredData.plumbingDescriptionContent[i].content[j]
+                .font_size;
           }
         }
         if (this.StoredData.plumbingDescriptionContent[i].font_color != null) {
-          title_color = this.StoredData.plumbingDescriptionContent[i]
-            .font_color;
+          title_color =
+            this.StoredData.plumbingDescriptionContent[i].font_color;
         }
         if (this.StoredData.plumbingDescriptionContent[i].font_size != null) {
-          title_fontSize = this.StoredData.plumbingDescriptionContent[i]
-            .font_size;
+          title_fontSize =
+            this.StoredData.plumbingDescriptionContent[i].font_size;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -3892,14 +3873,14 @@ export class CommonSelectionPage implements OnInit {
           if (
             this.StoredData.plumbingObservation[i].content[j].font_color != null
           ) {
-            content_color = this.StoredData.plumbingObservation[i].content[j]
-              .font_color;
+            content_color =
+              this.StoredData.plumbingObservation[i].content[j].font_color;
           }
           if (
             this.StoredData.plumbingObservation[i].content[j].font_size != null
           ) {
-            content_fontSize = this.StoredData.plumbingObservation[i].content[j]
-              .font_size;
+            content_fontSize =
+              this.StoredData.plumbingObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -3959,8 +3940,7 @@ export class CommonSelectionPage implements OnInit {
           margin: [30, 10, 6, 0],
           text: [
             {
-              text:
-                'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  The inspection of the plumbing system was limited by (but not restricted to) the following conditions:\n',
+              text: 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  The inspection of the plumbing system was limited by (but not restricted to) the following conditions:\n',
             },
           ],
         }
@@ -3987,8 +3967,7 @@ export class CommonSelectionPage implements OnInit {
       docDefinition.content.push({
         margin: [30, 10, 6, 0],
         fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        text: 'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
       });
     }
 
@@ -4115,24 +4094,26 @@ export class CommonSelectionPage implements OnInit {
             this.StoredData.interiorDescriptionContent[i].content[j]
               .font_color != null
           ) {
-            content_color = this.StoredData.interiorDescriptionContent[i]
-              .content[j].font_color;
+            content_color =
+              this.StoredData.interiorDescriptionContent[i].content[j]
+                .font_color;
           }
           if (
             this.StoredData.interiorDescriptionContent[i].content[j]
               .font_size != null
           ) {
-            content_fontSize = this.StoredData.interiorDescriptionContent[i]
-              .content[j].font_size;
+            content_fontSize =
+              this.StoredData.interiorDescriptionContent[i].content[j]
+                .font_size;
           }
         }
         if (this.StoredData.interiorDescriptionContent[i].font_color != null) {
-          title_color = this.StoredData.interiorDescriptionContent[i]
-            .font_color;
+          title_color =
+            this.StoredData.interiorDescriptionContent[i].font_color;
         }
         if (this.StoredData.interiorDescriptionContent[i].font_size != null) {
-          title_fontSize = this.StoredData.interiorDescriptionContent[i]
-            .font_size;
+          title_fontSize =
+            this.StoredData.interiorDescriptionContent[i].font_size;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -4242,14 +4223,14 @@ export class CommonSelectionPage implements OnInit {
           if (
             this.StoredData.interiorObservation[i].content[j].font_color != null
           ) {
-            content_color = this.StoredData.interiorObservation[i].content[j]
-              .font_color;
+            content_color =
+              this.StoredData.interiorObservation[i].content[j].font_color;
           }
           if (
             this.StoredData.interiorObservation[i].content[j].font_size != null
           ) {
-            content_fontSize = this.StoredData.interiorObservation[i].content[j]
-              .font_size;
+            content_fontSize =
+              this.StoredData.interiorObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -4309,12 +4290,10 @@ export class CommonSelectionPage implements OnInit {
           margin: [30, 10, 6, 0],
           text: [
             {
-              text:
-                'Double paned windows will eventually lose their seal.  This will result in condensation developing between the panes of glass.  This “fogging” of the glass is primarily a cosmetic concern, and need only be improved for cosmetic or contractual reasons. The degree of visual “fogging” or condensation can vary with temperature and humidity conditions. At times, the fogging may be barely noticeable. While replacement of noticeably fogged windows may be desirable, other windows may be budgeted for and replaced as they become more noticeable.  Lighting conditions such as overcast skies can make seeing broken seals difficult\n',
+              text: 'Double paned windows will eventually lose their seal.  This will result in condensation developing between the panes of glass.  This “fogging” of the glass is primarily a cosmetic concern, and need only be improved for cosmetic or contractual reasons. The degree of visual “fogging” or condensation can vary with temperature and humidity conditions. At times, the fogging may be barely noticeable. While replacement of noticeably fogged windows may be desirable, other windows may be budgeted for and replaced as they become more noticeable.  Lighting conditions such as overcast skies can make seeing broken seals difficult\n',
             },
             {
-              text:
-                'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Assessing the quality and condition of interior finishes is highly subjective.  Issues such as cleanliness, cosmetic flaws, quality of materials, architectural appeal and color are outside the scope of this inspection.  Comments will be general, except where functional concerns exist.  No comment is offered on the extent of cosmetic repairs that may be needed after removal of existing wall hangings and furniture.  The inspection of the interior was limited by (but not restricted to) the following conditions\n',
+              text: 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Assessing the quality and condition of interior finishes is highly subjective.  Issues such as cleanliness, cosmetic flaws, quality of materials, architectural appeal and color are outside the scope of this inspection.  Comments will be general, except where functional concerns exist.  No comment is offered on the extent of cosmetic repairs that may be needed after removal of existing wall hangings and furniture.  The inspection of the interior was limited by (but not restricted to) the following conditions\n',
             },
           ],
         }
@@ -4341,8 +4320,7 @@ export class CommonSelectionPage implements OnInit {
       docDefinition.content.push({
         margin: [30, 10, 6, 0],
         fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        text: 'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
       });
     }
 
@@ -4469,26 +4447,28 @@ export class CommonSelectionPage implements OnInit {
             this.StoredData.appliancesDescriptionContent[i].content[j]
               .font_color != null
           ) {
-            content_color = this.StoredData.appliancesDescriptionContent[i]
-              .content[j].font_color;
+            content_color =
+              this.StoredData.appliancesDescriptionContent[i].content[j]
+                .font_color;
           }
           if (
             this.StoredData.appliancesDescriptionContent[i].content[j]
               .font_size != null
           ) {
-            content_fontSize = this.StoredData.appliancesDescriptionContent[i]
-              .content[j].font_size;
+            content_fontSize =
+              this.StoredData.appliancesDescriptionContent[i].content[j]
+                .font_size;
           }
         }
         if (
           this.StoredData.appliancesDescriptionContent[i].font_color != null
         ) {
-          title_color = this.StoredData.appliancesDescriptionContent[i]
-            .font_color;
+          title_color =
+            this.StoredData.appliancesDescriptionContent[i].font_color;
         }
         if (this.StoredData.appliancesDescriptionContent[i].font_size != null) {
-          title_fontSize = this.StoredData.appliancesDescriptionContent[i]
-            .font_size;
+          title_fontSize =
+            this.StoredData.appliancesDescriptionContent[i].font_size;
         }
         docDefinition.content.push({
           fontSize: 10,
@@ -4598,15 +4578,14 @@ export class CommonSelectionPage implements OnInit {
             this.StoredData.applianceObservation[i].content[j].font_color !=
             null
           ) {
-            content_color = this.StoredData.applianceObservation[i].content[j]
-              .font_color;
+            content_color =
+              this.StoredData.applianceObservation[i].content[j].font_color;
           }
           if (
             this.StoredData.applianceObservation[i].content[j].font_size != null
           ) {
-            content_fontSize = this.StoredData.applianceObservation[i].content[
-              j
-            ].font_size;
+            content_fontSize =
+              this.StoredData.applianceObservation[i].content[j].font_size;
           }
           docDefinition.content.push({
             fontSize: 9.5,
@@ -4666,8 +4645,7 @@ export class CommonSelectionPage implements OnInit {
           margin: [30, 10, 6, 0],
           text: [
             {
-              text:
-                'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Appliances are tested by turning them on for a short period of time only. It is strongly recommended that a Homeowner’s Warranty or service contract be purchased to cover the operation of appliances.  It is further recommended that appliances be tested during any scheduled pre-closing walk through.  Like any mechanical device, appliances can malfunction at any time (including the day after taking possession of the house).  The inspection of the appliances was limited by (but not restricted to) the following conditions:\n',
+              text: 'As prescribed in the inspection authorization and agreement, this is a visual inspection only.  Appliances are tested by turning them on for a short period of time only. It is strongly recommended that a Homeowner’s Warranty or service contract be purchased to cover the operation of appliances.  It is further recommended that appliances be tested during any scheduled pre-closing walk through.  Like any mechanical device, appliances can malfunction at any time (including the day after taking possession of the house).  The inspection of the appliances was limited by (but not restricted to) the following conditions:\n',
             },
           ],
         }
@@ -4694,8 +4672,7 @@ export class CommonSelectionPage implements OnInit {
       docDefinition.content.push({
         margin: [30, 10, 6, 0],
         fontSize: 9.5,
-        text:
-          'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
+        text: 'Please refer to the NACHI® Inspector Standards for a full explanation of the scope of the inspection. NACHI.org.\n\n',
       });
     }
     docDefinition.content.push(
@@ -4754,10 +4731,9 @@ export class CommonSelectionPage implements OnInit {
         ],
       },
       {
-        text:
-          'This is an Agreement between you, the undersigned Client, and us, the Inspector, pertaining to our inspection of the Property at:\n Listed on the cover page of the report.  The terms below govern this Agreement.\n\n',
+        text: 'This is an Agreement between you, the undersigned Client, and us, the Inspector, pertaining to our inspection of the Property at:\n Listed on the cover page of the report.  The terms below govern this Agreement.\n\n',
         style: 'paraData_2',
-        italics: 'true',
+        // italics: 'true',
         color: '#ff0000',
       }
     );
